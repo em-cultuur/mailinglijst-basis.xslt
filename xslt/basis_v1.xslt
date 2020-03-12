@@ -89,14 +89,6 @@
 					</xsl:choose>
 				</xsl:variable>
 
-				<!-- Styles for content -->
-				<xsl:variable name="content_style">
-					<xsl:choose>
-						<xsl:when test="contains(style, 'uitgelicht') or extra1 != ''">font-family: Arial; font-size: 14px; line-height: 20px; color: #FFFFFF; padding: 25px; padding-top: 15px;</xsl:when>
-						<xsl:otherwise>font-family: Arial; font-size: 14px; line-height: 20px; color: #333333; padding: 25px; padding-top: 15px;</xsl:otherwise>
-					</xsl:choose>
-				</xsl:variable>
-
 				<!-- Styles for buttons -->
 				<xsl:variable name="buttonscontainer_style">padding: 25px; padding-top: 0px;</xsl:variable>
 				<xsl:variable name="buttonlink_style">
@@ -495,12 +487,13 @@
 																				</tr>
 																			</xsl:if>
 
+																			<xsl:if test=""
+
 																		</xsl:if>
 
 																		<!-- Content -->
 																		<tr>
 																			<td class="tdContent">
-																				<xsl:attribute name="style"><xsl:value-of select="$content_style" /></xsl:attribute>
 																				<xsl:value-of select="content" disable-output-escaping="yes" />
 																			</td>
 																		</tr>
