@@ -1,29 +1,43 @@
 <?xml version="1.0" encoding="iso-8859-15" ?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<xsl:output method="html" />
-	<xsl:template match="/">
 
-		<!-- EM-Cultuur (c) 2020
+	<!-- EM-Cultuur (c) 2020
 		Basis XSLT for building new templates -->
 
-		<!-- texts -->
-		<xsl:variable name="button1_text">Lees meer</xsl:variable>
-		<xsl:variable name="button2_text">Koop kaarten</xsl:variable>
+	<!-- texts -->
+	<xsl:variable name="button1_text">Lees meer</xsl:variable>
+	<xsl:variable name="button2_text">Koop kaarten</xsl:variable>
+	<xsl:variable name="agenda_header_text">Agenda</xsl:variable>
+
+	<xsl:variable name="date_day_0">zo </xsl:variable>
+	<xsl:variable name="date_day_1">ma </xsl:variable>
+	<xsl:variable name="date_day_2">di </xsl:variable>
+	<xsl:variable name="date_day_3">wo </xsl:variable>
+	<xsl:variable name="date_day_4">do </xsl:variable>
+	<xsl:variable name="date_day_5">vr </xsl:variable>
+	<xsl:variable name="date_day_6">za </xsl:variable>
+
+	<xsl:variable name="date_month_1">jan </xsl:variable>
+	<xsl:variable name="date_month_2">feb </xsl:variable>
+	<xsl:variable name="date_month_3">mrt </xsl:variable>
+	<xsl:variable name="date_month_4">apr </xsl:variable>
+	<xsl:variable name="date_month_5">mei </xsl:variable>
+	<xsl:variable name="date_month_6">jun </xsl:variable>
+	<xsl:variable name="date_month_7">jul </xsl:variable>
+	<xsl:variable name="date_month_8">aug </xsl:variable>
+	<xsl:variable name="date_month_9">sep </xsl:variable>
+	<xsl:variable name="date_month_10">okt </xsl:variable>
+	<xsl:variable name="date_month_11">nov </xsl:variable>
+	<xsl:variable name="date_month_12">dec </xsl:variable>
+
+	<xsl:template match="/">
 
 		<table cellpadding="0" cellspacing="0" width="100%" style="width: 100%" class="tblMain">
 
 			<!-- BASIC STYLES FOR ALL ITEMS -->
 			<!-- Marge between each rows -->
 			<xsl:variable name="block_marge">25</xsl:variable>
-
-			<!-- AGENDA -->
-			<!-- Header style -->
-			<xsl:variable name="agendaheader_style">color: #333333; font-family: Arial; font-weight: bold; padding: 25px; padding-bottom: 0px; border-top: 3px solid #333333; font-size: 24px; line-height: 27px; padding-bottom: 25px;</xsl:variable>
-
-			<!-- Items container style -->
-			<xsl:variable name="agendacontainer_style">background-color: #FFFFFF; padding: 25px; padding-bottom: 10px;</xsl:variable>
-
-			<!-- END STYLES -->
 
 			<!-- Loop through every items with styles starting with Item (normal items) -->
 			<xsl:for-each select="matches/match[contains(style, 'Item')]">
@@ -207,23 +221,17 @@
 									</xsl:choose>
 								</xsl:attribute>
 								<tr>
-									<td>
-										<xsl:attribute name="style"><xsl:value-of select="$agendaheader_style" /></xsl:attribute>
-										<xsl:value-of select="title" />
+									<td class="tdAgendaHeader">
+										<h2><xsl:value-of select="title" /></h2>
 									</td>
 								</tr>
 							</table>
 							<table width="100%" cellpadding="0" cellspacing="0" style="width: 100%">
 								<tr>
-									<td>
-										<xsl:attribute name="style"><xsl:value-of select="$agendacontainer_style" /></xsl:attribute>
-
+									<td class="tdAgendaContainer">
 										<xsl:for-each select="/matches/match[contains(style, 'Agenda')]">
-
 											<xsl:call-template name="agenda" />
-
 										</xsl:for-each>
-
 									</td>
 								</tr>
 							</table>
@@ -584,24 +592,17 @@
 
 				<tr>
 					<td>
-
 						<table width="100%" cellpadding="0" cellspacing="0">
 							<tr>
-								<td>
-									<xsl:attribute name="style"><xsl:value-of select="$agendaheader_style" /></xsl:attribute>
-									In de agenda
+								<td class="tdAgendaHeader">
+									<h2><xsl:value-of select="$agenda_header_text" /></h2>
 								</td>
 							</tr>
 							<tr>
-								<td>
-									<xsl:attribute name="style"><xsl:value-of select="$agendacontainer_style" /></xsl:attribute>
-
+								<td class="tdAgendaContainer">
 									<xsl:for-each select="matches/match[contains(style, 'Agenda')]">
-
 										<xsl:call-template name="agenda" />
-
 									</xsl:for-each>
-
 								</td>
 							</tr>
 						</table>
@@ -613,17 +614,6 @@
 	</xsl:template>
 
 	<xsl:template name="agenda">
-
-		<!-- AGENDA SPECIFIC STYLES -->
-
-		<!-- Content style -->
-		<xsl:variable name="agendacontent_style">color: #333333; font-family: Arial; padding-bottom: 15px; font-size: 14px; line-height: 20px;</xsl:variable>
-
-		<!-- Button styles -->
-		<xsl:variable name="agendabuttonlink_style">color: #FFFFFF; text-decoration: none;</xsl:variable>
-		<xsl:variable name="agendabuttoncontainer_style">padding-bottom: 15px;</xsl:variable>
-		<xsl:variable name="agendabutton_style">background-color: #333333; color: #FFFFFF; font-family: Arial; font-size: 14px; padding: 20px; padding-top: 10px; padding-bottom: 10px;</xsl:variable>
-		<!-- END AGENDA SPECIFIC STYLES -->
 
 		<table width="100%" cellpadding="0" cellspacing="0" style="width: 100%" class="emItem emEditable emMoveable">
 			<xsl:attribute name="data-sort"><xsl:value-of select="sort_on" /></xsl:attribute>
@@ -641,13 +631,11 @@
 				</xsl:choose>
 			</xsl:attribute>
 			<tr>
-				<td class="tdCaption">
-					<xsl:attribute name="style"><xsl:value-of select="$agendacontent_style" /></xsl:attribute>
-
-					<strong><xsl:value-of select="title" disable-output-escaping="yes" /></strong>
+				<td class="tdAgendaContent">
+					<h2><xsl:value-of select="title" disable-output-escaping="yes" /></h2>
 					<xsl:if test="location != ''">
-						<br />
 						<xsl:value-of select="location" disable-output-escaping="yes" />
+						<br />
 					</xsl:if>
 
 					<xsl:call-template name="agenda_subtitle">
@@ -655,28 +643,14 @@
 					</xsl:call-template>
 				</td>
 				<xsl:if test="url != ''">
-					<td>
-						<xsl:attribute name="style"><xsl:value-of select="$agendabuttoncontainer_style" /></xsl:attribute>
-						<a target="_blank" class="White">
-							<xsl:attribute name="style"><xsl:value-of select="$agendabuttonlink_style" /></xsl:attribute>
-							<xsl:attribute name="href"><xsl:value-of select="details_url" /></xsl:attribute>
-
-							<table cellpadding="0" cellspacing="0" align="right">
-								<tr>
-									<td>
-										<xsl:attribute name="style"><xsl:value-of select="$agendabutton_style" /></xsl:attribute>
-										<a target="_blank" style="color: #FFFFFF;" class="White">
-											<xsl:attribute name="href"><xsl:value-of select="details_url" /></xsl:attribute>
-											<xsl:attribute name="style"><xsl:value-of select="$agendabuttonlink_style" /></xsl:attribute>
-											<xsl:choose>
-												<xsl:when test="image_alt != ''"><xsl:value-of select="image_alt" /></xsl:when>
-												<xsl:otherwise>Lees verder</xsl:otherwise>
-											</xsl:choose>
-										</a>
-									</td>
-								</tr>
-							</table>
-						</a>
+					<td class="tdAgendaButtonContainer">
+						<xsl:call-template name="button">
+							<xsl:with-param name="button_default_text" select="$button1_text" />
+							<xsl:with-param name="button_text" select="image_alt" />
+							<xsl:with-param name="url" select="details_url" />
+							<xsl:with-param name="class">tdButton</xsl:with-param>
+							<xsl:with-param name="align">right</xsl:with-param>
+						</xsl:call-template>
 					</td>
 				</xsl:if>
 			</tr>
@@ -717,16 +691,14 @@
 			<xsl:variable name="end_weekday" select="($end_day + $end_y + floor($end_y div 4) - floor($end_y div 100) + floor($end_y div 400) + floor((31 * $end_m) div 12)) mod 7" />
 
 			<xsl:choose>
-				<xsl:when test="$start_weekday = '0'">zo</xsl:when>
-				<xsl:when test="$start_weekday = '1'">ma</xsl:when>
-				<xsl:when test="$start_weekday = '2'">di</xsl:when>
-				<xsl:when test="$start_weekday = '3'">wo</xsl:when>
-				<xsl:when test="$start_weekday = '4'">do</xsl:when>
-				<xsl:when test="$start_weekday = '5'">vr</xsl:when>
-				<xsl:when test="$start_weekday = '6'">za</xsl:when>
+				<xsl:when test="$start_weekday = '0'"><xsl:value-of select="$date_day_0" /></xsl:when>
+				<xsl:when test="$start_weekday = '1'"><xsl:value-of select="$date_day_1" /></xsl:when>
+				<xsl:when test="$start_weekday = '2'"><xsl:value-of select="$date_day_2" /></xsl:when>
+				<xsl:when test="$start_weekday = '3'"><xsl:value-of select="$date_day_3" /></xsl:when>
+				<xsl:when test="$start_weekday = '4'"><xsl:value-of select="$date_day_4" /></xsl:when>
+				<xsl:when test="$start_weekday = '5'"><xsl:value-of select="$date_day_5" /></xsl:when>
+				<xsl:when test="$start_weekday = '6'"><xsl:value-of select="$date_day_6" /></xsl:when>
 			</xsl:choose>
-
-			<xsl:text disable-output-escaping="yes"><![CDATA[ ]]></xsl:text>
 
 			<xsl:choose>
 				<xsl:when test="substring($start_day, 1, 1) = '0'"><xsl:value-of select="substring($start_day, 2, 1)" /></xsl:when>
@@ -736,21 +708,19 @@
 			<xsl:text disable-output-escaping="yes"><![CDATA[ ]]></xsl:text>
 
 			<xsl:choose>
-				<xsl:when test="$start_month = '01'">jan</xsl:when>
-				<xsl:when test="$start_month = '02'">feb</xsl:when>
-				<xsl:when test="$start_month = '03'">mrt</xsl:when>
-				<xsl:when test="$start_month = '04'">apr</xsl:when>
-				<xsl:when test="$start_month = '05'">mei</xsl:when>
-				<xsl:when test="$start_month = '06'">jun</xsl:when>
-				<xsl:when test="$start_month = '07'">jul</xsl:when>
-				<xsl:when test="$start_month = '08'">aug</xsl:when>
-				<xsl:when test="$start_month = '09'">sept</xsl:when>
-				<xsl:when test="$start_month = '10'">okt</xsl:when>
-				<xsl:when test="$start_month = '11'">nov</xsl:when>
-				<xsl:when test="$start_month = '12'">dec</xsl:when>
+				<xsl:when test="$start_month = '01'"><xsl:value-of select="$date_month_1" /></xsl:when>
+				<xsl:when test="$start_month = '02'"><xsl:value-of select="$date_month_2" /></xsl:when>
+				<xsl:when test="$start_month = '03'"><xsl:value-of select="$date_month_3" /></xsl:when>
+				<xsl:when test="$start_month = '04'"><xsl:value-of select="$date_month_4" /></xsl:when>
+				<xsl:when test="$start_month = '05'"><xsl:value-of select="$date_month_5" /></xsl:when>
+				<xsl:when test="$start_month = '06'"><xsl:value-of select="$date_month_6" /></xsl:when>
+				<xsl:when test="$start_month = '07'"><xsl:value-of select="$date_month_7" /></xsl:when>
+				<xsl:when test="$start_month = '08'"><xsl:value-of select="$date_month_8" /></xsl:when>
+				<xsl:when test="$start_month = '09'"><xsl:value-of select="$date_month_9" /></xsl:when>
+				<xsl:when test="$start_month = '10'"><xsl:value-of select="$date_month_10" /></xsl:when>
+				<xsl:when test="$start_month = '11'"><xsl:value-of select="$date_month_11" /></xsl:when>
+				<xsl:when test="$start_month = '12'"><xsl:value-of select="$date_month_12" /></xsl:when>
 			</xsl:choose>
-
-			<xsl:text disable-output-escaping="yes"><![CDATA[ ]]></xsl:text>
 
 			<xsl:value-of select="$start_year" />
 
@@ -759,16 +729,14 @@
 				<xsl:text disable-output-escaping="yes"><![CDATA[ t/m ]]></xsl:text>
 
 				<xsl:choose>
-					<xsl:when test="$end_weekday = '0'">zo</xsl:when>
-					<xsl:when test="$end_weekday = '1'">ma</xsl:when>
-					<xsl:when test="$end_weekday = '2'">di</xsl:when>
-					<xsl:when test="$end_weekday = '3'">wo</xsl:when>
-					<xsl:when test="$end_weekday = '4'">do</xsl:when>
-					<xsl:when test="$end_weekday = '5'">vr</xsl:when>
-					<xsl:when test="$end_weekday = '6'">za</xsl:when>
+					<xsl:when test="$end_weekday = '0'"><xsl:value-of select="$date_day_0" /></xsl:when>
+					<xsl:when test="$end_weekday = '1'"><xsl:value-of select="$date_day_1" /></xsl:when>
+					<xsl:when test="$end_weekday = '2'"><xsl:value-of select="$date_day_2" /></xsl:when>
+					<xsl:when test="$end_weekday = '3'"><xsl:value-of select="$date_day_3" /></xsl:when>
+					<xsl:when test="$end_weekday = '4'"><xsl:value-of select="$date_day_4" /></xsl:when>
+					<xsl:when test="$end_weekday = '5'"><xsl:value-of select="$date_day_5" /></xsl:when>
+					<xsl:when test="$end_weekday = '6'"><xsl:value-of select="$date_day_6" /></xsl:when>
 				</xsl:choose>
-
-				<xsl:text disable-output-escaping="yes"><![CDATA[ ]]></xsl:text>
 
 				<xsl:choose>
 					<xsl:when test="substring($end_day, 1, 1) = '0'"><xsl:value-of select="substring($end_day, 2, 1)" /></xsl:when>
@@ -778,21 +746,19 @@
 				<xsl:text disable-output-escaping="yes"><![CDATA[ ]]></xsl:text>
 
 				<xsl:choose>
-					<xsl:when test="$end_month = '01'">jan</xsl:when>
-					<xsl:when test="$end_month = '02'">feb</xsl:when>
-					<xsl:when test="$end_month = '03'">mrt</xsl:when>
-					<xsl:when test="$end_month = '04'">apr</xsl:when>
-					<xsl:when test="$end_month = '05'">mei</xsl:when>
-					<xsl:when test="$end_month = '06'">jun</xsl:when>
-					<xsl:when test="$end_month = '07'">jul</xsl:when>
-					<xsl:when test="$end_month = '08'">aug</xsl:when>
-					<xsl:when test="$end_month = '09'">sept</xsl:when>
-					<xsl:when test="$end_month = '10'">okt</xsl:when>
-					<xsl:when test="$end_month = '11'">nov</xsl:when>
-					<xsl:when test="$end_month = '12'">dec</xsl:when>
+					<xsl:when test="$end_month = '01'"><xsl:value-of select="$date_month_1" /></xsl:when>
+					<xsl:when test="$end_month = '02'"><xsl:value-of select="$date_month_2" /></xsl:when>
+					<xsl:when test="$end_month = '03'"><xsl:value-of select="$date_month_3" /></xsl:when>
+					<xsl:when test="$end_month = '04'"><xsl:value-of select="$date_month_4" /></xsl:when>
+					<xsl:when test="$end_month = '05'"><xsl:value-of select="$date_month_5" /></xsl:when>
+					<xsl:when test="$end_month = '06'"><xsl:value-of select="$date_month_6" /></xsl:when>
+					<xsl:when test="$end_month = '07'"><xsl:value-of select="$date_month_7" /></xsl:when>
+					<xsl:when test="$end_month = '08'"><xsl:value-of select="$date_month_8" /></xsl:when>
+					<xsl:when test="$end_month = '09'"><xsl:value-of select="$date_month_9" /></xsl:when>
+					<xsl:when test="$end_month = '10'"><xsl:value-of select="$date_month_10" /></xsl:when>
+					<xsl:when test="$end_month = '11'"><xsl:value-of select="$date_month_11" /></xsl:when>
+					<xsl:when test="$end_month = '12'"><xsl:value-of select="$date_month_12" /></xsl:when>
 				</xsl:choose>
-
-				<xsl:text disable-output-escaping="yes"><![CDATA[ ]]></xsl:text>
 
 				<xsl:value-of select="$end_year" />
 
@@ -817,11 +783,13 @@
 		<xsl:param name="button_default_text" />
 		<xsl:param name="url" />
 		<xsl:param name="class" />
+		<xsl:param name="align">left</xsl:param>
 
 		<a target="_blank">
 			<xsl:attribute name="href"><xsl:value-of select="$url" /></xsl:attribute>
 
 			<table cellpadding="0" cellspacing="0">
+				<xsl:attribute name="align"><xsl:value-of select="$align" /></xsl:attribute>
 				<tr>
 					<td>
 						<xsl:attribute name="class"><xsl:value-of select="$class" /></xsl:attribute>
