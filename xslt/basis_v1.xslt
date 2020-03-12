@@ -89,14 +89,6 @@
 					</xsl:choose>
 				</xsl:variable>
 
-				<!-- Styles for subtitle -->
-				<xsl:variable name="subtitle_style">
-					<xsl:choose>
-						<xsl:when test="contains(style, 'uitgelicht') or extra1 != ''">color: #FFFFFF; font-family: Arial; padding: 25px; padding-top: 0px; padding-bottom: 0px; font-size: <xsl:value-of select="$title_size" />px; line-height: <xsl:value-of select="$title_lineheight" />px;</xsl:when>
-						<xsl:otherwise>color: #333333; font-family: Arial; padding: 25px; padding-top: 0px; padding-bottom: 0px; font-size: <xsl:value-of select="$title_size" />px; line-height: <xsl:value-of select="$title_lineheight" />px;</xsl:otherwise>
-					</xsl:choose>
-				</xsl:variable>
-
 				<!-- Styles for content -->
 				<xsl:variable name="content_style">
 					<xsl:choose>
@@ -497,9 +489,8 @@
 																			<!-- Subtitle (the DB field location is used as subtitle mostly -->
 																			<xsl:if test="location != ''">
 																				<tr>
-																					<td>
-																						<xsl:attribute name="style"><xsl:value-of select="$subtitle_style" /></xsl:attribute>
-																						<xsl:value-of select="location" disable-output-escaping="yes" />
+																					<td class="tdSubtitle">
+																						<h4><xsl:value-of select="location" disable-output-escaping="yes" /></h4>
 																					</td>
 																				</tr>
 																			</xsl:if>
