@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
     <head>
-        <!-- Jelle de Boer / februari 2020 / EM-Cultuur / MailingLijst -->
+        <!-- EM-Cultuur / MailingLijst -->
         <meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE">
         <title>Nieuwsbrief</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -12,6 +12,79 @@
             .tdContent a {color: #333333; }
             .White .tdContent a { color: #FFFFFF; }
             .Black a { color: #333333; }
+
+            /* GLOBAL HTML/BODY STYLES */
+            HTML {
+                width: 100%;
+                padding: 0;
+                margin: 0;
+            }
+
+            BODY {
+                width: 100%;
+                margin: 0;
+                padding: 0;
+                background-color: #f5f5f5;
+            }
+            /* END GLOBAL HTML/BODY STYLES */
+
+            /* HEADER STYLES */
+            .tdShow {
+                text-align: right;
+                padding: 5px;
+                color: #333333;
+                font-family: Arial;
+                font-size: 12px;
+            }
+
+            .tdShow a {
+                color: #333333;
+                text-decoration: underline;
+            }
+
+            .tdShow a:hover {
+                text-decoration: none;
+            }
+
+            .tdLogo {
+                padding: 25px;
+                background-color: #333333;
+            }
+
+            .tdNewsletter {
+                text-align: left;
+                padding: 25px;
+                padding-top: 0px;
+                background-color: #333333;
+            }
+
+            .tdNewsletter H1 {
+                color: #FFFFFF;
+                font-family: Arial;
+                font-size: 16px;
+                margin: 0px;
+            }
+            /* END HEADER STYLES */
+
+            /* FOOTER STYLES */
+            .tdFooterContainer {
+                font-family: Arial;
+                font-size: 13px;
+                line-height: 16px;
+                padding: 25px;
+                color: #666666;
+            }
+
+            .tdFooterContainer a {
+                color: #666666;
+                text-decoration: underline;
+            }
+
+            .tdFooterContainer a:hover {
+                text-decoration: none;
+            }
+            /* END FOOTER STYLES */
+            
             @media only screen and (max-width: 480px) {
             .tblMain {
             width: 100% !important;
@@ -54,11 +127,7 @@
             float: none !important;
             }
             }
-            html, body {
-            width: 100%;
-            padding: 0;
-            margin: 0;
-            }
+
         </style>
         <!--[if mso]>
 <style type="text/css">
@@ -66,23 +135,27 @@ body, table, td, a, span {font-family: Arial, Helvetica, sans-serif !important;}
 </style>
 <![endif]-->
     </head>
-    <body style="margin: 0px; padding: 0px; background-color: rgb(245, 245, 245); zoom: 100%;">
+
+    <body>
         <table align="center" cellpadding="0" cellspacing="0" style="width: 700px;" class="tblMain">
             <tbody>
-                <tr>
-                    <td style="text-align: right; padding: 5px; color: #333333; font-family: Arial; font-size: 12px;" class="Black">
-                    %%SHOW%%
+                <!-- HEADER -->
+                <tr> <!-- show -->
+                    <td class="tdShow">
+                        %%SHOW%%
                     </td>
                 </tr>
-                <!-- LOGO -->
-                <tr>
-                    <td style="padding: 25px; background-color: #333333;">
-                    <img src="https://www.mailinglijst.nl/klanten/12288/emtheater_logo_trans.png?v=20200108104115" style="width: 250px; height: 53px;" alt="Emtheater logo trans" title="Emtheater logo trans" height="53" width="250"></td>
+                <tr> <!-- logo -->
+                    <td class="tdLogo">
+                        <a href="https://www.mailinglijst.nl" target="_blank">
+                            <img src="https://www.mailinglijst.nl/klanten/12288/emtheater_logo_trans.png?v=20200108104115" style="width: 250px; height: 53px;" alt="MailingLijst" title="Bezoek de website" height="53" width="250">
+                        </a>
+                    </td>
                 </tr>
-                <tr>
-                    <td style="text-align: left; padding: 25px; padding-top: 0px; background-color: #333333; color: rgb(255, 255, 255); font-family: Arial; font-size: 16px;">Nieuwsbrief november 2019</td>
+                <tr> <!-- newsletter edition -->
+                    <td class="tdNewsletter"><h1>Nieuwsbrief november 2019</h1></td>
                 </tr>
-                <!-- END LOGO -->
+                <!-- END HEADER -->
                 <!-- CONTENT -->
                 <tr>
                     <td style="padding-bottom: 0px; font-size: 12px; font-family: Arial; font-weight: 400;">
@@ -92,19 +165,21 @@ body, table, td, a, span {font-family: Arial, Helvetica, sans-serif !important;}
                 <!-- END CONTENT -->
                 <!-- FOOTER -->
                 <tr>
-                    <td style="font-family: Arial; font-size: 13px; line-height: 16px; padding: 30px; color: #666666;" align="center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque iaculis dignissim luctus. Proin libero augue, gravida id porta a, bibendum ut nibh.<br>
-                    <br>
-                    <img src="https://www.mailinglijst.nl/klanten/12288/facebook_dark.png?v=20160203111500" style="width: 30px; height: 30px;" height="30" width="30" alt="Facebook dark" title="Facebook dark">&nbsp;&nbsp;<img src="https://www.mailinglijst.nl/klanten/12288/twitter_dark.png?v=20160203111500" style="width: 30px; height: 30px;" height="30" width="30" alt="Twitter dark" title="Twitter dark"><br>
-                    <br>
-                    Gegevens wijzigen of afmelden? <a href="%%URLBODY2%%" target="_blank" style="color: #666666;">Klik hier</a>.
+                    <td class="tdFooterContainer">
+                        <center>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Pellentesque iaculis dignissim luctus.
+                            Proin libero augue, gravida id porta a, bibendum ut nibh.
+                            <br /><br />
+                            <img src="https://www.mailinglijst.nl/klanten/12288/facebook_dark.png?v=20160203111500" style="width: 30px; height: 30px;" height="30" width="30" alt="Facebook dark" title="Facebook dark">&nbsp;&nbsp;<img src="https://www.mailinglijst.nl/klanten/12288/twitter_dark.png?v=20160203111500" style="width: 30px; height: 30px;" height="30" width="30" alt="Twitter dark" title="Twitter dark"><br>
+                            <br />
+                            Gegevens wijzigen of afmelden? <a href="%%URLBODY2%%" target="_blank" style="color: #666666;">Klik hier</a>.
+                        </center>
                     </td>
                 </tr>
                 <!-- END FOOTER -->
             </tbody>
         </table>
-        <br>
-        <!-- %%FIRST_NAME%% -->
-        <!-- %%SALUTATION_DEAR%% -->
         <!-- %%URL2=109305%% -->
     </body>
 </html>
