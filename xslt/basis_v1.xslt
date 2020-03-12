@@ -487,7 +487,16 @@
 																				</tr>
 																			</xsl:if>
 
-																			<xsl:if test=""
+																			<!-- Date -->
+																			<xsl:if test="not(contains(display_playdate_start, '1 januari 2000')) or icon != ''">
+																				<tr>
+																					<td class="tdDate">
+																						<xsl:call-template name="agenda_subtitle">
+																							<xsl:with-param name="row" select="." />
+																						</xsl:call-template>
+																					</td>
+																				</tr>
+																			</xsl:if>
 
 																		</xsl:if>
 
@@ -736,191 +745,9 @@
 						<xsl:value-of select="location" disable-output-escaping="yes" />
 					</xsl:if>
 
-					<xsl:choose>
-						<xsl:when test="icon != ''">
-							<br />
-							<xsl:value-of select="icon" />
-						</xsl:when>
-						<xsl:otherwise>
-							<xsl:variable name="start_date"><xsl:value-of select="substring-before(playdate_start, 'T')" /></xsl:variable>
-							<xsl:variable name="start_year"><xsl:value-of select="substring-before($start_date,'-')" /></xsl:variable>
-							<xsl:variable name="start_month"><xsl:value-of select="substring(playdate_start, 6, 2)" /></xsl:variable>
-							<xsl:variable name="start_day"><xsl:value-of select="substring(playdate_start, 9, 2)" /></xsl:variable>
-
-							<xsl:variable name="start_a" select="floor((14 - $start_month) div 12)"/>
-							<xsl:variable name="start_y" select="$start_year - $start_a"/>
-							<xsl:variable name="start_m" select="$start_month + 12 * $start_a - 2"/>
-
-							<xsl:variable name="start_weekday" select="($start_day + $start_y + floor($start_y div 4) - floor($start_y div 100) + floor($start_y div 400) + floor((31 * $start_m) div 12)) mod 7" />
-
-							<xsl:variable name="end_date"><xsl:value-of select="substring-before(playdate_end, 'T')" /></xsl:variable>
-							<xsl:variable name="end_year"><xsl:value-of select="substring-before($end_date,'-')" /></xsl:variable>
-							<xsl:variable name="end_month"><xsl:value-of select="substring(playdate_end, 6, 2)" /></xsl:variable>
-							<xsl:variable name="end_day"><xsl:value-of select="substring(playdate_end, 9, 2)" /></xsl:variable>
-
-							<xsl:variable name="end_a" select="floor((14 - $end_month) div 12)"/>
-							<xsl:variable name="end_y" select="$end_year - $end_a"/>
-							<xsl:variable name="end_m" select="$end_month + 12 * $end_a - 2"/>
-
-							<xsl:variable name="end_weekday" select="($end_day + $end_y + floor($end_y div 4) - floor($end_y div 100) + floor($end_y div 400) + floor((31 * $end_m) div 12)) mod 7" />
-
-							<xsl:if test="$start_year != '2000'">
-								<br />
-								<xsl:choose>
-									<xsl:when test="display_playdate_start != display_playdate_end">
-
-										<xsl:choose>
-											<xsl:when test="$start_weekday = '0'">zo</xsl:when>
-											<xsl:when test="$start_weekday = '1'">ma</xsl:when>
-											<xsl:when test="$start_weekday = '2'">di</xsl:when>
-											<xsl:when test="$start_weekday = '3'">wo</xsl:when>
-											<xsl:when test="$start_weekday = '4'">do</xsl:when>
-											<xsl:when test="$start_weekday = '5'">vr</xsl:when>
-											<xsl:when test="$start_weekday = '6'">za</xsl:when>
-										</xsl:choose>
-
-										<xsl:text disable-output-escaping="yes"><![CDATA[ ]]></xsl:text>
-
-										<xsl:choose>
-											<xsl:when test="substring($start_day, 1, 1) = '0'"><xsl:value-of select="substring($start_day, 2, 1)" /></xsl:when>
-											<xsl:otherwise><xsl:value-of select="$start_day" /></xsl:otherwise>
-										</xsl:choose>
-
-										<xsl:if test="$start_month != $end_month">
-
-											<xsl:text disable-output-escaping="yes"><![CDATA[ ]]></xsl:text>
-
-											<xsl:choose>
-												<xsl:when test="$start_month = '01'">jan</xsl:when>
-												<xsl:when test="$start_month = '02'">feb</xsl:when>
-												<xsl:when test="$start_month = '03'">mrt</xsl:when>
-												<xsl:when test="$start_month = '04'">apr</xsl:when>
-												<xsl:when test="$start_month = '05'">mei</xsl:when>
-												<xsl:when test="$start_month = '06'">jun</xsl:when>
-												<xsl:when test="$start_month = '07'">jul</xsl:when>
-												<xsl:when test="$start_month = '08'">aug</xsl:when>
-												<xsl:when test="$start_month = '09'">sep</xsl:when>
-												<xsl:when test="$start_month = '10'">okt</xsl:when>
-												<xsl:when test="$start_month = '11'">nov</xsl:when>
-												<xsl:when test="$start_month = '12'">dec</xsl:when>
-											</xsl:choose>
-
-											<!-- Find a better solution for hardcoded year -->
-											<xsl:if test="$start_year != '2020'">
-												<xsl:text disable-output-escaping="yes"><![CDATA[ ]]></xsl:text>
-												<xsl:value-of select="$start_year" />
-											</xsl:if>
-
-										</xsl:if>
-
-										<xsl:if test="substring(playdate_start, 12, 5) != substring(playdate_end, 12, 5)">
-											<xsl:text disable-output-escaping="yes"><![CDATA[ om ]]></xsl:text>
-											<xsl:value-of select="substring(playdate_start, 12, 5)" />
-										</xsl:if>
-
-										<xsl:choose>
-											<xsl:when test="$end_weekday = '0'">zo</xsl:when>
-											<xsl:when test="$end_weekday = '1'">ma</xsl:when>
-											<xsl:when test="$end_weekday = '2'">di</xsl:when>
-											<xsl:when test="$end_weekday = '3'">wo</xsl:when>
-											<xsl:when test="$end_weekday = '4'">do</xsl:when>
-											<xsl:when test="$end_weekday = '5'">vr</xsl:when>
-											<xsl:when test="$end_weekday = '6'">za</xsl:when>
-										</xsl:choose>
-
-										<xsl:text disable-output-escaping="yes"><![CDATA[ ]]></xsl:text>
-
-										<xsl:choose>
-											<xsl:when test="substring($end_day, 1, 1) = '0'"><xsl:value-of select="substring($end_day, 2, 1)" /></xsl:when>
-											<xsl:otherwise><xsl:value-of select="$end_day" /></xsl:otherwise>
-										</xsl:choose>
-
-										<xsl:text disable-output-escaping="yes"><![CDATA[ ]]></xsl:text>
-
-										<xsl:choose>
-											<xsl:when test="$end_month = '01'">jan</xsl:when>
-											<xsl:when test="$end_month = '02'">feb</xsl:when>
-											<xsl:when test="$end_month = '03'">mrt</xsl:when>
-											<xsl:when test="$end_month = '04'">apr</xsl:when>
-											<xsl:when test="$end_month = '05'">mei</xsl:when>
-											<xsl:when test="$end_month = '06'">jun</xsl:when>
-											<xsl:when test="$end_month = '07'">jul</xsl:when>
-											<xsl:when test="$end_month = '08'">aug</xsl:when>
-											<xsl:when test="$end_month = '09'">sep</xsl:when>
-											<xsl:when test="$end_month = '10'">okt</xsl:when>
-											<xsl:when test="$end_month = '11'">nov</xsl:when>
-											<xsl:when test="$end_month = '12'">dec</xsl:when>
-										</xsl:choose>
-
-										<xsl:if test="$end_year != '2020'">
-											<xsl:text disable-output-escaping="yes"><![CDATA[ ]]></xsl:text>
-											<xsl:value-of select="$end_year" />
-										</xsl:if>
-
-										<xsl:if test="substring(playdate_end, 12, 5) != '00:00'">
-											<xsl:text disable-output-escaping="yes"><![CDATA[ om ]]></xsl:text>
-											<xsl:value-of select="substring(playdate_end, 12, 5)" />
-										</xsl:if>
-
-									</xsl:when>
-									<xsl:otherwise>
-
-										<xsl:choose>
-											<xsl:when test="$start_weekday = '0'">zo</xsl:when>
-											<xsl:when test="$start_weekday = '1'">ma</xsl:when>
-											<xsl:when test="$start_weekday = '2'">di</xsl:when>
-											<xsl:when test="$start_weekday = '3'">wo</xsl:when>
-											<xsl:when test="$start_weekday = '4'">do</xsl:when>
-											<xsl:when test="$start_weekday = '5'">vr</xsl:when>
-											<xsl:when test="$start_weekday = '6'">za</xsl:when>
-										</xsl:choose>
-
-										<xsl:text disable-output-escaping="yes"><![CDATA[ ]]></xsl:text>
-
-										<xsl:choose>
-											<xsl:when test="substring($start_day, 1, 1) = '0'"><xsl:value-of select="substring($start_day, 2, 1)" /></xsl:when>
-											<xsl:otherwise><xsl:value-of select="$start_day" /></xsl:otherwise>
-										</xsl:choose>
-
-										<xsl:text disable-output-escaping="yes"><![CDATA[ ]]></xsl:text>
-
-										<xsl:choose>
-											<xsl:when test="$start_month = '01'">jan</xsl:when>
-											<xsl:when test="$start_month = '02'">feb</xsl:when>
-											<xsl:when test="$start_month = '03'">mrt</xsl:when>
-											<xsl:when test="$start_month = '04'">apr</xsl:when>
-											<xsl:when test="$start_month = '05'">mei</xsl:when>
-											<xsl:when test="$start_month = '06'">jun</xsl:when>
-											<xsl:when test="$start_month = '07'">jul</xsl:when>
-											<xsl:when test="$start_month = '08'">aug</xsl:when>
-											<xsl:when test="$start_month = '09'">sep</xsl:when>
-											<xsl:when test="$start_month = '10'">okt</xsl:when>
-											<xsl:when test="$start_month = '11'">nov</xsl:when>
-											<xsl:when test="$start_month = '12'">dec</xsl:when>
-										</xsl:choose>
-
-										<!-- Find a better solution for hardcoded year -->
-										<xsl:if test="$start_year != '2020'">
-											<xsl:text disable-output-escaping="yes"><![CDATA[ ]]></xsl:text>
-											<xsl:value-of select="$start_year" />
-										</xsl:if>
-
-										<xsl:if test="substring(playdate_start, 12, 5) != '00:00'">
-											<xsl:text disable-output-escaping="yes"><![CDATA[ om ]]></xsl:text>
-											<xsl:value-of select="substring(playdate_start, 12, 5)" />
-										</xsl:if>
-
-										<xsl:if test="substring(playdate_end, 12, 5) != '00:00' and substring(playdate_end, 12, 5) != substring(playdate_start, 12, 5)">
-											<xsl:text disable-output-escaping="yes"><![CDATA[ t/m ]]></xsl:text>
-											<xsl:value-of select="substring(playdate_end, 12, 5)" />
-										</xsl:if>
-
-									</xsl:otherwise>
-								</xsl:choose>
-							</xsl:if>
-						</xsl:otherwise>
-					</xsl:choose>
-
+					<xsl:call-template name="agenda_subtitle">
+						<xsl:with-param name="row" select="." />
+					</xsl:call-template>
 				</td>
 				<xsl:if test="url != ''">
 					<td>
@@ -950,6 +777,133 @@
 			</tr>
 
 		</table>
+
+	</xsl:template>
+
+	<xsl:template name="agenda_subtitle">
+		<xsl:param name="row" />
+
+		<xsl:if test="$row/icon != ''">
+			<xsl:value-of select="$row/icon" disable-output-escaping="yes" />
+		</xsl:if>
+
+		<xsl:if test="not(contains($row/display_playdate_start, '1 januari 2000')) and icon = ''">
+
+			<xsl:variable name="start_date"><xsl:value-of select="substring-before($row/playdate_start, 'T')" /></xsl:variable>
+			<xsl:variable name="start_year"><xsl:value-of select="substring-before($start_date,'-')" /></xsl:variable>
+			<xsl:variable name="start_month"><xsl:value-of select="substring($row/playdate_start, 6, 2)" /></xsl:variable>
+			<xsl:variable name="start_day"><xsl:value-of select="substring($row/playdate_start, 9, 2)" /></xsl:variable>
+
+			<xsl:variable name="start_a" select="floor((14 - $start_month) div 12)"/>
+			<xsl:variable name="start_y" select="$start_year - $start_a"/>
+			<xsl:variable name="start_m" select="$start_month + 12 * $start_a - 2"/>
+
+			<xsl:variable name="start_weekday" select="($start_day + $start_y + floor($start_y div 4) - floor($start_y div 100) + floor($start_y div 400) + floor((31 * $start_m) div 12)) mod 7" />
+
+			<xsl:variable name="end_date"><xsl:value-of select="substring-before($row/playdate_end, 'T')" /></xsl:variable>
+			<xsl:variable name="end_year"><xsl:value-of select="substring-before($end_date,'-')" /></xsl:variable>
+			<xsl:variable name="end_month"><xsl:value-of select="substring($row/playdate_end, 6, 2)" /></xsl:variable>
+			<xsl:variable name="end_day"><xsl:value-of select="substring($row/playdate_end, 9, 2)" /></xsl:variable>
+
+			<xsl:variable name="end_a" select="floor((14 - $end_month) div 12)"/>
+			<xsl:variable name="end_y" select="$end_year - $end_a"/>
+			<xsl:variable name="end_m" select="$end_month + 12 * $end_a - 2"/>
+
+			<xsl:variable name="end_weekday" select="($end_day + $end_y + floor($end_y div 4) - floor($end_y div 100) + floor($end_y div 400) + floor((31 * $end_m) div 12)) mod 7" />
+
+			<xsl:choose>
+				<xsl:when test="$start_weekday = '0'">zo</xsl:when>
+				<xsl:when test="$start_weekday = '1'">ma</xsl:when>
+				<xsl:when test="$start_weekday = '2'">di</xsl:when>
+				<xsl:when test="$start_weekday = '3'">wo</xsl:when>
+				<xsl:when test="$start_weekday = '4'">do</xsl:when>
+				<xsl:when test="$start_weekday = '5'">vr</xsl:when>
+				<xsl:when test="$start_weekday = '6'">za</xsl:when>
+			</xsl:choose>
+
+			<xsl:text disable-output-escaping="yes"><![CDATA[ ]]></xsl:text>
+
+			<xsl:choose>
+				<xsl:when test="substring($start_day, 1, 1) = '0'"><xsl:value-of select="substring($start_day, 2, 1)" /></xsl:when>
+				<xsl:otherwise><xsl:value-of select="$start_day" /></xsl:otherwise>
+			</xsl:choose>
+
+			<xsl:text disable-output-escaping="yes"><![CDATA[ ]]></xsl:text>
+
+			<xsl:choose>
+				<xsl:when test="$start_month = '01'">jan</xsl:when>
+				<xsl:when test="$start_month = '02'">feb</xsl:when>
+				<xsl:when test="$start_month = '03'">mrt</xsl:when>
+				<xsl:when test="$start_month = '04'">apr</xsl:when>
+				<xsl:when test="$start_month = '05'">mei</xsl:when>
+				<xsl:when test="$start_month = '06'">jun</xsl:when>
+				<xsl:when test="$start_month = '07'">jul</xsl:when>
+				<xsl:when test="$start_month = '08'">aug</xsl:when>
+				<xsl:when test="$start_month = '09'">sept</xsl:when>
+				<xsl:when test="$start_month = '10'">okt</xsl:when>
+				<xsl:when test="$start_month = '11'">nov</xsl:when>
+				<xsl:when test="$start_month = '12'">dec</xsl:when>
+			</xsl:choose>
+
+			<xsl:text disable-output-escaping="yes"><![CDATA[ ]]></xsl:text>
+
+			<xsl:value-of select="$start_year" />
+
+			<xsl:if test="$row/display_playdate_start != $row/display_playdate_end">
+
+				<xsl:text disable-output-escaping="yes"><![CDATA[ t/m ]]></xsl:text>
+
+				<xsl:choose>
+					<xsl:when test="$end_weekday = '0'">zo</xsl:when>
+					<xsl:when test="$end_weekday = '1'">ma</xsl:when>
+					<xsl:when test="$end_weekday = '2'">di</xsl:when>
+					<xsl:when test="$end_weekday = '3'">wo</xsl:when>
+					<xsl:when test="$end_weekday = '4'">do</xsl:when>
+					<xsl:when test="$end_weekday = '5'">vr</xsl:when>
+					<xsl:when test="$end_weekday = '6'">za</xsl:when>
+				</xsl:choose>
+
+				<xsl:text disable-output-escaping="yes"><![CDATA[ ]]></xsl:text>
+
+				<xsl:choose>
+					<xsl:when test="substring($end_day, 1, 1) = '0'"><xsl:value-of select="substring($end_day, 2, 1)" /></xsl:when>
+					<xsl:otherwise><xsl:value-of select="$end_day" /></xsl:otherwise>
+				</xsl:choose>
+
+				<xsl:text disable-output-escaping="yes"><![CDATA[ ]]></xsl:text>
+
+				<xsl:choose>
+					<xsl:when test="$end_month = '01'">jan</xsl:when>
+					<xsl:when test="$end_month = '02'">feb</xsl:when>
+					<xsl:when test="$end_month = '03'">mrt</xsl:when>
+					<xsl:when test="$end_month = '04'">apr</xsl:when>
+					<xsl:when test="$end_month = '05'">mei</xsl:when>
+					<xsl:when test="$end_month = '06'">jun</xsl:when>
+					<xsl:when test="$end_month = '07'">jul</xsl:when>
+					<xsl:when test="$end_month = '08'">aug</xsl:when>
+					<xsl:when test="$end_month = '09'">sept</xsl:when>
+					<xsl:when test="$end_month = '10'">okt</xsl:when>
+					<xsl:when test="$end_month = '11'">nov</xsl:when>
+					<xsl:when test="$end_month = '12'">dec</xsl:when>
+				</xsl:choose>
+
+				<xsl:text disable-output-escaping="yes"><![CDATA[ ]]></xsl:text>
+
+				<xsl:value-of select="$end_year" />
+
+			</xsl:if>
+
+			<xsl:if test="substring($row/playdate_start, 12, 5) != '00:00'">
+				<xsl:text disable-output-escaping="yes"><![CDATA[ om ]]></xsl:text>
+				<xsl:value-of select="substring($row/playdate_start, 12, 5)" />
+
+				<xsl:if test="substring($row/playdate_end, 12, 5) != substring($row/playdate_start, 12, 5)">
+					<xsl:text disable-output-escaping="yes"><![CDATA[ - ]]></xsl:text>
+					<xsl:value-of select="substring($row/playdate_end, 12, 5)" />
+				</xsl:if>
+			</xsl:if>
+
+		</xsl:if>
 
 	</xsl:template>
 
