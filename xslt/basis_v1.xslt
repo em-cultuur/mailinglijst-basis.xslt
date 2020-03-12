@@ -89,14 +89,6 @@
 					</xsl:choose>
 				</xsl:variable>
 
-				<!-- Styles for title -->
-				<xsl:variable name="title_style">
-					<xsl:choose>
-						<xsl:when test="contains(style, 'uitgelicht') or extra1 != ''">color: #FFFFFF; font-family: Arial; font-weight: bold; padding: 25px; padding-bottom: 0px; font-size: <xsl:value-of select="$title_size" />px; line-height: <xsl:value-of select="$title_lineheight" />px;</xsl:when>
-						<xsl:otherwise>color: #333333; font-family: Arial; font-weight: bold; padding: 25px; padding-bottom: 0px; font-size: <xsl:value-of select="$title_size" />px; line-height: <xsl:value-of select="$title_lineheight" />px;</xsl:otherwise>
-					</xsl:choose>
-				</xsl:variable>
-
 				<!-- Styles for subtitle -->
 				<xsl:variable name="subtitle_style">
 					<xsl:choose>
@@ -346,8 +338,8 @@
 										<!-- Used for link colors -->
 										<xsl:attribute name="class">
 											<xsl:choose>
-												<xsl:when test="contains(style, 'uitgelicht') or extra1 != ''">White</xsl:when>
-												<xsl:otherwise>Black</xsl:otherwise>
+												<xsl:when test="contains(style, 'uitgelicht') or extra1 != ''">tdWhite</xsl:when>
+												<xsl:otherwise>tdBlack</xsl:otherwise>
 											</xsl:choose>
 										</xsl:attribute>
 
@@ -490,9 +482,15 @@
 
 																			<!-- Title -->
 																			<tr>
-																				<td>
-																					<xsl:attribute name="style"><xsl:value-of select="$title_style" /></xsl:attribute>
-																					<xsl:value-of select="title" disable-output-escaping="yes" />
+																				<td class="tdCaption">
+																					<xsl:choose>
+																						<xsl:when test="contains(style, '1/3')">
+																							<h3><xsl:value-of select="title" disable-output-escaping="yes" /></h3>
+																						</xsl:when>
+																						<xsl:otherwise>
+																							<h2><xsl:value-of select="title" disable-output-escaping="yes" /></h2>
+																						</xsl:otherwise>
+																					</xsl:choose>
 																				</td>
 																			</tr>
 
