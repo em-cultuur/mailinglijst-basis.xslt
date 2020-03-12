@@ -9,9 +9,6 @@
         <meta name="x-apple-disable-message-reformatting">
         <style type="text/css">
             a { color: #333333; }
-            .tdContent a {color: #333333; }
-            .White .tdContent a { color: #FFFFFF; }
-            .Black a { color: #333333; }
 
             /* GLOBAL HTML/BODY STYLES */
             HTML {
@@ -199,6 +196,20 @@
                 color: #FFFFFF;
             }
 
+            .tdContent a {
+                color: #333333;
+                text-decoration: underline;
+                font-family: Arial;
+            }
+
+            .tdContent a:hover {
+                text-decoration: none;
+            }
+
+            .tdWhite .tdContent a {
+                color: #FFFFFF;
+            }
+
             /*
                 Call2action
             */
@@ -224,6 +235,20 @@
             .tdImageRight {
                 padding: 15px;
                 padding-left: 0px;
+            }
+
+            .tdImageSubtitle {
+                color: #333333;
+                font-family: Arial;
+                font-size: 12px;
+                line-height: 16px;
+                padding: 25px;
+                padding-bottom: 0px;
+                padding-top: 5px;
+            }
+
+            .tdWhite .tdImageSubtitle {
+                color: #FFFFFF;
             }
 
             /*
@@ -321,8 +346,14 @@
                 text-decoration: none;
             }
 
+            /* Other styles */
+            .tdColumnMarge {
+                width: 26px;
+            }
+
             /* END BASIC BLOCKS STYLES */
 
+            /* RESPONSIVE CODE */
             @media only screen and (max-width: 480px) {
             .tblMain {
             width: 100% !important;
