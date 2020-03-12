@@ -6,6 +6,10 @@
 		<!-- EM-Cultuur (c) 2020
 		Basis XSLT for building new templates -->
 
+		<!-- texts -->
+		<xsl:variable name="button1_text">Lees meer</xsl:variable>
+		<xsl:variable name="button2_text">Koop kaarten</xsl:variable>
+
 		<table cellpadding="0" cellspacing="0" width="100%" style="width: 100%" class="tblMain">
 
 			<!-- BASIC STYLES FOR ALL ITEMS -->
@@ -39,8 +43,6 @@
 				<!-- Image widths and styles for afb. links and afb. rechts styles -->
 				<xsl:variable name="image_width">335</xsl:variable>
 				<xsl:variable name="imagecolumn_style">vertical-align: top; width: <xsl:value-of select="$image_width + 15" />;</xsl:variable> <!-- Plus padding size -->
-				<xsl:variable name="imageleftcolumn_style">padding: 15px; padding-right: 0px;</xsl:variable>
-				<xsl:variable name="imagerightcolumn_style">padding: 15px; padding-left: 0px;</xsl:variable>
 
 				<!-- Marge between columns with 1/2, 1/3 and 2/3 styles -->
 				<xsl:variable name="column_marge">
@@ -56,33 +58,6 @@
 						<xsl:when test="extra1 != ''"><xsl:value-of select="extra1" /></xsl:when>
 						<xsl:when test="contains(style, 'uitgelicht')">#333333</xsl:when>
 						<xsl:otherwise>#FFFFFF</xsl:otherwise>
-					</xsl:choose>
-				</xsl:variable>
-
-				<!-- Styles for buttons -->
-				<xsl:variable name="buttonscontainer_style">padding: 25px; padding-top: 0px;</xsl:variable>
-				<xsl:variable name="buttonlink_style">
-					<xsl:choose>
-						<xsl:when test="contains(style, 'uitgelicht') or extra1 != ''">color: #333333; text-decoration: none;</xsl:when>
-						<xsl:otherwise>color: #FFFFFF; text-decoration: none;</xsl:otherwise>
-					</xsl:choose>
-				</xsl:variable>
-				<xsl:variable name="button_style">
-					<xsl:choose>
-						<xsl:when test="contains(style, 'uitgelicht') or extra1 != ''">background-color: #FFFFFF; color: #FFFFFF; font-family: Arial; font-size: 14px; padding: 20px; padding-top: 10px; padding-bottom: 10px;</xsl:when>
-						<xsl:otherwise>background-color: #333333; color: #FFFFFF; font-family: Arial; font-size: 14px; padding: 20px; padding-top: 10px; padding-bottom: 10px;</xsl:otherwise>
-					</xsl:choose>
-				</xsl:variable>
-				<xsl:variable name="button2link_style">
-					<xsl:choose>
-						<xsl:when test="contains(style, 'uitgelicht') or extra1 != ''">color: #333333; text-decoration: none;</xsl:when>
-						<xsl:otherwise>color: #FFFFFF; text-decoration: none;</xsl:otherwise>
-					</xsl:choose>
-				</xsl:variable>
-				<xsl:variable name="button2_style">
-					<xsl:choose>
-						<xsl:when test="contains(style, 'uitgelicht') or extra1 != ''">background-color: #FFFFFF; color: #FFFFFF; font-family: Arial; font-size: 14px; padding: 20px; padding-top: 10px; padding-bottom: 10px;</xsl:when>
-						<xsl:otherwise>background-color: #666666; color: #FFFFFF; font-family: Arial; font-size: 14px; padding: 20px; padding-top: 10px; padding-bottom: 10px;</xsl:otherwise>
 					</xsl:choose>
 				</xsl:variable>
 
@@ -375,10 +350,10 @@
 																		<table width="100%" cellpadding="0" cellspacing="0">
 																			<tr>
 																				<td>
-																					<xsl:attribute name="style">
+																					<xsl:attribute name="class">
 																						<xsl:choose>
-																							<xsl:when test="contains(style, 'afb. rechts')"><xsl:value-of select="$imagerightcolumn_style" /></xsl:when>
-																							<xsl:otherwise><xsl:value-of select="$imageleftcolumn_style" /></xsl:otherwise>
+																							<xsl:when test="contains(style, 'afb. rechts')">tdImageRight</xsl:when>
+																							<xsl:otherwise>tdImageLeft</xsl:otherwise>
 																						</xsl:choose>
 																					</xsl:attribute>
 
@@ -466,45 +441,31 @@
                                                                         image_alt DB column is used as alternative button text ('1e veld' name in ML)
                                                                         icon2 DB column is ised as alternative button text for second button
                                                                         When 1/3 style is used, seperate two buttons into two rows -->
-																		<xsl:if test="url != '' or url2 != ''">
+																		<xsl:if test="(url != '' and not(contains(image_alt, 'NOBUTTON'))) or (url2 != '' and not(contains(icon2, 'NOBUTTON')))">
 																			<tr>
-																				<td>
-																					<xsl:attribute name="style"><xsl:value-of select="$buttonscontainer_style" /></xsl:attribute>
+																				<td class="tdButtonContainer">
 
 																					<table cellpadding="0" cellspacing="0" class="tblReadMore">
 																						<!-- Button 1 -->
-																						<xsl:if test="url != ''">
+																						<xsl:if test="url != '' and not(contains(image_alt, 'NOBUTTON'))">
 																							<xsl:if test="contains(style, '1/3')">
 																								<xsl:text disable-output-escaping="yes"><![CDATA[<tr>]]></xsl:text>
 																							</xsl:if>
 																							<td class="tdButtonColumn">
 																								<xsl:attribute name="style">
 																									<xsl:choose>
-																										<xsl:when test="url2 != '' and not(contains(style, '1/3'))">padding-right: 15px;</xsl:when>
+																										<xsl:when test="url2 != '' and not(contains(style, '1/3')) and not(contains(icon2, 'NOBUTTON'))">padding-right: 15px;</xsl:when>
 																										<xsl:otherwise>padding-right: 0px;</xsl:otherwise>
 																									</xsl:choose>
 																								</xsl:attribute>
-																								<a target="_blank" class="White">
-																									<xsl:attribute name="style"><xsl:value-of select="$buttonlink_style" /></xsl:attribute>
-																									<xsl:attribute name="href"><xsl:value-of select="details_url" /></xsl:attribute>
 
-																									<table cellpadding="0" cellspacing="0">
-																										<tr>
-																											<td>
-																												<xsl:attribute name="style"><xsl:value-of select="$button_style" /></xsl:attribute>
+																								<xsl:call-template name="button">
+																									<xsl:with-param name="url" select="details_url" />
+																									<xsl:with-param name="button_text" select="image_alt" />
+																									<xsl:with-param name="button_default_text" select="$button1_text" />
+																									<xsl:with-param name="class">tdButton</xsl:with-param>
+																								</xsl:call-template>
 
-																												<a target="_blank" class="White">
-																													<xsl:attribute name="style"><xsl:value-of select="$buttonlink_style" /></xsl:attribute>
-																													<xsl:attribute name="href"><xsl:value-of select="details_url" /></xsl:attribute>
-																													<xsl:choose>
-																														<xsl:when test="image_alt != ''"><xsl:value-of select="image_alt" /></xsl:when>
-																														<xsl:otherwise>Lees verder</xsl:otherwise>
-																													</xsl:choose>
-																												</a>
-																											</td>
-																										</tr>
-																									</table>
-																								</a>
 																							</td>
 																							<xsl:if test="contains(style, '1/3')">
 																								<xsl:text disable-output-escaping="yes"><![CDATA[</tr>]]></xsl:text>
@@ -523,25 +484,14 @@
 																										<xsl:otherwise>padding-top: 0px;</xsl:otherwise>
 																									</xsl:choose>
 																								</xsl:attribute>
-																								<a target="_blank" class="White">
-																									<xsl:attribute name="style"><xsl:value-of select="$button2link_style" /></xsl:attribute>
-																									<xsl:attribute name="href"><xsl:value-of select="details_url2" /></xsl:attribute>
-																									<table cellpadding="0" cellspacing="0">
-																										<tr>
-																											<td>
-																												<xsl:attribute name="style"><xsl:value-of select="$button2_style" /></xsl:attribute>
-																												<a target="_blank" class="White">
-																													<xsl:attribute name="style"><xsl:value-of select="$button2link_style" /></xsl:attribute>
-																													<xsl:attribute name="href"><xsl:value-of select="details_url2" /></xsl:attribute>
-																													<xsl:choose>
-																														<xsl:when test="icon2 != ''"><xsl:value-of select="icon2" /></xsl:when>
-																														<xsl:otherwise>Koop kaarten</xsl:otherwise>
-																													</xsl:choose>
-																												</a>
-																											</td>
-																										</tr>
-																									</table>
-																								</a>
+
+																								<xsl:call-template name="button">
+																									<xsl:with-param name="url" select="details_url2" />
+																									<xsl:with-param name="button_text" select="icon2" />
+																									<xsl:with-param name="button_default_text" select="$button2_text" />
+																									<xsl:with-param name="class">tdButton2</xsl:with-param>
+																								</xsl:call-template>
+
 																							</td>
 																							<xsl:if test="contains(style, '')">
 																								<xsl:text disable-output-escaping="yes"><![CDATA[</tr>]]></xsl:text>
@@ -859,6 +809,33 @@
 			</xsl:if>
 
 		</xsl:if>
+
+	</xsl:template>
+
+	<xsl:template name="button">
+		<xsl:param name="button_text" />
+		<xsl:param name="button_default_text" />
+		<xsl:param name="url" />
+		<xsl:param name="class" />
+
+		<a target="_blank">
+			<xsl:attribute name="href"><xsl:value-of select="$url" /></xsl:attribute>
+
+			<table cellpadding="0" cellspacing="0">
+				<tr>
+					<td>
+						<xsl:attribute name="class"><xsl:value-of select="$class" /></xsl:attribute>
+						<a target="_blank">
+							<xsl:attribute name="href"><xsl:value-of select="$url" /></xsl:attribute>
+							<xsl:choose>
+								<xsl:when test="$button_text != ''"><xsl:value-of select="$button_text" /></xsl:when>
+								<xsl:otherwise><xsl:value-of select="$button_default_text" /></xsl:otherwise>
+							</xsl:choose>
+						</a>
+					</td>
+				</tr>
+			</table>
+		</a>
 
 	</xsl:template>
 
