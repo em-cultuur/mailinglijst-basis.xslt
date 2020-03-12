@@ -59,36 +59,6 @@
 					</xsl:choose>
 				</xsl:variable>
 
-				<!-- Custom title size in each style -->
-				<xsl:variable name="title_size">
-					<xsl:choose>
-						<xsl:when test="contains(style, '1/2')">24</xsl:when>
-						<xsl:when test="contains(style, '1/3')">16</xsl:when>
-						<xsl:when test="contains(style, '2/3')">24</xsl:when>
-						<xsl:otherwise>24</xsl:otherwise>
-					</xsl:choose>
-				</xsl:variable>
-
-				<xsl:variable name="title_lineheight">
-					<xsl:choose>
-						<xsl:when test="contains(style, '1/2')">27</xsl:when>
-						<xsl:when test="contains(style, '1/3')">19</xsl:when>
-						<xsl:when test="contains(style, '2/3')">27</xsl:when>
-						<xsl:otherwise>27</xsl:otherwise>
-					</xsl:choose>
-				</xsl:variable>
-
-				<!-- Styles for header style -->
-				<xsl:variable name="header_style">color: #333333; font-family: Arial; font-weight: bold; padding: 25px; padding-bottom: 0px; border-top: 3px solid #333333; font-size: <xsl:value-of select="$title_size" />px; line-height: <xsl:value-of select="$title_lineheight" />px;</xsl:variable>
-
-				<!-- Styles for call2action style -->
-				<xsl:variable name="call2action_style">
-					<xsl:choose>
-						<xsl:when test="contains(style, 'uitgelicht') or extra1 != ''">background-color: #FFFFFF; color: #FFFFFF; font-family: Arial; font-size: 16px; padding: 20px; padding-top: 10px; padding-bottom: 10px; font-weight: bold;</xsl:when>
-						<xsl:otherwise>background-color: #333333; color: #FFFFFF; font-family: Arial; font-size: 16px; padding: 20px; padding-top: 10px; padding-bottom: 10px; font-weight: bold;</xsl:otherwise>
-					</xsl:choose>
-				</xsl:variable>
-
 				<!-- Styles for buttons -->
 				<xsl:variable name="buttonscontainer_style">padding: 25px; padding-top: 0px;</xsl:variable>
 				<xsl:variable name="buttonlink_style">
@@ -139,7 +109,6 @@
 								<xsl:attribute name="style">width: <xsl:value-of select="$width" />px;</xsl:attribute>
 								<tr>
 									<td>
-
 										<!-- The data attributes are used for in contentblocks editor -->
 										<table width="100%" cellpadding="0" cellspacing="0" style="width: 100%" class="emItem emEditable emMoveable">
 											<xsl:attribute name="data-sort"><xsl:value-of select="sort_on" /></xsl:attribute>
@@ -156,14 +125,11 @@
 													<xsl:otherwise>false</xsl:otherwise>
 												</xsl:choose>
 											</xsl:attribute>
-
 											<tr>
-												<td>
-													<xsl:attribute name="style"><xsl:value-of select="$header_style" /></xsl:attribute>
-													<xsl:value-of select="title" disable-output-escaping="yes" />
+												<td class="tdHeader">
+													<h2><xsl:value-of select="title" disable-output-escaping="yes" /></h2>
 												</td>
 											</tr>
-
 										</table>
 									</td>
 								</tr>
@@ -181,7 +147,6 @@
 								<xsl:attribute name="style">width: <xsl:value-of select="$width" />px;</xsl:attribute>
 								<tr>
 									<td>
-
 										<!-- The data attributes are used for in contentblocks editor -->
 										<table width="100%" cellpadding="0" cellspacing="0" style="width: 100%" class="emItem emEditable emMoveable">
 											<xsl:attribute name="data-sort"><xsl:value-of select="sort_on" /></xsl:attribute>
@@ -198,30 +163,23 @@
 													<xsl:otherwise>false</xsl:otherwise>
 												</xsl:choose>
 											</xsl:attribute>
-
 											<tr>
 												<td>
-
 													<xsl:choose>
 														<xsl:when test="url != ''">
 
-															<a target="_blank" class="White">
-																<xsl:attribute name="style"><xsl:value-of select="$buttonlink_style" /></xsl:attribute>
+															<a target="_blank" class="White" style="text-decoration: none; color: #FFFFFF;">
 																<xsl:attribute name="href"><xsl:value-of select="details_url" /></xsl:attribute>
 
 																<table cellpadding="0" cellspacing="0" width="100%" style="width: 100%">
 																	<tr>
-																		<td>
-																			<xsl:attribute name="style"><xsl:value-of select="$call2action_style" /></xsl:attribute>
-
+																		<td class="tdCall2action">
 																			<center>
-																				<a target="_blank" class="White">
-																					<xsl:attribute name="style"><xsl:value-of select="$buttonlink_style" /></xsl:attribute>
+																				<a target="_blank" class="White" style="text-decoration: none; color: #FFFFFF;">
 																					<xsl:attribute name="href"><xsl:value-of select="details_url" /></xsl:attribute>
 																					<xsl:value-of select="title" />
 																				</a>
 																			</center>
-
 																		</td>
 																	</tr>
 																</table>
@@ -232,8 +190,7 @@
 
 															<table cellpadding="0" cellspacing="0" width="100%" style="width: 100%">
 																<tr>
-																	<td>
-																		<xsl:attribute name="style"><xsl:value-of select="$call2action_style" /></xsl:attribute>
+																	<td class="tdCall2action">
 																		<center><xsl:value-of select="title" /></center>
 																	</td>
 																</tr>
@@ -241,10 +198,8 @@
 
 														</xsl:otherwise>
 													</xsl:choose>
-
 												</td>
 											</tr>
-
 										</table>
 									</td>
 								</tr>
