@@ -3,7 +3,8 @@
 	<xsl:output method="html" />
 
 	<!-- EM-Cultuur (c) 2020
-		Basis XSLT for building new templates -->
+		Basis  v1
+		XSLT for BLOCKS in MailingLijst-templates -->
 
 	<!-- TEXTS -->
 	<xsl:variable name="button1_text">Lees meer</xsl:variable>
@@ -36,10 +37,10 @@
 		<table cellpadding="0" cellspacing="0" width="100%" style="width: 100%" class="tblMain">
 
 			<!-- BASIC STYLES FOR ALL ITEMS -->
-			<!-- Marge between each rows -->
+			<!-- Margin between block-rows -->
 			<xsl:variable name="block_marge">25</xsl:variable>
 
-			<!-- Loop through every items with styles starting with Item (normal items) -->
+			<!-- Loop through items with stylenames starting with 'Item' -->
 			<xsl:for-each select="matches/match[contains(style, 'Item')]">
 
 				<!-- SPECIFIC CONFIG -->
@@ -54,7 +55,7 @@
 					</xsl:choose>
 				</xsl:variable>
 
-				<!-- Image widths and styles for afb. links and afb. rechts styles -->
+				<!-- Image widths and styles for Image-Left and Image-Right styles -->
 				<xsl:variable name="image_width">335</xsl:variable>
 				<xsl:variable name="imagecolumn_style">vertical-align: top; width: <xsl:value-of select="$image_width + 15" />;</xsl:variable> <!-- Plus padding size -->
 
@@ -69,7 +70,7 @@
 
 				<!-- END SPECIFIC STYLES -->
 
-				<!-- Start rule for each row, determite it on the position or rule_end of previous item -->
+				<!-- Start rule for each row, determine it on the position or rule_end of previous item -->
 				<xsl:if test="position() = 1 or preceding-sibling::*[1]/rule_end = 'true'">
 					<xsl:text disable-output-escaping="yes"><![CDATA[<tr>]]></xsl:text>
 				</xsl:if>
@@ -274,7 +275,7 @@
 												</xsl:choose>
 											</xsl:attribute>
 											<!-- Image above
-                                            When a placeholder is used, then this item is created automatically after a new mailing were created
+                                            When a placeholder is used, then this item is created automatically after a new mailing is created
                                             The default placeholder is a square so 700x700 don't looks fancy... -->
 											<xsl:if test="image != '' and not(contains(style, 'afb.'))">
 												<tr>
@@ -326,7 +327,7 @@
 												</tr>
 											</xsl:if>
 
-											<!-- When image only style is used and no image were choosed, show message to prevent the item block cannot be edited anymore -->
+											<!-- When image only style is used and no image was selected, show message to prevent that the item cannot be edited anymore -->
 											<xsl:if test="image = '' and contains(style, 'afbeelding')">
 												<tr>
 													<td>
@@ -406,7 +407,7 @@
 																	</td>
 																</xsl:if>
 
-																<!-- Column with text content and buttons -->
+																<!-- BLOCK CONTENT (title, subtitle, date) with text and buttons -->
 																<td class="tdContentColumn" style="vertical-align: top;" dir="ltr">
 
 																	<table cellpadding="0" cellspacing="0" width="100%" style="width: 100%">
@@ -428,10 +429,10 @@
 																				</td>
 																			</tr>
 
-																			<!-- Subtitle (the DB field location is used as subtitle mostly -->
+																			<!-- Subtitle (the DB field=location  -->
 																			<xsl:if test="location != ''">
 																				<tr>
-																					<td class="tdSubtitle">
+																					<td class="ItemSubtitle">
 																						<h4><xsl:value-of select="location" disable-output-escaping="yes" /></h4>
 																					</td>
 																				</tr>
