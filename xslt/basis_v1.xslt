@@ -2,9 +2,10 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<xsl:output method="html" />
 
-	<!-- EM-Cultuur (c) 2020
-		Basis  v1
-		XSLT for BLOCKS in MailingLijst-templates -->
+	<!-- Basis  v1
+		XSLT for BLOCKS in MailingLijst-templates
+		(c) EM-Cultuur, 2020
+		-->
 
 	<!-- CONFIGS -->
 	<!--
