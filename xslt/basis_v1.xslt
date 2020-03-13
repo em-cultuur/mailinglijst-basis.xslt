@@ -184,12 +184,34 @@
 																<!-- Title -->
 																<tr>
 																	<td class="contentCaption">
+																		<xsl:variable name="title">
+																			<xsl:choose>
+																				<xsl:when test="contains(title, ' || ')">
+																					<xsl:value-of select="normalize-space(substring-before(title, ' || '))" disable-output-escaping="yes" />
+																					<xsl:text disable-output-escaping="yes"><![CDATA[<br />]]></xsl:text>
+																					<xsl:choose>
+																						<xsl:when test="contains(substring-after(title, ' || '), ' || ')">
+																							<xsl:value-of select="normalize-space(substring-before(substring-after(title, ' || '), ' ||'))" disable-output-escaping="yes" />
+																							<xsl:text disable-output-escaping="yes"><![CDATA[<br />]]></xsl:text>
+																							<xsl:value-of select="normalize-space(substring-after(substring-after(title, ' || '), ' || '))" disable-output-escaping="yes" />
+																						</xsl:when>
+																						<xsl:otherwise>
+																							<xsl:value-of select="normalize-space(substring-after(title, ' || '))" disable-output-escaping="yes" />
+																						</xsl:otherwise>
+																					</xsl:choose>
+																				</xsl:when>
+																				<xsl:otherwise>
+																					<xsl:value-of select="title" disable-output-escaping="yes" />
+																				</xsl:otherwise>
+																			</xsl:choose>
+																		</xsl:variable>
+
 																		<xsl:choose>
 																			<xsl:when test="contains(style, '1/3')">
-																				<h3><xsl:value-of select="title" disable-output-escaping="yes" /></h3>
+																				<h3><xsl:value-of select="$title" disable-output-escaping="yes" /></h3>
 																			</xsl:when>
 																			<xsl:otherwise>
-																				<h2><xsl:value-of select="title" disable-output-escaping="yes" /></h2>
+																				<h2><xsl:value-of select="$title" disable-output-escaping="yes" /></h2>
 																			</xsl:otherwise>
 																		</xsl:choose>
 																	</td>
