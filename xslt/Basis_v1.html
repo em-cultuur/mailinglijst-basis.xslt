@@ -1,328 +1,362 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
-<head>
-    <!-- EM-Cultuur / MailingLijst -->
-    <meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE">
-    <title>Nieuwsbrief</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="x-apple-disable-message-reformatting">
-    <style type="text/css">
-        a { color: #333333; }
+    <head>
+        <!-- EM-Cultuur / MailingLijst -->
+        <meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE">
+        <title>Nieuwsbrief</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="x-apple-disable-message-reformatting">
+        <style type="text/css">
+            a { color: #333333; }
 
-        /* GLOBAL HTML/BODY STYLES */
-        HTML {
-            width: 100%;
-            padding: 0;
-            margin: 0;
-        }
+            /* GLOBAL HTML/BODY STYLES */
+            HTML {
+                width: 100%;
+                padding: 0;
+                margin: 0;
+            }
 
-        BODY {
-            width: 100%;
-            margin: 0;
-            padding: 0;
-            background-color: #f5f5f5;
-        }
+            BODY {
+                width: 100%;
+                margin: 0;
+                padding: 0;
+                background-color: #f5f5f5;
+            }
 
-        /* END GLOBAL HTML/BODY STYLES */
+            /* END GLOBAL HTML/BODY STYLES */
 
-        /* HEADER STYLES */
-        .headShow {
-            text-align: right;
-            padding: 5px;
-            color: #333333;
-            font-family: Arial;
-            font-size: 12px;
-        }
+            /* HEADER STYLES */
+            .headShow {
+                text-align: right;
+                padding: 5px;
+                color: #333333;
+                font-family: Arial;
+                font-size: 12px;
+            }
 
-        .headShow a {
-            color: #333333;
-            text-decoration: underline;
-        }
+            .headShow a {
+                color: #333333;
+                text-decoration: underline;
+            }
 
-        .headShow a:hover {
-            text-decoration: none;
-        }
+            .headShow a:hover {
+                text-decoration: none;
+            }
 
-        .headLogo {
-            padding: 25px;
-            background-color: #333333;
-        }
+            .headLogo {
+                padding: 25px;
+                background-color: #333333;
+            }
 
-        .headEdition {
-            text-align: left;
-            padding: 25px;
-            font-size: 24px;
-            padding-top: 0px;
-            background-color: #333333;
-        }
+            .headEdition {
+                text-align: left;
+                padding: 25px;
+                padding-top: 0px;
+                background-color: #333333;
+            }
 
-        .headEdition H1 {
-            color: #FFFFFF;
-            font-family: Arial;
-            font-size: 16px;
-            margin: 0px;
-        }
-        /* END HEADER STYLES */
+            .headEdition H1 {
+                color: #FFFFFF;
+                font-family: Arial;
+                font-size: 16px;
+                margin: 0px;
+            }
+            /* END HEADER STYLES */
 
-        /* FOOTER STYLES */
-        .footerContainer {
-            font-family: Arial;
-            font-size: 13px;
-            line-height: 16px;
-            padding: 25px;
-            color: #666666;
-        }
+            /* FOOTER STYLES */
+            .footerContainer {
+                font-family: Arial;
+                font-size: 13px;
+                line-height: 16px;
+                padding: 25px;
+                color: #666666;
+            }
 
-        .footerContainer a {
-            color: #666666;
-            text-decoration: underline;
-        }
+            .footerContainer a {
+                color: #666666;
+                text-decoration: underline;
+            }
 
-        .footerContainer a:hover {
-            text-decoration: none;
-        }
+            .footerContainer a:hover {
+                text-decoration: none;
+            }
 
-        .footerContainer A IMG {
-            border: 0px;
-        }
-        /* END FOOTER STYLES */
+            .footerContainer A IMG {
+                border: 0px;
+            }
+            /* END FOOTER STYLES */
 
-        /* BASIC CONTENT STYLES*/
+            /*
+            =============
+            BASIC CONTENT STYLES
+            =============
+            */
 
-        .contentContainer {
+            /* main container with CONTENT token within */
+            .contentContainer {
 
-        }
+            }
 
-        /* Caption/title/header */
-        .contentCaption { /* title container, use this for paddings, background color etc */
-            padding: 25px;
-            padding-bottom: 0px;
-        }
+            /*
+            the following styles are styles for main containers of each content block.
+            contentBlockContainer = main container of blocks with 1/2, 1/3 or 2/3 items (use this for bottom space between two blocks).
+            contentMainBlock = main container of one block of 1/2, 1/3 or 2/3 styles (use this for background-color of each block).
+            contentMainBlockItem = main container of one item of all styles except 1/2, 1/3 and 2/3 styles (use this for bottom space between two blocks).
+            contentInnerContainer = inner container (use this for background-color of all styles except 1/2, 1/3 and 2/3).
+            */
+            .contentBlockContainer {
+                padding-bottom: 25px;
+            }
 
-        .contentCaption H2 { /* heading style of title, use this for color, sizes, family etc */
-            font-size: 20px;
-            line-height: 28px;
-            color: #333333;
-            font-family: Arial;
-            font-weight: bold;
-            margin: 0;
-        }
+            .contentMainBlock {
+                vertical-align: top;
+                background-color: #FFFFFF;
+            }
 
-        .contentCaption H3 { /* heading style of title of smaller columns ie 1/3, use this for color, sizes, family etc */
-            font-size: 16px;
-            line-height: 24px;
-            color: #333333;
-            font-family: Arial;
-            font-weight: bold;
-            margin: 0;
-        }
+            .contentMainBlockItem {
+                vertical-align: top;
+                padding-bottom: 25px;
+            }
 
-        /* Subtitle */
-        .contentSubtitle { /* subtitle container, use this for paddings, background color etc */
-            padding: 25px;
-            padding-top: 0px;
-            padding-bottom: 0px;
-        }
+            .contentInnerContainer {
+                background-color: #FFFFFF;
+            }
 
-        .contentSubtitle H4 { /* heading style of subtitle, use this for color, sizes, family etc */
-            color: #333333;
-            font-family: Arial;
-            font-size: 16px;
-            line-height: 24px;
-            font-weight: normal;
-            margin: 0;
-        }
+            /*
+            Caption/titles
+            There are H2 and H3 used, use this for color, sizes, family etc.
+            The styles without H2 and H3 are containers, you can use this styles to add paddings, background-color etc.
+            H3 is used for small 1/3 blocks.
+            */
+            .contentCaption {
+                padding: 25px;
+                padding-bottom: 0px;
+            }
 
-        /*
-            Date
-        */
-        .contentDate {
-            padding: 25px;
-            padding-top: 0px;
-            padding-bottom: 0px;
-            color: #999999;
-            font-family: Arial;
-            font-size: 16px;
-            line-height: 24px;
-            font-weight: normal;
-            margin: 0;
-        }
+            .contentCaption H2 {
+                font-size: 20px;
+                line-height: 28px;
+                color: #333333;
+                font-family: Arial;
+                font-weight: bold;
+                margin: 0;
+            }
 
-        /*
+            .contentCaption H3 {
+                font-size: 16px;
+                line-height: 24px;
+                color: #333333;
+                font-family: Arial;
+                font-weight: bold;
+                margin: 0;
+            }
+
+            /*
+            Subtitle
+            There is H4 used, use this for color, sizes, family etc.
+            The style without H4 is a container, you can use this style to add paddings, background-color etc.
+            */
+            .contentSubtitle {
+                padding: 25px;
+                padding-top: 0px;
+                padding-bottom: 0px;
+            }
+
+            .contentSubtitle H4 {
+                color: #333333;
+                font-family: Arial;
+                font-size: 16px;
+                line-height: 24px;
+                font-weight: normal;
+                margin: 0;
+            }
+
+            /*
+            Date rule below title and subtitle
+            */
+            .contentDate {
+                padding: 25px;
+                padding-top: 0px;
+                padding-bottom: 0px;
+                color: #999999;
+                font-family: Arial;
+                font-size: 16px;
+                line-height: 24px;
+                font-weight: normal;
+                margin: 0;
+            }
+
+            /*
             Content
-        */
-        .content {
-            font-family: Arial;
-            font-size: 14px;
-            line-height: 20px;
-            color: #333333;
-            padding: 25px;
-            padding-top: 15px;
-        }
+            */
+            .content {
+                font-family: Arial;
+                font-size: 14px;
+                line-height: 20px;
+                color: #333333;
+                padding: 25px;
+                padding-top: 15px;
+            }
 
-        .content a {
-            color: #333333;
-            text-decoration: underline;
-            font-family: Arial;
-        }
+            .content a {
+                color: #333333;
+                text-decoration: underline;
+                font-family: Arial;
+            }
 
-        .content a:hover {
-            text-decoration: none;
-        }
+            .content a:hover {
+                text-decoration: none;
+            }
 
-        /*
+            /*
             Images
-        */
-        .contentImage {
+            */
+            .contentImage {
 
-        }
+            }
 
-        .contentImageSubtitle {
-            color: #333333;
-            font-family: Arial;
-            font-size: 12px;
-            line-height: 16px;
-            padding: 25px;
-            padding-bottom: 0px;
-            padding-top: 5px;
-        }
+            .contentImageSubtitle {
+                color: #333333;
+                font-family: Arial;
+                font-size: 12px;
+                line-height: 16px;
+                padding: 25px;
+                padding-bottom: 0px;
+                padding-top: 5px;
+            }
 
-        /*
+            /*
             Buttons
-        */
-        .contentButtonContainer {
-            padding: 25px;
-            padding-top: 0px;
-        }
+            */
+            .contentButtonContainer {
+                padding: 25px;
+                padding-top: 0px;
+            }
 
-        .contentButton {
-            background-color: #333333;
-            color: #FFFFFF;
-            font-family: Arial;
-            font-size: 14px;
-            padding: 20px;
-            padding-top: 10px;
-            padding-bottom: 10px;
-        }
+            .contentButtonBlock {
 
-        .contentButton2 {
-            background-color: #999999;
-            color: #FFFFFF;
-            font-family: Arial;
-            font-size: 14px;
-            padding: 20px;
-            padding-top: 10px;
-            padding-bottom: 10px;
-        }
+            }
 
-        .contentButtonContainer a {
-            color: #FFFFFF;
-            text-decoration: none;
-        }
+            .contentButton {
+                background-color: #333333;
+                color: #FFFFFF;
+                font-family: Arial;
+                font-size: 14px;
+                padding: 20px;
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
 
-        /* Other styles */
-        .contentColumnMarge {
-            width: 26px;
-        }
+            .contentButton2 {
+                background-color: #999999;
+                color: #FFFFFF;
+                font-family: Arial;
+                font-size: 14px;
+                padding: 20px;
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
 
-        /* END BASIC BLOCKS STYLES */
+            .contentButtonContainer a {
+                color: #FFFFFF;
+                text-decoration: none;
+            }
 
-        /* RESPONSIVE CODE */
-        @media only screen and (max-width: 480px) {
+            /*
+            marge between 1/2, 1/3 and 2/3 blocks
+            */
+            .contentBlockMarge {
+                width: 26px;
+            }
+
+            /*
+            =============
+            END BASIC CONTENT STYLES
+            =============
+            */
+
+            /* RESPONSIVE CODE */
+            @media only screen and (max-width: 480px) {
             .contentMainTable {
                 width: 100% !important;
-            }
-            .contentImageColumn {
-                display: block;
-                width: 100% !important;
-            }
-            .contentColumn  {
-                display: block;
-                width: 100% !important;
-            }
-            .contentImageColumn IMG {
-                width: 100% !important;
-                height: auto !important;
-                -ms-interpolation-mode: bicubic;
             }
             .contentImage IMG {
                 width: 100% !important;
                 height: auto !important;
                 -ms-interpolation-mode: bicubic;
             }
-            .contentMainColumn {
-                display: block;
-                width: 100% !important;
+            .contentMainBlock {
+            display: block;
+            width: 100% !important;
             }
-            .contentColumnMarge {
-                display: block;
-                width: 100% !important;
+            .contentBlockMarge {
+            display: block;
+            width: 100% !important;
             }
-        }
+            }
 
-    </style>
-    <!--[if mso]>
-    <style type="text/css">
-        body, table, td, a, span {font-family: Arial, Helvetica, sans-serif !important;}
-    </style>
-    <![endif]-->
-</head>
+        </style>
+        <!--[if mso]>
+<style type="text/css">
+body, table, td, a, span {font-family: Arial, Helvetica, sans-serif !important;}
+</style>
+<![endif]-->
+    </head>
 
-<body style="background-color: #f5f5f5;">
-<table align="center" cellpadding="0" cellspacing="0" style="width: 700px;" class="tblMain">
-    <tbody>
-    <!-- HEADER -->
-    <tr> <!-- show -->
-        <td class="headShow">
-            %%SHOW%%
-        </td>
-    </tr>
-    <tr> <!-- customer logo -->
-        <td class="headLogo">
-            <a href="https://www.mailinglijst.nl" target="_blank">
-                <img src="https://www.mailinglijst.nl/klanten/12288/emtheater_logo_trans.png?v=20200108104115" style="width: 250px; height: 53px;" alt="MailingLijst" title="Bezoek de website" height="53" width="250">
-            </a>
-        </td>
-    </tr>
-    <tr> <!-- newsletter edition -->
-        <td class="headEdition">
-            <h1>Nieuwsbrief editie</h1>
-        </td>
-    </tr>
-    <!-- END HEADER -->
-    <!-- CONTENT -->
-    <tr>
-        <td class="contentContainer">
-            <img id="imgContentmerger" width="100%" style="display: block; width: 100%;" src="../images/2014/events_placeholder.png" alt="Placeholder voor de events">
-        </td>
-    </tr>
-    <!-- END CONTENT -->
-    <!-- FOOTER -->
-    <tr>
-        <td class="footerContainer">
-            <div style="text-align: center;">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Pellentesque iaculis dignissim luctus.
-                Proin libero augue, gravida id porta a, bibendum ut nibh.
-                <br /><br />
-                <a href="https://www.facebook.com" target="_blank"><img src="https://www.mailinglijst.nl/klanten/12288/facebook_dark.png?v=20160203111500" style="width: 30px; height: 30px;" height="30" width="30" alt="Facebook" title="Facebook"></a>
-                &nbsp;&nbsp;
-                <a href="https://www.twitter.com" target="_blank"><img src="https://www.mailinglijst.nl/klanten/12288/twitter_dark.png?v=20160203111500" style="width: 30px; height: 30px;" height="30" width="30" alt="Twitter" title="Twitter"></a>
-                &nbsp;&nbsp;
-                <a href="https://www.linkedin.com" target="_blank"><img src="https://www.mailinglijst.nl/klanten/12288/linkedin_dark.png?v=20160203111500" style="width: 30px; height: 30px;" height="30" width="30" alt="LinkedIn" title="LinkedIn"></a>
-                &nbsp;&nbsp;
-                <a href="https://www.youtube.com" target="_blank"><img src="https://www.mailinglijst.nl/klanten/12288/youtube_dark.png?v=20160203111500" style="width: 30px; height: 30px;" height="30" width="30" alt="YouTube" title="YouTube"></a>
-                &nbsp;&nbsp;
-                <a href="https://www.instagram.com" target="_blank"><img src="https://www.mailinglijst.nl/klanten/12288/instagram_dark.png?v=20160203111500" style="width: 30px; height: 30px;" height="30" width="30" alt="Instagram" title="Instagram"></a>
-                <br /><br />
-                Gegevens wijzigen of afmelden? <a href="%%URLBODY2%%" target="_blank">Klik hier</a>.
-            </div>
-        </td>
-    </tr>
-    <!-- END FOOTER -->
-    </tbody>
-</table>
-<!-- %%URL2=109305%% -->
-</body>
+    <body style="background-color: #f5f5f5;"> <!-- body background color for support in GMail -->
+        <table align="center" cellpadding="0" cellspacing="0" style="width: 700px;" class="tblMain">
+            <tbody>
+                <!-- HEADER -->
+                <tr> <!-- show -->
+                    <td class="headShow">
+                        %%SHOW%%
+                    </td>
+                </tr>
+                <tr> <!-- logo -->
+                    <td class="headLogo">
+                        <a href="https://www.mailinglijst.nl" target="_blank">
+                            <img src="https://www.mailinglijst.nl/klanten/12288/emtheater_logo_trans.png?v=20200108104115" style="width: 250px; height: 53px;" alt="MailingLijst" title="Bezoek de website" height="53" width="250">
+                        </a>
+                    </td>
+                </tr>
+                <tr> <!-- newsletter edition -->
+                    <td class="headEdition">
+                        <h1>Nieuwsbrief editie</h1>
+                    </td>
+                </tr>
+                <!-- END HEADER -->
+                <!-- CONTENT -->
+                <tr>
+                    <td class="contentContainer">
+                        <img id="imgContentmerger" width="100%" style="display: block; width: 100%;" src="../images/2014/events_placeholder.png" alt="Placeholder voor de events">
+                    </td>
+                </tr>
+                <!-- END CONTENT -->
+                <!-- FOOTER -->
+                <tr>
+                    <td class="footerContainer">
+                        <center>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Pellentesque iaculis dignissim luctus.
+                            Proin libero augue, gravida id porta a, bibendum ut nibh.
+                            <br /><br />
+                            <a href="https://www.facebook.com" target="_blank"><img src="https://www.mailinglijst.nl/klanten/12288/facebook_dark.png?v=20160203111500" style="width: 30px; height: 30px;" height="30" width="30" alt="Facebook" title="Facebook"></a>
+                            &nbsp;&nbsp;
+                            <a href="https://www.twitter.com" target="_blank"><img src="https://www.mailinglijst.nl/klanten/12288/twitter_dark.png?v=20160203111500" style="width: 30px; height: 30px;" height="30" width="30" alt="Twitter" title="Twitter"></a>
+                            &nbsp;&nbsp;
+                            <a href="https://www.linkedin.com" target="_blank"><img src="https://www.mailinglijst.nl/klanten/12288/linkedin_dark.png?v=20160203111500" style="width: 30px; height: 30px;" height="30" width="30" alt="LinkedIn" title="LinkedIn"></a>
+                            &nbsp;&nbsp;
+                            <a href="https://www.youtube.com" target="_blank"><img src="https://www.mailinglijst.nl/klanten/12288/youtube_dark.png?v=20160203111500" style="width: 30px; height: 30px;" height="30" width="30" alt="YouTube" title="YouTube"></a>
+                            &nbsp;&nbsp;
+                            <a href="https://www.instagram.com" target="_blank"><img src="https://www.mailinglijst.nl/klanten/12288/instagram_dark.png?v=20160203111500" style="width: 30px; height: 30px;" height="30" width="30" alt="Instagram" title="Instagram"></a>
+                            <br /><br />
+                            Gegevens wijzigen of afmelden? %%URL2=109305%%.
+                        </center>
+                    </td>
+                </tr>
+                <!-- END FOOTER -->
+            </tbody>
+        </table>
+    </body>
 </html>
