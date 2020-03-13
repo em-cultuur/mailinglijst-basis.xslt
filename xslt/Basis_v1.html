@@ -23,14 +23,11 @@
                 padding: 0;
                 background-color: #f5f5f5;
             }
-            H1 {
-                font-size: 24px;
-            }
+
             /* END GLOBAL HTML/BODY STYLES */
 
             /* HEADER STYLES */
-
-            .tdShow {
+            .headShow {
                 text-align: right;
                 padding: 5px;
                 color: #333333;
@@ -38,12 +35,12 @@
                 font-size: 12px;
             }
 
-            .tdShow a {
+            .headShow a {
                 color: #333333;
                 text-decoration: underline;
             }
 
-            .tdShow a:hover {
+            .headShow a:hover {
                 text-decoration: none;
             }
 
@@ -52,7 +49,7 @@
                 background-color: #333333;
             }
 
-            .tdNewsletter {
+            .headEdition {
                 text-align: left;
                 padding: 25px;
                 padding-top: 0px;
@@ -68,7 +65,7 @@
             /* END HEADER STYLES */
 
             /* FOOTER STYLES */
-            .tdFooterContainer {
+            .footerContainer {
                 font-family: Arial;
                 font-size: 13px;
                 line-height: 16px;
@@ -76,48 +73,35 @@
                 color: #666666;
             }
 
-            .tdFooterContainer a {
+            .footerContainer a {
                 color: #666666;
                 text-decoration: underline;
             }
 
-            .tdFooterContainer a:hover {
+            .footerContainer a:hover {
                 text-decoration: none;
             }
 
-            .tdFooterContainer A IMG {
+            .footerContainer A IMG {
                 border: 0px;
             }
             /* END FOOTER STYLES */
 
-
             /* BASIC BLOCKS STYLES*/
+
+            .contentContainer {
+
+            }
 
             /*
                 Caption/title/header
-                .tdWhite is used when a background color is defined ie 'uitgelicht' styles
             */
-            .tdHeader {
-                padding: 25px;
-                padding-bottom: 0px;
-                padding-top: 10px;
-                border-top: 3px solid #333333;
-            }
-
-            .tdHeader H2 {
-                color: #333333;
-                font-family: Arial;
-                font-weight: bold;
-                font-size: 20px;
-                line-height: 28px;
-            }
-
-            .tdCaption {
+            .contentCaption {
                 padding: 25px;
                 padding-bottom: 0px;
             }
 
-            .tdCaption H2 {
+            .contentCaption H2 {
                 font-size: 20px;
                 line-height: 28px;
                 color: #333333;
@@ -126,12 +110,8 @@
                 margin: 0;
             }
 
-            .tdWhite .tdCaption H2 {
-                color: #FFFFFF;
-            }
-
             /* Used as heading for smaller columns as Item (1/3) */
-            .tdCaption H3 {
+            .contentCaption H3 {
                 font-size: 16px;
                 line-height: 24px;
                 color: #333333;
@@ -140,20 +120,16 @@
                 margin: 0;
             }
 
-            .tdWhite .tdCaption H3 {
-                color: #FFFFFF;
-            }
-
             /*
                 Subtitle
             */
-            .tdSubtitle {
+            .contentSubtitle {
                 padding: 25px;
                 padding-top: 0px;
                 padding-bottom: 0px;
             }
 
-            .tdSubtitle H4 {
+            .contentSubtitle H4 {
                 color: #333333;
                 font-family: Arial;
                 font-size: 16px;
@@ -162,14 +138,10 @@
                 margin: 0;
             }
 
-            .tdWhite .tdSubtitle H4 {
-                color: #FFFFFF;
-            }
-
             /*
                 Date
             */
-            .tdDate {
+            .contentDate {
                 padding: 25px;
                 padding-top: 0px;
                 padding-bottom: 0px;
@@ -181,14 +153,10 @@
                 margin: 0;
             }
 
-            .tdWhite .tdDate {
-                color: #FFFFFF;
-            }
-
             /*
                 Content
             */
-            .tdContent {
+            .content {
                 font-family: Arial;
                 font-size: 14px;
                 line-height: 20px;
@@ -197,52 +165,20 @@
                 padding-top: 15px;
             }
 
-            .tdWhite .tdContent {
-                color: #FFFFFF;
-            }
-
-            .tdContent a {
+            .content a {
                 color: #333333;
                 text-decoration: underline;
                 font-family: Arial;
             }
 
-            .tdContent a:hover {
+            .content a:hover {
                 text-decoration: none;
-            }
-
-            .tdWhite .tdContent a {
-                color: #FFFFFF;
-            }
-
-            /*
-                Call2action
-            */
-            .tdCall2action {
-                background-color: #333333;
-                color: #FFFFFF;
-                font-family: Arial;
-                font-size: 16px;
-                padding: 20px;
-                padding-top: 10px;
-                padding-bottom: 10px;
-                font-weight: bold;
             }
 
             /*
                 Images
             */
-            .tdImageLeft {
-                padding: 15px;
-                padding-right: 0px;
-            }
-
-            .tdImageRight {
-                padding: 15px;
-                padding-left: 0px;
-            }
-
-            .tdImageSubtitle {
+            .contentImageSubtitle {
                 color: #333333;
                 font-family: Arial;
                 font-size: 12px;
@@ -252,19 +188,15 @@
                 padding-top: 5px;
             }
 
-            .tdWhite .tdImageSubtitle {
-                color: #FFFFFF;
-            }
-
             /*
                 Buttons
             */
-            .tdButtonContainer {
+            .contentButtonContainer {
                 padding: 25px;
                 padding-top: 0px;
             }
 
-            .tdButton {
+            .contentButton {
                 background-color: #333333;
                 color: #FFFFFF;
                 font-family: Arial;
@@ -274,7 +206,7 @@
                 padding-bottom: 10px;
             }
 
-            .tdButton2 {
+            .contentButton2 {
                 background-color: #999999;
                 color: #FFFFFF;
                 font-family: Arial;
@@ -284,75 +216,13 @@
                 padding-bottom: 10px;
             }
 
-            .tdButtonContainer a {
-                color: #FFFFFF;
-                text-decoration: none;
-            }
-
-            .tdWhite .tdButton {
-                background-color: #FFFFFF;
-            }
-
-            .tdWhite .tdButton2 {
-                background-color: #FFFFFF;
-            }
-
-            .tdWhite .tdButtonContainer a {
-                color: #333333;
-                text-decoration: none;
-            }
-
-            /*
-                Agenda
-            */
-            .tdAgendaContent {
-                color: #333333;
-                font-family: Arial;
-                padding-bottom: 15px;
-                font-size: 14px;
-                line-height: 20px;
-            }
-
-            .tdAgendaContent H2 {
-                font-size: 20px;
-                line-height: 28px;
-                font-weight: bold;
-                margin: 0;
-            }
-
-            .tdAgendaContainer {
-                background-color: #FFFFFF;
-                padding: 25px;
-                padding-bottom: 10px;
-            }
-
-            .tdAgendaHeader {
-                padding: 25px;
-                padding-bottom: 0px;
-                border-top: 3px solid #333333;
-                padding-bottom: 25px;
-            }
-
-            .tdAgendaHeader H2 {
-                color: #333333;
-                font-family: Arial;
-                font-weight: bold;
-                font-size: 20px;
-                line-height: 28px;
-                margin: 0;
-            }
-
-            .tdAgendaButtonContainer {
-                padding-bottom: 15px;
-            }
-
-            .tdAgendaButtonContainer a {
+            .contentButtonContainer a {
                 color: #FFFFFF;
                 text-decoration: none;
             }
 
             /* Other styles */
-            .tdColumnMarge {
+            .contentColumnMarge {
                 width: 26px;
             }
 
@@ -360,45 +230,34 @@
 
             /* RESPONSIVE CODE */
             @media only screen and (max-width: 480px) {
-            .tblMain {
+            .contentMainTable {
             width: 100% !important;
             }
-            .tdImageColumn {
+            .contentImageColumn {
             display: block;
             width: 100% !important;
             }
-            .tdContentColumn  {
+            .contentColumn  {
             display: block;
             width: 100% !important;
             }
-            .tdImageColumn IMG {
+            .contentImageColumn IMG {
             width: 100% !important;
             height: auto !important;
             -ms-interpolation-mode: bicubic;
             }
-            .tdImage IMG {
+            .contentImage IMG {
             width: 100% !important;
             height: auto !important;
             -ms-interpolation-mode: bicubic;
             }
-            .tdColumn {
+            .contentMainColumn {
             display: block;
             width: 100% !important;
             }
-            .tdColumnMarge {
+            .contentColumnMarge {
             display: block;
             width: 100% !important;
-            }
-            .tdAgendaContent {
-            display: block;
-            width: 100% !important;
-            }
-            .tdAgendaButton {
-            display: block;
-            width: 100% !important;
-            }
-            .tdAgendaButton TABLE {
-            float: none !important;
             }
             }
 
@@ -415,7 +274,7 @@ body, table, td, a, span {font-family: Arial, Helvetica, sans-serif !important;}
             <tbody>
                 <!-- HEADER -->
                 <tr> <!-- show -->
-                    <td class="tdShow">
+                    <td class="headShow">
                         %%SHOW%%
                     </td>
                 </tr>
@@ -427,19 +286,21 @@ body, table, td, a, span {font-family: Arial, Helvetica, sans-serif !important;}
                     </td>
                 </tr>
                 <tr> <!-- newsletter edition -->
-                    <td class="headEdition><h1>Nieuwsbrief editie</h1></td>
+                    <td class="headEdition">
+                        <h1>Nieuwsbrief editie</h1>
+                    </td>
                 </tr>
                 <!-- END HEADER -->
                 <!-- CONTENT -->
                 <tr>
-                    <td style="padding-bottom: 0px; font-size: 12px; font-family: Arial; font-weight: 400;">
+                    <td class="contentContainer">
                     <img id="imgContentmerger" width="100%" style="display: block; width: 100%;" src="../images/2014/events_placeholder.png" alt="Placeholder voor de events">
                     </td>
                 </tr>
                 <!-- END CONTENT -->
                 <!-- FOOTER -->
                 <tr>
-                    <td class="tdFooterContainer">
+                    <td class="footerContainer">
                         <center>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                             Pellentesque iaculis dignissim luctus.
