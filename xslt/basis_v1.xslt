@@ -214,15 +214,15 @@
 																</td>
 															</tr>
 
-															<!-- Two buttons
+															<!-- Two buttons for mobile version
 															image_alt DB field is used as alternative button text ('1e veld' name in ML)
 															icon2 DB field is used as alternative button text for second button
 															When 1/3 style is used, seperate two buttons into two rules -->
 															<xsl:if test="(url != '' and not(contains(image_alt, 'NOBUTTON'))) or (url2 != '' and not(contains(icon2, 'NOBUTTON')))">
-																<tr>
-																	<td class="contentButtonContainer">
+																<tr class="contentMobileButtonContainer" style="display:none;width:0px;max-height:0px;overflow:hidden;mso-hide:all;height:0;font-size:0;max-height:0;line-height:0;margin:0 auto;">
+																	<td class="contentMobileButtonBlock">
 
-																		<table cellpadding="0" cellspacing="0">
+																		<table cellpadding="0" cellspacing="0" class="contentMobileInnerContainer" style="display:none;width:0px;max-height:0px;overflow:hidden;mso-hide:all;height:0;font-size:0;max-height:0;line-height:0;margin:0 auto;">
 																			<!-- Button 1 -->
 																			<xsl:if test="url != '' and not(contains(image_alt, 'NOBUTTON'))">
 																				<xsl:if test="contains(style, '1/3')">
@@ -275,8 +275,10 @@
 																				</xsl:if>
 																			</xsl:if>
 																		</table>
+
 																	</td>
 																</tr>
+
 															</xsl:if>
 														</table>
 													</td>
@@ -304,8 +306,41 @@
 
 				<xsl:if test="rule_end = 'true' or position() = last()">
 					<xsl:text disable-output-escaping="yes"><![CDATA[</tr>]]></xsl:text>
-				</xsl:if>
 
+					<!-- buttons rule, used for desktop version (the mobile version is defined after content above) -->
+					<tr>
+						<!-- BUTTON 1 -->
+						<xsl:if test="preceding-sibling::match[2]/rule_end != 'true' and preceding-sibling::match[1]/rule_end != 'true'">
+							<td class="contentButtonContainer">
+								<xsl:call-template name="button_container">
+									<xsl:with-param name="row" select="preceding-sibling::match[2]" />
+								</xsl:call-template>
+							</td>
+
+							<td class="contentBlockMarge"><xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text></td>
+						</xsl:if>
+
+						<!-- BUTTON 2 -->
+						<xsl:if test="preceding-sibling::match[1]/rule_end != 'true'">
+							<td class="contentButtonContainer">
+								<xsl:call-template name="button_container">
+									<xsl:with-param name="row" select="preceding-sibling::match[1]" />
+								</xsl:call-template>
+							</td>
+
+							<td class="contentBlockMarge"><xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text></td>
+						</xsl:if>
+
+						<!-- BUTTON 3 -->
+						<td class="contentButtonContainer">
+							<xsl:call-template name="button_container">
+								<xsl:with-param name="row" select="." />
+							</xsl:call-template>
+						</td>
+
+					</tr>
+				</xsl:if>
+				
 			</xsl:for-each>
 
 		</table>
@@ -429,6 +464,65 @@
 
 			</xsl:when>
 		</xsl:choose>
+
+	</xsl:template>
+
+	<xsl:template name="button_container">
+		<xsl:param name="row" />
+
+		<table cellpadding="0" cellspacing="0">
+			<!-- Button 1 -->
+			<xsl:if test="$row/url != '' and not(contains($row/image_alt, 'NOBUTTON'))">
+				<xsl:if test="contains($row/style, '1/3')">
+					<xsl:text disable-output-escaping="yes"><![CDATA[<tr>]]></xsl:text>
+				</xsl:if>
+				<td class="contentButtonBlock">
+					<xsl:attribute name="style">
+						<xsl:choose>
+							<xsl:when test="$row/url2 != '' and not(contains($row/style, '1/3')) and not(contains($row/icon2, 'NOBUTTON'))">padding-right: 15px;</xsl:when>
+							<xsl:otherwise>padding-right: 0px;</xsl:otherwise>
+						</xsl:choose>
+					</xsl:attribute>
+
+					<xsl:call-template name="button">
+						<xsl:with-param name="url" select="$row/details_url" />
+						<xsl:with-param name="button_text" select="$row/image_alt" />
+						<xsl:with-param name="button_default_text" select="$button1_text" />
+						<xsl:with-param name="class">contentButton</xsl:with-param>
+					</xsl:call-template>
+
+				</td>
+				<xsl:if test="contains($row/style, '1/3')">
+					<xsl:text disable-output-escaping="yes"><![CDATA[</tr>]]></xsl:text>
+				</xsl:if>
+			</xsl:if>
+
+			<!-- Button 2 -->
+			<xsl:if test="$row/url2 != '' and not(contains($row/icon2, 'NOBUTTON'))">
+				<xsl:if test="contains($row/style, '1/3')">
+					<xsl:text disable-output-escaping="yes"><![CDATA[<tr>]]></xsl:text>
+				</xsl:if>
+				<td class="contentButtonBlock">
+					<xsl:attribute name="style">
+						<xsl:choose>
+							<xsl:when test="contains($row/style, '1/3')">padding-top: 10px;</xsl:when>
+							<xsl:otherwise>padding-top: 0px;</xsl:otherwise>
+						</xsl:choose>
+					</xsl:attribute>
+
+					<xsl:call-template name="button">
+						<xsl:with-param name="url" select="$row/details_url2" />
+						<xsl:with-param name="button_text" select="$row/icon2" />
+						<xsl:with-param name="button_default_text" select="$button2_text" />
+						<xsl:with-param name="class">contentButton2</xsl:with-param>
+					</xsl:call-template>
+
+				</td>
+				<xsl:if test="contains($row/style, '')">
+					<xsl:text disable-output-escaping="yes"><![CDATA[</tr>]]></xsl:text>
+				</xsl:if>
+			</xsl:if>
+		</table>
 
 	</xsl:template>
 
