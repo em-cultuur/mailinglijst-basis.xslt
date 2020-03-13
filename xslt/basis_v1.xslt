@@ -181,9 +181,11 @@
 															<!-- Hide entire title part when Item (zonder titel) style is used of NOTITLE in the title field is filled (case sensitive!!) -->
 															<xsl:if test="not(contains(style, 'zonder titel')) and not(contains(title, 'NOTITLE'))">
 
-																<!-- Title -->
+																<!-- Title
+																You can add 2x double slashes to cut titles in multiple rules -->
 																<tr>
 																	<td class="contentCaption">
+																		
 																		<xsl:variable name="title">
 																			<xsl:choose>
 																				<xsl:when test="contains(title, ' || ')">
