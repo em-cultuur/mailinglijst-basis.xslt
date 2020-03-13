@@ -44,6 +44,10 @@
 	<xsl:variable name="date_month_11">nov </xsl:variable>
 	<xsl:variable name="date_month_12">dec </xsl:variable>
 
+	<xsl:variable name="date_period_prefix"> t/m </xsl:variable>
+	<xsl:variable name="date_time_prefix"> om </xsl:variable>
+	<xsl:variable name="date_time_period_prefix"> - </xsl:variable>
+
 	<xsl:template match="/">
 
 		<table cellpadding="0" cellspacing="0" width="100%" style="width: 100%" class="contentMainTable">
@@ -404,7 +408,7 @@
 
 				<xsl:if test="$row/display_playdate_start != $row/display_playdate_end">
 
-					<xsl:text disable-output-escaping="yes"><![CDATA[ t/m ]]></xsl:text>
+					<xsl:value-of select="$date_period_prefix" />
 
 					<xsl:choose>
 						<xsl:when test="$end_weekday = '0'"><xsl:value-of select="$date_day_0" /></xsl:when>
@@ -443,11 +447,11 @@
 				</xsl:if>
 
 				<xsl:if test="substring($row/playdate_start, 12, 5) != '00:00'">
-					<xsl:text disable-output-escaping="yes"><![CDATA[ om ]]></xsl:text>
+					<xsl:value-of select="$date_time_prefix" />
 					<xsl:value-of select="substring($row/playdate_start, 12, 5)" />
 
 					<xsl:if test="substring($row/playdate_end, 12, 5) != substring($row/playdate_start, 12, 5)">
-						<xsl:text disable-output-escaping="yes"><![CDATA[ - ]]></xsl:text>
+						<xsl:value-of select="$date_time_period_prefix" />
 						<xsl:value-of select="substring($row/playdate_end, 12, 5)" />
 					</xsl:if>
 				</xsl:if>
