@@ -7,10 +7,15 @@
 		XSLT for BLOCKS in MailingLijst-templates -->
 
 	<!-- CONFIGS -->
-	<xsl:variable name="image_width_13">216</xsl:variable>
-	<xsl:variable name="image_width_12">337</xsl:variable>
-	<xsl:variable name="image_width_23">458</xsl:variable>
-	<xsl:variable name="image_width_full">700</xsl:variable>
+	<!--
+	The widths have to be defined here because it needs to be defined in two attributes: STYLE and WIDTH
+	Outlooks uses the WITH attribute and all other e-mail clients uses STYLE attribute.
+	This widths are used for images and main tables.
+	-->
+	<xsl:variable name="width_13">216</xsl:variable>
+	<xsl:variable name="width_12">337</xsl:variable>
+	<xsl:variable name="width_23">458</xsl:variable>
+	<xsl:variable name="width_full">700</xsl:variable>
 
 	<!-- TEXTS -->
 	<xsl:variable name="button1_text">Lees meer</xsl:variable>
@@ -45,31 +50,31 @@
 			<!-- Loop through items with stylenames starting with 'Item' -->
 			<xsl:for-each select="matches/match[contains(style, 'Item')]">
 
-				<!-- Basic widths of column, the widths below are based on basic and ideal width of 700px -->
+				<!-- Basic widths of blocks, the widths below are based on basic and ideal width of 700px -->
 				<xsl:variable name="width">
 					<xsl:choose>
-						<xsl:when test="contains(style, '1/2')"><xsl:value-of select="$image_width_12" /></xsl:when>
-						<xsl:when test="contains(style, '1/3')"><xsl:value-of select="$image_width_13" /></xsl:when>
-						<xsl:when test="contains(style, '2/3')"><xsl:value-of select="$image_width_23" /></xsl:when>
-						<xsl:otherwise><xsl:value-of select="$image_width_full" /></xsl:otherwise>
+						<xsl:when test="contains(style, '1/2')"><xsl:value-of select="$width_12" /></xsl:when>
+						<xsl:when test="contains(style, '1/3')"><xsl:value-of select="$width_13" /></xsl:when>
+						<xsl:when test="contains(style, '2/3')"><xsl:value-of select="$width_23" /></xsl:when>
+						<xsl:otherwise><xsl:value-of select="$width_full" /></xsl:otherwise>
 					</xsl:choose>
 				</xsl:variable>
 
-				<!-- Start rule for each row, determine it on the position or rule_end of previous item -->
+				<!-- Start rule for each block, determine it on the position or rule_end of previous item -->
 				<xsl:if test="position() = 1 or preceding-sibling::*[1]/rule_end = 'true'">
 					<xsl:text disable-output-escaping="yes"><![CDATA[<tr>]]></xsl:text>
 				</xsl:if>
 
 				<xsl:if test="(contains(style, '1/2') or contains(style, '1/3') or contains(style, '2/3')) and (position() = 1 or preceding-sibling::*[1]/rule_end = 'true')">
-					<xsl:text disable-output-escaping="yes"><![CDATA[<td><table cellpadding="0" cellspacing="0"><tr><td class="contentColumnContainer"><table cellpadding="0" cellspacing="0"><tr>]]></xsl:text>
+					<xsl:text disable-output-escaping="yes"><![CDATA[<td><table cellpadding="0" cellspacing="0"><tr><td class="contentBlockContainer"><table cellpadding="0" cellspacing="0"><tr>]]></xsl:text>
 				</xsl:if>
 
-				<!-- Basic column -->
+				<!-- Basic block -->
 				<td>
 					<xsl:attribute name="class">
 						<xsl:choose>
-							<xsl:when test="contains(style, '1/2') or contains(style, '1/3') or contains(style, '2/3')">contentMainColumn</xsl:when>
-							<xsl:otherwise>contentMainItem</xsl:otherwise>
+							<xsl:when test="contains(style, '1/2') or contains(style, '1/3') or contains(style, '2/3')">contentMainBlock</xsl:when>
+							<xsl:otherwise>contentMainBlockItem</xsl:otherwise>
 						</xsl:choose>
 					</xsl:attribute>
 
@@ -159,7 +164,7 @@
 											<table cellpadding="0" cellspacing="0" width="100%" style="width: 100%;">
 												<tr>
 													<!-- BLOCK CONTENT (title, subtitle, date) with text and buttons -->
-													<td class="contentInnerColumn" style="vertical-align: top;">
+													<td class="contentInnerBlock" style="vertical-align: top;">
 
 														<table cellpadding="0" cellspacing="0" width="100%" style="width: 100%">
 
@@ -210,9 +215,9 @@
 															</tr>
 
 															<!-- Two buttons
-															image_alt DB column is used as alternative button text ('1e veld' name in ML)
-															icon2 DB column is ised as alternative button text for second button
-															When 1/3 style is used, seperate two buttons into two rows -->
+															image_alt DB field is used as alternative button text ('1e veld' name in ML)
+															icon2 DB field is used as alternative button text for second button
+															When 1/3 style is used, seperate two buttons into two rules -->
 															<xsl:if test="(url != '' and not(contains(image_alt, 'NOBUTTON'))) or (url2 != '' and not(contains(icon2, 'NOBUTTON')))">
 																<tr>
 																	<td class="contentButtonContainer">
@@ -223,7 +228,7 @@
 																				<xsl:if test="contains(style, '1/3')">
 																					<xsl:text disable-output-escaping="yes"><![CDATA[<tr>]]></xsl:text>
 																				</xsl:if>
-																				<td class="contentButtonColumn">
+																				<td class="contentButtonBlock">
 																					<xsl:attribute name="style">
 																						<xsl:choose>
 																							<xsl:when test="url2 != '' and not(contains(style, '1/3')) and not(contains(icon2, 'NOBUTTON'))">padding-right: 15px;</xsl:when>
@@ -249,7 +254,7 @@
 																				<xsl:if test="contains(style, '1/3')">
 																					<xsl:text disable-output-escaping="yes"><![CDATA[<tr>]]></xsl:text>
 																				</xsl:if>
-																				<td class="contentButtonColumn">
+																				<td class="contentButtonBlock">
 																					<xsl:attribute name="style">
 																						<xsl:choose>
 																							<xsl:when test="contains(style, '1/3')">padding-top: 10px;</xsl:when>
@@ -289,7 +294,7 @@
 				<!-- Ending rules -->
 				<xsl:choose>
 					<xsl:when test="contains(style, '1/2') or contains(style, '1/3') or contains(style, '2/3')">
-						<xsl:if test="rule_end != 'true'"><xsl:text disable-output-escaping="yes"><![CDATA[<td class="contentColumnMarge">&nbsp;</td>]]></xsl:text></xsl:if>
+						<xsl:if test="rule_end != 'true'"><xsl:text disable-output-escaping="yes"><![CDATA[<td class="contentBlockMarge">&nbsp;</td>]]></xsl:text></xsl:if>
 
 						<xsl:if test="position() = last() or rule_end = 'true'">
 							<xsl:text disable-output-escaping="yes"><![CDATA[</tr></table></td></tr></table></td>]]></xsl:text>
