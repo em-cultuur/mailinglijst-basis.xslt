@@ -185,7 +185,7 @@
 																You can add 2x double slashes to cut titles in multiple rules -->
 																<tr>
 																	<td class="contentCaption">
-																		
+
 																		<xsl:variable name="title">
 																			<xsl:choose>
 																				<xsl:when test="contains(title, ' || ')">
