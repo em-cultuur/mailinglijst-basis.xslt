@@ -30,7 +30,6 @@
 
 	db.extra1 = alternative background color
 	db.extra2 = image subtitle / photo credits
-
 	-->
 
 	<!-- CONFIGS -->
@@ -181,7 +180,7 @@
 													</xsl:otherwise>
 												</xsl:choose>
 
-												<!-- when db.extra2 field is filled, show it as image subtitle (photo credits) -->
+												<!-- when db.extra2 field is filled, show it as image subtitle / photo credits -->
 												<xsl:if test="extra2 != ''">
 													<table width="100%" cellpadding="0" cellspacing="0" style="width: 100%">
 														<tr>
@@ -379,7 +378,7 @@
 				<xsl:if test="rule_end = 'true' or position() = last()">
 					<xsl:text disable-output-escaping="yes"><![CDATA[</tr>]]></xsl:text>
 
-					<!-- buttons, used for desktop version (the mobile version is defined after content above) -->
+					<!-- Buttons, used for desktop version (the mobile version is defined after content above) -->
 					<tr>
 						<td>
 							<table cellpadding="0" cellspacing="0">
@@ -411,6 +410,7 @@
 						</td>
 					</tr>
 
+					<!-- Create a line to generate margin between two item blocks -->
 					<tr>
 						<td class="contentBottomMargin">
 							<xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text>
@@ -549,6 +549,10 @@
 
 	</xsl:template>
 
+	<!--
+	Central template for the button container (to prevent double codes).
+	This container is used to display buttons at line below content.
+	-->
 	<xsl:template name="button_container">
 		<xsl:param name="row" />
 
@@ -647,6 +651,12 @@
 
 	</xsl:template>
 
+	<!--
+	Central template for buttons (to prevent double codes)
+
+	With hide param (1 or 0) you can determine if the button have to be hidden by default.
+	This button will be visible when viewing e-mail at mobile devices.
+	-->
 	<xsl:template name="button">
 		<xsl:param name="button_text" />
 		<xsl:param name="button_default_text" />
