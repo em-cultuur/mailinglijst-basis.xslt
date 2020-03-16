@@ -8,6 +8,53 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="x-apple-disable-message-reformatting">
         <style type="text/css">
+            /*
+            There are two ways to use custom fonts in e-mail:
+            - Direct @import from Google fonts stack
+            - Uploaded fonts to MailingLijst folders by using font-face logic
+
+            Choose one way and remove the other way (for clean code).
+            Or both of the customer don't use custom fonts.
+            */
+            /* Custom fonts from Google */
+            @import url('https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i|Prata&display=swap');
+
+            /* Own custom fonts with font-face logic */
+            @font-face {
+                font-family: 'Relative';
+                src: url('https://www.mailinglijst.nl/klanten/default/fonts/relative-book-web.eot');
+                src: url('https://www.mailinglijst.nl/klanten/default/fonts/relative-book-web.eot?#iefix') format('embedded-opentype'),
+                url('https://www.mailinglijst.nl/klanten/default/fonts/relative-book-web.svg#Vestula-Italic') format('svg'),
+                url('https://www.mailinglijst.nl/klanten/default/fonts/relative-book-web.ttf') format('truetype'),
+                url('https://www.mailinglijst.nl/klanten/default/fonts/relative-book-web.woff') format('woff'),
+                url('https://www.mailinglijst.nl/klanten/default/fonts/relative-book-web.woff2') format('woff2');
+                font-weight: normal;
+                font-style: normal;
+            }
+            @font-face {
+                font-family: 'Relative';
+                src: url('https://www.mailinglijst.nl/klanten/default/fonts/relative-bold-web.eot');
+                src: url('https://www.mailinglijst.nl/klanten/default/fonts/relative-bold-web.eot?#iefix') format('embedded-opentype'),
+                url('https://www.mailinglijst.nl/klanten/default/fonts/relative-bold-web.svg#Vestula-SemiBold') format('svg'),
+                url('https://www.mailinglijst.nl/klanten/default/fonts/relative-bold-web.ttf') format('truetype'),
+                url('https://www.mailinglijst.nl/klanten/default/fonts/relative-bold-web.woff') format('woff'),
+                url('https://www.mailinglijst.nl/klanten/default/fonts/relative-bold-web.woff2') format('woff2');
+                font-weight: bold;
+                font-style: normal;
+            }
+            @font-face {
+                font-family: 'Relative';
+                src: url('https://www.mailinglijst.nl/klanten/default/fonts/relative-italic-web.eot');
+                src: url('https://www.mailinglijst.nl/klanten/default/fonts/relative-italic-web.eot?#iefix') format('embedded-opentype'),
+                url('https://www.mailinglijst.nl/klanten/default/fonts/relative-italic-web.svg#Vestula') format('svg'),
+                url('https://www.mailinglijst.nl/klanten/default/fonts/relative-italic-web.ttf') format('truetype'),
+                url('https://www.mailinglijst.nl/klanten/default/fonts/relative-italic-web.woff') format('woff'),
+                url('https://www.mailinglijst.nl/klanten/default/fonts/relative-italic-web.woff2') format('woff2');
+                font-weight: normal;
+                font-style: italic;
+            }
+
+            /* Global link color */
             a { color: #333333; }
 
             /* GLOBAL HTML/BODY STYLES */
@@ -31,7 +78,7 @@
                 text-align: right;
                 padding: 5px;
                 color: #333333;
-                font-family: Arial;
+                font-family: Lato, Arial;
                 font-size: 12px;
             }
 
@@ -58,7 +105,7 @@
 
             .headEdition H1 {
                 color: #FFFFFF;
-                font-family: Arial;
+                font-family: Prata, Georgia;
                 font-size: 16px;
                 margin: 0px;
             }
@@ -66,7 +113,7 @@
 
             /* FOOTER STYLES */
             .footerContainer {
-                font-family: Arial;
+                font-family: Lato, Arial;
                 font-size: 13px;
                 line-height: 16px;
                 padding: 15px;
@@ -151,7 +198,7 @@
                 font-size: 20px;
                 line-height: 28px;
                 color: #333333;
-                font-family: Arial;
+                font-family: Prata, Georgia;
                 font-weight: bold;
                 margin: 0;
             }
@@ -160,7 +207,7 @@
                 font-size: 16px;
                 line-height: 24px;
                 color: #333333;
-                font-family: Arial;
+                font-family: Prata, Georgia;
                 font-weight: bold;
                 margin: 0;
             }
@@ -178,7 +225,7 @@
 
             .contentSubtitle H4 {
                 color: #333333;
-                font-family: Arial;
+                font-family: Prata, Georgia;
                 font-size: 16px;
                 line-height: 24px;
                 font-weight: normal;
@@ -193,7 +240,7 @@
                 padding-top: 0px;
                 padding-bottom: 0px;
                 color: #999999;
-                font-family: Arial;
+                font-family: Lato, Arial;
                 font-size: 14px;
                 line-height: 20px;
                 font-weight: normal;
@@ -204,7 +251,7 @@
             Content
             */
             .content {
-                font-family: Arial;
+                font-family: Lato, Arial;
                 font-size: 14px;
                 line-height: 20px;
                 color: #333333;
@@ -214,7 +261,7 @@
             .content a {
                 color: #333333;
                 text-decoration: underline;
-                font-family: Arial;
+                font-family: Lato, Arial;
             }
 
             .content a:hover {
@@ -230,7 +277,7 @@
 
             .contentImageSubtitle {
                 color: #333333;
-                font-family: Arial;
+                font-family: Lato, Arial;
                 font-size: 12px;
                 line-height: 16px;
                 padding: 15px;
@@ -258,7 +305,7 @@
             .contentButton {
                 background-color: #333333;
                 color: #FFFFFF;
-                font-family: Arial;
+                font-family: Lato, Arial;
                 font-size: 14px;
                 padding: 20px;
                 padding-top: 10px;
@@ -268,7 +315,7 @@
             .contentButton2 {
                 background-color: #999999;
                 color: #FFFFFF;
-                font-family: Arial;
+                font-family: Lato, Arial;
                 font-size: 14px;
                 padding: 20px;
                 padding-top: 10px;
@@ -355,11 +402,53 @@
             }
 
         </style>
+
+        <!--
+        This alternative CSS styles will be used when the e-mail is opened in all versions of Outlook.
+        Outlooks don't supports custom fonts and will replace without the below CSS styles all fonts to Times New Roman.
+        So force the fonts to web safe fonts below.
+        -->
         <!--[if mso]>
-<style type="text/css">
-body, table, td, a, span {font-family: Arial, Helvetica, sans-serif !important;}
-</style>
-<![endif]-->
+        <style type="text/css">
+            /* force to Arial globally */
+            body, table, td, a, span, h1, h2, h3, h4 {
+                font-family: Arial, Helvetica, sans-serif !important;
+            }
+
+            /* force specific HTML tags to safe fonts */
+            .contentCaption h2, .contentCaption h3 {
+                font-family: Georgia, Arial !important;
+            }
+
+            .contentSubtitle h4 {
+                font-family: Georgia, Arial !important;
+            }
+
+            .contentDate {
+                font-family: Arial, Helvetica, sans-serif !important;
+            }
+
+            .content, .content a {
+                font-family: Arial, Helvetica, sans-serif !important;
+            }
+
+            .contentImageSubtitle {
+                font-family: Arial, Helvetica, sans-serif !important;
+            }
+
+            .contentButton {
+                font-family: Arial, Helvetica, sans-serif !important;
+            }
+
+            .contentButton2 {
+                font-family: Arial, Helvetica, sans-serif !important;
+            }
+
+            table {
+                border-collapse: collapse !important;
+            }
+        </style>
+        <![endif]-->
     </head>
 
     <body style="background-color: #f5f5f5;"> <!-- body background color for support in GMail -->
