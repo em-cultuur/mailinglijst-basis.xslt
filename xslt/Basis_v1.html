@@ -105,7 +105,7 @@
 
             .headEdition H1 {
                 color: #FFFFFF;
-                font-family: Prata, Georgia;
+                font-family: Prata, Georgia, sans-serif;
                 font-size: 16px;
                 margin: 0px;
             }
@@ -149,10 +149,10 @@
             the following styles are styles for main containers of each content block.
             contentBlockContainer = main content container of blocks with 1/2, 1/3 or 2/3 items.
             contentMainBlock = main container of one block of 1/2, 1/3 or 2/3 styles (use this for background-color of each block).
-            contentMainBlockItem = main container of one item of all styles except 1/2, 1/3 and 2/3 styles (use this for bottom space between two blocks).
+            contentMainBlockItem = main container of one item of all styles except 1/2, 1/3 and 2/3 styles.
             contentInnerContainer = inner container (use this for background-color of all styles except 1/2, 1/3 and 2/3).
-            contentBottonMarge
-            contentBlockMarge = vertical marge between 1/2, 1/3 and 2/3 blocks
+            contentBottonMargin = bottom margin between two blocks
+            contentBlockMargin = vertical margin between 1/2, 1/3 and 2/3 blocks
             */
             .contentBlockContainer {
 
@@ -171,14 +171,14 @@
                 background-color: #FFFFFF; /* change this for default background color of each block */
             }
 
-            .contentBottomMarge {
-                height: 25px; /* change this for bottom marge between each block */
+            .contentBottomMargin {
+                height: 25px; /* change this for bottom margin between each block */
                 font-size: 1px;
                 line-height: 1px;
             }
 
-            .contentBlockMarge {
-                width: 26px; /* change this for vertical marge between each block, you need to change the block widths in xslt when you change this */
+            .contentBlockMargin {
+                width: 26px; /* change this for vertical margin between each block, you need to change the block widths in xslt when you change this */
                 font-size: 1px;
                 line-height: 1px;
             }
@@ -198,7 +198,7 @@
                 font-size: 20px;
                 line-height: 28px;
                 color: #333333;
-                font-family: Prata, Georgia;
+                font-family: Prata, Georgia, sans-serif;
                 font-weight: bold;
                 margin: 0;
             }
@@ -207,7 +207,7 @@
                 font-size: 16px;
                 line-height: 24px;
                 color: #333333;
-                font-family: Prata, Georgia;
+                font-family: Prata, Georgia, sans-serif;
                 font-weight: bold;
                 margin: 0;
             }
@@ -225,7 +225,7 @@
 
             .contentSubtitle H4 {
                 color: #333333;
-                font-family: Prata, Georgia;
+                font-family: Prata, Georgia, sans-serif;
                 font-size: 16px;
                 line-height: 24px;
                 font-weight: normal;
@@ -233,7 +233,7 @@
             }
 
             /*
-            Date rule below title and subtitle
+            Date below title and subtitle
             */
             .contentDate {
                 padding: 15px;
@@ -353,7 +353,8 @@
                     display: block;
                     width: 100% !important;
                 }
-                .contentBlockMarge {
+
+                .contentBlockMargin {
                     display: block;
                     width: 100% !important;
                 }
@@ -416,12 +417,16 @@
             }
 
             /* force specific HTML tags to safe fonts */
+            .headEdition H1 {
+                font-family: Georgia, sans-serif, Arial !important
+            }
+
             .contentCaption h2, .contentCaption h3 {
-                font-family: Georgia, Arial !important;
+                font-family: Georgia, sans-serif, Arial !important;
             }
 
             .contentSubtitle h4 {
-                font-family: Georgia, Arial !important;
+                font-family: Georgia, sans-serif, Arial !important;
             }
 
             .contentDate {
@@ -476,7 +481,7 @@
                 <!-- CONTENT -->
                 <tr>
                     <td class="contentContainer">
-                        <img id="imgContentmerger" width="100%" style="display: block; width: 100%;" src="../images/2014/events_placeholder.png" alt="Placeholder voor de events">
+                        %%CONTENT%%
                     </td>
                 </tr>
                 <!-- END CONTENT -->
