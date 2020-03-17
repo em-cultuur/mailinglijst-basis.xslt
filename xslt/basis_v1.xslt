@@ -169,6 +169,53 @@
 						</tr>
 
 					</xsl:when>
+					<xsl:when test="contains(style, 'tussenkopje')">
+
+						<tr>
+							<!-- Basic block -->
+							<td class="contentSubheaderMainBlock">
+
+								<!-- The data attributes are used for in contentblocks editor -->
+								<table width="100%" cellpadding="0" cellspacing="0" style="width: 100%" class="emItem emEditable emMoveable">
+									<xsl:attribute name="data-sort"><xsl:value-of select="sort_on" /></xsl:attribute>
+									<xsl:attribute name="data-ID"><xsl:value-of select="merge_ID"/></xsl:attribute>
+									<xsl:attribute name="data-last">
+										<xsl:choose>
+											<xsl:when test="position() = last()">true</xsl:when>
+											<xsl:otherwise>false</xsl:otherwise>
+										</xsl:choose>
+									</xsl:attribute>
+									<xsl:attribute name="data-first">
+										<xsl:choose>
+											<xsl:when test="position() = 1">true</xsl:when>
+											<xsl:otherwise>false</xsl:otherwise>
+										</xsl:choose>
+									</xsl:attribute>
+									<tr>
+										<td class="contentSubheaderOuterContainer">
+
+											<table width="100%" cellpadding="0" cellspacing="0" style="width: 100%">
+												<tr>
+													<td class="contentSubheaderInnerContainer">
+														<xsl:value-of select="title" />
+													</td>
+												</tr>
+											</table>
+
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+
+						<!-- Create a line to generate margin between two item blocks -->
+						<tr>
+							<td class="contentBottomMargin">
+								<xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text>
+							</td>
+						</tr>
+
+					</xsl:when>
 					<xsl:otherwise>
 
 						<!-- Basic widths of blocks, the widths below are based on basic and ideal width of 700px -->
