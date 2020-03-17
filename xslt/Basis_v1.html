@@ -183,7 +183,8 @@
             contentInnerContainer = inner container (use this for background-color of all styles, it is used for in the editor).
             contentBottonMargin = bottom margin between two blocks.
             contentBlockMargin = vertical margin between 1/2, 1/3 and 2/3 blocks.
-            ...Featured = same as above but used for featured / uitgelicht styles with alternative background colors.
+            ...Featured = same as above but used for featured / uitgelicht blocks with alternative background colors.
+            ...Banner = same as abve but used for banner blocks width alternative colors
             */
             .contentBlockContainer {}
 
@@ -192,9 +193,13 @@
                 vertical-align: top;
             }
 
-            .contentMainBlockFeatured, .contentMainBlockItemFeatured, .contentFeaturedInnerContainer {
+            .contentMainBlockFeatured, .contentMainBlockItemFeatured, .contentInnerContainerFeatured {
                 background-color: dimgray;
                 vertical-align: top;
+            }
+
+            .contentMainBlockBanner, .contentInnerContainerBanner {
+                background-color: indianred;
             }
 
             .contentMainBlock {}
@@ -202,7 +207,8 @@
             .contentMainBlockItem {}
             .contentMainBlockItemFeatured {}
             .contentInnerContainer {}
-            .contentFeaturedInnerContainer {}
+            .contentInnerContainerFeatured {}
+            .contentInnerContainerBanner {}
 
             .contentBottomMargin {
                 height: 20px; /* change this for bottom margin between each block */
@@ -241,8 +247,14 @@
                 line-height: 24px;
             }
 
-            .contentFeaturedInnerContainer .contentCaption H2, .contentFeaturedInnerContainer .contentCaption H3 {
+            .contentInnerContainerFeatured .contentCaption H2, .contentInnerContainerFeatured .contentCaption H3 {
                 color: white;
+            }
+
+            .contentInnerContainerBanner .contentCaption H2, .contentInnerContainerBanner .contentCaption H3 {
+                color: white;
+                font-size: 28px;
+                line-height: 36px;
             }
 
             /*
@@ -265,7 +277,8 @@
                 margin: 0;
             }
 
-            .contentFeaturedInnerContainer .contentSubtitle H4 {
+            .contentInnerContainerFeatured .contentSubtitle H4,
+            .contentInnerContainerBanner .contentSubtitle H4{
                 color: white;
             }
 
@@ -284,7 +297,7 @@
                 margin: 0;
             }
 
-            .contentFeaturedInnerContainer .contentDate {
+            .contentInnerContainerFeatured .contentDate {
                 color: white;
             }
 
@@ -310,7 +323,7 @@
                 text-decoration: none;
             }
 
-            .contentFeaturedInnerContainer .content, .contentFeaturedInnerContainer .content a {
+            .contentInnerContainerFeatured .content, .contentInnerContainerFeatured .content a {
                 color: white;
             }
 
@@ -330,6 +343,11 @@
                 vertical-align: top;
             }
 
+            .contentImageRightOuterBlockBanner, .contentImageLeftOuterBlockBanner {
+                width: 220px;
+                vertical-align: top;
+            }
+
             .contentImageRightInnerBlock, .contentImageLeftInnerBlock {
                 padding: 15px;
             }
@@ -342,6 +360,9 @@
                 padding-right: 0px;
             }
 
+            .contentImageRightInnerBlockBanner {}
+            .contentImageLeftInnerBlockBanner {}
+
             .contentImageSubtitle {
                 color: dimgray;
                 font-family: Lato, sans-serif;
@@ -352,13 +373,21 @@
                 padding-top: 5px;
             }
 
-            .contentFeaturedInnerContainer .contentImageSubtitle {
+            .contentInnerContainerFeatured .contentImageSubtitle,
+            .contentInnerContainerbanner .contentImageSubtitle{
                 color: white;
             }
 
             .contentImageLeftInnerBlock .contentImageSubtitle,
             .contentImageRightInnerBlock .contentImageSubtitle {
                 padding-left: 5px;
+                text-align: left;
+            }
+
+            .contentImageLeftInnerBlockBanner .contentImageSubtitle,
+            .contentImageRightInnerBlockBanner .contentImageSubtitle {
+                padding-left: 5px;
+                padding-bottom: 5px;
                 text-align: left;
             }
 
@@ -370,14 +399,23 @@
                 vertical-align: top;
             }
 
-            .contentFeaturedButtonContainer {
+            .contentButtonContainerFeatured {
                 background-color: dimgray;
+                vertical-align: top;
+            }
+
+            .contentButtonContainerBanner {
+                background-color: indianred;
                 vertical-align: top;
             }
 
             .contentButtonInnerContainer {
                 padding: 15px;
                 padding-top: 0px;
+            }
+
+            .contentButtonContainerBanner .contentButtonInnerContainer {
+                padding-top: 15px;
             }
 
             .contentButtonBlock {
@@ -417,12 +455,15 @@
                 text-decoration: none;
             }
 
-            .contentFeaturedButtonContainer .contentButton, .contentFeaturedButtonContainer .contentButton:hover,
-            .contentFeaturedButtonContainer .contentButton2, .contentFeaturedButtonContainer .contentButton2:hover {
+            .contentButtonContainerFeatured .contentButton, .contentButtonContainerFeatured .contentButton:hover,
+            .contentButtonContainerFeatured .contentButton2, .contentButtonContainerFeatured .contentButton2:hover,
+            .contentButtonContainerBanner .contentButton, .contentButtonContainerBanner .contentButton:hover,
+            .contentButtonContainerBanner .contentButton2, .contentButtonContainerBanner .contentButton2:hover{
                 background-color: white;
             }
 
-            .contentFeaturedButtonContainer .contentButtonBlock a {
+            .contentButtonContainerFeatured .contentButtonBlock a,
+            .contentButtonContainerBanner .contentButtonBlock a{
                 color: dimgray;
             }
 

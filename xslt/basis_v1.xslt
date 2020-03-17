@@ -247,6 +247,7 @@
 								<xsl:choose>
 									<xsl:when test="(contains(style, '1/2') or contains(style, '1/3') or contains(style, '2/3')) and not(contains(style, 'uitgelicht')) and extra1 = ''">contentMainBlock</xsl:when>
 									<xsl:when test="(contains(style, '1/2') or contains(style, '1/3') or contains(style, '2/3')) and (contains(style, 'uitgelicht') or extra1 != '')">contentMainBlockFeatured</xsl:when>
+									<xsl:when test="contains(style, 'banner')">contentMainBlockBanner</xsl:when>
 									<xsl:when test="contains(style, 'uitgelicht') or extra1 != ''">contentMainBlockItemFeatured</xsl:when>
 									<xsl:otherwise>contentMainBlockItem</xsl:otherwise>
 								</xsl:choose>
@@ -285,7 +286,8 @@
 												<td>
 													<xsl:attribute name="class">
 														<xsl:choose>
-															<xsl:when test="contains(style, 'uitgelicht') or extra1 != ''">contentFeaturedInnerContainer</xsl:when>
+															<xsl:when test="contains(style, 'banner')">contentInnerContainerBanner</xsl:when>
+															<xsl:when test="contains(style, 'uitgelicht') or extra1 != ''">contentInnerContainerFeatured</xsl:when>
 															<xsl:otherwise>contentInnerContainer</xsl:otherwise>
 														</xsl:choose>
 													</xsl:attribute>
@@ -386,7 +388,9 @@
 																				<td>
 																					<xsl:attribute name="class">
 																						<xsl:choose>
+																							<xsl:when test="contains(style, 'afb. rechts') and contains(style, 'banner')">contentImageRightOuterBlockBanner</xsl:when>
 																							<xsl:when test="contains(style, 'afb. rechts')">contentImageRightOuterBlock</xsl:when>
+																							<xsl:when test="contains(style, 'afb. links') and contains(style, 'banner')">contentImageLeftOuterBlockBanner</xsl:when>
 																							<xsl:otherwise>contentImageLeftOuterBlock</xsl:otherwise>
 																						</xsl:choose>
 																					</xsl:attribute>
@@ -396,7 +400,9 @@
 																							<td>
 																								<xsl:attribute name="class">
 																									<xsl:choose>
+																										<xsl:when test="contains(style, 'afb. rechts') and contains(style, 'banner')">contentImageRightInnerBlockBanner</xsl:when>
 																										<xsl:when test="contains(style, 'afb. rechts')">contentImageRightInnerBlock</xsl:when>
+																										<xsl:when test="contains(style, 'afb. links') and contains(style, 'banner')">contentImageLeftInnerBlockBanner</xsl:when>
 																										<xsl:otherwise>contentImageLeftInnerBlock</xsl:otherwise>
 																									</xsl:choose>
 																								</xsl:attribute>
@@ -531,8 +537,9 @@
 																									<!-- Date
                                                                                                     When you empty the date fields in the content block details, then the dates will be saved as 1 january 2020.
                                                                                                     Or you filled in the db.icon field, then show the custom text from db.icon field instead of date fields.
+                                                                                                    Hide this part when using banner blocks
                                                                                                     -->
-																									<xsl:if test="not(contains(display_playdate_start, '1 januari 2000')) or icon != ''">
+																									<xsl:if test="(not(contains(display_playdate_start, '1 januari 2000')) or icon != '') and not(contains(style, 'banner'))">
 																										<tr>
 																											<td class="contentDate">
 																												<xsl:call-template name="date_subtitle">
@@ -544,12 +551,15 @@
 
 																								</xsl:if>
 
-																								<!-- Content -->
-																								<tr>
-																									<td class="content">
-																										<xsl:value-of select="content" disable-output-escaping="yes" />
-																									</td>
-																								</tr>
+																								<!-- Content
+																								Hide this part when using banner blocks -->
+																								<xsl:if test="not(contains(style, 'banner'))">
+																									<tr>
+																										<td class="content">
+																											<xsl:value-of select="content" disable-output-escaping="yes" />
+																										</td>
+																									</tr>
+																								</xsl:if>
 
 																								<!-- Two buttons for mobile version
                                                                                                 image_alt DB field is used as alternative button text ('1e veld' name in ML)
@@ -846,7 +856,8 @@
 
 			<xsl:attribute name="class">
 				<xsl:choose>
-					<xsl:when test="contains($row/style, 'uitgelicht') or $row/extra1 !=''">contentFeaturedButtonContainer</xsl:when>
+					<xsl:when test="contains($row/style, 'banner')">contentButtonContainerBanner</xsl:when>
+					<xsl:when test="contains($row/style, 'uitgelicht') or $row/extra1 !=''">contentButtonContainerFeatured</xsl:when>
 					<xsl:otherwise>contentButtonContainer</xsl:otherwise>
 				</xsl:choose>
 			</xsl:attribute>
