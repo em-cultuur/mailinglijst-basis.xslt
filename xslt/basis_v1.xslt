@@ -38,9 +38,9 @@
 	Outlooks uses the WITH attribute and all other e-mail clients uses STYLE attribute.
 	This widths are used for images and main tables.
 	-->
-	<xsl:variable name="width_13">216</xsl:variable>
-	<xsl:variable name="width_12">337</xsl:variable>
-	<xsl:variable name="width_23">458</xsl:variable>
+	<xsl:variable name="width_13">220</xsl:variable>
+	<xsl:variable name="width_12">340</xsl:variable>
+	<xsl:variable name="width_23">460</xsl:variable>
 	<xsl:variable name="width_full">700</xsl:variable>
 
 	<!-- TEXTS -->
