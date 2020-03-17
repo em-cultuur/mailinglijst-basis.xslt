@@ -22,39 +22,64 @@
             /* Custom fonts from Google */
             @import url('https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i|Prata&display=swap');
 
-            /* Own custom fonts with font-face logic */
+            /*
+            Own custom fonts with font-face logic
+            You have to create seperated font-face for each font-weight and font-style when possible (at least a regular style)
+            */
             @font-face {
-                font-family: 'Relative';
-                src: url('https://www.mailinglijst.nl/klanten/default/fonts/relative-book-web.eot');
-                src: url('https://www.mailinglijst.nl/klanten/default/fonts/relative-book-web.eot?#iefix') format('embedded-opentype'),
-                url('https://www.mailinglijst.nl/klanten/default/fonts/relative-book-web.svg#Vestula-Italic') format('svg'),
-                url('https://www.mailinglijst.nl/klanten/default/fonts/relative-book-web.ttf') format('truetype'),
-                url('https://www.mailinglijst.nl/klanten/default/fonts/relative-book-web.woff') format('woff'),
-                url('https://www.mailinglijst.nl/klanten/default/fonts/relative-book-web.woff2') format('woff2');
+                font-family: 'Lato';
+                src: url('https://www.mailinglijst.nl/klanten/default/fonts/Lato-Regular.eot');
+                src: url('https://www.mailinglijst.nl/klanten/default/fonts/Lato-Regular.eot?#iefix') format('embedded-opentype'),
+                url('https://www.mailinglijst.nl/klanten/default/fonts/Lato-Regular.svg#Vestula-Italic') format('svg'),
+                url('https://www.mailinglijst.nl/klanten/default/fonts/Lato-Regular.ttf') format('truetype'),
+                url('https://www.mailinglijst.nl/klanten/default/fonts/Lato-Regular.woff') format('woff'),
+                url('https://www.mailinglijst.nl/klanten/default/fonts/Lato-Regular.woff2') format('woff2');
                 font-weight: normal;
                 font-style: normal;
             }
             @font-face {
-                font-family: 'Relative';
-                src: url('https://www.mailinglijst.nl/klanten/default/fonts/relative-bold-web.eot');
-                src: url('https://www.mailinglijst.nl/klanten/default/fonts/relative-bold-web.eot?#iefix') format('embedded-opentype'),
-                url('https://www.mailinglijst.nl/klanten/default/fonts/relative-bold-web.svg#Vestula-SemiBold') format('svg'),
-                url('https://www.mailinglijst.nl/klanten/default/fonts/relative-bold-web.ttf') format('truetype'),
-                url('https://www.mailinglijst.nl/klanten/default/fonts/relative-bold-web.woff') format('woff'),
-                url('https://www.mailinglijst.nl/klanten/default/fonts/relative-bold-web.woff2') format('woff2');
+                font-family: 'Lato';
+                src: url('https://www.mailinglijst.nl/klanten/default/fonts/Lato-Bold.eot');
+                src: url('https://www.mailinglijst.nl/klanten/default/fonts/Lato-Bold.eot?#iefix') format('embedded-opentype'),
+                url('https://www.mailinglijst.nl/klanten/default/fonts/Lato-Bold.svg#Vestula-SemiBold') format('svg'),
+                url('https://www.mailinglijst.nl/klanten/default/fonts/Lato-Bold.ttf') format('truetype'),
+                url('https://www.mailinglijst.nl/klanten/default/fonts/Lato-Bold.woff') format('woff'),
+                url('https://www.mailinglijst.nl/klanten/default/fonts/Lato-Bold.woff2') format('woff2');
                 font-weight: bold;
                 font-style: normal;
             }
             @font-face {
-                font-family: 'Relative';
-                src: url('https://www.mailinglijst.nl/klanten/default/fonts/relative-italic-web.eot');
-                src: url('https://www.mailinglijst.nl/klanten/default/fonts/relative-italic-web.eot?#iefix') format('embedded-opentype'),
-                url('https://www.mailinglijst.nl/klanten/default/fonts/relative-italic-web.svg#Vestula') format('svg'),
-                url('https://www.mailinglijst.nl/klanten/default/fonts/relative-italic-web.ttf') format('truetype'),
-                url('https://www.mailinglijst.nl/klanten/default/fonts/relative-italic-web.woff') format('woff'),
-                url('https://www.mailinglijst.nl/klanten/default/fonts/relative-italic-web.woff2') format('woff2');
+                font-family: 'Lato';
+                src: url('https://www.mailinglijst.nl/klanten/default/fonts/Lato-Italic.eot');
+                src: url('https://www.mailinglijst.nl/klanten/default/fonts/Lato-Italic.eot?#iefix') format('embedded-opentype'),
+                url('https://www.mailinglijst.nl/klanten/default/fonts/Lato-Italic.svg#Vestula') format('svg'),
+                url('https://www.mailinglijst.nl/klanten/default/fonts/Lato-Italic.ttf') format('truetype'),
+                url('https://www.mailinglijst.nl/klanten/default/fonts/Lato-Italic.woff') format('woff'),
+                url('https://www.mailinglijst.nl/klanten/default/fonts/Lato-Italic.woff2') format('woff2');
                 font-weight: normal;
                 font-style: italic;
+            }
+            @font-face {
+                font-family: 'Lato';
+                src: url('https://www.mailinglijst.nl/klanten/default/fonts/Lato-BoldItalic.eot');
+                src: url('https://www.mailinglijst.nl/klanten/default/fonts/Lato-BoldItalic.eot?#iefix') format('embedded-opentype'),
+                url('https://www.mailinglijst.nl/klanten/default/fonts/Lato-BoldItalic.svg#Vestula') format('svg'),
+                url('https://www.mailinglijst.nl/klanten/default/fonts/Lato-BoldItalic.ttf') format('truetype'),
+                url('https://www.mailinglijst.nl/klanten/default/fonts/Lato-BoldItalic.woff') format('woff'),
+                url('https://www.mailinglijst.nl/klanten/default/fonts/Lato-BoldItalic.woff2') format('woff2');
+                font-weight: bold;
+                font-style: italic;
+            }
+            @font-face {
+                font-family: 'Prata';
+                src: url('https://www.mailinglijst.nl/klanten/default/fonts/Prata-Regular.eot');
+                src: url('https://www.mailinglijst.nl/klanten/default/fonts/Prata-Regular.eot?#iefix') format('embedded-opentype'),
+                url('https://www.mailinglijst.nl/klanten/default/fonts/Prata-Regular.svg#Vestula-Italic') format('svg'),
+                url('https://www.mailinglijst.nl/klanten/default/fonts/Prata-Regular.ttf') format('truetype'),
+                url('https://www.mailinglijst.nl/klanten/default/fonts/Prata-Regular.woff') format('woff'),
+                url('https://www.mailinglijst.nl/klanten/default/fonts/Prata-Regular.woff2') format('woff2');
+                font-weight: normal;
+                font-style: normal;
             }
 
             /* Global link color */
@@ -85,7 +110,7 @@
                 text-align: right;
                 padding: 5px;
                 color: #333333;
-                font-family: Lato, Arial;
+                font-family: Lato, sans-serif;
                 font-size: 12px;
             }
 
@@ -112,7 +137,7 @@
 
             .headEdition H1 {
                 color: #FFFFFF;
-                font-family: Prata, Georgia, sans-serif;
+                font-family: Prata, serif;
                 font-size: 16px;
                 margin: 0px;
             }
@@ -120,7 +145,7 @@
 
             /* FOOTER STYLES */
             .footerContainer {
-                font-family: Lato, Arial;
+                font-family: Lato, sans-serif;
                 font-size: 13px;
                 line-height: 16px;
                 padding: 15px;
@@ -219,7 +244,7 @@
                 font-size: 20px;
                 line-height: 28px;
                 color: #333333;
-                font-family: Prata, Georgia, sans-serif;
+                font-family: Prata, serif;
                 font-weight: bold;
                 margin: 0;
             }
@@ -228,7 +253,7 @@
                 font-size: 16px;
                 line-height: 24px;
                 color: #333333;
-                font-family: Prata, Georgia, sans-serif;
+                font-family: Prata, serif;
                 font-weight: bold;
                 margin: 0;
             }
@@ -254,7 +279,7 @@
 
             .contentSubtitle H4 {
                 color: #666666;
-                font-family: Prata, Georgia, sans-serif;
+                font-family: Prata, serif;
                 font-size: 16px;
                 line-height: 24px;
                 font-weight: normal;
@@ -273,7 +298,7 @@
                 padding-top: 0px;
                 padding-bottom: 0px;
                 color: #999999;
-                font-family: Lato, Arial;
+                font-family: Lato, sans-serif;
                 font-size: 14px;
                 line-height: 20px;
                 font-weight: normal;
@@ -288,7 +313,7 @@
             Content
             */
             .content {
-                font-family: Lato, Arial;
+                font-family: Lato, sans-serif;
                 font-size: 14px;
                 line-height: 20px;
                 color: #333333;
@@ -298,7 +323,7 @@
             .content a {
                 color: #333333;
                 text-decoration: underline;
-                font-family: Lato, Arial;
+                font-family: Lato, sans-serif;
             }
 
             .content a:hover {
@@ -322,7 +347,7 @@
 
             .contentImageSubtitle {
                 color: #333333;
-                font-family: Lato, Arial;
+                font-family: Lato, sans-serif;
                 font-size: 12px;
                 line-height: 16px;
                 padding: 15px;
@@ -359,7 +384,7 @@
             .contentButton {
                 background-color: #333333;
                 color: #FFFFFF;
-                font-family: Lato, Arial;
+                font-family: Lato, sans-serif;
                 font-size: 14px;
                 padding: 20px;
                 padding-top: 10px;
@@ -373,7 +398,7 @@
             .contentButton2 {
                 background-color: #e74c3c;
                 color: #FFFFFF;
-                font-family: Lato, Arial;
+                font-family: Lato, sans-serif;
                 font-size: 14px;
                 padding: 20px;
                 padding-top: 10px;
@@ -493,42 +518,42 @@
         -->
         <!--[if mso]>
         <style type="text/css">
-            /* force to Arial globally */
+            /* force to a sans-serif font globally */
             body, table, td, a, span, h1, h2, h3, h4 {
-                font-family: Arial, Helvetica, sans-serif !important;
+                font-family: sans-serif !important;
             }
 
             /* force specific HTML tags to safe fonts */
             .headEdition H1 {
-                font-family: Georgia, sans-serif, Arial !important
+                font-family: serif !important
             }
 
             .contentCaption h2, .contentCaption h3 {
-                font-family: Georgia, sans-serif, Arial !important;
+                font-family: serif !important;
             }
 
             .contentSubtitle h4 {
-                font-family: Georgia, sans-serif, Arial !important;
+                font-family: serif !important;
             }
 
             .contentDate {
-                font-family: Arial, Helvetica, sans-serif !important;
+                font-family: sans-serif !important;
             }
 
             .content, .content a {
-                font-family: Arial, Helvetica, sans-serif !important;
+                font-family: sans-serif !important;
             }
 
             .contentImageSubtitle {
-                font-family: Arial, Helvetica, sans-serif !important;
+                font-family: sans-serif !important;
             }
 
             .contentButton {
-                font-family: Arial, Helvetica, sans-serif !important;
+                font-family: sans-serif !important;
             }
 
             .contentButton2 {
-                font-family: Arial, Helvetica, sans-serif !important;
+                font-family: sans-serif !important;
             }
 
             table {
