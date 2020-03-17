@@ -42,6 +42,7 @@
 	<xsl:variable name="width_12">340</xsl:variable>
 	<xsl:variable name="width_23">460</xsl:variable>
 	<xsl:variable name="width_full">700</xsl:variable>
+	<xsl:variable name="image_width_lr">220</xsl:variable>
 
 	<!-- TEXTS -->
 	<xsl:variable name="button1_text">Lees meer</xsl:variable>
@@ -164,8 +165,9 @@
 											<table width="100%" cellpadding="0" cellspacing="0" style="width: 100%">
 												<!-- Image above
 												When a placeholder is used, then this block item is created automatically after a new mailing were created
-												The default placeholder is a square. To prevent ugly look with 700px by 700px, replace it by a wide variant of the placeholder -->
-												<xsl:if test="image != ''">
+												The default placeholder is a square. To prevent ugly look with 700px by 700px, replace it by a wide variant of the placeholder
+												Hide this part when using image left/right styles -->
+												<xsl:if test="image != '' and not(contains(style, 'afb.'))">
 													<tr>
 														<td class="contentImage">
 															<xsl:choose>
@@ -216,166 +218,252 @@
 													</tr>
 												</xsl:if>
 
-												<!-- Content and buttons container -->
 												<tr>
 													<td>
-
-														<table cellpadding="0" cellspacing="0" width="100%" style="width: 100%;">
+														<!-- Inner container for both image left/right and content blocks
+														dir attribute is used to force image right to be displayed right
+														this is used to prevent code copies and image will be displayed above content when opening on mobile devices-->
+														<table cellpadding="0" cellspacing="0" width="100%" style="width: 100%">
+															<xsl:attribute name="dir">
+																<xsl:choose>
+																	<xsl:when test="contains(style, 'afb. rechts')">rtl</xsl:when>
+																	<xsl:otherwise>ltr</xsl:otherwise>
+																</xsl:choose>
+															</xsl:attribute>
 															<tr>
-																<!-- BLOCK CONTENT (title, subtitle, date) with text and buttons -->
-																<td class="contentInnerBlock" style="vertical-align: top;">
+																<!-- Image left/right container
+                                                                Will be displayed when using Item (afb. links) or Item (afb. rechts) styles
+                                                                -->
+																<xsl:if test="contains(style, 'afb.')">
+																	<td>
+																		<xsl:attribute name="class">
+																			<xsl:choose>
+																				<xsl:when test="contains(style, 'afb. rechts')">contentImageRightOuterBlock</xsl:when>
+																				<xsl:otherwise>contentImageLeftOuterBlock</xsl:otherwise>
+																			</xsl:choose>
+																		</xsl:attribute>
 
-																	<table cellpadding="0" cellspacing="0" width="100%" style="width: 100%">
-
-																		<!-- Hide title when item.style.name contains "zonder titel", or content of db.title contains 'NOTITLE' (case sensitive) -->
-																		<xsl:if test="not(contains(style, 'zonder titel')) and not(contains(title, 'NOTITLE'))">
-
-																			<!--
-                                                                            Title
-                                                                            You can add 2x double standing stripes to break title in max 3 lines (||)
-                                                                            -->
+																		<table cellpadding="0" cellspacing="0" style="width: 100%" width="100%">
 																			<tr>
-																				<td class="contentCaption">
-
-																					<xsl:variable name="title">
+																				<td>
+																					<xsl:attribute name="class">
 																						<xsl:choose>
-																							<xsl:when test="contains(title, ' || ')">
-																								<xsl:value-of select="normalize-space(substring-before(title, ' || '))" disable-output-escaping="yes" />
-																								<xsl:text disable-output-escaping="yes"><![CDATA[<br />]]></xsl:text>
-																								<xsl:choose>
-																									<xsl:when test="contains(substring-after(title, ' || '), ' || ')">
-																										<xsl:value-of select="normalize-space(substring-before(substring-after(title, ' || '), ' ||'))" disable-output-escaping="yes" />
-																										<xsl:text disable-output-escaping="yes"><![CDATA[<br />]]></xsl:text>
-																										<xsl:value-of select="normalize-space(substring-after(substring-after(title, ' || '), ' || '))" disable-output-escaping="yes" />
-																									</xsl:when>
-																									<xsl:otherwise>
-																										<xsl:value-of select="normalize-space(substring-after(title, ' || '))" disable-output-escaping="yes" />
-																									</xsl:otherwise>
-																								</xsl:choose>
-																							</xsl:when>
-																							<xsl:otherwise>
-																								<xsl:value-of select="title" disable-output-escaping="yes" />
-																							</xsl:otherwise>
+																							<xsl:when test="contains(style, 'afb. rechts')">contentImageRightInnerBlock</xsl:when>
+																							<xsl:otherwise>contentImageLeftInnerBlock</xsl:otherwise>
 																						</xsl:choose>
-																					</xsl:variable>
+																					</xsl:attribute>
 
 																					<xsl:choose>
-																						<xsl:when test="contains(style, '1/3')">
-																							<h3><xsl:value-of select="$title" disable-output-escaping="yes" /></h3>
+																						<xsl:when test="url != ''">
+																							<a target="_blank">
+																								<xsl:attribute name="href"><xsl:value-of select="details_url" /></xsl:attribute>
+																								<img border="0">
+																									<xsl:attribute name="width"><xsl:value-of select="$image_width_lr" /></xsl:attribute>
+																									<xsl:attribute name="style">display: block; width: <xsl:value-of select="$image_width_lr" />px;</xsl:attribute>
+																									<xsl:attribute name="alt"><xsl:value-of select="image_alt1" /></xsl:attribute>
+																									<xsl:attribute name="title"><xsl:value-of select="image_title" /></xsl:attribute>
+																									<xsl:attribute name="src"><xsl:value-of select="image" /></xsl:attribute>
+																								</img>
+																							</a>
 																						</xsl:when>
 																						<xsl:otherwise>
-																							<h2><xsl:value-of select="$title" disable-output-escaping="yes" /></h2>
+																							<img>
+																								<xsl:attribute name="width"><xsl:value-of select="$image_width_lr" /></xsl:attribute>
+																								<xsl:attribute name="style">display: block; width: <xsl:value-of select="$image_width_lr" />px;</xsl:attribute>
+																								<xsl:attribute name="alt"><xsl:value-of select="image_alt1" /></xsl:attribute>
+																								<xsl:attribute name="title"><xsl:value-of select="image_title" /></xsl:attribute>
+																								<xsl:attribute name="src"><xsl:value-of select="image" /></xsl:attribute>
+																							</img>
 																						</xsl:otherwise>
 																					</xsl:choose>
+
+																					<!-- when db.extra2 field is filled, show it as image subtitle / photo credits -->
+																					<xsl:if test="extra2 != ''">
+																						<table width="100%" cellpadding="0" cellspacing="0" style="width: 100%">
+																							<tr>
+																								<td class="contentImageSubtitle">
+																									<xsl:value-of select="extra2" />
+																								</td>
+																							</tr>
+																						</table>
+																					</xsl:if>
 																				</td>
 																			</tr>
+																		</table>
+																	</td>
+																</xsl:if>
+																<!-- Content and buttons container -->
+																<td class="contentOuterBlock" dir="ltr">
 
-																			<!--
-                                                                            Subtitle (DB field = location)
-                                                                            You can add 2x double standing stripes to break subtitle in max 3 lines (||)
-                                                                            -->
-																			<xsl:if test="location != ''">
-																				<tr>
-																					<td class="contentSubtitle">
+																	<table cellpadding="0" cellspacing="0" width="100%" style="width: 100%;">
+																		<tr>
+																			<!-- BLOCK CONTENT (title, subtitle, date) with text and buttons -->
+																			<td class="contentInnerBlock" style="vertical-align: top;">
 
-																						<xsl:variable name="subtitle">
-																							<xsl:choose>
-																								<xsl:when test="contains(location, ' || ')">
-																									<xsl:value-of select="normalize-space(substring-before(location, ' || '))" disable-output-escaping="yes" />
-																									<xsl:text disable-output-escaping="yes"><![CDATA[<br />]]></xsl:text>
+																				<table cellpadding="0" cellspacing="0" width="100%" style="width: 100%">
+
+																					<!-- Hide title when item.style.name contains "zonder titel", or content of db.title contains 'NOTITLE' (case sensitive) -->
+																					<xsl:if test="not(contains(style, 'zonder titel')) and not(contains(title, 'NOTITLE'))">
+
+																						<!--
+                                                                                        Title
+                                                                                        You can add 2x double standing stripes to break title in max 3 lines (||)
+                                                                                        -->
+																						<tr>
+																							<td class="contentCaption">
+
+																								<xsl:variable name="title">
 																									<xsl:choose>
-																										<xsl:when test="contains(substring-after(location, ' || '), ' || ')">
-																											<xsl:value-of select="normalize-space(substring-before(substring-after(location, ' || '), ' ||'))" disable-output-escaping="yes" />
+																										<xsl:when test="contains(title, ' || ')">
+																											<xsl:value-of select="normalize-space(substring-before(title, ' || '))" disable-output-escaping="yes" />
 																											<xsl:text disable-output-escaping="yes"><![CDATA[<br />]]></xsl:text>
-																											<xsl:value-of select="normalize-space(substring-after(substring-after(location, ' || '), ' || '))" disable-output-escaping="yes" />
+																											<xsl:choose>
+																												<xsl:when test="contains(substring-after(title, ' || '), ' || ')">
+																													<xsl:value-of select="normalize-space(substring-before(substring-after(title, ' || '), ' ||'))" disable-output-escaping="yes" />
+																													<xsl:text disable-output-escaping="yes"><![CDATA[<br />]]></xsl:text>
+																													<xsl:value-of select="normalize-space(substring-after(substring-after(title, ' || '), ' || '))" disable-output-escaping="yes" />
+																												</xsl:when>
+																												<xsl:otherwise>
+																													<xsl:value-of select="normalize-space(substring-after(title, ' || '))" disable-output-escaping="yes" />
+																												</xsl:otherwise>
+																											</xsl:choose>
 																										</xsl:when>
 																										<xsl:otherwise>
-																											<xsl:value-of select="normalize-space(substring-after(location, ' || '))" disable-output-escaping="yes" />
+																											<xsl:value-of select="title" disable-output-escaping="yes" />
 																										</xsl:otherwise>
 																									</xsl:choose>
-																								</xsl:when>
-																								<xsl:otherwise>
-																									<xsl:value-of select="location" disable-output-escaping="yes" />
-																								</xsl:otherwise>
-																							</xsl:choose>
-																						</xsl:variable>
+																								</xsl:variable>
 
-																						<h4><xsl:value-of select="$subtitle" disable-output-escaping="yes" /></h4>
-																					</td>
-																				</tr>
-																			</xsl:if>
+																								<xsl:choose>
+																									<xsl:when test="contains(style, '1/3')">
+																										<h3><xsl:value-of select="$title" disable-output-escaping="yes" /></h3>
+																									</xsl:when>
+																									<xsl:otherwise>
+																										<h2><xsl:value-of select="$title" disable-output-escaping="yes" /></h2>
+																									</xsl:otherwise>
+																								</xsl:choose>
+																							</td>
+																						</tr>
 
-																			<!-- Date
-                                                                            When you empty the date fields in the content block details, then the dates will be saved as 1 january 2020.
-                                                                            Or you filled in the db.icon field, then show the custom text from db.icon field instead of date fields.
-                                                                            -->
-																			<xsl:if test="not(contains(display_playdate_start, '1 januari 2000')) or icon != ''">
-																				<tr>
-																					<td class="contentDate">
-																						<xsl:call-template name="date_subtitle">
-																							<xsl:with-param name="row" select="." />
-																						</xsl:call-template>
-																					</td>
-																				</tr>
-																			</xsl:if>
+																						<!--
+                                                                                        Subtitle (DB field = location)
+                                                                                        You can add 2x double standing stripes to break subtitle in max 3 lines (||)
+                                                                                        -->
+																						<xsl:if test="location != ''">
+																							<tr>
+																								<td class="contentSubtitle">
 
-																		</xsl:if>
+																									<xsl:variable name="subtitle">
+																										<xsl:choose>
+																											<xsl:when test="contains(location, ' || ')">
+																												<xsl:value-of select="normalize-space(substring-before(location, ' || '))" disable-output-escaping="yes" />
+																												<xsl:text disable-output-escaping="yes"><![CDATA[<br />]]></xsl:text>
+																												<xsl:choose>
+																													<xsl:when test="contains(substring-after(location, ' || '), ' || ')">
+																														<xsl:value-of select="normalize-space(substring-before(substring-after(location, ' || '), ' ||'))" disable-output-escaping="yes" />
+																														<xsl:text disable-output-escaping="yes"><![CDATA[<br />]]></xsl:text>
+																														<xsl:value-of select="normalize-space(substring-after(substring-after(location, ' || '), ' || '))" disable-output-escaping="yes" />
+																													</xsl:when>
+																													<xsl:otherwise>
+																														<xsl:value-of select="normalize-space(substring-after(location, ' || '))" disable-output-escaping="yes" />
+																													</xsl:otherwise>
+																												</xsl:choose>
+																											</xsl:when>
+																											<xsl:otherwise>
+																												<xsl:value-of select="location" disable-output-escaping="yes" />
+																											</xsl:otherwise>
+																										</xsl:choose>
+																									</xsl:variable>
 
-																		<!-- Content -->
-																		<tr>
-																			<td class="content">
-																				<xsl:value-of select="content" disable-output-escaping="yes" />
+																									<h4><xsl:value-of select="$subtitle" disable-output-escaping="yes" /></h4>
+																								</td>
+																							</tr>
+																						</xsl:if>
+
+																						<!-- Date
+                                                                                        When you empty the date fields in the content block details, then the dates will be saved as 1 january 2020.
+                                                                                        Or you filled in the db.icon field, then show the custom text from db.icon field instead of date fields.
+                                                                                        -->
+																						<xsl:if test="not(contains(display_playdate_start, '1 januari 2000')) or icon != ''">
+																							<tr>
+																								<td class="contentDate">
+																									<xsl:call-template name="date_subtitle">
+																										<xsl:with-param name="row" select="." />
+																									</xsl:call-template>
+																								</td>
+																							</tr>
+																						</xsl:if>
+
+																					</xsl:if>
+
+																					<!-- Content -->
+																					<tr>
+																						<td class="content">
+																							<xsl:value-of select="content" disable-output-escaping="yes" />
+																						</td>
+																					</tr>
+
+																					<!-- Two buttons for mobile version
+                                                                                    image_alt DB field is used as alternative button text ('1e veld' name in ML)
+                                                                                    icon2 DB field is used as alternative button text for second button
+                                                                                    When 1/3 style is used, seperate two buttons into two lines-->
+																					<xsl:if test="((url != '' and not(contains(image_alt, 'NOBUTTON'))) or (url2 != '' and not(contains(icon2, 'NOBUTTON'))))">
+																						<tr class="contentMobileButtonContainer" style="display:none;width:0px;max-height:0px;overflow:hidden;mso-hide:all;height:0;font-size:0;max-height:0;line-height:0;margin:0 auto;">
+																							<td class="contentMobileButtonBlock">
+
+																								<table cellpadding="0" cellspacing="0" class="contentMobileInnerContainer" style="display:none;width:0px;max-height:0px;overflow:hidden;mso-hide:all;height:0;font-size:0;max-height:0;line-height:0;margin:0 auto;">
+																									<!-- Button 1 -->
+																									<xsl:if test="url != '' and not(contains(image_alt, 'NOBUTTON'))">
+																										<td class="contentButtonBlock">
+																											<xsl:attribute name="style">padding-right: 15px;</xsl:attribute>
+
+																											<xsl:call-template name="button">
+																												<xsl:with-param name="url" select="details_url" />
+																												<xsl:with-param name="button_text" select="image_alt" />
+																												<xsl:with-param name="button_default_text" select="$button1_text" />
+																												<xsl:with-param name="class">contentButton</xsl:with-param>
+																												<xsl:with-param name="hide">1</xsl:with-param>
+																											</xsl:call-template>
+
+																										</td>
+																									</xsl:if>
+
+																									<!-- Button 2 -->
+																									<xsl:if test="url2 != ''">
+																										<td class="contentButtonBlock">
+
+																											<xsl:call-template name="button">
+																												<xsl:with-param name="url" select="details_url2" />
+																												<xsl:with-param name="button_text" select="icon2" />
+																												<xsl:with-param name="button_default_text" select="$button2_text" />
+																												<xsl:with-param name="class">contentButton2</xsl:with-param>
+																												<xsl:with-param name="hide">1</xsl:with-param>
+																											</xsl:call-template>
+
+																										</td>
+																									</xsl:if>
+																								</table>
+
+																							</td>
+																						</tr>
+
+																					</xsl:if>
+
+																					<!-- Two buttons for some block styles as image left/right
+																					For this block styles, we need to put buttons next to images instead of below it -->
+																					<xsl:if test="((url != '' and not(contains(image_alt, 'NOBUTTON'))) or (url2 != '' and not(contains(icon2, 'NOBUTTON')))) and contains(style, 'afb.')">
+																						<tr>
+																							<xsl:call-template name="button_container">
+																								<xsl:with-param name="row" select="." />
+																								<xsl:with-param name="ignore_width">1</xsl:with-param>
+																							</xsl:call-template>
+																						</tr>
+																					</xsl:if>
+																				</table>
 																			</td>
 																		</tr>
-
-																		<!-- Two buttons for mobile version
-                                                                        image_alt DB field is used as alternative button text ('1e veld' name in ML)
-                                                                        icon2 DB field is used as alternative button text for second button
-                                                                        When 1/3 style is used, seperate two buttons into two lines -->
-																		<xsl:if test="(url != '' and not(contains(image_alt, 'NOBUTTON'))) or (url2 != '' and not(contains(icon2, 'NOBUTTON')))">
-																			<tr class="contentMobileButtonContainer" style="display:none;width:0px;max-height:0px;overflow:hidden;mso-hide:all;height:0;font-size:0;max-height:0;line-height:0;margin:0 auto;">
-																				<td class="contentMobileButtonBlock">
-
-																					<table cellpadding="0" cellspacing="0" class="contentMobileInnerContainer" style="display:none;width:0px;max-height:0px;overflow:hidden;mso-hide:all;height:0;font-size:0;max-height:0;line-height:0;margin:0 auto;">
-																						<!-- Button 1 -->
-																						<xsl:if test="url != '' and not(contains(image_alt, 'NOBUTTON'))">
-																							<td class="contentButtonBlock">
-																								<xsl:attribute name="style">padding-right: 15px;</xsl:attribute>
-
-																								<xsl:call-template name="button">
-																									<xsl:with-param name="url" select="details_url" />
-																									<xsl:with-param name="button_text" select="image_alt" />
-																									<xsl:with-param name="button_default_text" select="$button1_text" />
-																									<xsl:with-param name="class">contentButton</xsl:with-param>
-																									<xsl:with-param name="hide">1</xsl:with-param>
-																								</xsl:call-template>
-
-																							</td>
-																						</xsl:if>
-
-																						<!-- Button 2 -->
-																						<xsl:if test="url2 != ''">
-																							<td class="contentButtonBlock">
-
-																								<xsl:call-template name="button">
-																									<xsl:with-param name="url" select="details_url2" />
-																									<xsl:with-param name="button_text" select="icon2" />
-																									<xsl:with-param name="button_default_text" select="$button2_text" />
-																									<xsl:with-param name="class">contentButton2</xsl:with-param>
-																									<xsl:with-param name="hide">1</xsl:with-param>
-																								</xsl:call-template>
-
-																							</td>
-																						</xsl:if>
-																					</table>
-
-																				</td>
-																			</tr>
-
-																		</xsl:if>
 																	</table>
 																</td>
-
 															</tr>
 														</table>
 													</td>
@@ -403,37 +491,40 @@
 				<xsl:if test="rule_end = 'true' or position() = last()">
 					<xsl:text disable-output-escaping="yes"><![CDATA[</tr>]]></xsl:text>
 
-					<!-- Buttons, used for desktop version (the mobile version is defined after content above) -->
-					<tr>
-						<td>
-							<table cellpadding="0" cellspacing="0">
-								<tr>
-									<!-- BUTTON 1 -->
-									<xsl:if test="preceding-sibling::match[2]/rule_end != 'true' and preceding-sibling::match[1]/rule_end != 'true'">
+					<!-- Buttons, used for desktop version (the mobile version is defined after content above).
+					Except for some block styles-->
+					<xsl:if test="not(contains(style, 'afb.'))">
+						<tr>
+							<td>
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<!-- BUTTON 1 -->
+										<xsl:if test="preceding-sibling::match[2]/rule_end != 'true' and preceding-sibling::match[1]/rule_end != 'true'">
+											<xsl:call-template name="button_container">
+												<xsl:with-param name="row" select="preceding-sibling::match[2]" />
+											</xsl:call-template>
+
+											<td class="contentBlockMargin"><xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text></td>
+										</xsl:if>
+
+										<!-- BUTTON 2 -->
+										<xsl:if test="preceding-sibling::match[1]/rule_end != 'true'">
+											<xsl:call-template name="button_container">
+												<xsl:with-param name="row" select="preceding-sibling::match[1]" />
+											</xsl:call-template>
+
+											<td class="contentBlockMargin"><xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text></td>
+										</xsl:if>
+
+										<!-- BUTTON 3 -->
 										<xsl:call-template name="button_container">
-											<xsl:with-param name="row" select="preceding-sibling::match[2]" />
+											<xsl:with-param name="row" select="." />
 										</xsl:call-template>
-
-										<td class="contentBlockMargin"><xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text></td>
-									</xsl:if>
-
-									<!-- BUTTON 2 -->
-									<xsl:if test="preceding-sibling::match[1]/rule_end != 'true'">
-										<xsl:call-template name="button_container">
-											<xsl:with-param name="row" select="preceding-sibling::match[1]" />
-										</xsl:call-template>
-
-										<td class="contentBlockMargin"><xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text></td>
-									</xsl:if>
-
-									<!-- BUTTON 3 -->
-									<xsl:call-template name="button_container">
-										<xsl:with-param name="row" select="." />
-									</xsl:call-template>
-								</tr>
-							</table>
-						</td>
-					</tr>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</xsl:if>
 
 					<!-- Create a line to generate margin between two item blocks -->
 					<tr>
@@ -580,6 +671,7 @@
 	-->
 	<xsl:template name="button_container">
 		<xsl:param name="row" />
+		<xsl:param name="ignore_width">0</xsl:param>
 
 		<xsl:variable name="button_width">
 			<xsl:choose>
@@ -593,6 +685,8 @@
 		<td>
 			<xsl:attribute name="style">
 				<xsl:choose>
+					<xsl:when test="$ignore_width = 1 and $row/extra1 != ''">width: 100%; background-color: <xsl:value-of select="$row/extra1" />;</xsl:when>
+					<xsl:when test="$ignore_width = 1">width: 100%;</xsl:when>
 					<xsl:when test="$row/extra1 != ''">width: <xsl:value-of select="$button_width" />px; background-color: <xsl:value-of select="$row/extra1" /></xsl:when>
 					<xsl:otherwise>width: <xsl:value-of select="$button_width" />px;</xsl:otherwise>
 				</xsl:choose>
@@ -606,66 +700,76 @@
 			</xsl:attribute>
 
 			<table cellspacing="0" cellpadding="0">
-				<xsl:attribute name="style">width: <xsl:value-of select="$button_width" />px;</xsl:attribute>
-				<xsl:attribute name="width"><xsl:value-of select="$button_width" /></xsl:attribute>
+				<xsl:attribute name="style">
+					<xsl:choose>
+						<xsl:when test="$ignore_width = 1">width: 100%</xsl:when>
+						<xsl:otherwise>width: <xsl:value-of select="$button_width" />px;</xsl:otherwise>
+					</xsl:choose>
+				</xsl:attribute>
+				<xsl:attribute name="width">
+					<xsl:choose>
+						<xsl:when test="$ignore_width = 1">100%</xsl:when>
+						<xsl:otherwise><xsl:value-of select="$button_width" /></xsl:otherwise>
+					</xsl:choose>
+				</xsl:attribute>
 				<tr>
 
 					<xsl:choose>
 						<xsl:when test="($row/url != '' and not(contains($row/image_alt, 'NOBUTTON'))) or ($row/url2 != '' and not(contains($row/icon2, 'NOBUTTON')))">
 							<td class="contentButtonInnerContainer">
 								<table cellpadding="0" cellspacing="0">
-								<!-- Button 1 -->
-								<xsl:if test="$row/url != '' and not(contains($row/image_alt, 'NOBUTTON'))">
-									<xsl:if test="contains($row/style, '1/3')">
-										<xsl:text disable-output-escaping="yes"><![CDATA[<tr>]]></xsl:text>
+									<!-- Button 1 -->
+									<xsl:if test="$row/url != '' and not(contains($row/image_alt, 'NOBUTTON'))">
+										<xsl:if test="contains($row/style, '1/3')">
+											<xsl:text disable-output-escaping="yes"><![CDATA[<tr>]]></xsl:text>
+										</xsl:if>
+										<td class="contentButtonBlock">
+											<xsl:attribute name="style">
+												<xsl:choose>
+													<xsl:when test="$row/url2 != '' and not(contains($row/style, '1/3')) and not(contains($row/icon2, 'NOBUTTON'))">padding-right: 15px;</xsl:when>
+													<xsl:otherwise>padding-right: 0px;</xsl:otherwise>
+												</xsl:choose>
+											</xsl:attribute>
+
+											<xsl:call-template name="button">
+												<xsl:with-param name="url" select="$row/details_url" />
+												<xsl:with-param name="button_text" select="$row/image_alt" />
+												<xsl:with-param name="button_default_text" select="$button1_text" />
+												<xsl:with-param name="class">contentButton</xsl:with-param>
+											</xsl:call-template>
+
+										</td>
+										<xsl:if test="contains($row/style, '1/3')">
+											<xsl:text disable-output-escaping="yes"><![CDATA[</tr>]]></xsl:text>
+										</xsl:if>
 									</xsl:if>
-									<td class="contentButtonBlock">
-										<xsl:attribute name="style">
-											<xsl:choose>
-												<xsl:when test="$row/url2 != '' and not(contains($row/style, '1/3')) and not(contains($row/icon2, 'NOBUTTON'))">padding-right: 15px;</xsl:when>
-												<xsl:otherwise>padding-right: 0px;</xsl:otherwise>
-											</xsl:choose>
-										</xsl:attribute>
 
-										<xsl:call-template name="button">
-											<xsl:with-param name="url" select="$row/details_url" />
-											<xsl:with-param name="button_text" select="$row/image_alt" />
-											<xsl:with-param name="button_default_text" select="$button1_text" />
-											<xsl:with-param name="class">contentButton</xsl:with-param>
-										</xsl:call-template>
+									<!-- Button 2 -->
+									<xsl:if test="$row/url2 != '' and not(contains($row/icon2, 'NOBUTTON'))">
+										<xsl:if test="contains($row/style, '1/3')">
+											<xsl:text disable-output-escaping="yes"><![CDATA[<tr>]]></xsl:text>
+										</xsl:if>
+										<td class="contentButtonBlock">
+											<xsl:attribute name="style">
+												<xsl:choose>
+													<xsl:when test="contains($row/style, '1/3')">padding-top: 10px;</xsl:when>
+													<xsl:otherwise>padding-top: 0px;</xsl:otherwise>
+												</xsl:choose>
+											</xsl:attribute>
 
-									</td>
-									<xsl:if test="contains($row/style, '1/3')">
-										<xsl:text disable-output-escaping="yes"><![CDATA[</tr>]]></xsl:text>
+											<xsl:call-template name="button">
+												<xsl:with-param name="url" select="$row/details_url2" />
+												<xsl:with-param name="button_text" select="$row/icon2" />
+												<xsl:with-param name="button_default_text" select="$button2_text" />
+												<xsl:with-param name="class">contentButton2</xsl:with-param>
+											</xsl:call-template>
+
+										</td>
+										<xsl:if test="contains($row/style, '')">
+											<xsl:text disable-output-escaping="yes"><![CDATA[</tr>]]></xsl:text>
+										</xsl:if>
 									</xsl:if>
-								</xsl:if>
-
-								<!-- Button 2 -->
-								<xsl:if test="$row/url2 != '' and not(contains($row/icon2, 'NOBUTTON'))">
-									<xsl:if test="contains($row/style, '1/3')">
-										<xsl:text disable-output-escaping="yes"><![CDATA[<tr>]]></xsl:text>
-									</xsl:if>
-									<td class="contentButtonBlock">
-										<xsl:attribute name="style">
-											<xsl:choose>
-												<xsl:when test="contains($row/style, '1/3')">padding-top: 10px;</xsl:when>
-												<xsl:otherwise>padding-top: 0px;</xsl:otherwise>
-											</xsl:choose>
-										</xsl:attribute>
-
-										<xsl:call-template name="button">
-											<xsl:with-param name="url" select="$row/details_url2" />
-											<xsl:with-param name="button_text" select="$row/icon2" />
-											<xsl:with-param name="button_default_text" select="$button2_text" />
-											<xsl:with-param name="class">contentButton2</xsl:with-param>
-										</xsl:call-template>
-
-									</td>
-									<xsl:if test="contains($row/style, '')">
-										<xsl:text disable-output-escaping="yes"><![CDATA[</tr>]]></xsl:text>
-									</xsl:if>
-								</xsl:if>
-							</table>
+								</table>
 							</td>
 						</xsl:when>
 						<xsl:otherwise>

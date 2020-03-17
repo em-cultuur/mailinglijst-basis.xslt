@@ -314,11 +314,32 @@
                 color: white;
             }
 
+            .contentOuterBlock {
+                vertical-align: top;
+            }
+
+            .contentInnerBlock {}
+
             /*
             Images
             */
-            .contentImage {
+            .contentImage {}
 
+            .contentImageRightOuterBlock, .contentImageLeftOuterBlock {
+                width: 235px; /* always add margin between text and image above the image width configured in xslt */
+                vertical-align: top;
+            }
+
+            .contentImageRightInnerBlock, .contentImageLeftInnerBlock {
+                padding: 15px;
+            }
+
+            .contentImageRightInnerBlock {
+                padding-left: 0px;
+            }
+
+            .contentImageLeftInnerBlock {
+                padding-right: 0px;
             }
 
             .contentImageSubtitle {
@@ -333,6 +354,12 @@
 
             .contentFeaturedInnerContainer .contentImageSubtitle {
                 color: white;
+            }
+
+            .contentImageLeftInnerBlock .contentImageSubtitle,
+            .contentImageRightInnerBlock .contentImageSubtitle {
+                padding-left: 5px;
+                text-align: left;
             }
 
             /*
