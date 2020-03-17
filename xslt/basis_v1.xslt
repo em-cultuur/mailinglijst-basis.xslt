@@ -126,7 +126,7 @@
 
 																	<a target="_blank">
 																		<xsl:attribute name="href"><xsl:value-of select="details_url" /></xsl:attribute>
-																		<xsl:value-of select="title" />
+																		<h2><xsl:value-of select="title" /></h2>
 																	</a>
 																</td>
 															</tr>
@@ -147,7 +147,7 @@
 																	<xsl:attribute name="style">background-color: <xsl:value-of select="extra1" />;</xsl:attribute>
 																</xsl:if>
 
-																<xsl:value-of select="title" />
+																<h2><xsl:value-of select="title" /></h2>
 															</td>
 														</tr>
 													</table>
@@ -197,7 +197,7 @@
 											<table width="100%" cellpadding="0" cellspacing="0" style="width: 100%">
 												<tr>
 													<td class="contentSubheaderInnerContainer">
-														<xsl:value-of select="title" />
+														<h2><xsl:value-of select="title" /></h2>
 													</td>
 												</tr>
 											</table>
