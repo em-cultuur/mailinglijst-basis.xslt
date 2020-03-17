@@ -456,8 +456,9 @@
 
 																							<table cellpadding="0" cellspacing="0" width="100%" style="width: 100%">
 
-																								<!-- Hide title when item.style.name contains "zonder titel", or content of db.title contains 'NOTITLE' (case sensitive) -->
-																								<xsl:if test="not(contains(style, 'zonder titel')) and not(contains(title, 'NOTITLE'))">
+																								<!-- Hide title when item.style.name contains "zonder titel", or content of db.title contains 'NOTITLE' (case sensitive)
+																								The titles in banner styles cannot be hidden -->
+																								<xsl:if test="(not(contains(style, 'zonder titel')) and not(contains(title, 'NOTITLE'))) or contains(style, 'banner')">
 
 																									<!--
                                                                                                     Title
