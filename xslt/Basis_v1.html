@@ -83,7 +83,7 @@
             }
 
             /* Global link color */
-            a { color: #333333; }
+            a { color: dimgray; }
 
             /* GLOBAL HTML/BODY STYLES */
             HTML {
@@ -96,26 +96,24 @@
                 width: 100%;
                 margin: 0;
                 padding: 0;
-                background-color: #f5f5f5;
+                background-color: whitesmoke;
             }
 
             /* END GLOBAL HTML/BODY STYLES */
 
             /* HEADER STYLES */
-            .headContainer {
-
-            }
+            .headContainer {}
 
             .headShow {
                 text-align: right;
                 padding: 5px;
-                color: #333333;
+                color: dimgray;
                 font-family: Lato, sans-serif;
                 font-size: 12px;
             }
 
             .headShow a {
-                color: #333333;
+                color: dimgray;
                 text-decoration: underline;
             }
 
@@ -125,18 +123,18 @@
 
             .headLogo {
                 padding: 15px;
-                background-color: #333333;
+                background-color: dimgray;
             }
 
             .headEdition {
                 text-align: left;
                 padding: 15px;
                 padding-top: 0px;
-                background-color: #333333;
+                background-color: dimgray;
             }
 
             .headEdition H1 {
-                color: #FFFFFF;
+                color: white;
                 font-family: Prata, serif;
                 font-size: 16px;
                 margin: 0px;
@@ -149,13 +147,13 @@
                 font-size: 13px;
                 line-height: 16px;
                 padding: 15px;
-                color: #666666;
+                color: darkgray;
                 text-align: center;
-                background-color: #dcdcdc;
+                background-color: gainsboro;
             }
 
             .footerContainer a {
-                color: #666666;
+                color: darkgray;
                 text-decoration: underline;
             }
 
@@ -175,9 +173,7 @@
             */
 
             /* main container with CONTENT token within */
-            .contentContainer {
-
-            }
+            .contentContainer {}
 
             /*
             the following styles are styles for main containers of each content block.
@@ -191,31 +187,22 @@
             */
             .contentBlockContainer {}
 
-            .contentMainBlock {
+            .contentMainBlock, .contentMainBlockItem, .contentInnerContainer {
+                background-color: white;
                 vertical-align: top;
-                background-color: #FFFFFF; /* change this for default background color of each block */
             }
 
-            .contentMainBlockFeatured {
+            .contentMainBlockFeatured, .contentMainBlockItemFeatured, .contentFeaturedInnerContainer {
+                background-color: dimgray;
                 vertical-align: top;
-                background-color: #333333; /* change this for default background color of each block */
             }
 
-            .contentMainBlockItem {
-                background-color: #FFFFFF; /* change this for default background color of each block */
-            }
-
-            .contentMainBlockItemFeatured {
-                background-color: #333333; /* change this for default background color of each block */
-            }
-
-            .contentInnerContainer {
-                background-color: #FFFFFF; /* change this for default background color of each block */
-            }
-
-            .contentFeaturedInnerContainer {
-                background-color: #333333; /* change this for default background color of each block */
-            }
+            .contentMainBlock {}
+            .contentMainBlockFeatured {}
+            .contentMainBlockItem {}
+            .contentMainBlockItemFeatured {}
+            .contentInnerContainer {}
+            .contentFeaturedInnerContainer {}
 
             .contentBottomMargin {
                 height: 20px; /* change this for bottom margin between each block */
@@ -240,10 +227,10 @@
                 padding-bottom: 0px;
             }
 
-            .contentCaption H2 {
+            .contentCaption H2, .contentCaption H3 {
                 font-size: 20px;
                 line-height: 28px;
-                color: #333333;
+                color: dimgray;
                 font-family: Prata, serif;
                 font-weight: bold;
                 margin: 0;
@@ -252,18 +239,10 @@
             .contentCaption H3 {
                 font-size: 16px;
                 line-height: 24px;
-                color: #333333;
-                font-family: Prata, serif;
-                font-weight: bold;
-                margin: 0;
             }
 
-            .contentFeaturedInnerContainer .contentCaption H2 {
-                color: #FFFFFF;
-            }
-
-            .contentFeaturedInnerContainer .contentCaption H3 {
-                color: #FFFFFF;
+            .contentFeaturedInnerContainer .contentCaption H2, .contentFeaturedInnerContainer .contentCaption H3 {
+                color: white;
             }
 
             /*
@@ -278,7 +257,7 @@
             }
 
             .contentSubtitle H4 {
-                color: #666666;
+                color: darkgray;
                 font-family: Prata, serif;
                 font-size: 16px;
                 line-height: 24px;
@@ -287,7 +266,7 @@
             }
 
             .contentFeaturedInnerContainer .contentSubtitle H4 {
-                color: #FFFFFF;
+                color: white;
             }
 
             /*
@@ -297,7 +276,7 @@
                 padding: 15px;
                 padding-top: 0px;
                 padding-bottom: 0px;
-                color: #999999;
+                color: silver;
                 font-family: Lato, sans-serif;
                 font-size: 14px;
                 line-height: 20px;
@@ -306,36 +285,33 @@
             }
 
             .contentFeaturedInnerContainer .contentDate {
-                color: #FFFFFF;
+                color: white;
             }
 
             /*
             Content
             */
-            .content {
+            .content, .content a {
                 font-family: Lato, sans-serif;
                 font-size: 14px;
                 line-height: 20px;
-                color: #333333;
+                color: dimgray;
+            }
+
+            .content {
                 padding: 15px;
             }
 
             .content a {
-                color: #333333;
                 text-decoration: underline;
-                font-family: Lato, sans-serif;
             }
 
             .content a:hover {
                 text-decoration: none;
             }
 
-            .contentFeaturedInnerContainer .content {
-                color: #FFFFFF;
-            }
-
-            .contentFeaturedInnerContainer .content a {
-                color: #FFFFFF;
+            .contentFeaturedInnerContainer .content, .contentFeaturedInnerContainer .content a {
+                color: white;
             }
 
             /*
@@ -346,7 +322,7 @@
             }
 
             .contentImageSubtitle {
-                color: #333333;
+                color: dimgray;
                 font-family: Lato, sans-serif;
                 font-size: 12px;
                 line-height: 16px;
@@ -356,19 +332,19 @@
             }
 
             .contentFeaturedInnerContainer .contentImageSubtitle {
-                color: #FFFFFF;
+                color: white;
             }
 
             /*
             Buttons
             */
             .contentButtonContainer {
-                background-color: #FFFFFF;
+                background-color: white;
                 vertical-align: top;
             }
 
             .contentFeaturedButtonContainer {
-                background-color: #333333;
+                background-color: dimgray;
                 vertical-align: top;
             }
 
@@ -382,8 +358,8 @@
             }
 
             .contentButton {
-                background-color: #333333;
-                color: #FFFFFF;
+                background-color: dimgray;
+                color: white;
                 font-family: Lato, sans-serif;
                 font-size: 14px;
                 padding: 20px;
@@ -392,12 +368,12 @@
             }
 
             .contentButton:hover {
-                background-color: #000000;
+                background-color: black;
             }
 
             .contentButton2 {
-                background-color: #e74c3c;
-                color: #FFFFFF;
+                background-color: indianred;
+                color: white;
                 font-family: Lato, sans-serif;
                 font-size: 14px;
                 padding: 20px;
@@ -406,32 +382,21 @@
             }
 
             .contentButton2:hover {
-                background-color: #c0392b;
+                background-color: red;
             }
 
             .contentButtonBlock a {
-                color: #FFFFFF;
+                color: white;
                 text-decoration: none;
             }
 
-            .contentFeaturedButtonContainer .contentButton {
-                background-color: #FFFFFF;
-            }
-
-            .contentFeaturedButtonContainer .contentButton:hover {
-                background-color: #FFFFFF;
-            }
-
-            .contentFeaturedButtonContainer .contentButton2 {
-                background-color: #FFFFFF;
-            }
-
-            .contentFeaturedButtonContainer .contentButton2:hover {
-                background-color: #FFFFFF;
+            .contentFeaturedButtonContainer .contentButton, .contentFeaturedButtonContainer .contentButton:hover,
+            .contentFeaturedButtonContainer .contentButton2, .contentFeaturedButtonContainer .contentButton2:hover {
+                background-color: white;
             }
 
             .contentFeaturedButtonContainer .contentButtonBlock a {
-                color: #333333;
+                color: dimgray;
             }
 
             /*
