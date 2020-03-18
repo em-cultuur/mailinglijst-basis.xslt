@@ -43,7 +43,7 @@
 	<xsl:variable name="width_23">460</xsl:variable>
 	<xsl:variable name="width_full">700</xsl:variable>
 	<xsl:variable name="image_width_lr">220</xsl:variable>
-	<xsl:variable name="image_width_agenda">150</xsl:variable>
+	<xsl:variable name="image_width_agenda">125</xsl:variable>
 
 	<!-- TEXTS -->
 	<xsl:variable name="button1_text">Lees meer</xsl:variable>
@@ -170,6 +170,9 @@
 						</tr>
 
 					</xsl:when>
+
+					<!-- Tussenkop (block style name = Item (tussenkopje))
+					Shows a subheader to seperate items in groups-->
 					<xsl:when test="contains(style, 'tussenkopje')">
 
 						<tr>
@@ -478,7 +481,7 @@
 
 																									<!--
                                                                                                     Title
-                                                                                                    You can add 2x double standing stripes to break title in max 3 lines (||)
+                                                                                                    You can add 2x double pipes to break title in max 3 lines (||)
                                                                                                     -->
 																									<tr>
 																										<td class="contentCaption">
@@ -518,7 +521,7 @@
 
 																									<!--
                                                                                                     Subtitle (DB field = location)
-                                                                                                    You can add 2x double standing stripes to break subtitle in max 3 lines (||)
+                                                                                                    You can add 2x double pipes to break subtitle in max 3 lines (||)
                                                                                                     -->
 																									<xsl:if test="location != ''">
 																										<tr>
@@ -653,7 +656,7 @@
 							</table>
 						</td>
 
-						<!-- Ending rule -->
+						<!-- End of block -->
 						<xsl:choose>
 							<xsl:when test="contains(style, '1/2') or contains(style, '1/3') or contains(style, '2/3')">
 								<xsl:if test="rule_end != 'true'"><xsl:text disable-output-escaping="yes"><![CDATA[<td class="contentBlockMargin">&nbsp;</td>]]></xsl:text></xsl:if>
