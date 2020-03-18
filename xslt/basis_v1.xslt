@@ -532,7 +532,7 @@
                             Except for some block styles-->
 							<xsl:if test="not(contains(style, 'afb.')) and not(contains(style, 'afbeelding'))">
 								<tr>
-									<td>
+									<td class="contentDesktopButtonContainer">
 										<table cellpadding="0" cellspacing="0">
 											<tr>
 												<!-- BUTTON 1 -->
@@ -615,10 +615,12 @@
 																		<xsl:attribute name="style">background-color: <xsl:value-of select="extra1" />;</xsl:attribute>
 																	</xsl:if>
 
-																	<a target="_blank">
-																		<xsl:attribute name="href"><xsl:value-of select="details_url" /></xsl:attribute>
-																		<h2><xsl:value-of select="title" /></h2>
-																	</a>
+																	<h2>
+																		<a target="_blank">
+																			<xsl:attribute name="href"><xsl:value-of select="details_url" /></xsl:attribute>
+																			<xsl:value-of select="title" />
+																		</a>
+																	</h2>
 																</td>
 															</tr>
 														</table>
