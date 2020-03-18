@@ -84,158 +84,9 @@
 
 				<!-- Check configured block style, some blocks needs own HTML code -->
 				<xsl:choose>
-					<xsl:when test="contains(style, 'call2action')">
 
-						<tr>
-							<!-- Basic block -->
-							<td class="contentCallactionMainBlock">
-
-								<!-- The data attributes are used for in contentblocks editor -->
-								<table width="100%" cellpadding="0" cellspacing="0" style="width: 100%" class="emItem emEditable emMoveable">
-									<xsl:attribute name="data-sort"><xsl:value-of select="sort_on" /></xsl:attribute>
-									<xsl:attribute name="data-ID"><xsl:value-of select="merge_ID"/></xsl:attribute>
-									<xsl:attribute name="data-last">
-										<xsl:choose>
-											<xsl:when test="position() = last()">true</xsl:when>
-											<xsl:otherwise>false</xsl:otherwise>
-										</xsl:choose>
-									</xsl:attribute>
-									<xsl:attribute name="data-first">
-										<xsl:choose>
-											<xsl:when test="position() = 1">true</xsl:when>
-											<xsl:otherwise>false</xsl:otherwise>
-										</xsl:choose>
-									</xsl:attribute>
-									<tr>
-										<td class="contentCallactionOuterContainer">
-
-											<xsl:choose>
-												<xsl:when test="url != ''">
-
-													<a target="_blank">
-														<xsl:attribute name="href"><xsl:value-of select="details_url" /></xsl:attribute>
-														<table width="100%" cellpadding="0" cellspacing="0" style="width: 100%">
-															<tr>
-																<td class="contentCallactionInnerContainer">
-																	<!--
-																	When extra1 is filled, then a custom background color is set. Set this when is filled only.
-																	You can find the default background color in CSS by class contentCallactionInnerContainer.
-																	-->
-																	<xsl:if test="extra1 != ''">
-																		<xsl:attribute name="style">background-color: <xsl:value-of select="extra1" />;</xsl:attribute>
-																	</xsl:if>
-
-																	<a target="_blank">
-																		<xsl:attribute name="href"><xsl:value-of select="details_url" /></xsl:attribute>
-																		<h2><xsl:value-of select="title" /></h2>
-																	</a>
-																</td>
-															</tr>
-														</table>
-													</a>
-
-												</xsl:when>
-												<xsl:otherwise>
-
-													<table width="100%" cellpadding="0" cellspacing="0" style="width: 100%">
-														<tr>
-															<td class="contentCallactionInnerContainer">
-																<!--
-																When extra1 is filled, then a custom background color is set. Set this when is filled only.
-																You can find the default background color in CSS by class contentCallactionInnerContainer.
-																-->
-																<xsl:if test="extra1 != ''">
-																	<xsl:attribute name="style">background-color: <xsl:value-of select="extra1" />;</xsl:attribute>
-																</xsl:if>
-
-																<h2><xsl:value-of select="title" /></h2>
-															</td>
-														</tr>
-													</table>
-
-												</xsl:otherwise>
-											</xsl:choose>
-
-										</td>
-									</tr>
-								</table>
-							</td>
-						</tr>
-
-						<!-- Create a line to generate margin between two item blocks -->
-						<tr>
-							<td class="contentBottomMargin">
-								<xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text>
-							</td>
-						</tr>
-
-					</xsl:when>
-
-					<!-- Tussenkop (block style name = Item (tussenkopje))
-					Shows a subheader to seperate items in groups-->
-					<xsl:when test="contains(style, 'tussenkopje')">
-
-						<tr>
-							<!-- Basic block -->
-							<td class="contentSubheaderMainBlock">
-
-								<!-- The data attributes are used for in contentblocks editor -->
-								<table width="100%" cellpadding="0" cellspacing="0" style="width: 100%" class="emItem emEditable emMoveable">
-									<xsl:attribute name="data-sort"><xsl:value-of select="sort_on" /></xsl:attribute>
-									<xsl:attribute name="data-ID"><xsl:value-of select="merge_ID"/></xsl:attribute>
-									<xsl:attribute name="data-last">
-										<xsl:choose>
-											<xsl:when test="position() = last()">true</xsl:when>
-											<xsl:otherwise>false</xsl:otherwise>
-										</xsl:choose>
-									</xsl:attribute>
-									<xsl:attribute name="data-first">
-										<xsl:choose>
-											<xsl:when test="position() = 1">true</xsl:when>
-											<xsl:otherwise>false</xsl:otherwise>
-										</xsl:choose>
-									</xsl:attribute>
-									<tr>
-										<td class="contentSubheaderOuterContainer">
-
-											<table width="100%" cellpadding="0" cellspacing="0" style="width: 100%">
-												<tr>
-													<td class="contentSubheaderInnerContainer">
-														<h2><xsl:value-of select="title" /></h2>
-													</td>
-												</tr>
-											</table>
-
-										</td>
-									</tr>
-								</table>
-							</td>
-						</tr>
-
-						<!-- Create a line to generate margin between two item blocks -->
-						<tr>
-							<td class="contentBottomMargin">
-								<xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text>
-							</td>
-						</tr>
-
-					</xsl:when>
-
-					<!-- Item (agenda) / Item (agenda kop) style
-					This will override the Agenda block below
-					Allows possibility to move Agenda block between normal Items
-					You have still to create Agenda items-->
-					<xsl:when test="contains(style, 'agenda')">
-						<tr>
-							<td class="contentMainBlockItem">
-								<xsl:call-template name="agenda_container">
-									<xsl:with-param name="with_data">1</xsl:with-param>
-								</xsl:call-template>
-							</td>
-						</tr>
-					</xsl:when>
-
-					<xsl:otherwise>
+					<!-- All blocks except call2action, subheader/tussenkopje and agenda block styles -->
+					<xsl:when test="not(contains(style, 'call2action')) and not(contains(style, 'tussenkopje')) and not(contains(style, 'agenda'))">
 
 						<!-- Basic widths of blocks, the widths below are based on basic and ideal width of 700px -->
 						<xsl:variable name="width">
@@ -586,7 +437,14 @@
                                                                                                 icon2 DB field is used as alternative button text for second button
                                                                                                 When 1/3 style is used, seperate two buttons into two lines-->
 																								<xsl:if test="((url != '' and not(contains(image_alt, 'NOBUTTON'))) or (url2 != '' and not(contains(icon2, 'NOBUTTON'))))">
-																									<tr class="contentMobileButtonContainer" style="display:none;width:0px;max-height:0px;overflow:hidden;mso-hide:all;height:0;font-size:0;max-height:0;line-height:0;margin:0 auto;">
+																									<tr style="display:none;width:0px;max-height:0px;overflow:hidden;mso-hide:all;height:0;font-size:0;max-height:0;line-height:0;margin:0 auto;">
+																										<xsl:attribute name="class">
+																											<xsl:choose>
+																												<xsl:when test="contains(style, 'banner')">contentMobileButtonContainerBanner</xsl:when>
+																												<xsl:when test="contains(style, 'uitgelicht') or extra1 !=''">contentMobileButtonContainerFeatured</xsl:when>
+																												<xsl:otherwise>contentMobileButtonContainer</xsl:otherwise>
+																											</xsl:choose>
+																										</xsl:attribute>
 																										<td class="contentMobileButtonBlock">
 
 																											<table cellpadding="0" cellspacing="0" class="contentMobileInnerContainer" style="display:none;width:0px;max-height:0px;overflow:hidden;mso-hide:all;height:0;font-size:0;max-height:0;line-height:0;margin:0 auto;">
@@ -713,7 +571,159 @@
 							</tr>
 						</xsl:if>
 
-					</xsl:otherwise>
+					</xsl:when>
+
+					<!-- Call2action -->
+					<xsl:when test="contains(style, 'call2action')">
+
+						<tr>
+							<!-- Basic block -->
+							<td class="contentCallactionMainBlock">
+
+								<!-- The data attributes are used for in contentblocks editor -->
+								<table width="100%" cellpadding="0" cellspacing="0" style="width: 100%" class="emItem emEditable emMoveable">
+									<xsl:attribute name="data-sort"><xsl:value-of select="sort_on" /></xsl:attribute>
+									<xsl:attribute name="data-ID"><xsl:value-of select="merge_ID"/></xsl:attribute>
+									<xsl:attribute name="data-last">
+										<xsl:choose>
+											<xsl:when test="position() = last()">true</xsl:when>
+											<xsl:otherwise>false</xsl:otherwise>
+										</xsl:choose>
+									</xsl:attribute>
+									<xsl:attribute name="data-first">
+										<xsl:choose>
+											<xsl:when test="position() = 1">true</xsl:when>
+											<xsl:otherwise>false</xsl:otherwise>
+										</xsl:choose>
+									</xsl:attribute>
+									<tr>
+										<td class="contentCallactionOuterContainer">
+
+											<xsl:choose>
+												<xsl:when test="url != ''">
+
+													<a target="_blank">
+														<xsl:attribute name="href"><xsl:value-of select="details_url" /></xsl:attribute>
+														<table width="100%" cellpadding="0" cellspacing="0" style="width: 100%">
+															<tr>
+																<td class="contentCallactionInnerContainer">
+																	<!--
+																	When extra1 is filled, then a custom background color is set. Set this when is filled only.
+																	You can find the default background color in CSS by class contentCallactionInnerContainer.
+																	-->
+																	<xsl:if test="extra1 != ''">
+																		<xsl:attribute name="style">background-color: <xsl:value-of select="extra1" />;</xsl:attribute>
+																	</xsl:if>
+
+																	<a target="_blank">
+																		<xsl:attribute name="href"><xsl:value-of select="details_url" /></xsl:attribute>
+																		<h2><xsl:value-of select="title" /></h2>
+																	</a>
+																</td>
+															</tr>
+														</table>
+													</a>
+
+												</xsl:when>
+												<xsl:otherwise>
+
+													<table width="100%" cellpadding="0" cellspacing="0" style="width: 100%">
+														<tr>
+															<td class="contentCallactionInnerContainer">
+																<!--
+																When extra1 is filled, then a custom background color is set. Set this when is filled only.
+																You can find the default background color in CSS by class contentCallactionInnerContainer.
+																-->
+																<xsl:if test="extra1 != ''">
+																	<xsl:attribute name="style">background-color: <xsl:value-of select="extra1" />;</xsl:attribute>
+																</xsl:if>
+
+																<h2><xsl:value-of select="title" /></h2>
+															</td>
+														</tr>
+													</table>
+
+												</xsl:otherwise>
+											</xsl:choose>
+
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+
+						<!-- Create a line to generate margin between two item blocks -->
+						<tr>
+							<td class="contentBottomMargin">
+								<xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text>
+							</td>
+						</tr>
+
+					</xsl:when>
+
+					<!-- Tussenkop (block style name = Item (tussenkopje))
+					Shows a subheader to seperate items in groups-->
+					<xsl:when test="contains(style, 'tussenkopje')">
+
+						<tr>
+							<!-- Basic block -->
+							<td class="contentSubheaderMainBlock">
+
+								<!-- The data attributes are used for in contentblocks editor -->
+								<table width="100%" cellpadding="0" cellspacing="0" style="width: 100%" class="emItem emEditable emMoveable">
+									<xsl:attribute name="data-sort"><xsl:value-of select="sort_on" /></xsl:attribute>
+									<xsl:attribute name="data-ID"><xsl:value-of select="merge_ID"/></xsl:attribute>
+									<xsl:attribute name="data-last">
+										<xsl:choose>
+											<xsl:when test="position() = last()">true</xsl:when>
+											<xsl:otherwise>false</xsl:otherwise>
+										</xsl:choose>
+									</xsl:attribute>
+									<xsl:attribute name="data-first">
+										<xsl:choose>
+											<xsl:when test="position() = 1">true</xsl:when>
+											<xsl:otherwise>false</xsl:otherwise>
+										</xsl:choose>
+									</xsl:attribute>
+									<tr>
+										<td class="contentSubheaderOuterContainer">
+
+											<table width="100%" cellpadding="0" cellspacing="0" style="width: 100%">
+												<tr>
+													<td class="contentSubheaderInnerContainer">
+														<h2><xsl:value-of select="title" /></h2>
+													</td>
+												</tr>
+											</table>
+
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+
+						<!-- Create a line to generate margin between two item blocks -->
+						<tr>
+							<td class="contentBottomMargin">
+								<xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text>
+							</td>
+						</tr>
+
+					</xsl:when>
+
+					<!-- Item (agenda) / Item (agenda kop) style
+					This will override the Agenda block below
+					Allows possibility to move Agenda block between normal Items
+					You have still to create Agenda items-->
+					<xsl:when test="contains(style, 'agenda')">
+						<tr>
+							<td class="contentMainBlockItem">
+								<xsl:call-template name="agenda_container">
+									<xsl:with-param name="with_data">1</xsl:with-param>
+								</xsl:call-template>
+							</td>
+						</tr>
+					</xsl:when>
 				</xsl:choose>
 
 			</xsl:for-each>
