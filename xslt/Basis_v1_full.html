@@ -18,10 +18,81 @@
         <meta name="x-apple-disable-message-reformatting">
 
         <style type="text/css">
+            /*
+            There are two ways to use custom fonts
+            - Direct @IMPORT from Google fonts stack
+            - Uploaded fonts to MailingLijst klant-folders and use FONT_FACE
+
+            in this exacmple we use:
+            - LATO (sans-serif) for BODY
+            - PRATO (serif) for for HEADINGS
+            */
             /* Custom fonts from Google */
             @import url('https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i|Prata&display=swap');
 
-            /*GLOBAL*/
+            /*
+            Custom fonts with font-face logic
+            Create separate font-face for each font-weight and font-style when possible (at least one regular style)
+
+            @font-face {
+                font-family: 'Lato';
+                src: url('https://www.mailinglijst.nl/klanten/default/fonts/Lato-Regular.eot');
+                src: url('https://www.mailinglijst.nl/klanten/default/fonts/Lato-Regular.eot?#iefix') format('embedded-opentype'),
+                url('https://www.mailinglijst.nl/klanten/default/fonts/Lato-Regular.svg#Vestula-Italic') format('svg'),
+                url('https://www.mailinglijst.nl/klanten/default/fonts/Lato-Regular.ttf') format('truetype'),
+                url('https://www.mailinglijst.nl/klanten/default/fonts/Lato-Regular.woff') format('woff'),
+                url('https://www.mailinglijst.nl/klanten/default/fonts/Lato-Regular.woff2') format('woff2');
+                font-weight: normal;
+                font-style: normal;
+            }
+            @font-face {
+                font-family: 'Lato';
+                src: url('https://www.mailinglijst.nl/klanten/default/fonts/Lato-Bold.eot');
+                src: url('https://www.mailinglijst.nl/klanten/default/fonts/Lato-Bold.eot?#iefix') format('embedded-opentype'),
+                url('https://www.mailinglijst.nl/klanten/default/fonts/Lato-Bold.svg#Vestula-SemiBold') format('svg'),
+                url('https://www.mailinglijst.nl/klanten/default/fonts/Lato-Bold.ttf') format('truetype'),
+                url('https://www.mailinglijst.nl/klanten/default/fonts/Lato-Bold.woff') format('woff'),
+                url('https://www.mailinglijst.nl/klanten/default/fonts/Lato-Bold.woff2') format('woff2');
+                font-weight: bold;
+                font-style: normal;
+            }
+            @font-face {
+                font-family: 'Lato';
+                src: url('https://www.mailinglijst.nl/klanten/default/fonts/Lato-Italic.eot');
+                src: url('https://www.mailinglijst.nl/klanten/default/fonts/Lato-Italic.eot?#iefix') format('embedded-opentype'),
+                url('https://www.mailinglijst.nl/klanten/default/fonts/Lato-Italic.svg#Vestula') format('svg'),
+                url('https://www.mailinglijst.nl/klanten/default/fonts/Lato-Italic.ttf') format('truetype'),
+                url('https://www.mailinglijst.nl/klanten/default/fonts/Lato-Italic.woff') format('woff'),
+                url('https://www.mailinglijst.nl/klanten/default/fonts/Lato-Italic.woff2') format('woff2');
+                font-weight: normal;
+                font-style: italic;
+            }
+            @font-face {
+                font-family: 'Lato';
+                src: url('https://www.mailinglijst.nl/klanten/default/fonts/Lato-BoldItalic.eot');
+                src: url('https://www.mailinglijst.nl/klanten/default/fonts/Lato-BoldItalic.eot?#iefix') format('embedded-opentype'),
+                url('https://www.mailinglijst.nl/klanten/default/fonts/Lato-BoldItalic.svg#Vestula') format('svg'),
+                url('https://www.mailinglijst.nl/klanten/default/fonts/Lato-BoldItalic.ttf') format('truetype'),
+                url('https://www.mailinglijst.nl/klanten/default/fonts/Lato-BoldItalic.woff') format('woff'),
+                url('https://www.mailinglijst.nl/klanten/default/fonts/Lato-BoldItalic.woff2') format('woff2');
+                font-weight: bold;
+                font-style: italic;
+            }
+            @font-face {
+                font-family: 'Prata';
+                src: url('https://www.mailinglijst.nl/klanten/default/fonts/Prata-Regular.eot');
+                src: url('https://www.mailinglijst.nl/klanten/default/fonts/Prata-Regular.eot?#iefix') format('embedded-opentype'),
+                url('https://www.mailinglijst.nl/klanten/default/fonts/Prata-Regular.svg#Vestula-Italic') format('svg'),
+                url('https://www.mailinglijst.nl/klanten/default/fonts/Prata-Regular.ttf') format('truetype'),
+                url('https://www.mailinglijst.nl/klanten/default/fonts/Prata-Regular.woff') format('woff'),
+                url('https://www.mailinglijst.nl/klanten/default/fonts/Prata-Regular.woff2') format('woff2');
+                font-weight: normal;
+                font-style: normal;
+            }
+            --- end of font-face-section REMark
+             */
+
+            /* GLOBAL HTML/BODY STYLES */
             HTML {
                 width: 100%;
                 padding: 0;
@@ -45,54 +116,66 @@
             H1, H2, H3, H4 {
                 font-family: Prata, serif;
                 color: indianred;
-                margin: 0;
             }
 
-            /*HEADER*/
-            .hdCont {
+            /* END GLOBAL HTML/BODY STYLES */
+
+            /* HEADER STYLES */
+            .headContainer {
                 background-color: darkgray;
                 padding: 15px;
             }
-            .hdShow, .hdShow a {
+
+            .headShow, .headShow a {
                 color: white;
             }
-            .hdShow {
+
+            .headShow {
                 text-align: right;
             }
-            .hdShow a {
+
+            .headShow a {
                 text-decoration: underline;
             }
+
             .headShow a:hover {
                 text-decoration: none;
             }
-            .hdLogo {
+
+            .headLogo {
                 padding-bottom: 15px;
             }
-            .hdEdition H1 {
+
+            .headEdition {}
+
+            .headEdition H1 {
                 color: indianred;
                 font-size: 24px;
                 line-height: 30px;
+                margin: 0;
             }
+            /* END HEADER STYLES */
 
-            /*FOOTER STYLES*/
-            .ftCont {
+            /* FOOTER STYLES */
+            .footerContainer {
                 padding: 15px;
                 text-align: center;
                 background-color: darkgray;
             }
 
-            .ftCont a {
+            .footerContainer a {
                 color: dimgray;
                 text-decoration: underline;
             }
 
-            .ftCont a:hover {
+            .footerContainer a:hover {
                 text-decoration: none;
             }
 
-            .ftCont A IMG {
+            .footerContainer A IMG {
                 border: 0px;
             }
+            /* END FOOTER STYLES */
 
             /*
             =============
@@ -100,75 +183,122 @@
             =============
             */
 
-            /*Containers*/
-            .ctMainBlock, .ctMainBlockItem, .ctInnerCont {
+            /* main container with CONTENT token within */
+            .contentContainer {}
+
+            /*
+            the following styles are styles for main containers of each content block.
+            contentBlockContainer = main content container of blocks with 1/2, 1/3 or 2/3 items.
+            contentMainBlock = main container of one block of 1/2, 1/3 or 2/3 styles (use this for background-color of each block).
+            contentMainBlockItem = main container of one item of all styles except 1/2, 1/3 and 2/3 styles (use this for background-color of all styles except 1/2, 1/3 and 2/3).
+            contentInnerContainer = inner container (use this for background-color of all styles, it is used for in the editor).
+            contentBottomMargin = bottom margin between two blocks.
+            contentBlockMargin = vertical margin between 1/2, 1/3 and 2/3 blocks.
+            ...Featured = same as above but used for featured / uitgelicht blocks with alternative colors.
+            ...Banner = same as above but used for banner blocks width alternative colors
+            */
+            .contentBlockContainer {}
+
+            .contentMainBlock, .contentMainBlockItem, .contentInnerContainer {
                 background-color: white;
                 vertical-align: top;
             }
-            .ctMainBlockFeat, .ctMainBlockItemFeat, .ctInnerContFeat {
+
+            .contentMainBlockFeatured, .contentMainBlockItemFeatured, .contentInnerContainerFeatured {
                 background-color: dimgray;
                 vertical-align: top;
             }
-            .ctMainBlockBan, .ctInnerContBan {
+
+            .contentMainBlockBanner, .contentInnerContainerBanner {
                 background-color: indianred;
             }
-            .ctBottomMargin {
-                height: 20px;
-                font-size: 1px;
-                line-height: 1px;
-            }
-            .ctBlockMargin {
-                width: 20px;
+
+            .contentMainBlock {}
+            .contentMainBlockFeatured {}
+            .contentMainBlockItem {}
+            .contentMainBlockItemFeatured {}
+            .contentInnerContainer {}
+            .contentInnerContainerFeatured {}
+            .contentInnerContainerBanner {}
+
+            .contentBottomMargin {
+                height: 20px; /* change this for bottom margin between each block */
                 font-size: 1px;
                 line-height: 1px;
             }
 
-            /*Caption*/
-            .ctCapt {
+            .contentBlockMargin {
+                width: 20px; /* change this for vertical margin between each block, you need to change the block widths in xslt when you change this */
+                font-size: 1px;
+                line-height: 1px;
+            }
+
+            /*
+            Caption/titles
+            There are H2 and H3 used, use this for color, sizes, family etc.
+            The styles without H2 and H3 are containers, you can use this styles to add paddings, background-color etc.
+            H3 is used for small 1/3 blocks.
+            */
+            .contentCaption {
                 padding: 15px;
                 padding-bottom: 0px;
             }
-            .ctCapt H2, .ctCapt H3 {
+
+            .contentCaption H2, .contentCaption H3 {
                 font-size: 20px;
                 line-height: 28px;
                 color: indianred;
                 font-weight: bold;
+                margin: 0;
             }
-            .ctCapt H3 {
+
+            .contentCaption H3 {
                 font-size: 16px;
                 line-height: 24px;
             }
-            .ctInnerContFeat .ctCapt H2, .ctInnerContFeat .ctCapt H3 {
+
+            .contentInnerContainerFeatured .contentCaption H2, .contentInnerContainerFeatured .contentCaption H3 {
                 color: white;
             }
-            .ctInnerContBan .ctCapt {
+
+            .contentInnerContainerBanner .contentCaption {
                 padding-top: 0px;
             }
-            .ctInnerContBan .ctCapt H2, .ctInnerContBan .ctCapt H3 {
+
+            .contentInnerContainerBanner .contentCaption H2, .contentInnerContainerBanner .contentCaption H3 {
                 color: white;
                 font-size: 28px;
                 line-height: 36px;
             }
 
-            /*Subtitle*/
-            .ctSubt {
+            /*
+            Subtitle
+            There is H4 used, use this for color, sizes, family etc.
+            The style without H4 is a container, you can use this style to add paddings, background-color etc.
+            */
+            .contentSubtitle {
                 padding: 15px;
                 padding-top: 0px;
                 padding-bottom: 0px;
             }
-            .ctSubt H4 {
+
+            .contentSubtitle H4 {
                 color: gray;
                 font-size: 16px;
                 line-height: 24px;
                 font-weight: normal;
+                margin: 0;
             }
-            .ctInnerContFeat .ctSubt H4,
-            .ctInnerContBan .ctSubt H4 {
+
+            .contentInnerContainerFeatured .contentSubtitle H4,
+            .contentInnerContainerBanner .contentSubtitle H4 {
                 color: white;
             }
 
-            /*Date*/
-            .ctDate {
+            /*
+            Date below title and subtitle
+            */
+            .contentDate {
                 padding: 15px;
                 padding-top: 0px;
                 padding-bottom: 0px;
@@ -176,102 +306,141 @@
                 font-size: 14px;
                 line-height: 20px;
                 font-weight: normal;
+                margin: 0;
             }
-            .ctInnerContFeat .ctDate {
+
+            .contentInnerContainerFeatured .contentDate {
                 color: white;
             }
 
-            /*Content*/
+            /*
+            Content
+            */
             .content, .content a {
                 font-size: 14px;
                 line-height: 20px;
             }
+
             .content {
                 padding: 15px;
             }
+
             .content a {
                 text-decoration: underline;
             }
+
             .content a:hover {
                 text-decoration: none;
             }
-            .ctInnerContFeat .content, .ctInnerContFeat .content a {
+
+            .contentInnerContainerFeatured .content, .contentInnerContainerFeatured .content a {
                 color: white;
             }
-            .ctOuterBlock {
+
+            .contentOuterBlock {
                 vertical-align: top;
             }
-            .ctInnerContBan .ctOuterBlock {
+
+            .contentInnerContainerBanner .contentOuterBlock {
                 vertical-align: middle;
             }
-            .ctInnerContBan .ctInnerBlock {
+
+            .contentInnerBlock {}
+
+            .contentInnerContainerBanner .contentInnerBlock {
                 padding-top: 15px;
                 padding-bottom: 15px;
             }
 
-            /*Images*/
-            .ctImgRightOuterBlock, .ctImgLeftOuterBlock {
-                width: 235px;
+            /*
+            Images
+            */
+            .contentImage {}
+
+            .contentImageRightOuterBlock, .contentImageLeftOuterBlock {
+                width: 235px; /* always add margin between text and image above the image width configured in xslt */
                 vertical-align: top;
             }
-            .ctImgRightOuterBlockBan, .ctImgLeftOuterBlockBan {
+
+            .contentImageRightOuterBlockBanner, .contentImageLeftOuterBlockBanner {
                 width: 220px;
                 vertical-align: top;
             }
-            .ctImgRightInnerBlock, .ctImgLeftInnerBlock {
+
+            .contentImageRightInnerBlock, .contentImageLeftInnerBlock {
                 padding: 15px;
             }
-            .ctImgRightInnerBlock {
+
+            .contentImageRightInnerBlock {
                 padding-left: 0px;
             }
-            .ctImgLeftInnerBlock {
+
+            .contentImageLeftInnerBlock {
                 padding-right: 0px;
             }
-            .ctImgSubt {
+
+            .contentImageRightInnerBlockBanner {}
+            .contentImageLeftInnerBlockBanner {}
+
+            .contentImageSubtitle {
                 font-size: 12px;
                 line-height: 16px;
                 padding: 15px;
                 padding-bottom: 0px;
                 padding-top: 5px;
             }
-            .ctInnerContFeat .ctImgSubt,
-            .ctInnerContBan .ctImgSubt {
+
+            .contentInnerContainerFeatured .contentImageSubtitle,
+            .contentInnerContainerBanner .contentImageSubtitle {
                 color: white;
             }
-            .ctImgLeftInnerBlock .ctImgSubt,
-            .ctImgRightInnerBlock .ctImgSubt {
+
+            .contentImageLeftInnerBlock .contentImageSubtitle,
+            .contentImageRightInnerBlock .contentImageSubtitle {
                 padding-left: 5px;
                 text-align: left;
             }
-            .ctImgLeftInnerBlockBan .ctImgSubt,
-            .ctImgRightInnerBlockBan .ctImgSubt {
+
+            .contentImageLeftInnerBlockBanner .contentImageSubtitle,
+            .contentImageRightInnerBlockBanner .contentImageSubtitle {
                 padding-left: 5px;
                 padding-bottom: 5px;
                 text-align: left;
             }
 
-            /*Buttons*/
-            .ctButCont {
+            /*
+            Buttons
+            */
+            .contentButtonContainer {
                 background-color: white;
                 vertical-align: top;
             }
-            .ctButContFeat {
+
+            .contentButtonContainerFeatured {
                 background-color: dimgray;
                 vertical-align: top;
             }
-            .ctButContBan {
+
+            .contentButtonContainerBanner {
                 background-color: indianred;
                 vertical-align: top;
             }
-            .ctButInnerCont {
+
+            .contentButtonInnerContainer {
                 padding: 15px;
                 padding-top: 0px;
             }
-            .ctButContBan .ctButInnerCont {
+
+            .contentButtonContainerBanner .contentButtonInnerContainer {
                 padding-top: 15px;
                 padding-bottom: 0px;
             }
-            .ctBut {
+
+            .contentButtonBlock {
+
+            }
+
+            .contentButton {
                 background-color: dimgray;
                 color: white;
                 font-size: 14px;
@@ -279,10 +448,12 @@
                 padding-top: 10px;
                 padding-bottom: 10px;
             }
-            .ctBut:hover {
+
+            .contentButton:hover {
                 background-color: black;
             }
-            .ctBut2 {
+
+            .contentButton2 {
                 background-color: indianred;
                 color: white;
                 font-size: 14px;
@@ -290,91 +461,118 @@
                 padding-top: 10px;
                 padding-bottom: 10px;
             }
-            .ctBut2:hover {
+
+            .contentButton2:hover {
                 background-color: red;
             }
-            .ctButBlock a {
+
+            .contentButtonBlock a {
                 color: white;
                 text-decoration: none;
             }
-            .ctButContFeat .ctBut, .ctButContFeat .ctBut:hover,
-            .ctButContFeat .ctBut2, .ctButContFeat .ctBut2:hover,
-            .ctButContBan .ctBut, .ctButContBan .ctBut:hover,
-            .ctButContBan .ctBut2, .ctButContBan .ctBut2:hover,
-            .ctMobButContFeat .ctBut, .ctMobButContFeat .ctBut:hover,
-            .ctMobButContFeat .ctBut2, .ctMobButContFeat .ctBut2:hover,
-            .ctMobButContBan .ctBut, .ctMobButContBan .ctBut:hover,
-            .ctMobButContBan .ctBut2, .ctMobButContBan .ctBut2:hover {
+
+            .contentButtonContainerFeatured .contentButton, .contentButtonContainerFeatured .contentButton:hover,
+            .contentButtonContainerFeatured .contentButton2, .contentButtonContainerFeatured .contentButton2:hover,
+            .contentButtonContainerBanner .contentButton, .contentButtonContainerBanner .contentButton:hover,
+            .contentButtonContainerBanner .contentButton2, .contentButtonContainerBanner .contentButton2:hover,
+            .contentMobileButtonContainerFeatured .contentButton, .contentMobileButtonContainerFeatured .contentButton:hover,
+            .contentMobileButtonContainerFeatured .contentButton2, .contentMobileButtonContainerFeatured .contentButton2:hover,
+            .contentMobileButtonContainerBanner .contentButton, .contentMobileButtonContainerBanner .contentButton:hover,
+            .contentMobileButtonContainerBanner .contentButton2, .contentMobileButtonContainerBanner .contentButton2:hover {
                 background-color: white;
             }
-            .ctButContFeat .ctButBlock a,
-            .ctButContBan .ctButBlock a,
-            .ctMobButContFeat .ctButBlock a,
-            .ctMobButContBan .ctButBlock a {
+
+            .contentButtonContainerFeatured .contentButtonBlock a,
+            .contentButtonContainerBanner .contentButtonBlock a,
+            .contentMobileButtonContainerFeatured .contentButtonBlock a,
+            .contentMobileButtonContainerBanner .contentButtonBlock a {
                 color: dimgray;
             }
 
-            /*Call2action*/
-            .ctCallInnerCont {
+            /*
+            Call2action
+            */
+            .contentCallactionMainBlock {}
+            .contentCallactionOuterContainer {}
+            .contentCallactionInnerContainer {
                 background-color: dimgray;
                 text-align: center;
                 padding: 15px;
                 padding-top: 10px;
                 padding-bottom: 10px;
             }
-            .ctCallInnerCont H2 {
+
+            .contentCallactionInnerContainer H2 {
                 color: white;
                 font-size: 20px;
                 line-height: 28px;
                 font-family: Lato, sans-serif;
+                margin: 0;
                 font-weight: normal;
             }
-            .ctCallInnerCont H2 a {
+
+            .contentCallactionInnerContainer H2 a {
                 font-size: 20px;
                 line-height: 28px;
             }
-            .ctCallOuterCont a {
+
+            .contentCallactionOuterContainer a {
                 text-decoration: none;
                 color: white;
             }
 
-            /*Tussenkop*/
-            .ctSubhInnerCont {
+            /*
+            Subheader (tussenkopje)
+            */
+
+            .contentSubheaderMainBlock {}
+            .contentSubheaderOuterContainer {}
+            .contentSubheaderInnerContainer {
                 border-bottom: 2px solid indianred;
                 padding-bottom: 10px;
             }
-            .ctSubhInnerCont H2 {
+
+            .contentSubheaderInnerContainer H2 {
                 color: indianred;
                 font-size: 20px;
                 line-height: 28px;
                 font-family: Lato, sans-serif;
+                margin: 0;
                 font-weight: normal;
             }
 
-            /*Agenda*/
-            .agHeaderOuterCont {
+            /*
+                Agenda
+            */
+            .agendaMainBlock {}
+            .agendaHeaderOuterContainer {
                 background-color: white;
                 padding: 15px;
                 padding-bottom: 0px;
             }
-            .agHeaderInnerCont {
+
+            .agendaHeaderInnerContainer {
                 font-size: 20px;
                 line-height: 28px;
                 color: indianred;
             }
-            .agItemsCont {
+
+            .agendaItemsContainer {
                 background-color: white;
                 padding: 15px;
                 padding-bottom: 0px;
             }
-            .agItemCont {
+
+            .agendaItemContainer {
                 padding-bottom: 15px;
             }
-            .agDateBlockCont {
+
+            .agendaDateBlockContainer {
                 width: 65px;
                 vertical-align: top;
             }
-            .agDateBlockDay, .agDateBlockMonth {
+
+            .agendaDateBlockDay, .agendaDateBlockMonth {
                 background-color: indianred;
                 padding: 5px;
                 text-align: center;
@@ -382,78 +580,107 @@
                 color: white;
                 font-weight: bold;
             }
-            .agDateBlockDay {
+
+            .agendaDateBlockDay {
                 padding-bottom: 0px;
                 font-size: 18px;
                 line-height: 22px;
             }
-            .agDateBlockMonth {
+
+            .agendaDateBlockMonth {
                 padding-top: 0px;
             }
-            .agImgOuterCont {
+
+            .agendaImageOuterContainer {
                 width: 140px;
                 vertical-align: top;
             }
-            .agCtCont {
+            .agendaImageInnerContainer {}
+
+            .agendaContentContainer {
                 vertical-align: top;
             }
-            .agCapt H2 {
+
+            .agendaButtonContainer {}
+
+            .agendaCaption {}
+            .agendaCaption H2 {
                 font-size: 20px;
                 line-height: 28px;
                 color: dimgray;
                 font-weight: bold;
+                margin: 0;
             }
-            .agSubt H4 {
+
+            .agendaSubtitle {}
+            .agendaSubtitle H4 {
                 color: gray;
                 font-size: 16px;
                 line-height: 24px;
                 font-weight: normal;
+                margin: 0;
             }
-            .agDate, .agTime {
+
+            .agendaDate, .agendaTime {
                 color: silver;
                 font-size: 14px;
                 line-height: 20px;
                 font-weight: normal;
             }
-            .agButCont a {
+
+            .agendaButtonContainer a {
                 color: white;
                 text-decoration: none;
             }
 
+            /*
+            =============
+            END BASIC CONTENT STYLES
+            =============
+            */
+
             /* RESPONSIVE CODE */
             @media only screen and (max-width: 480px) {
-                .ctMainTable {
+                .contentMainTable {
                     width: 100% !important;
                 }
+
                 .bodyMainTable {
                     width: 100% !important;
                 }
-                .ctImg IMG {
+
+                .contentImage IMG {
                     width: 100% !important;
                     height: auto !important;
                     -ms-interpolation-mode: bicubic;
                 }
-                .ctMainBlock, .ctMainBlockItem, .ctMainBlockFeat, .ctMainBlockItemFeat {
+
+                .contentMainBlock, .contentMainBlockItem, .contentMainBlockFeatured, .contentMainBlockItemFeatured {
                     display: block;
                     width: 100% !important;
                 }
-                .ctBlockMargin {
+
+                .contentBlockMargin {
                     display: block;
                     width: 100% !important;
                     padding-bottom: 20px;
                 }
-                .ctCapt H2, .ctCapt H3 {
+
+                .contentCaption H2, .contentCaption H3 {
                     font-size: 20px !important;
                     line-height: 28px !important;
                 }
-                .ctSubhInnerCont {
+
+                .contentSubheaderInnerContainer {
                     padding-left: 15px;
                     padding-right: 15px;
                 }
-                .ctButCont, .ctButContFeat, .ctButContBan, .ctDeskButCont {
+
+                .contentButtonContainer, .contentButtonContainerFeatured, .contentButtonContainerBanner, .contentDesktopButtonContainer {
                     display: none !important;
                 }
-                .ctMobButCont, .ctMobButContFeat, .ctMobButContBan {
+
+                .contentMobileButtonContainer, .contentMobileButtonContainerFeatured, .contentMobileButtonContainerBanner {
                     display: block !important;
                     max-height: none !important;
                     height: auto !important;
@@ -463,15 +690,18 @@
                     width: 100% !important;
                     overflow: auto !important;
                 }
-                .ctMobButBlock {
+
+                .contentMobileButtonBlock {
                     padding: 15px;
                     padding-top: 0px;
                 }
-                .ctMobButContBan .ctMobButBlock {
+
+                .contentMobileButtonContainerBanner .contentMobileButtonBlock {
                     padding-top: 15px;
                     padding-bottom: 0px;
                 }
-                .ctMobInnerCont {
+
+                .contentMobileInnerContainer {
                     display: block !important;
                     max-height: none !important;
                     height: auto !important;
@@ -481,7 +711,8 @@
                     width: 100% !important;
                     overflow: auto !important;
                 }
-                .ctButTable {
+
+                .contentButtonTable {
                     display: block !important;
                     max-height: none !important;
                     height: auto !important;
@@ -491,36 +722,44 @@
                     width: 100% !important;
                     overflow: auto !important;
                 }
-                .ctImgLeftOuterBlock, .ctImgRightOuterBlock, .ctImgRightOuterBlockBan, .ctImgLeftOuterBlockBan {
+
+                .contentImageLeftOuterBlock, .contentImageRightOuterBlock, .contentImageRightOuterBlockBanner, .contentImageLeftOuterBlockBanner {
                     display: block !important;
                     width: 100%;
                 }
-                .ctImgLeftInnerBlock, .ctImgRightInnerBlock, .ctImgRightInnerBlockBan, .ctImgLeftInnerBlockBan {
+
+                .contentImageLeftInnerBlock, .contentImageRightInnerBlock, .contentImageRightInnerBlockBanner, .contentImageLeftInnerBlockBanner {
                     padding: 0px !important;
                 }
-                .ctImgLeftOuterBlock IMG, .ctImgRightOuterBlock IMG, .ctImgRightOuterBlockBan IMG, .ctImgLeftOuterBlockBan IMG {
+
+                .contentImageLeftOuterBlock IMG, .contentImageRightOuterBlock IMG, .contentImageRightOuterBlockBanner IMG, .contentImageLeftOuterBlockBanner IMG {
                     width: 100% !important;
                     height: auto !important;
                 }
-                .ctOuterBlock {
+
+                .contentOuterBlock {
                     display: block !important;
                     width: 100%;
                 }
-                .agImgOuterCont {
+
+                .agendaImageOuterContainer {
                     width: 100% !important;
                     display: block;
                     padding-bottom: 10px;
                 }
-                .agCtCont {
+
+                .agendaContentContainer {
                     width: 100% !important;
                     display: block;
                 }
-                .agButCont {
+
+                .agendaButtonContainer {
                     width: 100% !important;
                     display: block;
                     padding-top: 10px;
                 }
             }
+
         </style>
 
         <!--
@@ -535,8 +774,37 @@
                 font-family: sans-serif !important;
             }
 
-            H1, H2, H3, H4 {
+            /* force specific HTML tags to safe fonts */
+            .headEdition H1 {
                 font-family: serif !important
+            }
+
+            .contentCaption h2, .contentCaption h3 {
+                font-family: serif !important;
+            }
+
+            .contentSubtitle h4 {
+                font-family: serif !important;
+            }
+
+            .contentDate {
+                font-family: sans-serif !important;
+            }
+
+            .content, .content a {
+                font-family: sans-serif !important;
+            }
+
+            .contentImageSubtitle {
+                font-family: sans-serif !important;
+            }
+
+            .contentButton {
+                font-family: sans-serif !important;
+            }
+
+            .contentButton2 {
+                font-family: sans-serif !important;
             }
 
             table {
@@ -552,22 +820,22 @@
             <tbody>
                 <!-- HEADER -->
                 <tr>
-                    <td class="hdCont">
+                    <td class="headContainer">
                         <table width="100%" cellpadding="0" cellspacing="0" style="width: 100%;">
                             <tr> <!-- show -->
-                                <td class="hdShow">
+                                <td class="headShow">
                                     %%SHOW%%
                                 </td>
                             </tr>
                             <tr> <!-- logo -->
-                                <td class="hdLogo">
+                                <td class="headLogo">
                                     <a href="https://www.mailinglijst.nl" target="_blank">
                                         <img src="https://via.placeholder.com/250x50?text=250x50 LOGO" style="width: 250px; height: 53px;" alt="MailingLijst" title="Bezoek de website" height="50" width="250">
                                     </a>
                                 </td>
                             </tr>
                             <tr> <!-- newsletter edition -->
-                                <td class="hdEdition">
+                                <td class="headEdition">
                                     <h1>Nieuwsbrief BASIS v1</h1>
                                 </td>
                             </tr>
@@ -577,14 +845,14 @@
                 <!-- END HEADER -->
                 <!-- CONTENT -->
                 <tr>
-                    <td class="ctCont">
+                    <td class="contentContainer">
                         %%CONTENT%%
                     </td>
                 </tr>
                 <!-- END CONTENT -->
                 <!-- FOOTER -->
                 <tr>
-                    <td class="ftCont">
+                    <td class="footerContainer">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         Pellentesque iaculis dignissim luctus.
                         Proin libero augue, gravida id porta a, bibendum ut nibh.
