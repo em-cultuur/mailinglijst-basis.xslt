@@ -2,30 +2,38 @@
 <html>
     <head>
         <!--
+        BASIC TEMPLATE
         EM-Cultuur / MailingLijst
+
         Date: march 2020
         -->
         <meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE">
         <title>Nieuwsbrief</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+        <!-- This is for responsiviness on browser version (show) -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Prevents Apple devices to format the newsletter -->
         <meta name="x-apple-disable-message-reformatting">
+
         <style type="text/css">
             /*
-            There are two ways to use custom fonts in e-mail:
-            - Direct @import from Google fonts stack
-            - Uploaded fonts to MailingLijst folders by using font-face logic
+            There are two ways to use custom fonts
+            - Direct @IMPORT from Google fonts stack
+            - Uploaded fonts to MailingLijst klant-folders and use FONT_FACE
 
-            Choose one way and remove the other way (for clean code).
-            Or both of the customer don't use custom fonts.
+            in this exacmple we use:
+            - LATO (sans-serif) for BODY
+            - PRATO (serif) for for HEADINGS
             */
             /* Custom fonts from Google */
             @import url('https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i|Prata&display=swap');
 
             /*
-            Own custom fonts with font-face logic
-            You have to create seperated font-face for each font-weight and font-style when possible (at least a regular style)
-            */
+            Custom fonts with font-face logic
+            Create separate font-face for each font-weight and font-style when possible (at least one regular style)
+
             @font-face {
                 font-family: 'Lato';
                 src: url('https://www.mailinglijst.nl/klanten/default/fonts/Lato-Regular.eot');
@@ -81,6 +89,8 @@
                 font-weight: normal;
                 font-style: normal;
             }
+            --- end of font-face-section REMark
+             */
 
             /* GLOBAL HTML/BODY STYLES */
             HTML {
@@ -96,27 +106,28 @@
                 background-color: whitesmoke;
             }
 
-            TD, a. .content a {
+            TD, a, .content a {
                 font-family: Lato, sans-serif;
                 color: dimgray;
+                font-size: 14px;
+                line-height: 20px;
             }
 
             H1, H2, H3, H4 {
                 font-family: Prata, serif;
-                color: dimgray;
+                color: indianred;
             }
 
             /* END GLOBAL HTML/BODY STYLES */
 
             /* HEADER STYLES */
             .headContainer {
-                background-color: dimgray;
+                background-color: darkgray;
                 padding: 15px;
             }
 
             .headShow, .headShow a {
                 color: white;
-                font-size: 12px;
             }
 
             .headShow {
@@ -138,24 +149,22 @@
             .headEdition {}
 
             .headEdition H1 {
-                color: white;
-                font-size: 16px;
+                color: indianred;
+                font-size: 24px;
+                line-height: 30px;
                 margin: 0;
             }
             /* END HEADER STYLES */
 
             /* FOOTER STYLES */
             .footerContainer {
-                font-size: 14px;
-                line-height: 20px;
                 padding: 15px;
-                color: darkgray;
                 text-align: center;
-                background-color: gainsboro;
+                background-color: darkgray;
             }
 
             .footerContainer a {
-                color: darkgray;
+                color: dimgray;
                 text-decoration: underline;
             }
 
@@ -183,10 +192,10 @@
             contentMainBlock = main container of one block of 1/2, 1/3 or 2/3 styles (use this for background-color of each block).
             contentMainBlockItem = main container of one item of all styles except 1/2, 1/3 and 2/3 styles (use this for background-color of all styles except 1/2, 1/3 and 2/3).
             contentInnerContainer = inner container (use this for background-color of all styles, it is used for in the editor).
-            contentBottonMargin = bottom margin between two blocks.
+            contentBottomMargin = bottom margin between two blocks.
             contentBlockMargin = vertical margin between 1/2, 1/3 and 2/3 blocks.
-            ...Featured = same as above but used for featured / uitgelicht blocks with alternative background colors.
-            ...Banner = same as abve but used for banner blocks width alternative colors
+            ...Featured = same as above but used for featured / uitgelicht blocks with alternative colors.
+            ...Banner = same as above but used for banner blocks width alternative colors
             */
             .contentBlockContainer {}
 
@@ -522,6 +531,98 @@
             }
 
             /*
+                Agenda
+            */
+            .agendaMainBlock {}
+            .agendaHeaderOuterContainer {
+                background-color: white;
+                padding: 15px;
+                padding-bottom: 0px;
+            }
+
+            .agendaHeaderInnerContainer {
+                font-size: 20px;
+                line-height: 28px;
+                color: indianred;
+            }
+
+            .agendaItemsContainer {
+                background-color: white;
+                padding: 15px;
+                padding-bottom: 0px;
+            }
+
+            .agendaItemContainer {
+                padding-bottom: 15px;
+            }
+
+            .agendaDateBlockContainer {
+                width: 65px;
+                vertical-align: top;
+            }
+
+            .agendaDateBlockDay, .agendaDateBlockMonth {
+                background-color: indianred;
+                padding: 5px;
+                text-align: center;
+                width: 40px;
+                color: white;
+                font-weight: bold;
+            }
+
+            .agendaDateBlockDay {
+                padding-bottom: 0px;
+                font-size: 18px;
+                line-height: 22px;
+            }
+
+            .agendaDateBlockMonth {
+                padding-top: 0px;
+            }
+
+            .agendaImageOuterContainer {
+                width: 165px;
+                vertical-align: top;
+            }
+            .agendaImageInnerContainer {}
+
+            .agendaContentContainer {
+                vertical-align: top;
+            }
+
+            .agendaButtonContainer {}
+
+            .agendaCaption {}
+            .agendaCaption H2 {
+                font-size: 20px;
+                line-height: 28px;
+                color: dimgray;
+                font-weight: bold;
+                margin: 0;
+            }
+
+            .agendaSubtitle {}
+            .agendaSubtitle H4 {
+                color: gray;
+                font-size: 16px;
+                line-height: 24px;
+                font-weight: normal;
+                margin: 0;
+            }
+
+            .agendaDate, .agendaTime {
+                color: silver;
+                font-size: 14px;
+                line-height: 20px;
+                font-weight: normal;
+            }
+
+            .agendaButtonContainer a {
+                color: white;
+                text-decoration: none;
+            }
+
+            /*
             =============
             END BASIC CONTENT STYLES
             =============
@@ -685,13 +786,13 @@
                             <tr> <!-- logo -->
                                 <td class="headLogo">
                                     <a href="https://www.mailinglijst.nl" target="_blank">
-                                        <img src="https://www.mailinglijst.nl/klanten/default/emtheater_logo_trans.png" style="width: 250px; height: 53px;" alt="MailingLijst" title="Bezoek de website" height="53" width="250">
+                                        <img src="https://via.placeholder.com/250x50?text=250x50 LOGO" style="width: 250px; height: 53px;" alt="MailingLijst" title="Bezoek de website" height="50" width="250">
                                     </a>
                                 </td>
                             </tr>
                             <tr> <!-- newsletter edition -->
                                 <td class="headEdition">
-                                    <h1>Nieuwsbrief editie</h1>
+                                    <h1>Nieuwsbrief BASIS v1</h1>
                                 </td>
                             </tr>
                         </table>
@@ -727,6 +828,4 @@
                 </tr>
                 <!-- END FOOTER -->
             </tbody>
-        </table>
-    </body>
-</html>
+        </table
