@@ -172,7 +172,10 @@
 																					<xsl:attribute name="title"><xsl:value-of select="image_title" /></xsl:attribute>
 																					<xsl:attribute name="src">
 																						<xsl:choose>
-																							<xsl:when test="contains(image, 'placeholder.png')">https://www.mailinglijst.nl/klanten/default/placeholder_wide.png</xsl:when>
+																							<!-- ## TODO
+																							<xsl:when test="contains(image, 'placeholder.png')">https://www.mailinglijst.nl/klanten/default/placeholder_wide.png</xsl:when>-->
+																							<xsl:when test="contains(image, 'placeholder.png')">https://via.placeholder.com/700x300?text=Placeholder</xsl:when>
+
 																							<xsl:otherwise><xsl:value-of select="image" /></xsl:otherwise>
 																						</xsl:choose>
 																					</xsl:attribute>

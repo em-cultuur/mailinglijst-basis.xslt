@@ -4,21 +4,20 @@
         <!--
         BASIC TEMPLATE
         EM-Cultuur / MailingLijst
-
-        Date: march 2020
+        Date: v1, march 2020
         -->
         <meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE">
-        <title>Nieuwsbrief</title>
+        <title>Nieuwsbrief  BASIS v1</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-        <!-- This is for responsiviness on browser version (show) -->
+        <!-- responsiveness on browser version (show) -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!-- Prevents Apple devices to format the newsletter -->
         <meta name="x-apple-disable-message-reformatting">
 
         <style type="text/css">
-            /* Custom fonts from Google */
+            /* Custom fonts from Google, or use downloaded fonts and font-face*/
             @import url('https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i|Prata&display=swap');
 
             /*GLOBAL*/
@@ -95,11 +94,8 @@
             }
 
             /*
-            =============
-            BASIC CONTENT STYLES
-            =============
+            CONTENT STYLES
             */
-
             /*Containers*/
             .ctMainBlock, .ctMainBlockItem, .ctInnerCont {
                 background-color: white;
@@ -123,7 +119,7 @@
                 line-height: 1px;
             }
 
-            /*Caption*/
+            /*Title*/
             .ctCapt {
                 padding: 15px;
                 padding-bottom: 0px;
@@ -524,9 +520,7 @@
         </style>
 
         <!--
-        This alternative CSS styles will be used when the e-mail is opened in all versions of Outlook.
-        Outlooks don't supports custom fonts and will replace without the below CSS styles all fonts to Times New Roman.
-        So force the fonts to web safe fonts below.
+       alternative style for Microsoft Outlook (MSO)
         -->
         <!--[if mso]>
         <style type="text/css">
@@ -546,7 +540,7 @@
         <![endif]-->
     </head>
 
-    <!-- body background color for support in GMail -->
+  <!-- NEWLSLETTER start -->
     <body style="background-color: whitesmoke;">
         <table align="center" cellpadding="0" cellspacing="0" style="width: 700px;" class="bodyMainTable">
             <tbody>
@@ -574,20 +568,17 @@
                         </table>
                     </td>
                 </tr>
-                <!-- END HEADER -->
-                <!-- CONTENT -->
+                <!-- CONTENT BLOCKS -->
                 <tr>
                     <td class="ctCont">
                         %%CONTENT%%
                     </td>
                 </tr>
-                <!-- END CONTENT -->
+
                 <!-- FOOTER -->
                 <tr>
                     <td class="ftCont">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Pellentesque iaculis dignissim luctus.
-                        Proin libero augue, gravida id porta a, bibendum ut nibh.
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque iaculis dignissim luctus.
                         <br /><br />
                         <a href="https://www.facebook.com" target="_blank"><img src="https://www.mailinglijst.nl/klanten/default/socialmedia/facebook_dark.png" style="width: 30px; height: 30px;" height="30" width="30" alt="Facebook" title="Facebook"></a>
                         &nbsp;&nbsp;
@@ -602,7 +593,6 @@
                         Gegevens wijzigen of afmelden? %%URL2=103799%%.
                     </td>
                 </tr>
-                <!-- END FOOTER -->
             </tbody>
         </table>
     </body>
