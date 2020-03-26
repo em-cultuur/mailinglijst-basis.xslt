@@ -159,7 +159,15 @@
                                                         Hide this part when using image left/right styles -->
 														<xsl:if test="image != '' and not(contains(style, 'afb.'))">
 															<tr>
-																<td class="ctImg">
+																<td>
+																	<!-- ##JWDB 26 march 2020: when the image width is smaller than 480, then don't stretch out on mobile. So add other class to them -->
+																	<xsl:attribute name="class">
+																		<xsl:choose>
+																			<xsl:when test="$width &lt; 480">ctImgSmall</xsl:when>
+																			<xsl:otherwise>ctImg</xsl:otherwise>
+																		</xsl:choose>
+																	</xsl:attribute>
+
 																	<xsl:choose>
 																		<xsl:when test="url != ''">
 																			<a target="_blank">
