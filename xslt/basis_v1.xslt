@@ -446,36 +446,38 @@
 																										<td class="ctMobButBlock">
 
 																											<table cellpadding="0" cellspacing="0" class="ctMobInnerCont" style="display:none;width:0px;max-height:0px;overflow:hidden;mso-hide:all;height:0;font-size:0;max-height:0;line-height:0;margin:0 auto;">
-																												<!-- Button 1 -->
-																												<xsl:if test="url != '' and not(contains(image_alt, 'NOBUTTON'))">
-																													<td class="ctButBlock">
-																														<xsl:attribute name="style">padding-right: 15px;</xsl:attribute>
+																												<tr>
+																													<!-- Button 1 -->
+																													<xsl:if test="url != '' and not(contains(image_alt, 'NOBUTTON'))">
+																														<td class="ctButBlock">
+																															<xsl:attribute name="style">padding-right: 15px;</xsl:attribute>
 
-																														<xsl:call-template name="button">
-																															<xsl:with-param name="url" select="details_url" />
-																															<xsl:with-param name="button_text" select="image_alt" />
-																															<xsl:with-param name="button_default_text" select="$button1_text" />
-																															<xsl:with-param name="class">ctBut</xsl:with-param>
-																															<xsl:with-param name="hide">1</xsl:with-param>
-																														</xsl:call-template>
+																															<xsl:call-template name="button">
+																																<xsl:with-param name="url" select="details_url" />
+																																<xsl:with-param name="button_text" select="image_alt" />
+																																<xsl:with-param name="button_default_text" select="$button1_text" />
+																																<xsl:with-param name="class">ctBut</xsl:with-param>
+																																<xsl:with-param name="hide">1</xsl:with-param>
+																															</xsl:call-template>
 
-																													</td>
-																												</xsl:if>
+																														</td>
+																													</xsl:if>
 
-																												<!-- Button 2 -->
-																												<xsl:if test="url2 != ''">
-																													<td class="ctButBlock">
+																													<!-- Button 2 -->
+																													<xsl:if test="url2 != ''">
+																														<td class="ctButBlock">
 
-																														<xsl:call-template name="button">
-																															<xsl:with-param name="url" select="details_url2" />
-																															<xsl:with-param name="button_text" select="icon2" />
-																															<xsl:with-param name="button_default_text" select="$button2_text" />
-																															<xsl:with-param name="class">ctBut2</xsl:with-param>
-																															<xsl:with-param name="hide">1</xsl:with-param>
-																														</xsl:call-template>
+																															<xsl:call-template name="button">
+																																<xsl:with-param name="url" select="details_url2" />
+																																<xsl:with-param name="button_text" select="icon2" />
+																																<xsl:with-param name="button_default_text" select="$button2_text" />
+																																<xsl:with-param name="class">ctBut2</xsl:with-param>
+																																<xsl:with-param name="hide">1</xsl:with-param>
+																															</xsl:call-template>
 
-																													</td>
-																												</xsl:if>
+																														</td>
+																													</xsl:if>
+																												</tr>
 																											</table>
 
 																										</td>
@@ -924,7 +926,7 @@
 				</xsl:choose>
 			</xsl:attribute>
 
-			<table cellspacing="0" cellpadding="0">
+			<table cellspacing="0" cellpadding="0" class="ctButOuterTable">
 				<xsl:attribute name="style">
 					<xsl:choose>
 						<xsl:when test="$ignore_width = 1">width: 100%</xsl:when>
@@ -942,63 +944,59 @@
 					<xsl:choose>
 						<xsl:when test="($row/url != '' and not(contains($row/image_alt, 'NOBUTTON'))) or ($row/url2 != '' and not(contains($row/icon2, 'NOBUTTON')))">
 							<td class="ctButInnerCont">
-								<table cellpadding="0" cellspacing="0">
-									<!-- Button 1 -->
-									<xsl:if test="$row/url != '' and not(contains($row/image_alt, 'NOBUTTON'))">
-										<xsl:if test="contains($row/style, '1/3')">
-											<xsl:text disable-output-escaping="yes"><![CDATA[<tr>]]></xsl:text>
+								<table cellpadding="0" cellspacing="0" class="ctButInnerTable">
+									<tr>
+										<!-- Button 1 -->
+										<xsl:if test="$row/url != '' and not(contains($row/image_alt, 'NOBUTTON'))">
+											<td class="ctButBlock">
+												<xsl:attribute name="style">
+													<xsl:choose>
+														<xsl:when test="$row/url2 != '' and not(contains($row/style, '1/3')) and not(contains($row/icon2, 'NOBUTTON'))">padding-right: 15px;</xsl:when>
+														<xsl:otherwise>padding-right: 0px;</xsl:otherwise>
+													</xsl:choose>
+												</xsl:attribute>
+
+												<xsl:call-template name="button">
+													<xsl:with-param name="url" select="$row/details_url" />
+													<xsl:with-param name="button_text" select="$row/image_alt" />
+													<xsl:with-param name="button_default_text" select="$button1_text" />
+													<xsl:with-param name="class">ctBut</xsl:with-param>
+												</xsl:call-template>
+
+											</td>
+											<xsl:if test="contains($row/style, '1/3') and $row/url2 != '' and not(contains($row/icon2, 'NOBUTTON'))">
+												<xsl:text disable-output-escaping="yes"><![CDATA[</tr>]]></xsl:text>
+											</xsl:if>
 										</xsl:if>
-										<td class="ctButBlock">
-											<xsl:attribute name="style">
-												<xsl:choose>
-													<xsl:when test="$row/url2 != '' and not(contains($row/style, '1/3')) and not(contains($row/icon2, 'NOBUTTON'))">padding-right: 15px;</xsl:when>
-													<xsl:otherwise>padding-right: 0px;</xsl:otherwise>
-												</xsl:choose>
-											</xsl:attribute>
 
-											<xsl:call-template name="button">
-												<xsl:with-param name="url" select="$row/details_url" />
-												<xsl:with-param name="button_text" select="$row/image_alt" />
-												<xsl:with-param name="button_default_text" select="$button1_text" />
-												<xsl:with-param name="class">ctBut</xsl:with-param>
-											</xsl:call-template>
+										<!-- Button 2 -->
+										<xsl:if test="$row/url2 != '' and not(contains($row/icon2, 'NOBUTTON'))">
+											<xsl:if test="contains($row/style, '1/3') and $row/url != '' and not(contains($row/image_alt, 'NOBUTTON'))">
+												<xsl:text disable-output-escaping="yes"><![CDATA[<tr>]]></xsl:text>
+											</xsl:if>
+											<td class="ctButBlock">
+												<xsl:attribute name="style">
+													<xsl:choose>
+														<xsl:when test="contains($row/style, '1/3')">padding-top: 10px;</xsl:when>
+														<xsl:otherwise>padding-top: 0px;</xsl:otherwise>
+													</xsl:choose>
+												</xsl:attribute>
 
-										</td>
-										<xsl:if test="contains($row/style, '1/3')">
-											<xsl:text disable-output-escaping="yes"><![CDATA[</tr>]]></xsl:text>
+												<xsl:call-template name="button">
+													<xsl:with-param name="url" select="$row/details_url2" />
+													<xsl:with-param name="button_text" select="$row/icon2" />
+													<xsl:with-param name="button_default_text" select="$button2_text" />
+													<xsl:with-param name="class">ctBut2</xsl:with-param>
+												</xsl:call-template>
+
+											</td>
 										</xsl:if>
-									</xsl:if>
-
-									<!-- Button 2 -->
-									<xsl:if test="$row/url2 != '' and not(contains($row/icon2, 'NOBUTTON'))">
-										<xsl:if test="contains($row/style, '1/3')">
-											<xsl:text disable-output-escaping="yes"><![CDATA[<tr>]]></xsl:text>
-										</xsl:if>
-										<td class="ctButBlock">
-											<xsl:attribute name="style">
-												<xsl:choose>
-													<xsl:when test="contains($row/style, '1/3')">padding-top: 10px;</xsl:when>
-													<xsl:otherwise>padding-top: 0px;</xsl:otherwise>
-												</xsl:choose>
-											</xsl:attribute>
-
-											<xsl:call-template name="button">
-												<xsl:with-param name="url" select="$row/details_url2" />
-												<xsl:with-param name="button_text" select="$row/icon2" />
-												<xsl:with-param name="button_default_text" select="$button2_text" />
-												<xsl:with-param name="class">ctBut2</xsl:with-param>
-											</xsl:call-template>
-
-										</td>
-										<xsl:if test="contains($row/style, '')">
-											<xsl:text disable-output-escaping="yes"><![CDATA[</tr>]]></xsl:text>
-										</xsl:if>
-									</xsl:if>
+									</tr>
 								</table>
 							</td>
 						</xsl:when>
 						<xsl:otherwise>
-							<td>
+							<td class="tdButNoBut">
 								<table cellpadding="0" cellspacing="0">
 									<tr>
 										<td style="font-size: 1px; line-height: 1px;">
