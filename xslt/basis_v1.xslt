@@ -154,7 +154,6 @@
 
 													<table width="100%" cellpadding="0" cellspacing="0" style="width: 100%">
 														<!-- Image above
-                                                       ##TODO ad automatic sieze placehoder
                                                         When a placeholder is used, then this block item is created automatically after a new mailing were created
                                                         The default placeholder is a square. To prevent ugly look with 700px by 700px, replace it by a wide variant of the placeholder
                                                         Hide this part when using image left/right styles -->
@@ -172,7 +171,7 @@
 																					<xsl:attribute name="title"><xsl:value-of select="image_title" /></xsl:attribute>
 																					<xsl:attribute name="src">
 																						<xsl:choose>
-																							<xsl:when test="contains(image, 'placeholder.png')">https://www.mailinglijst.nl/klanten/default/placeholder_wide.png</xsl:when>
+																							<xsl:when test="contains(image, 'placeholder.png')">https://via.placeholder.com/<xsl:value-of select="$width" />x300</xsl:when>
 																							<xsl:otherwise><xsl:value-of select="image" /></xsl:otherwise>
 																						</xsl:choose>
 																					</xsl:attribute>
@@ -187,7 +186,7 @@
 																				<xsl:attribute name="title"><xsl:value-of select="image_title" /></xsl:attribute>
 																				<xsl:attribute name="src">
 																					<xsl:choose>
-																						<xsl:when test="contains(image, 'placeholder.png')">http://www.mailinglijst.nl/images/2014/placeholder_wide.png</xsl:when>
+																						<xsl:when test="contains(image, 'placeholder.png')">https://via.placeholder.com/<xsl:value-of select="$width" />x300</xsl:when>
 																						<xsl:otherwise><xsl:value-of select="image" /></xsl:otherwise>
 																					</xsl:choose>
 																				</xsl:attribute>
@@ -209,13 +208,17 @@
 															</tr>
 														</xsl:if>
 
-														<!-- Show no image when image only block style is used and without any image is set
-														## todo standard image-url
-														-->
+														<!-- Show no image when image only block style is used and without any image is set -->
 														<xsl:if test="image = '' and contains(style, '(afbeelding)')">
 															<tr>
-																<td>
-																	GEEN AFBEELDING
+																<td class="ctImg">
+																	<img>
+																		<xsl:attribute name="width"><xsl:value-of select="$width" /></xsl:attribute>
+																		<xsl:attribute name="style">display: block; width: <xsl:value-of select="$width" />px;</xsl:attribute>
+																		<xsl:attribute name="alt"><xsl:value-of select="image_alt1" /></xsl:attribute>
+																		<xsl:attribute name="title"><xsl:value-of select="image_title" /></xsl:attribute>
+																		<xsl:attribute name="src">https://via.placeholder.com/<xsl:value-of select="$width" />x300?text=GEEN AFBEELDING</xsl:attribute>
+																	</img>
 																</td>
 															</tr>
 														</xsl:if>
@@ -417,11 +420,12 @@
 																								</xsl:if>
 
 																								<!-- BUTTONS
-																								## TODO GEENKNOP
 																								default button text is set as constants above
                                                                                                 db.image_alt is used as alternative button text ('1e veld' name in ML)
                                                                                                 db.icon2  is used as alternative button text for second button
-                                                                                                When 1/3 style is used,  buttons are shown on two lines -->
+                                                                                                When 1/3 style is used,  buttons are shown on two lines
+                                                                                                No buttons will be displayed when NOBUTTON is set in db.image_alt and/or db.icon2
+                                                                                                -->
 																								<xsl:if test="((url != '' and not(contains(image_alt, 'NOBUTTON'))) or (url2 != '' and not(contains(icon2, 'NOBUTTON'))))">
 																									<tr style="display:none;width:0px;max-height:0px;overflow:hidden;mso-hide:all;height:0;font-size:0;max-height:0;line-height:0;margin:0 auto;">
 																										<xsl:attribute name="class">
