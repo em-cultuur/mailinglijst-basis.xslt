@@ -64,7 +64,7 @@
 		You can minify this on this website: https://cssminifier.com/
 		-->
 		<style typ="text/css">
-			@import url(https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i|Prata&amp;display=swap);HTML{width:100%;padding:0;margin:0}BODY{width:100%;margin:0;padding:0;background-color:#f5f5f5}.content a,TD,a{font-family:Lato,sans-serif;color:#696969;font-size:14px;line-height:20px}H1,H2,H3,H4{font-family:Prata,serif;color:#cd5c5c;margin:0}.hdCont{background-color:#a9a9a9;padding:15px}.hdShow,.hdShow a{color:#fff}.hdShow{text-align:right}.hdShow a{text-decoration:underline}.headShow a:hover{text-decoration:none}.hdLogo{padding-bottom:15px}.hdEdition H1{color:#cd5c5c;font-size:24px;line-height:30px}.ftCont{padding:15px;text-align:center;background-color:#a9a9a9}.ftCont a{color:#696969;text-decoration:underline}.ftCont a:hover{text-decoration:none}.ftCont A IMG{border:0}.ctInnerCont,.ctMainBlock,.ctMainBlockItem{background-color:#fff;vertical-align:top}.ctInnerContFeat,.ctMainBlockFeat,.ctMainBlockItemFeat{background-color:#696969;vertical-align:top}.ctInnerContBan,.ctMainBlockBan{background-color:#cd5c5c}.ctBottomMargin{height:20px;font-size:1px;line-height:1px}.ctBlockMargin{width:20px;font-size:1px;line-height:1px}.ctCapt{padding:15px;padding-bottom:0}.ctCapt H2,.ctCapt H3{font-size:20px;line-height:28px;color:#cd5c5c;font-weight:700}.ctCapt H3{font-size:16px;line-height:24px}.ctInnerContFeat .ctCapt H2,.ctInnerContFeat .ctCapt H3{color:#fff}.ctInnerContBan .ctCapt{padding-top:0}.ctInnerContBan .ctCapt H2,.ctInnerContBan .ctCapt H3{color:#fff;font-size:28px;line-height:36px}.ctSubt{padding:15px;padding-top:0;padding-bottom:0}.ctSubt H4{color:gray;font-size:16px;line-height:24px;font-weight:400}.ctInnerContBan .ctSubt H4,.ctInnerContFeat .ctSubt H4{color:#fff}.ctDate{padding:15px;padding-top:0;padding-bottom:0;color:silver;font-size:14px;line-height:20px;font-weight:400}.ctInnerContFeat .ctDate{color:#fff}.content,.content a{font-size:14px;line-height:20px}.content{padding:15px}.content a{text-decoration:underline}.content a:hover{text-decoration:none}.ctInnerContFeat .content,.ctInnerContFeat .content a{color:#fff}.ctOuterBlock{vertical-align:top}.ctInnerContBan .ctOuterBlock{vertical-align:middle}.ctInnerContBan .ctInnerBlock{padding-top:15px;padding-bottom:15px}.ctImgLeftOuterBlock,.ctImgRightOuterBlock{width:235px;vertical-align:top}.ctImgLeftOuterBlockBan,.ctImgRightOuterBlockBan{width:220px;vertical-align:top}.ctImgLeftInnerBlock,.ctImgRightInnerBlock{padding:15px}.ctImgRightInnerBlock{padding-left:0}.ctImgLeftInnerBlock{padding-right:0}.ctImgSubt{font-size:12px;line-height:16px;padding:15px;padding-bottom:0;padding-top:5px}.ctInnerContBan .ctImgSubt,.ctInnerContFeat .ctImgSubt{color:#fff}.ctImgLeftInnerBlock .ctImgSubt,.ctImgRightInnerBlock .ctImgSubt{padding-left:5px;text-align:left}.ctImgLeftInnerBlockBan .ctImgSubt,.ctImgRightInnerBlockBan .ctImgSubt{padding-left:5px;padding-bottom:5px;text-align:left}.ctButCont{background-color:#fff;vertical-align:top}.ctButContFeat{background-color:#696969;vertical-align:top}.ctButContBan{background-color:#cd5c5c;vertical-align:top}.ctButInnerCont{padding:15px;padding-top:0}.ctButContBan .ctButInnerCont{padding-top:15px;padding-bottom:0}.ctBut{background-color:#696969;color:#fff;font-size:14px;padding:20px;padding-top:10px;padding-bottom:10px}.ctBut:hover{background-color:#000}.ctBut2{background-color:#cd5c5c;color:#fff;font-size:14px;padding:20px;padding-top:10px;padding-bottom:10px}.ctBut2:hover{background-color:red}.ctButBlock a{color:#fff;text-decoration:none}.ctButContBan .ctBut,.ctButContBan .ctBut2,.ctButContBan .ctBut2:hover,.ctButContBan .ctBut:hover,.ctButContFeat .ctBut,.ctButContFeat .ctBut2,.ctButContFeat .ctBut2:hover,.ctButContFeat .ctBut:hover,.ctMobButContBan .ctBut,.ctMobButContBan .ctBut2,.ctMobButContBan .ctBut2:hover,.ctMobButContBan .ctBut:hover,.ctMobButContFeat .ctBut,.ctMobButContFeat .ctBut2,.ctMobButContFeat .ctBut2:hover,.ctMobButContFeat .ctBut:hover{background-color:#fff}.ctButContBan .ctButBlock a,.ctButContFeat .ctButBlock a,.ctMobButContBan .ctButBlock a,.ctMobButContFeat .ctButBlock a{color:#696969}.ctCallInnerCont{background-color:#696969;text-align:center;padding:15px;padding-top:10px;padding-bottom:10px}.ctCallInnerCont H2{color:#fff;font-size:20px;line-height:28px;font-family:Lato,sans-serif;font-weight:400}.ctCallInnerCont H2 a{font-size:20px;line-height:28px}.ctCallOuterCont a{text-decoration:none;color:#fff}.ctSubhInnerCont{border-bottom:2px solid #cd5c5c;padding-bottom:10px}.ctSubhInnerCont H2{color:#cd5c5c;font-size:20px;line-height:28px;font-family:Lato,sans-serif;font-weight:400}.agHeaderOuterCont{background-color:#fff;padding:15px;padding-bottom:0}.agHeaderInnerCont{font-size:20px;line-height:28px;color:#cd5c5c}.agItemsCont{background-color:#fff;padding:15px;padding-bottom:0}.agItemCont{padding-bottom:15px}.agDateBlockCont{width:65px;vertical-align:top}.agDateBlockDay,.agDateBlockMonth{background-color:#cd5c5c;padding:5px;text-align:center;width:40px;color:#fff;font-weight:700}.agDateBlockDay{padding-bottom:0;font-size:18px;line-height:22px}.agDateBlockMonth{padding-top:0}.agImgOuterCont{width:140px;vertical-align:top}.agCtCont{vertical-align:top}.agCapt H2{font-size:20px;line-height:28px;color:#696969;font-weight:700}.agSubt H4{color:gray;font-size:16px;line-height:24px;font-weight:400}.agDate,.agTime{color:silver;font-size:14px;line-height:20px;font-weight:400}.agButCont a{color:#fff;text-decoration:none}@media only screen and (max-width:480px){.ctMainTable{width:100%!important}.bodyMainTable{width:100%!important}.ctImg IMG{width:100%!important;height:auto!important;-ms-interpolation-mode:bicubic}.ctMainBlock,.ctMainBlockFeat,.ctMainBlockItem,.ctMainBlockItemFeat{display:block;width:100%!important}.ctBlockMargin{display:block;width:100%!important;padding-bottom:20px}.ctCapt H2,.ctCapt H3{font-size:20px!important;line-height:28px!important}.ctSubhInnerCont{padding-left:15px;padding-right:15px}.ctButCont,.ctButContBan,.ctButContFeat,.ctDeskButCont{display:none!important}.ctMobButCont,.ctMobButContBan,.ctMobButContFeat{display:block!important;max-height:none!important;height:auto!important;font-size:inherit!important;line-height:normal!important;margin:auto!important;width:100%!important;overflow:auto!important}.ctMobButBlock{padding:15px;padding-top:0}.ctMobButContBan .ctMobButBlock{padding-top:15px;padding-bottom:0}.ctMobInnerCont{display:block!important;max-height:none!important;height:auto!important;font-size:inherit!important;line-height:normal!important;margin:auto!important;width:100%!important;overflow:auto!important}.ctButTable{display:block!important;max-height:none!important;height:auto!important;font-size:inherit!important;line-height:normal!important;margin:auto!important;width:100%!important;overflow:auto!important}.ctImgLeftOuterBlock,.ctImgLeftOuterBlockBan,.ctImgRightOuterBlock,.ctImgRightOuterBlockBan{display:block!important;width:100%}.ctImgLeftInnerBlock,.ctImgLeftInnerBlockBan,.ctImgRightInnerBlock,.ctImgRightInnerBlockBan{padding:0!important}.ctImgLeftOuterBlock IMG,.ctImgLeftOuterBlockBan IMG,.ctImgRightOuterBlock IMG,.ctImgRightOuterBlockBan IMG{width:100%!important;height:auto!important}.ctOuterBlock{display:block!important;width:100%}.agImgOuterCont{width:100%!important;display:block;padding-bottom:10px}.agCtCont{width:100%!important;display:block}.agButCont{width:100%!important;display:block;padding-top:10px}}
+			@import url(https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i|Prata&amp;display=swap);html{width:100%;padding:0;margin:0}body{width:100%;margin:0;padding:0;background-color:#f5f5f5}.content a,a,td{font-family:Lato,sans-serif;color:#696969;font-size:14px;line-height:20px}h1,h2,h3,h4{font-family:Prata,serif;color:#cd5c5c;margin:0}.hdCont{background-color:#a9a9a9;padding:15px}.hdShow,.hdShow a{color:#fff}.hdShow{text-align:right}.hdShow a{text-decoration:underline}.headShow a:hover{text-decoration:none}.hdLogo{padding-bottom:15px}.hdEdition h1{color:#cd5c5c;font-size:24px;line-height:30px}.ftCont{padding:15px;text-align:center;background-color:#a9a9a9}.ftCont a{color:#696969;text-decoration:underline}.ftCont a:hover{text-decoration:none}.ftCont a img{border:0}.ctInnerCont,.ctMainBlock,.ctMainBlockItem{background-color:#fff;vertical-align:top}.ctInnerContFeat,.ctMainBlockFeat,.ctMainBlockItemFeat{background-color:#696969;vertical-align:top}.ctInnerContBan,.ctMainBlockBan{background-color:#cd5c5c}.ctBottomMargin{height:20px;font-size:1px;line-height:1px}.ctBlockMargin{width:20px;font-size:1px;line-height:1px}.ctCapt{padding:15px;padding-bottom:0}.ctCapt h2,.ctCapt h3{font-size:20px;line-height:28px;color:#cd5c5c;font-weight:700}.ctCapt h3{font-size:16px;line-height:24px}.ctInnerContFeat .ctCapt h2,.ctInnerContFeat .ctCapt h3{color:#fff}.ctInnerContBan .ctCapt{padding-top:0}.ctInnerContBan .ctCapt h2,.ctInnerContBan .ctCapt h3{color:#fff;font-size:28px;line-height:36px}.ctSubt{padding:15px;padding-top:0;padding-bottom:0}.ctSubt h4{color:gray;font-size:16px;line-height:24px;font-weight:400}.ctInnerContBan .ctSubt h4,.ctInnerContFeat .ctSubt h4{color:#fff}.ctDate{padding:15px;padding-top:0;padding-bottom:0;color:silver;font-size:14px;line-height:20px;font-weight:400}.ctInnerContFeat .ctDate{color:#fff}.content,.content a{font-size:14px;line-height:20px}.content{padding:15px}.content a{text-decoration:underline}.content a:hover{text-decoration:none}.ctInnerContFeat .content,.ctInnerContFeat .content a{color:#fff}.ctOuterBlock{vertical-align:top}.ctInnerContBan .ctOuterBlock{vertical-align:middle}.ctInnerContBan .ctInnerBlock{padding-top:15px;padding-bottom:15px}.ctImgLeftOuterBlock,.ctImgRightOuterBlock{width:235px;vertical-align:top}.ctImgLeftOuterBlockBan,.ctImgRightOuterBlockBan{width:220px;vertical-align:top}.ctImgLeftInnerBlock,.ctImgRightInnerBlock{padding:15px}.ctImgRightInnerBlock{padding-left:0}.ctImgLeftInnerBlock{padding-right:0}.ctImgSubt{font-size:12px;line-height:16px;padding:15px;padding-bottom:0;padding-top:5px}.ctInnerContBan .ctImgSubt,.ctInnerContFeat .ctImgSubt{color:#fff}.ctImgLeftInnerBlock .ctImgSubt,.ctImgRightInnerBlock .ctImgSubt{padding-left:5px;text-align:left}.ctImgLeftInnerBlockBan .ctImgSubt,.ctImgRightInnerBlockBan .ctImgSubt{padding-left:5px;padding-bottom:5px;text-align:left}.ctButCont{background-color:#fff;vertical-align:top}.ctButContFeat{background-color:#696969;vertical-align:top}.ctButContBan{background-color:#cd5c5c;vertical-align:top}.ctButInnerCont{padding:15px;padding-top:0}.ctButContBan .ctButInnerCont{padding-top:15px;padding-bottom:0}.ctBut{background-color:#696969;color:#fff;font-size:14px;padding:20px;padding-top:10px;padding-bottom:10px}.ctBut:hover{background-color:#000}.ctBut2{background-color:#cd5c5c;color:#fff;font-size:14px;padding:20px;padding-top:10px;padding-bottom:10px}.ctBut2:hover{background-color:red}.ctButBlock a{color:#fff;text-decoration:none}.ctButContBan .ctBut,.ctButContBan .ctBut2,.ctButContBan .ctBut2:hover,.ctButContBan .ctBut:hover,.ctButContFeat .ctBut,.ctButContFeat .ctBut2,.ctButContFeat .ctBut2:hover,.ctButContFeat .ctBut:hover,.ctMobButContBan .ctBut,.ctMobButContBan .ctBut2,.ctMobButContBan .ctBut2:hover,.ctMobButContBan .ctBut:hover,.ctMobButContFeat .ctBut,.ctMobButContFeat .ctBut2,.ctMobButContFeat .ctBut2:hover,.ctMobButContFeat .ctBut:hover{background-color:#fff}.ctButContBan .ctButBlock a,.ctButContFeat .ctButBlock a,.ctMobButContBan .ctButBlock a,.ctMobButContFeat .ctButBlock a{color:#696969}.ctCallInnerCont{background-color:#696969;text-align:center;padding:15px;padding-top:10px;padding-bottom:10px}.ctCallInnerCont h2{color:#fff;font-size:20px;line-height:28px;font-family:Lato,sans-serif;font-weight:400}.ctCallInnerCont h2 a{font-size:20px;line-height:28px}.ctCallOuterCont a{text-decoration:none;color:#fff}.ctSubhInnerCont,.ctSubhInnerContFeat{border-bottom:2px solid #cd5c5c;padding-bottom:10px}.ctSubhInnerContFeat{border-bottom:2px solid #696969}.ctSubhInnerCont h2,.ctSubhInnerContFeat h2{color:#cd5c5c;font-size:20px;line-height:28px;font-family:Lato,sans-serif;font-weight:400}.ctSubhInnerContFeat h2{color:#696969}.agHeaderOuterCont{background-color:#fff;padding:15px;padding-bottom:0}.agHeaderInnerCont{font-size:20px;line-height:28px;color:#cd5c5c}.agItemsCont{background-color:#fff;padding:15px;padding-bottom:0}.agItemCont{padding-bottom:15px}.agDateBlockCont{width:65px;vertical-align:top}.agDateBlockDay,.agDateBlockMonth{background-color:#cd5c5c;padding:5px;text-align:center;width:40px;color:#fff;font-weight:700}.agDateBlockDay{padding-bottom:0;font-size:18px;line-height:22px}.agDateBlockMonth{padding-top:0}.agImgOuterCont{width:140px;vertical-align:top}.agCtCont{vertical-align:top}.agCapt h2{font-size:20px;line-height:28px;color:#696969;font-weight:700}.agSubt h4{color:gray;font-size:16px;line-height:24px;font-weight:400}.agDate,.agTime{color:silver;font-size:14px;line-height:20px;font-weight:400}.agButCont a{color:#fff;text-decoration:none}
 		</style>
 
 		<table cellpadding="0" cellspacing="0" width="100%" style="width: 100%" class="ctMainTable">
@@ -167,7 +167,15 @@
                                                         Hide this part when using image left/right styles -->
 														<xsl:if test="image != '' and not(contains(style, 'afb.'))">
 															<tr>
-																<td class="ctImg">
+																<td>
+																	<!-- ##JWDB 26 march 2020: when the image width is smaller than 480, then don't stretch out on mobile. So add other class to them -->
+																	<xsl:attribute name="class">
+																		<xsl:choose>
+																			<xsl:when test="$width &lt; 480">ctImgSmall</xsl:when>
+																			<xsl:otherwise>ctImg</xsl:otherwise>
+																		</xsl:choose>
+																	</xsl:attribute>
+
 																	<xsl:choose>
 																		<xsl:when test="url != ''">
 																			<a target="_blank">
@@ -446,36 +454,38 @@
 																										<td class="ctMobButBlock">
 
 																											<table cellpadding="0" cellspacing="0" class="ctMobInnerCont" style="display:none;width:0px;max-height:0px;overflow:hidden;mso-hide:all;height:0;font-size:0;max-height:0;line-height:0;margin:0 auto;">
-																												<!-- Button 1 -->
-																												<xsl:if test="url != '' and not(contains(image_alt, 'NOBUTTON'))">
-																													<td class="ctButBlock">
-																														<xsl:attribute name="style">padding-right: 15px;</xsl:attribute>
+																												<tr>
+																													<!-- Button 1 -->
+																													<xsl:if test="url != '' and not(contains(image_alt, 'NOBUTTON'))">
+																														<td class="ctButBlock">
+																															<xsl:attribute name="style">padding-right: 15px;</xsl:attribute>
 
-																														<xsl:call-template name="button">
-																															<xsl:with-param name="url" select="details_url" />
-																															<xsl:with-param name="button_text" select="image_alt" />
-																															<xsl:with-param name="button_default_text" select="$button1_text" />
-																															<xsl:with-param name="class">ctBut</xsl:with-param>
-																															<xsl:with-param name="hide">1</xsl:with-param>
-																														</xsl:call-template>
+																															<xsl:call-template name="button">
+																																<xsl:with-param name="url" select="details_url" />
+																																<xsl:with-param name="button_text" select="image_alt" />
+																																<xsl:with-param name="button_default_text" select="$button1_text" />
+																																<xsl:with-param name="class">ctBut</xsl:with-param>
+																																<xsl:with-param name="hide">1</xsl:with-param>
+																															</xsl:call-template>
 
-																													</td>
-																												</xsl:if>
+																														</td>
+																													</xsl:if>
 
-																												<!-- Button 2 -->
-																												<xsl:if test="url2 != ''">
-																													<td class="ctButBlock">
+																													<!-- Button 2 -->
+																													<xsl:if test="url2 != ''">
+																														<td class="ctButBlock">
 
-																														<xsl:call-template name="button">
-																															<xsl:with-param name="url" select="details_url2" />
-																															<xsl:with-param name="button_text" select="icon2" />
-																															<xsl:with-param name="button_default_text" select="$button2_text" />
-																															<xsl:with-param name="class">ctBut2</xsl:with-param>
-																															<xsl:with-param name="hide">1</xsl:with-param>
-																														</xsl:call-template>
+																															<xsl:call-template name="button">
+																																<xsl:with-param name="url" select="details_url2" />
+																																<xsl:with-param name="button_text" select="icon2" />
+																																<xsl:with-param name="button_default_text" select="$button2_text" />
+																																<xsl:with-param name="class">ctBut2</xsl:with-param>
+																																<xsl:with-param name="hide">1</xsl:with-param>
+																															</xsl:call-template>
 
-																													</td>
-																												</xsl:if>
+																														</td>
+																													</xsl:if>
+																												</tr>
 																											</table>
 
 																										</td>
@@ -668,7 +678,14 @@
 
 						<tr>
 							<!-- start block -->
-							<td class="ctSubhMainBlock">
+							<td>
+								<!-- ##JWDB 26 march 2020: added class logic for featured subheader style -->
+								<xsl:attribute name="class">
+									<xsl:choose>
+										<xsl:when test="contains(style, 'uitgelicht')">ctSubhMainBlockFeat</xsl:when>
+										<xsl:otherwise>ctSubhMainBlock</xsl:otherwise>
+									</xsl:choose>
+								</xsl:attribute>
 
 								<!-- The data attributes for the BLOKKEN EDITOR -->
 								<table width="100%" cellpadding="0" cellspacing="0" style="width: 100%" class="emItem emEditable emMoveable">
@@ -687,10 +704,26 @@
 										</xsl:choose>
 									</xsl:attribute>
 									<tr>
-										<td class="ctSubhOuterCont">
+										<td>
+											<!-- ##JWDB 26 march 2020: added class logic for featured subheader style -->
+											<xsl:attribute name="class">
+												<xsl:choose>
+													<xsl:when test="contains(style, 'uitgelicht')">ctSubhOuterContFeat</xsl:when>
+													<xsl:otherwise>ctSubhOuterCont</xsl:otherwise>
+												</xsl:choose>
+											</xsl:attribute>
+
 											<table width="100%" cellpadding="0" cellspacing="0" style="width: 100%">
 												<tr>
-													<td class="ctSubhInnerCont">
+													<td>
+														<!-- ##JWDB 26 march 2020: added class logic for featured subheader style -->
+														<xsl:attribute name="class">
+															<xsl:choose>
+																<xsl:when test="contains(style, 'uitgelicht')">ctSubhInnerContFeat</xsl:when>
+																<xsl:otherwise>ctSubhInnerCont</xsl:otherwise>
+															</xsl:choose>
+														</xsl:attribute>
+
 														<h2><xsl:value-of select="title" /></h2>
 													</td>
 												</tr>
@@ -901,7 +934,7 @@
 				</xsl:choose>
 			</xsl:attribute>
 
-			<table cellspacing="0" cellpadding="0">
+			<table cellspacing="0" cellpadding="0" class="ctButOuterTable">
 				<xsl:attribute name="style">
 					<xsl:choose>
 						<xsl:when test="$ignore_width = 1">width: 100%</xsl:when>
@@ -919,63 +952,59 @@
 					<xsl:choose>
 						<xsl:when test="($row/url != '' and not(contains($row/image_alt, 'NOBUTTON'))) or ($row/url2 != '' and not(contains($row/icon2, 'NOBUTTON')))">
 							<td class="ctButInnerCont">
-								<table cellpadding="0" cellspacing="0">
-									<!-- Button 1 -->
-									<xsl:if test="$row/url != '' and not(contains($row/image_alt, 'NOBUTTON'))">
-										<xsl:if test="contains($row/style, '1/3')">
-											<xsl:text disable-output-escaping="yes"><![CDATA[<tr>]]></xsl:text>
+								<table cellpadding="0" cellspacing="0" class="ctButInnerTable">
+									<tr>
+										<!-- Button 1 -->
+										<xsl:if test="$row/url != '' and not(contains($row/image_alt, 'NOBUTTON'))">
+											<td class="ctButBlock">
+												<xsl:attribute name="style">
+													<xsl:choose>
+														<xsl:when test="$row/url2 != '' and not(contains($row/style, '1/3')) and not(contains($row/icon2, 'NOBUTTON'))">padding-right: 15px;</xsl:when>
+														<xsl:otherwise>padding-right: 0px;</xsl:otherwise>
+													</xsl:choose>
+												</xsl:attribute>
+
+												<xsl:call-template name="button">
+													<xsl:with-param name="url" select="$row/details_url" />
+													<xsl:with-param name="button_text" select="$row/image_alt" />
+													<xsl:with-param name="button_default_text" select="$button1_text" />
+													<xsl:with-param name="class">ctBut</xsl:with-param>
+												</xsl:call-template>
+
+											</td>
+											<xsl:if test="contains($row/style, '1/3') and $row/url2 != '' and not(contains($row/icon2, 'NOBUTTON'))">
+												<xsl:text disable-output-escaping="yes"><![CDATA[</tr>]]></xsl:text>
+											</xsl:if>
 										</xsl:if>
-										<td class="ctButBlock">
-											<xsl:attribute name="style">
-												<xsl:choose>
-													<xsl:when test="$row/url2 != '' and not(contains($row/style, '1/3')) and not(contains($row/icon2, 'NOBUTTON'))">padding-right: 15px;</xsl:when>
-													<xsl:otherwise>padding-right: 0px;</xsl:otherwise>
-												</xsl:choose>
-											</xsl:attribute>
 
-											<xsl:call-template name="button">
-												<xsl:with-param name="url" select="$row/details_url" />
-												<xsl:with-param name="button_text" select="$row/image_alt" />
-												<xsl:with-param name="button_default_text" select="$button1_text" />
-												<xsl:with-param name="class">ctBut</xsl:with-param>
-											</xsl:call-template>
+										<!-- Button 2 -->
+										<xsl:if test="$row/url2 != '' and not(contains($row/icon2, 'NOBUTTON'))">
+											<xsl:if test="contains($row/style, '1/3') and $row/url != '' and not(contains($row/image_alt, 'NOBUTTON'))">
+												<xsl:text disable-output-escaping="yes"><![CDATA[<tr>]]></xsl:text>
+											</xsl:if>
+											<td class="ctButBlock">
+												<xsl:attribute name="style">
+													<xsl:choose>
+														<xsl:when test="contains($row/style, '1/3')">padding-top: 10px;</xsl:when>
+														<xsl:otherwise>padding-top: 0px;</xsl:otherwise>
+													</xsl:choose>
+												</xsl:attribute>
 
-										</td>
-										<xsl:if test="contains($row/style, '1/3')">
-											<xsl:text disable-output-escaping="yes"><![CDATA[</tr>]]></xsl:text>
+												<xsl:call-template name="button">
+													<xsl:with-param name="url" select="$row/details_url2" />
+													<xsl:with-param name="button_text" select="$row/icon2" />
+													<xsl:with-param name="button_default_text" select="$button2_text" />
+													<xsl:with-param name="class">ctBut2</xsl:with-param>
+												</xsl:call-template>
+
+											</td>
 										</xsl:if>
-									</xsl:if>
-
-									<!-- Button 2 -->
-									<xsl:if test="$row/url2 != '' and not(contains($row/icon2, 'NOBUTTON'))">
-										<xsl:if test="contains($row/style, '1/3')">
-											<xsl:text disable-output-escaping="yes"><![CDATA[<tr>]]></xsl:text>
-										</xsl:if>
-										<td class="ctButBlock">
-											<xsl:attribute name="style">
-												<xsl:choose>
-													<xsl:when test="contains($row/style, '1/3')">padding-top: 10px;</xsl:when>
-													<xsl:otherwise>padding-top: 0px;</xsl:otherwise>
-												</xsl:choose>
-											</xsl:attribute>
-
-											<xsl:call-template name="button">
-												<xsl:with-param name="url" select="$row/details_url2" />
-												<xsl:with-param name="button_text" select="$row/icon2" />
-												<xsl:with-param name="button_default_text" select="$button2_text" />
-												<xsl:with-param name="class">ctBut2</xsl:with-param>
-											</xsl:call-template>
-
-										</td>
-										<xsl:if test="contains($row/style, '')">
-											<xsl:text disable-output-escaping="yes"><![CDATA[</tr>]]></xsl:text>
-										</xsl:if>
-									</xsl:if>
+									</tr>
 								</table>
 							</td>
 						</xsl:when>
 						<xsl:otherwise>
-							<td>
+							<td class="tdButNoBut">
 								<table cellpadding="0" cellspacing="0">
 									<tr>
 										<td style="font-size: 1px; line-height: 1px;">
