@@ -660,7 +660,14 @@
 
 						<tr>
 							<!-- start block -->
-							<td class="ctSubhMainBlock">
+							<td>
+								<!-- ##JWDB 26 march 2020: added class logic for featured subheader style -->
+								<xsl:attribute name="class">
+									<xsl:choose>
+										<xsl:when test="contains(style, 'uitgelicht')">ctSubhMainBlockFeat</xsl:when>
+										<xsl:otherwise>ctSubhMainBlock</xsl:otherwise>
+									</xsl:choose>
+								</xsl:attribute>
 
 								<!-- The data attributes for the BLOKKEN EDITOR -->
 								<table width="100%" cellpadding="0" cellspacing="0" style="width: 100%" class="emItem emEditable emMoveable">
@@ -679,10 +686,26 @@
 										</xsl:choose>
 									</xsl:attribute>
 									<tr>
-										<td class="ctSubhOuterCont">
+										<td>
+											<!-- ##JWDB 26 march 2020: added class logic for featured subheader style -->
+											<xsl:attribute name="class">
+												<xsl:choose>
+													<xsl:when test="contains(style, 'uitgelicht')">ctSubhOuterContFeat</xsl:when>
+													<xsl:otherwise>ctSubhOuterCont</xsl:otherwise>
+												</xsl:choose>
+											</xsl:attribute>
+
 											<table width="100%" cellpadding="0" cellspacing="0" style="width: 100%">
 												<tr>
-													<td class="ctSubhInnerCont">
+													<td>
+														<!-- ##JWDB 26 march 2020: added class logic for featured subheader style -->
+														<xsl:attribute name="class">
+															<xsl:choose>
+																<xsl:when test="contains(style, 'uitgelicht')">ctSubhInnerContFeat</xsl:when>
+																<xsl:otherwise>ctSubhInnerCont</xsl:otherwise>
+															</xsl:choose>
+														</xsl:attribute>
+
 														<h2><xsl:value-of select="title" /></h2>
 													</td>
 												</tr>
