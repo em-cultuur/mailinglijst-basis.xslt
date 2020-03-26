@@ -1,5 +1,5 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <!--
         BASIC TEMPLATE
@@ -18,30 +18,30 @@
 
         <style type="text/css">
             /* Custom fonts from Google, or use downloaded fonts and font-face*/
-            @import url('https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i|Prata&display=swap');
+            @import url('https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i|Prata&amp;display=swap');
 
             /*GLOBAL*/
-            HTML {
+            html {
                 width: 100%;
                 padding: 0;
                 margin: 0;
             }
 
-            BODY {
+            body {
                 width: 100%;
                 margin: 0;
                 padding: 0;
                 background-color: whitesmoke;
             }
 
-            TD, a, .content a {
+            td, a, .content a {
                 font-family: Lato, sans-serif;
                 color: dimgray;
                 font-size: 14px;
                 line-height: 20px;
             }
 
-            H1, H2, H3, H4 {
+            h1, h2, h3, h4 {
                 font-family: Prata, serif;
                 color: indianred;
                 margin: 0;
@@ -67,7 +67,7 @@
             .hdLogo {
                 padding-bottom: 15px;
             }
-            .hdEdition H1 {
+            .hdEdition h1 {
                 color: indianred;
                 font-size: 24px;
                 line-height: 30px;
@@ -89,8 +89,8 @@
                 text-decoration: none;
             }
 
-            .ftCont A IMG {
-                border: 0px;
+            .ftCont a img {
+                border: 0;
             }
 
             /*
@@ -122,25 +122,25 @@
             /*Title*/
             .ctCapt {
                 padding: 15px;
-                padding-bottom: 0px;
+                padding-bottom: 0;
             }
-            .ctCapt H2, .ctCapt H3 {
+            .ctCapt h2, .ctCapt h3 {
                 font-size: 20px;
                 line-height: 28px;
                 color: indianred;
                 font-weight: bold;
             }
-            .ctCapt H3 {
+            .ctCapt h3 {
                 font-size: 16px;
                 line-height: 24px;
             }
-            .ctInnerContFeat .ctCapt H2, .ctInnerContFeat .ctCapt H3 {
+            .ctInnerContFeat .ctCapt h2, .ctInnerContFeat .ctCapt h3 {
                 color: white;
             }
             .ctInnerContBan .ctCapt {
-                padding-top: 0px;
+                padding-top: 0;
             }
-            .ctInnerContBan .ctCapt H2, .ctInnerContBan .ctCapt H3 {
+            .ctInnerContBan .ctCapt h2, .ctInnerContBan .ctCapt h3 {
                 color: white;
                 font-size: 28px;
                 line-height: 36px;
@@ -149,25 +149,25 @@
             /*Subtitle*/
             .ctSubt {
                 padding: 15px;
-                padding-top: 0px;
-                padding-bottom: 0px;
+                padding-top: 0;
+                padding-bottom: 0;
             }
-            .ctSubt H4 {
+            .ctSubt h4 {
                 color: gray;
                 font-size: 16px;
                 line-height: 24px;
                 font-weight: normal;
             }
-            .ctInnerContFeat .ctSubt H4,
-            .ctInnerContBan .ctSubt H4 {
+            .ctInnerContFeat .ctSubt h4,
+            .ctInnerContBan .ctSubt h4 {
                 color: white;
             }
 
             /*Date*/
             .ctDate {
                 padding: 15px;
-                padding-top: 0px;
-                padding-bottom: 0px;
+                padding-top: 0;
+                padding-bottom: 0;
                 color: silver;
                 font-size: 14px;
                 line-height: 20px;
@@ -218,16 +218,16 @@
                 padding: 15px;
             }
             .ctImgRightInnerBlock {
-                padding-left: 0px;
+                padding-left: 0;
             }
             .ctImgLeftInnerBlock {
-                padding-right: 0px;
+                padding-right: 0;
             }
             .ctImgSubt {
                 font-size: 12px;
                 line-height: 16px;
                 padding: 15px;
-                padding-bottom: 0px;
+                padding-bottom: 0;
                 padding-top: 5px;
             }
             .ctInnerContFeat .ctImgSubt,
@@ -261,11 +261,11 @@
             }
             .ctButInnerCont {
                 padding: 15px;
-                padding-top: 0px;
+                padding-top: 0;
             }
             .ctButContBan .ctButInnerCont {
                 padding-top: 15px;
-                padding-bottom: 0px;
+                padding-bottom: 0;
             }
             .ctBut {
                 background-color: dimgray;
@@ -318,14 +318,14 @@
                 padding-top: 10px;
                 padding-bottom: 10px;
             }
-            .ctCallInnerCont H2 {
+            .ctCallInnerCont h2 {
                 color: white;
                 font-size: 20px;
                 line-height: 28px;
                 font-family: Lato, sans-serif;
                 font-weight: normal;
             }
-            .ctCallInnerCont H2 a {
+            .ctCallInnerCont h2 a {
                 font-size: 20px;
                 line-height: 28px;
             }
@@ -339,7 +339,7 @@
                 border-bottom: 2px solid indianred;
                 padding-bottom: 10px;
             }
-            .ctSubhInnerCont H2 {
+            .ctSubhInnerCont h2 {
                 color: indianred;
                 font-size: 20px;
                 line-height: 28px;
@@ -351,7 +351,7 @@
             .agHeaderOuterCont {
                 background-color: white;
                 padding: 15px;
-                padding-bottom: 0px;
+                padding-bottom: 0;
             }
             .agHeaderInnerCont {
                 font-size: 20px;
@@ -361,7 +361,7 @@
             .agItemsCont {
                 background-color: white;
                 padding: 15px;
-                padding-bottom: 0px;
+                padding-bottom: 0;
             }
             .agItemCont {
                 padding-bottom: 15px;
@@ -379,12 +379,12 @@
                 font-weight: bold;
             }
             .agDateBlockDay {
-                padding-bottom: 0px;
+                padding-bottom: 0;
                 font-size: 18px;
                 line-height: 22px;
             }
             .agDateBlockMonth {
-                padding-top: 0px;
+                padding-top: 0;
             }
             .agImgOuterCont {
                 width: 140px;
@@ -393,13 +393,13 @@
             .agCtCont {
                 vertical-align: top;
             }
-            .agCapt H2 {
+            .agCapt h2 {
                 font-size: 20px;
                 line-height: 28px;
                 color: dimgray;
                 font-weight: bold;
             }
-            .agSubt H4 {
+            .agSubt h4 {
                 color: gray;
                 font-size: 16px;
                 line-height: 24px;
@@ -424,7 +424,7 @@
                 .bodyMainTable {
                     width: 100% !important;
                 }
-                .ctImg IMG {
+                .ctImg img {
                     width: 100% !important;
                     height: auto !important;
                     -ms-interpolation-mode: bicubic;
@@ -438,7 +438,7 @@
                     width: 100% !important;
                     padding-bottom: 20px;
                 }
-                .ctCapt H2, .ctCapt H3 {
+                .ctCapt h2, .ctCapt h3 {
                     font-size: 20px !important;
                     line-height: 28px !important;
                 }
@@ -461,11 +461,11 @@
                 }
                 .ctMobButBlock {
                     padding: 15px;
-                    padding-top: 0px;
+                    padding-top: 0;
                 }
                 .ctMobButContBan .ctMobButBlock {
                     padding-top: 15px;
-                    padding-bottom: 0px;
+                    padding-bottom: 0;
                 }
                 .ctMobInnerCont {
                     display: block !important;
@@ -492,9 +492,9 @@
                     width: 100%;
                 }
                 .ctImgLeftInnerBlock, .ctImgRightInnerBlock, .ctImgRightInnerBlockBan, .ctImgLeftInnerBlockBan {
-                    padding: 0px !important;
+                    padding: 0 !important;
                 }
-                .ctImgLeftOuterBlock IMG, .ctImgRightOuterBlock IMG, .ctImgRightOuterBlockBan IMG, .ctImgLeftOuterBlockBan IMG {
+                .ctImgLeftOuterBlock img, .ctImgRightOuterBlock img, .ctImgRightOuterBlockBan img, .ctImgLeftOuterBlockBan img {
                     width: 100% !important;
                     height: auto !important;
                 }
@@ -529,7 +529,7 @@
                 font-family: sans-serif !important;
             }
 
-            H1, H2, H3, H4 {
+            h1, h2, h3, h4 {
                 font-family: serif !important
             }
 
