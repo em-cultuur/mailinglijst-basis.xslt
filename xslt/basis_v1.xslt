@@ -1102,7 +1102,7 @@
 						<xsl:attribute name="class"><xsl:value-of select="$class" /></xsl:attribute>
 						<table cellpadding="0" cellspacing="0">
 							<tr>
-								<td class="butIconText">
+								<td class="ctButIconText">
 									<a target="_blank">
 										<xsl:attribute name="href"><xsl:value-of select="$url" /></xsl:attribute>
 										<xsl:choose>
@@ -1112,10 +1112,10 @@
 									</a>
 								</td>
 								<xsl:if test="$button_icon != ''">
-									<td class="butIconMargin">
+									<td class="ctButIconMargin">
 										<xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text>
 									</td>
-									<td class="butIcon">
+									<td class="ctButIcon">
 										<img border="0" style="display: block;">
 											<xsl:attribute name="src"><xsl:value-of select="$button_icon" /></xsl:attribute>
 										</img>
