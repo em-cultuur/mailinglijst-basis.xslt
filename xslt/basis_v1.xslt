@@ -1078,6 +1078,7 @@
 	Central template for buttons
 	With hide param (1 or 0) you can determine if the button have to be hidden by default.
 	Default buttons will be visible when viewing e-mail on mobile devices.
+	##JWDB 31 march 2020: icon logic added, can be activated by filling in four variables above this XSLT
 	##todo explain
 	-->
 	<xsl:template name="button">
