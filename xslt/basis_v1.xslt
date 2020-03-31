@@ -458,6 +458,15 @@
 																										<td class="ctMobButBlock">
 
 																											<table cellpadding="0" cellspacing="0" class="ctMobInnerCont" style="display:none;width:0px;max-height:0px;overflow:hidden;mso-hide:all;height:0;font-size:0;max-height:0;line-height:0;margin:0 auto;">
+
+																												<!-- ##JWDB 31 march 2020: buttons can be aligned middle or right by adding 'button midden' or 'button rechts' in the style name -->
+																												<xsl:attribute name="align">
+																													<xsl:choose>
+																														<xsl:when test="contains(style, 'button midden')">center</xsl:when>
+																														<xsl:when test="contains(style, 'button rechts')">right</xsl:when>
+																														<xsl:otherwise>left</xsl:otherwise>
+																													</xsl:choose>
+																												</xsl:attribute>
 																												<tr>
 																													<!-- Button 1 -->
 																													<xsl:if test="url != '' and not(contains(image_alt, 'NOBUTTON'))">
@@ -957,6 +966,15 @@
 						<xsl:when test="($row/url != '' and not(contains($row/image_alt, 'NOBUTTON'))) or ($row/url2 != '' and not(contains($row/icon2, 'NOBUTTON')))">
 							<td class="ctButInnerCont">
 								<table cellpadding="0" cellspacing="0" class="ctButInnerTable">
+
+									<!-- ##JWDB 31 march 2020: buttons can be aligned middle or right by adding 'button midden' or 'button rechts' in the style name -->
+									<xsl:attribute name="align">
+										<xsl:choose>
+											<xsl:when test="contains($row/style, 'button midden')">center</xsl:when>
+											<xsl:when test="contains($row/style, 'button rechts')">right</xsl:when>
+											<xsl:otherwise>left</xsl:otherwise>
+										</xsl:choose>
+									</xsl:attribute>
 									<tr>
 										<!-- Button 1 -->
 										<xsl:if test="$row/url != '' and not(contains($row/image_alt, 'NOBUTTON'))">
