@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-15" ?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+				xmlns:xs="http://www.w3.org/1999/XSL/Transform">
 	<xsl:output method="html" />
 
 	<!-- Basis  v1
@@ -56,6 +57,9 @@
 	<xsl:variable name="date_period_prefix"> t/m </xsl:variable>
 	<xsl:variable name="date_time_prefix"> om </xsl:variable>
 	<xsl:variable name="date_time_period_prefix"> - </xsl:variable>
+
+	<xsl:variable name="index_title">In deze nieuwsbrief:</xsl:variable>
+	<xsl:variable name="index_indentation"><xsl:text disable-output-escaping="yes"><![CDATA[&bull;&nbsp;]]></xsl:text></xsl:variable>
 
 	<xsl:template match="/">
 
@@ -333,35 +337,30 @@
 																										<td class="ctCapt">
 
 																											<xsl:variable name="title">
+																												<xsl:call-template name="double_pipes">
+																													<xsl:with-param name="input" select="title" />
+																												</xsl:call-template>
+																											</xsl:variable>
+
+																											<xsl:variable name="heading">
 																												<xsl:choose>
-																													<xsl:when test="contains(title, ' || ')">
-																														<xsl:value-of select="normalize-space(substring-before(title, ' || '))" disable-output-escaping="yes" />
-																														<xsl:text disable-output-escaping="yes"><![CDATA[<br />]]></xsl:text>
-																														<xsl:choose>
-																															<xsl:when test="contains(substring-after(title, ' || '), ' || ')">
-																																<xsl:value-of select="normalize-space(substring-before(substring-after(title, ' || '), ' ||'))" disable-output-escaping="yes" />
-																																<xsl:text disable-output-escaping="yes"><![CDATA[<br />]]></xsl:text>
-																																<xsl:value-of select="normalize-space(substring-after(substring-after(title, ' || '), ' || '))" disable-output-escaping="yes" />
-																															</xsl:when>
-																															<xsl:otherwise>
-																																<xsl:value-of select="normalize-space(substring-after(title, ' || '))" disable-output-escaping="yes" />
-																															</xsl:otherwise>
-																														</xsl:choose>
+																													<xsl:when test="contains(style, '1/3') or contains(style, '2/3')">
+																														<xsl:text disable-output-escaping="yes"><![CDATA[<h3>]]></xsl:text>
+																														<xsl:value-of select="$title" disable-output-escaping="yes" />
+																														<xsl:text disable-output-escaping="yes"><![CDATA[</h3>]]></xsl:text>
 																													</xsl:when>
 																													<xsl:otherwise>
-																														<xsl:value-of select="title" disable-output-escaping="yes" />
+																														<xsl:text disable-output-escaping="yes"><![CDATA[<h2>]]></xsl:text>
+																														<xsl:value-of select="$title" disable-output-escaping="yes" />
+																														<xsl:text disable-output-escaping="yes"><![CDATA[</h2>]]></xsl:text>
 																													</xsl:otherwise>
 																												</xsl:choose>
 																											</xsl:variable>
 
-																											<xsl:choose>
-																												<xsl:when test="contains(style, '1/3') or contains(style, '2/3')">
-																													<h3><xsl:value-of select="$title" disable-output-escaping="yes" /></h3>
-																												</xsl:when>
-																												<xsl:otherwise>
-																													<h2><xsl:value-of select="$title" disable-output-escaping="yes" /></h2>
-																												</xsl:otherwise>
-																											</xsl:choose>
+																											<a>
+																												<xsl:attribute name="name"><xsl:value-of select="merge_ID" /></xsl:attribute>
+																												<xsl:value-of select="$heading" disable-output-escaping="yes" />
+																											</a>
 																										</td>
 																									</tr>
 
@@ -374,25 +373,9 @@
 																											<td class="ctSubt">
 
 																												<xsl:variable name="subtitle">
-																													<xsl:choose>
-																														<xsl:when test="contains(location, ' || ')">
-																															<xsl:value-of select="normalize-space(substring-before(location, ' || '))" disable-output-escaping="yes" />
-																															<xsl:text disable-output-escaping="yes"><![CDATA[<br />]]></xsl:text>
-																															<xsl:choose>
-																																<xsl:when test="contains(substring-after(location, ' || '), ' || ')">
-																																	<xsl:value-of select="normalize-space(substring-before(substring-after(location, ' || '), ' ||'))" disable-output-escaping="yes" />
-																																	<xsl:text disable-output-escaping="yes"><![CDATA[<br />]]></xsl:text>
-																																	<xsl:value-of select="normalize-space(substring-after(substring-after(location, ' || '), ' || '))" disable-output-escaping="yes" />
-																																</xsl:when>
-																																<xsl:otherwise>
-																																	<xsl:value-of select="normalize-space(substring-after(location, ' || '))" disable-output-escaping="yes" />
-																																</xsl:otherwise>
-																															</xsl:choose>
-																														</xsl:when>
-																														<xsl:otherwise>
-																															<xsl:value-of select="location" disable-output-escaping="yes" />
-																														</xsl:otherwise>
-																													</xsl:choose>
+																													<xsl:call-template name="double_pipes">
+																														<xsl:with-param name="input" select="location" />
+																													</xsl:call-template>
 																												</xsl:variable>
 
 																												<h4><xsl:value-of select="$subtitle" disable-output-escaping="yes" /></h4>
@@ -418,11 +401,40 @@
 																								</xsl:if>
 
 																								<!-- Content
-																								Hide this part when using banner blocks -->
+																								Hide this part when using banner blocks
+																								##JWDB 31 march 2020: when using index item style, show a list with all items in this newsletter with some exceptions (sub headers, this item, full image items, call2action and items with NOTITLE)
+																								The validation on ending <br> in content is to prevent we're adding too many enters
+																								-->
 																								<xsl:if test="not(contains(style, 'banner'))">
 																									<tr>
 																										<td class="content">
 																											<xsl:value-of select="content" disable-output-escaping="yes" />
+
+																											<xsl:if test="contains(style, 'index')">
+																												<xsl:choose>
+																													<xsl:when test="substring(content, string-length(content) - string-length('&lt;br&gt;') +1) = '&lt;br&gt;'"><br /></xsl:when>
+																													<xsl:otherwise><br /><br /></xsl:otherwise>
+																												</xsl:choose>
+
+																												<xsl:if test="$index_title != ''">
+																													<xsl:value-of select="$index_title" /><br />
+																												</xsl:if>
+
+																												<xsl:for-each select="/matches/match[contains(style, 'Item') and not(contains(style, 'index')) and not(contains(style, 'tussenkopje')) and not(contains(style, 'afbeelding')) and not(contains(title, 'NOTITLE')) and not(contains(style, 'call2action'))]">
+																													<xsl:variable name="title">
+																														<xsl:call-template name="double_pipes">
+																															<xsl:with-param name="input" select="title" />
+																															<xsl:with-param name="replace_with"><xsl:text disable-output-escaping="yes"><![CDATA[ ]]></xsl:text></xsl:with-param>
+																														</xsl:call-template>
+																													</xsl:variable>
+
+																													<xsl:value-of select="$index_indentation" disable-output-escaping="yes" />
+																													<a class="indexLink">
+																														<xsl:attribute name="href">#<xsl:value-of select="merge_ID" /></xsl:attribute>
+																														<xsl:value-of select="$title" disable-output-escaping="yes" />
+																													</a><br />
+																												</xsl:for-each>
+																											</xsl:if>
 																										</td>
 																									</tr>
 																								</xsl:if>
@@ -1233,25 +1245,9 @@
 									<tr>
 										<td class="agCapt">
 											<xsl:variable name="title">
-												<xsl:choose>
-													<xsl:when test="contains(title, ' || ')">
-														<xsl:value-of select="normalize-space(substring-before(title, ' || '))" disable-output-escaping="yes" />
-														<xsl:text disable-output-escaping="yes"><![CDATA[<br />]]></xsl:text>
-														<xsl:choose>
-															<xsl:when test="contains(substring-after(title, ' || '), ' || ')">
-																<xsl:value-of select="normalize-space(substring-before(substring-after(title, ' || '), ' ||'))" disable-output-escaping="yes" />
-																<xsl:text disable-output-escaping="yes"><![CDATA[<br />]]></xsl:text>
-																<xsl:value-of select="normalize-space(substring-after(substring-after(title, ' || '), ' || '))" disable-output-escaping="yes" />
-															</xsl:when>
-															<xsl:otherwise>
-																<xsl:value-of select="normalize-space(substring-after(title, ' || '))" disable-output-escaping="yes" />
-															</xsl:otherwise>
-														</xsl:choose>
-													</xsl:when>
-													<xsl:otherwise>
-														<xsl:value-of select="title" disable-output-escaping="yes" />
-													</xsl:otherwise>
-												</xsl:choose>
+												<xsl:call-template name="double_pipes">
+													<xsl:with-param name="input" select="title" />
+												</xsl:call-template>
 											</xsl:variable>
 
 											<h2><xsl:value-of select="$title" disable-output-escaping="yes" /></h2>
@@ -1264,25 +1260,9 @@
 											<td class="agSubt">
 
 												<xsl:variable name="subtitle">
-													<xsl:choose>
-														<xsl:when test="contains(location, ' || ')">
-															<xsl:value-of select="normalize-space(substring-before(location, ' || '))" disable-output-escaping="yes" />
-															<xsl:text disable-output-escaping="yes"><![CDATA[<br />]]></xsl:text>
-															<xsl:choose>
-																<xsl:when test="contains(substring-after(location, ' || '), ' || ')">
-																	<xsl:value-of select="normalize-space(substring-before(substring-after(location, ' || '), ' ||'))" disable-output-escaping="yes" />
-																	<xsl:text disable-output-escaping="yes"><![CDATA[<br />]]></xsl:text>
-																	<xsl:value-of select="normalize-space(substring-after(substring-after(location, ' || '), ' || '))" disable-output-escaping="yes" />
-																</xsl:when>
-																<xsl:otherwise>
-																	<xsl:value-of select="normalize-space(substring-after(location, ' || '))" disable-output-escaping="yes" />
-																</xsl:otherwise>
-															</xsl:choose>
-														</xsl:when>
-														<xsl:otherwise>
-															<xsl:value-of select="location" disable-output-escaping="yes" />
-														</xsl:otherwise>
-													</xsl:choose>
+													<xsl:call-template name="double_pipes">
+														<xsl:with-param name="input" select="location" />
+													</xsl:call-template>
 												</xsl:variable>
 
 												<h4><xsl:value-of select="$subtitle" disable-output-escaping="yes" /></h4>
@@ -1335,10 +1315,37 @@
 			</tr>
 
 		</table>
-		<!-- That's all folks !!
-		kind regards from the DeBoer Cousins
-		-->
 
 	</xsl:template>
+
+	<!-- ##JWDB 31 march 2020: central template for replacing input string to multiple lines by replacing double pipes to enters -->
+	<xsl:template name="double_pipes">
+		<xsl:param name="input" />
+		<xsl:param name="replace_with"><xsl:text disable-output-escaping="yes"><![CDATA[<br />]]></xsl:text></xsl:param>
+
+		<xsl:choose>
+			<xsl:when test="contains($input, ' || ')">
+				<xsl:value-of select="normalize-space(substring-before($input, ' || '))" disable-output-escaping="yes" />
+				<xsl:value-of select="$replace_with" disable-output-escaping="yes" />
+				<xsl:choose>
+					<xsl:when test="contains(substring-after($input, ' || '), ' || ')">
+						<xsl:value-of select="normalize-space(substring-before(substring-after($input, ' || '), ' ||'))" disable-output-escaping="yes" />
+						<xsl:value-of select="$replace_with" disable-output-escaping="yes" />
+						<xsl:value-of select="normalize-space(substring-after(substring-after($input, ' || '), ' || '))" disable-output-escaping="yes" />
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:value-of select="normalize-space(substring-after($input, ' || '))" disable-output-escaping="yes" />
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:value-of select="$input" disable-output-escaping="yes" />
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+
+	<!-- That's all folks !!
+	kind regards from the DeBoer Cousins
+	-->
 
 </xsl:stylesheet>
