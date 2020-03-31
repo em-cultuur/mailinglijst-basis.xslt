@@ -6,6 +6,7 @@
 	<!-- Basis  v1
 	XSLT for BLOCKS in MailingLijst-templates
 	(c) EM-Cultuur, 2020
+	Last change: JWDB 31 march 2020
 
 	BLOCKSTULE-names determine grouping
 	blockdeails (db.fiesds) dettermine content, design of the blocks
@@ -31,6 +32,10 @@
 	<!-- TEXT DEFAULTS (can be overridden -->
 	<xsl:variable name="button1_text">Lees meer</xsl:variable>
 	<xsl:variable name="button2_text">Koop kaarten</xsl:variable>
+	<xsl:variable name="button_icon"></xsl:variable>
+	<xsl:variable name="button2_icon"></xsl:variable>
+	<xsl:variable name="button_icon_feature"></xsl:variable>
+	<xsl:variable name="button2_icon_feature"></xsl:variable>
 	<xsl:variable name="agenda_header_text">Agenda</xsl:variable>
 
 	<xsl:variable name="date_day_0">zo </xsl:variable>
@@ -479,6 +484,12 @@
 																																<xsl:with-param name="button_default_text" select="$button1_text" />
 																																<xsl:with-param name="class">ctBut</xsl:with-param>
 																																<xsl:with-param name="hide">1</xsl:with-param>
+																																<xsl:with-param name="button_icon">
+																																	<xsl:choose>
+																																		<xsl:when test="contains(style, 'banner') or contains(style, 'uitgelicht') or extra1 != ''"><xsl:value-of select="$button_icon_feature" /></xsl:when>
+																																		<xsl:otherwise><xsl:value-of select="$button_icon" /></xsl:otherwise>
+																																	</xsl:choose>
+																																</xsl:with-param>
 																															</xsl:call-template>
 
 																														</td>
@@ -494,6 +505,12 @@
 																																<xsl:with-param name="button_default_text" select="$button2_text" />
 																																<xsl:with-param name="class">ctBut2</xsl:with-param>
 																																<xsl:with-param name="hide">1</xsl:with-param>
+																																<xsl:with-param name="button_icon">
+																																	<xsl:choose>
+																																		<xsl:when test="contains(style, 'banner') or contains(style, 'uitgelicht') or extra1 != ''"><xsl:value-of select="$button2_icon_feature" /></xsl:when>
+																																		<xsl:otherwise><xsl:value-of select="$button2_icon" /></xsl:otherwise>
+																																	</xsl:choose>
+																																</xsl:with-param>
 																															</xsl:call-template>
 
 																														</td>
@@ -991,6 +1008,12 @@
 													<xsl:with-param name="button_text" select="$row/image_alt" />
 													<xsl:with-param name="button_default_text" select="$button1_text" />
 													<xsl:with-param name="class">ctBut</xsl:with-param>
+													<xsl:with-param name="button_icon">
+														<xsl:choose>
+															<xsl:when test="contains($row/style, 'banner') or contains($row/style, 'uitgelicht') or $row/extra1 != ''"><xsl:value-of select="$button_icon_feature" /></xsl:when>
+															<xsl:otherwise><xsl:value-of select="$button_icon" /></xsl:otherwise>
+														</xsl:choose>
+													</xsl:with-param>
 												</xsl:call-template>
 
 											</td>
@@ -1017,6 +1040,12 @@
 													<xsl:with-param name="button_text" select="$row/icon2" />
 													<xsl:with-param name="button_default_text" select="$button2_text" />
 													<xsl:with-param name="class">ctBut2</xsl:with-param>
+													<xsl:with-param name="button_icon">
+														<xsl:choose>
+															<xsl:when test="contains($row/style, 'banner') or contains($row/style, 'uitgelicht') or $row/extra1 != ''"><xsl:value-of select="$button2_icon_feature" /></xsl:when>
+															<xsl:otherwise><xsl:value-of select="$button2_icon" /></xsl:otherwise>
+														</xsl:choose>
+													</xsl:with-param>
 												</xsl:call-template>
 
 											</td>
@@ -1058,6 +1087,7 @@
 		<xsl:param name="class" />
 		<xsl:param name="align">left</xsl:param>
 		<xsl:param name="hide">0</xsl:param>
+		<xsl:param name="button_icon" />
 
 		<a target="_blank">
 			<xsl:attribute name="href"><xsl:value-of select="$url" /></xsl:attribute>
@@ -1070,13 +1100,29 @@
 				<tr>
 					<td>
 						<xsl:attribute name="class"><xsl:value-of select="$class" /></xsl:attribute>
-						<a target="_blank">
-							<xsl:attribute name="href"><xsl:value-of select="$url" /></xsl:attribute>
-							<xsl:choose>
-								<xsl:when test="$button_text != ''"><xsl:value-of select="$button_text" /></xsl:when>
-								<xsl:otherwise><xsl:value-of select="$button_default_text" /></xsl:otherwise>
-							</xsl:choose>
-						</a>
+						<table cellpadding="0" cellspacing="0">
+							<tr>
+								<td class="butIconText">
+									<a target="_blank">
+										<xsl:attribute name="href"><xsl:value-of select="$url" /></xsl:attribute>
+										<xsl:choose>
+											<xsl:when test="$button_text != ''"><xsl:value-of select="$button_text" /></xsl:when>
+											<xsl:otherwise><xsl:value-of select="$button_default_text" /></xsl:otherwise>
+										</xsl:choose>
+									</a>
+								</td>
+								<xsl:if test="$button_icon != ''">
+									<td class="butIconMargin">
+										<xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text>
+									</td>
+									<td class="butIcon">
+										<img border="0" style="display: block;">
+											<xsl:attribute name="src"><xsl:value-of select="$button_icon" /></xsl:attribute>
+										</img>
+									</td>
+								</xsl:if>
+							</tr>
+						</table>
 					</td>
 				</tr>
 			</table>
@@ -1324,6 +1370,7 @@
 										<xsl:with-param name="button_text" select="image_alt" />
 										<xsl:with-param name="class">ctBut</xsl:with-param>
 										<xsl:with-param name="url" select="details_url" />
+										<xsl:with-param name="button_icon"><xsl:value-of select="$button_icon" /></xsl:with-param>
 									</xsl:call-template>
 								</td>
 							</xsl:if>

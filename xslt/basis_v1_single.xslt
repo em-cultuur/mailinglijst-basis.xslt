@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="iso-8859-15" ?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+				xmlns:xs="http://www.w3.org/1999/XSL/Transform">
 	<xsl:output method="html" />
 
 	<!-- Basis  v1
 	XSLT for BLOCKS in MailingLijst-templates
 	(c) EM-Cultuur, 2020
+	Last change: JWDB 31 march 2020
 
 	BLOCKSTULE-names determine grouping
 	blockdeails (db.fiesds) dettermine content, design of the blocks
@@ -30,6 +32,10 @@
 	<!-- TEXT DEFAULTS (can be overridden -->
 	<xsl:variable name="button1_text">Lees meer</xsl:variable>
 	<xsl:variable name="button2_text">Koop kaarten</xsl:variable>
+	<xsl:variable name="button_icon"></xsl:variable>
+	<xsl:variable name="button2_icon"></xsl:variable>
+	<xsl:variable name="button_icon_feature"></xsl:variable>
+	<xsl:variable name="button2_icon_feature"></xsl:variable>
 	<xsl:variable name="agenda_header_text">Agenda</xsl:variable>
 
 	<xsl:variable name="date_day_0">zo </xsl:variable>
@@ -57,6 +63,9 @@
 	<xsl:variable name="date_time_prefix"> om </xsl:variable>
 	<xsl:variable name="date_time_period_prefix"> - </xsl:variable>
 
+	<xsl:variable name="index_title">In deze nieuwsbrief:</xsl:variable>
+	<xsl:variable name="index_indentation"><xsl:text disable-output-escaping="yes"><![CDATA[&bull;&nbsp;]]></xsl:text></xsl:variable>
+
 	<xsl:template match="/">
 
 		<!-- STYLE BLOCK
@@ -64,7 +73,7 @@
 		You can minify this on this website: https://cssminifier.com/
 		-->
 		<style typ="text/css">
-			@import url(https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i|Prata&amp;display=swap);html{width:100%;padding:0;margin:0}body{width:100%;margin:0;padding:0;background-color:#f5f5f5}.content a,a,td{font-family:Lato,sans-serif;color:#696969;font-size:14px;line-height:20px}h1,h2,h3,h4{font-family:Prata,serif;color:#cd5c5c;margin:0}.hdCont{background-color:#a9a9a9;padding:15px}.hdShow,.hdShow a{color:#fff}.hdShow{text-align:right}.hdShow a{text-decoration:underline}.headShow a:hover{text-decoration:none}.hdLogo{padding-bottom:15px}.hdEdition h1{color:#cd5c5c;font-size:24px;line-height:30px}.ftCont{padding:15px;text-align:center;background-color:#a9a9a9}.ftCont a{color:#696969;text-decoration:underline}.ftCont a:hover{text-decoration:none}.ftCont a img{border:0}.ctInnerCont,.ctMainBlock,.ctMainBlockItem{background-color:#fff;vertical-align:top}.ctInnerContFeat,.ctMainBlockFeat,.ctMainBlockItemFeat{background-color:#696969;vertical-align:top}.ctInnerContBan,.ctMainBlockBan{background-color:#cd5c5c}.ctBottomMargin{height:20px;font-size:1px;line-height:1px}.ctBlockMargin{width:20px;font-size:1px;line-height:1px}.ctCapt{padding:15px;padding-bottom:0}.ctCapt h2,.ctCapt h3{font-size:20px;line-height:28px;color:#cd5c5c;font-weight:700}.ctCapt h3{font-size:16px;line-height:24px}.ctInnerContFeat .ctCapt h2,.ctInnerContFeat .ctCapt h3{color:#fff}.ctInnerContBan .ctCapt{padding-top:0}.ctInnerContBan .ctCapt h2,.ctInnerContBan .ctCapt h3{color:#fff;font-size:28px;line-height:36px}.ctSubt{padding:15px;padding-top:0;padding-bottom:0}.ctSubt h4{color:gray;font-size:16px;line-height:24px;font-weight:400}.ctInnerContBan .ctSubt h4,.ctInnerContFeat .ctSubt h4{color:#fff}.ctDate{padding:15px;padding-top:0;padding-bottom:0;color:silver;font-size:14px;line-height:20px;font-weight:400}.ctInnerContFeat .ctDate{color:#fff}.content,.content a{font-size:14px;line-height:20px}.content{padding:15px}.content a{text-decoration:underline}.content a:hover{text-decoration:none}.ctInnerContFeat .content,.ctInnerContFeat .content a{color:#fff}.ctOuterBlock{vertical-align:top}.ctInnerContBan .ctOuterBlock{vertical-align:middle}.ctInnerContBan .ctInnerBlock{padding-top:15px;padding-bottom:15px}.ctImgLeftOuterBlock,.ctImgRightOuterBlock{width:235px;vertical-align:top}.ctImgLeftOuterBlockBan,.ctImgRightOuterBlockBan{width:220px;vertical-align:top}.ctImgLeftInnerBlock,.ctImgRightInnerBlock{padding:15px}.ctImgRightInnerBlock{padding-left:0}.ctImgLeftInnerBlock{padding-right:0}.ctImgSubt{font-size:12px;line-height:16px;padding:15px;padding-bottom:0;padding-top:5px}.ctInnerContBan .ctImgSubt,.ctInnerContFeat .ctImgSubt{color:#fff}.ctImgLeftInnerBlock .ctImgSubt,.ctImgRightInnerBlock .ctImgSubt{padding-left:5px;text-align:left}.ctImgLeftInnerBlockBan .ctImgSubt,.ctImgRightInnerBlockBan .ctImgSubt{padding-left:5px;padding-bottom:5px;text-align:left}.ctButCont{background-color:#fff;vertical-align:top}.ctButContFeat{background-color:#696969;vertical-align:top}.ctButContBan{background-color:#cd5c5c;vertical-align:top}.ctButInnerCont{padding:15px;padding-top:0}.ctButContBan .ctButInnerCont{padding-top:15px;padding-bottom:0}.ctBut{background-color:#696969;color:#fff;font-size:14px;padding:20px;padding-top:10px;padding-bottom:10px}.ctBut:hover{background-color:#000}.ctBut2{background-color:#cd5c5c;color:#fff;font-size:14px;padding:20px;padding-top:10px;padding-bottom:10px}.ctBut2:hover{background-color:red}.ctButBlock a{color:#fff;text-decoration:none}.ctButContBan .ctBut,.ctButContBan .ctBut2,.ctButContBan .ctBut2:hover,.ctButContBan .ctBut:hover,.ctButContFeat .ctBut,.ctButContFeat .ctBut2,.ctButContFeat .ctBut2:hover,.ctButContFeat .ctBut:hover,.ctMobButContBan .ctBut,.ctMobButContBan .ctBut2,.ctMobButContBan .ctBut2:hover,.ctMobButContBan .ctBut:hover,.ctMobButContFeat .ctBut,.ctMobButContFeat .ctBut2,.ctMobButContFeat .ctBut2:hover,.ctMobButContFeat .ctBut:hover{background-color:#fff}.ctButContBan .ctButBlock a,.ctButContFeat .ctButBlock a,.ctMobButContBan .ctButBlock a,.ctMobButContFeat .ctButBlock a{color:#696969}.ctCallInnerCont{background-color:#696969;text-align:center;padding:15px;padding-top:10px;padding-bottom:10px}.ctCallInnerCont h2{color:#fff;font-size:20px;line-height:28px;font-family:Lato,sans-serif;font-weight:400}.ctCallInnerCont h2 a{font-size:20px;line-height:28px}.ctCallOuterCont a{text-decoration:none;color:#fff}.ctSubhInnerCont,.ctSubhInnerContFeat{border-bottom:2px solid #cd5c5c;padding-bottom:10px}.ctSubhInnerContFeat{border-bottom:2px solid #696969}.ctSubhInnerCont h2,.ctSubhInnerContFeat h2{color:#cd5c5c;font-size:20px;line-height:28px;font-family:Lato,sans-serif;font-weight:400}.ctSubhInnerContFeat h2{color:#696969}.agHeaderOuterCont{background-color:#fff;padding:15px;padding-bottom:0}.agHeaderInnerCont{font-size:20px;line-height:28px;color:#cd5c5c}.agItemsCont{background-color:#fff;padding:15px;padding-bottom:0}.agItemCont{padding-bottom:15px}.agDateBlockCont{width:65px;vertical-align:top}.agDateBlockDay,.agDateBlockMonth{background-color:#cd5c5c;padding:5px;text-align:center;width:40px;color:#fff;font-weight:700}.agDateBlockDay{padding-bottom:0;font-size:18px;line-height:22px}.agDateBlockMonth{padding-top:0}.agImgOuterCont{width:140px;vertical-align:top}.agCtCont{vertical-align:top}.agCapt h2{font-size:20px;line-height:28px;color:#696969;font-weight:700}.agSubt h4{color:gray;font-size:16px;line-height:24px;font-weight:400}.agDate,.agTime{color:silver;font-size:14px;line-height:20px;font-weight:400}.agButCont a{color:#fff;text-decoration:none}
+			@import url(https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i|Prata&amp;display=swap);html{width:100%;padding:0;margin:0}body{width:100%;margin:0;padding:0;background-color:#f5f5f5}.content a,a,td{font-family:Lato,sans-serif;color:#696969;font-size:14px;line-height:20px}h1,h2,h3,h4{font-family:Prata,serif;color:#cd5c5c;margin:0}.hdCont{background-color:#a9a9a9;padding:15px}.hdShow,.hdShow a{color:#fff}.hdShow{text-align:right}.hdShow a{text-decoration:underline}.headShow a:hover{text-decoration:none}.hdLogo{padding-bottom:15px}.hdEdition h1{color:#cd5c5c;font-size:24px;line-height:30px}.ftCont{padding:15px;text-align:center;background-color:#a9a9a9}.ftCont a{color:#696969;text-decoration:underline}.ftCont a:hover{text-decoration:none}.ftCont a img{border:0}.ctInnerCont,.ctMainBlock,.ctMainBlockItem{background-color:#fff;vertical-align:top}.ctInnerContFeat,.ctMainBlockFeat,.ctMainBlockItemFeat{background-color:#696969;vertical-align:top}.ctInnerContBan,.ctMainBlockBan{background-color:#cd5c5c}.ctBottomMargin{height:20px;font-size:1px;line-height:1px}.ctBlockMargin{width:20px;font-size:1px;line-height:1px}.ctCapt{padding:15px;padding-bottom:0}.ctCapt a,.ctCapt h2,.ctCapt h3{font-size:20px;line-height:28px;color:#cd5c5c;font-weight:700;text-decoration:none}.ctCapt h3{font-size:16px;line-height:24px}.ctInnerContFeat .ctCapt a,.ctInnerContFeat .ctCapt h2,.ctInnerContFeat .ctCapt h3{color:#fff}.ctInnerContBan .ctCapt{padding-top:0}.ctInnerContBan .ctCapt a,.ctInnerContBan .ctCapt h2,.ctInnerContBan .ctCapt h3{color:#fff;font-size:28px;line-height:36px}.ctSubt{padding:15px;padding-top:0;padding-bottom:0}.ctSubt h4{color:gray;font-size:16px;line-height:24px;font-weight:400}.ctInnerContBan .ctSubt h4,.ctInnerContFeat .ctSubt h4{color:#fff}.ctDate{padding:15px;padding-top:0;padding-bottom:0;color:silver;font-size:14px;line-height:20px;font-weight:400}.ctInnerContFeat .ctDate{color:#fff}.content,.content a{font-size:14px;line-height:20px}.content{padding:15px}.content a{text-decoration:underline}.content a:hover{text-decoration:none}.ctInnerContFeat .content,.ctInnerContFeat .content a{color:#fff}.ctOuterBlock{vertical-align:top}.ctInnerContBan .ctOuterBlock{vertical-align:middle}.ctInnerContBan .ctInnerBlock{padding-top:15px;padding-bottom:15px}.ctImgLeftOuterBlock,.ctImgRightOuterBlock{width:235px;vertical-align:top}.ctImgLeftOuterBlockBan,.ctImgRightOuterBlockBan{width:220px;vertical-align:top}.ctImgLeftInnerBlock,.ctImgRightInnerBlock{padding:15px}.ctImgRightInnerBlock{padding-left:0}.ctImgLeftInnerBlock{padding-right:0}.ctImgSubt{font-size:12px;line-height:16px;padding:15px;padding-bottom:0;padding-top:5px}.ctInnerContBan .ctImgSubt,.ctInnerContFeat .ctImgSubt{color:#fff}.ctImgLeftInnerBlock .ctImgSubt,.ctImgRightInnerBlock .ctImgSubt{padding-left:5px;text-align:left}.ctImgLeftInnerBlockBan .ctImgSubt,.ctImgRightInnerBlockBan .ctImgSubt{padding-left:5px;padding-bottom:5px;text-align:left}.ctButCont{background-color:#fff;vertical-align:top}.ctButContFeat{background-color:#696969;vertical-align:top}.ctButContBan{background-color:#cd5c5c;vertical-align:top}.ctButInnerCont{padding:15px;padding-top:0}.ctButContBan .ctButInnerCont{padding-top:15px;padding-bottom:0}.ctBut{background-color:#696969;color:#fff;font-size:14px;padding:20px;padding-top:10px;padding-bottom:10px}.ctBut:hover{background-color:#000}.ctBut2{background-color:#cd5c5c;color:#fff;font-size:14px;padding:20px;padding-top:10px;padding-bottom:10px}.ctBut2:hover{background-color:red}.ctButBlock a{color:#fff;text-decoration:none}.ctButContBan .ctBut,.ctButContBan .ctBut2,.ctButContBan .ctBut2:hover,.ctButContBan .ctBut:hover,.ctButContFeat .ctBut,.ctButContFeat .ctBut2,.ctButContFeat .ctBut2:hover,.ctButContFeat .ctBut:hover,.ctMobButContBan .ctBut,.ctMobButContBan .ctBut2,.ctMobButContBan .ctBut2:hover,.ctMobButContBan .ctBut:hover,.ctMobButContFeat .ctBut,.ctMobButContFeat .ctBut2,.ctMobButContFeat .ctBut2:hover,.ctMobButContFeat .ctBut:hover{background-color:#fff}.ctButContBan .ctButBlock a,.ctButContFeat .ctButBlock a,.ctMobButContBan .ctButBlock a,.ctMobButContFeat .ctButBlock a{color:#696969}.ctCallInnerCont{background-color:#696969;text-align:center;padding:15px;padding-top:10px;padding-bottom:10px}.ctCallInnerCont h2{color:#fff;font-size:20px;line-height:28px;font-family:Lato,sans-serif;font-weight:400}.ctCallInnerCont h2 a{font-size:20px;line-height:28px}.ctCallOuterCont a{text-decoration:none;color:#fff}.ctSubhInnerCont,.ctSubhInnerContFeat{border-bottom:2px solid #cd5c5c;padding-bottom:10px}.ctSubhInnerContFeat{border-bottom:2px solid #696969}.ctSubhInnerCont h2,.ctSubhInnerContFeat h2{color:#cd5c5c;font-size:20px;line-height:28px;font-family:Lato,sans-serif;font-weight:400}.ctSubhInnerContFeat h2{color:#696969}.agHeaderOuterCont{background-color:#fff;padding:15px;padding-bottom:0}.agHeaderInnerCont{font-size:20px;line-height:28px;color:#cd5c5c}.agItemsCont{background-color:#fff;padding:15px;padding-bottom:0}.agItemCont{padding-bottom:15px}.agDateBlockCont{width:65px;vertical-align:top}.agDateBlockDay,.agDateBlockMonth{background-color:#cd5c5c;padding:5px;text-align:center;width:40px;color:#fff;font-weight:700}.agDateBlockDay{padding-bottom:0;font-size:18px;line-height:22px}.agDateBlockMonth{padding-top:0}.agImgOuterCont{width:140px;vertical-align:top}.agCtCont{vertical-align:top}.agCapt h2{font-size:20px;line-height:28px;color:#696969;font-weight:700}.agSubt h4{color:gray;font-size:16px;line-height:24px;font-weight:400}.agDate,.agTime{color:silver;font-size:14px;line-height:20px;font-weight:400}.agButCont a{color:#fff;text-decoration:none}@media only screen and (max-width:480px){.ctMainTable{width:100%!important}.bodyMainTable{width:100%!important}.ctImg img{width:100%!important;height:auto!important;-ms-interpolation-mode:bicubic}.ctImgSmall{text-align:center}.ctImgSmall img{margin-left:auto;margin-right:auto}.ctImgSmall .ctImgSubt{text-align:left}.ctMainBlock,.ctMainBlockFeat,.ctMainBlockItem,.ctMainBlockItemFeat{display:block;width:100%!important}.ctBlockMargin{display:block;width:100%!important;padding-bottom:20px}.ctCapt h2,.ctCapt h3{font-size:20px!important;line-height:28px!important}.ctSubhInnerCont,.ctSubhInnerContFeat{padding-left:15px;padding-right:15px}.ctButCont,.ctButContBan,.ctButContFeat,.ctDeskButCont{display:none!important}.ctMobButCont,.ctMobButContBan,.ctMobButContFeat{display:table-row!important;max-height:none!important;height:auto!important;font-size:inherit!important;line-height:normal!important;margin:auto!important;width:100%!important;overflow:auto!important}.ctMobButBlock{padding:15px;padding-top:0}.ctMobButContBan .ctMobButBlock{padding-top:15px;padding-bottom:0}.ctMobInnerCont{display:table!important;max-height:none!important;height:auto!important;font-size:inherit!important;line-height:normal!important;margin:auto!important;width:auto!important;overflow:auto!important}.ctButTable{display:block!important;max-height:none!important;height:auto!important;font-size:inherit!important;line-height:normal!important;margin:auto!important;width:100%!important;overflow:auto!important}.ctImgLeftOuterBlock,.ctImgLeftOuterBlockBan,.ctImgRightOuterBlock,.ctImgRightOuterBlockBan{display:block!important;width:100%}.ctImgLeftInnerBlock,.ctImgLeftInnerBlockBan,.ctImgRightInnerBlock,.ctImgRightInnerBlockBan{padding:0!important;text-align:center}.ctImgLeftOuterBlock img,.ctImgLeftOuterBlockBan img,.ctImgRightOuterBlock img,.ctImgRightOuterBlockBan img{margin-left:auto;margin-right:auto}.ctOuterBlock{display:block!important;width:100%}.agImgOuterCont{width:100%!important;display:block;padding-bottom:10px}.agImgOuterCont img{margin-left:auto;margin-right:auto}.agCtCont{width:100%!important;display:block}.agButCont{width:100%!important;display:block;padding-top:10px}}
 		</style>
 
 		<table cellpadding="0" cellspacing="0" width="100%" style="width: 100%" class="ctMainTable">
@@ -341,35 +350,30 @@
 																										<td class="ctCapt">
 
 																											<xsl:variable name="title">
+																												<xsl:call-template name="double_pipes">
+																													<xsl:with-param name="input" select="title" />
+																												</xsl:call-template>
+																											</xsl:variable>
+
+																											<xsl:variable name="heading">
 																												<xsl:choose>
-																													<xsl:when test="contains(title, ' || ')">
-																														<xsl:value-of select="normalize-space(substring-before(title, ' || '))" disable-output-escaping="yes" />
-																														<xsl:text disable-output-escaping="yes"><![CDATA[<br />]]></xsl:text>
-																														<xsl:choose>
-																															<xsl:when test="contains(substring-after(title, ' || '), ' || ')">
-																																<xsl:value-of select="normalize-space(substring-before(substring-after(title, ' || '), ' ||'))" disable-output-escaping="yes" />
-																																<xsl:text disable-output-escaping="yes"><![CDATA[<br />]]></xsl:text>
-																																<xsl:value-of select="normalize-space(substring-after(substring-after(title, ' || '), ' || '))" disable-output-escaping="yes" />
-																															</xsl:when>
-																															<xsl:otherwise>
-																																<xsl:value-of select="normalize-space(substring-after(title, ' || '))" disable-output-escaping="yes" />
-																															</xsl:otherwise>
-																														</xsl:choose>
+																													<xsl:when test="contains(style, '1/3') or contains(style, '2/3')">
+																														<xsl:text disable-output-escaping="yes"><![CDATA[<h3>]]></xsl:text>
+																														<xsl:value-of select="$title" disable-output-escaping="yes" />
+																														<xsl:text disable-output-escaping="yes"><![CDATA[</h3>]]></xsl:text>
 																													</xsl:when>
 																													<xsl:otherwise>
-																														<xsl:value-of select="title" disable-output-escaping="yes" />
+																														<xsl:text disable-output-escaping="yes"><![CDATA[<h2>]]></xsl:text>
+																														<xsl:value-of select="$title" disable-output-escaping="yes" />
+																														<xsl:text disable-output-escaping="yes"><![CDATA[</h2>]]></xsl:text>
 																													</xsl:otherwise>
 																												</xsl:choose>
 																											</xsl:variable>
 
-																											<xsl:choose>
-																												<xsl:when test="contains(style, '1/3') or contains(style, '2/3')">
-																													<h3><xsl:value-of select="$title" disable-output-escaping="yes" /></h3>
-																												</xsl:when>
-																												<xsl:otherwise>
-																													<h2><xsl:value-of select="$title" disable-output-escaping="yes" /></h2>
-																												</xsl:otherwise>
-																											</xsl:choose>
+																											<a>
+																												<xsl:attribute name="name"><xsl:value-of select="merge_ID" /></xsl:attribute>
+																												<xsl:value-of select="$heading" disable-output-escaping="yes" />
+																											</a>
 																										</td>
 																									</tr>
 
@@ -382,25 +386,9 @@
 																											<td class="ctSubt">
 
 																												<xsl:variable name="subtitle">
-																													<xsl:choose>
-																														<xsl:when test="contains(location, ' || ')">
-																															<xsl:value-of select="normalize-space(substring-before(location, ' || '))" disable-output-escaping="yes" />
-																															<xsl:text disable-output-escaping="yes"><![CDATA[<br />]]></xsl:text>
-																															<xsl:choose>
-																																<xsl:when test="contains(substring-after(location, ' || '), ' || ')">
-																																	<xsl:value-of select="normalize-space(substring-before(substring-after(location, ' || '), ' ||'))" disable-output-escaping="yes" />
-																																	<xsl:text disable-output-escaping="yes"><![CDATA[<br />]]></xsl:text>
-																																	<xsl:value-of select="normalize-space(substring-after(substring-after(location, ' || '), ' || '))" disable-output-escaping="yes" />
-																																</xsl:when>
-																																<xsl:otherwise>
-																																	<xsl:value-of select="normalize-space(substring-after(location, ' || '))" disable-output-escaping="yes" />
-																																</xsl:otherwise>
-																															</xsl:choose>
-																														</xsl:when>
-																														<xsl:otherwise>
-																															<xsl:value-of select="location" disable-output-escaping="yes" />
-																														</xsl:otherwise>
-																													</xsl:choose>
+																													<xsl:call-template name="double_pipes">
+																														<xsl:with-param name="input" select="location" />
+																													</xsl:call-template>
 																												</xsl:variable>
 
 																												<h4><xsl:value-of select="$subtitle" disable-output-escaping="yes" /></h4>
@@ -426,11 +414,40 @@
 																								</xsl:if>
 
 																								<!-- Content
-																								Hide this part when using banner blocks -->
+																								Hide this part when using banner blocks
+																								##JWDB 31 march 2020: when using index item style, show a list with all items in this newsletter with some exceptions (sub headers, this item, full image items, call2action and items with NOTITLE)
+																								The validation on ending <br> in content is to prevent we're adding too many enters
+																								-->
 																								<xsl:if test="not(contains(style, 'banner'))">
 																									<tr>
 																										<td class="content">
 																											<xsl:value-of select="content" disable-output-escaping="yes" />
+
+																											<xsl:if test="contains(style, 'index')">
+																												<xsl:choose>
+																													<xsl:when test="substring(content, string-length(content) - string-length('&lt;br&gt;') +1) = '&lt;br&gt;'"><br /></xsl:when>
+																													<xsl:otherwise><br /><br /></xsl:otherwise>
+																												</xsl:choose>
+
+																												<xsl:if test="$index_title != ''">
+																													<xsl:value-of select="$index_title" /><br />
+																												</xsl:if>
+
+																												<xsl:for-each select="/matches/match[contains(style, 'Item') and not(contains(style, 'index')) and not(contains(style, 'tussenkopje')) and not(contains(style, 'afbeelding')) and not(contains(title, 'NOTITLE')) and not(contains(style, 'call2action'))]">
+																													<xsl:variable name="title">
+																														<xsl:call-template name="double_pipes">
+																															<xsl:with-param name="input" select="title" />
+																															<xsl:with-param name="replace_with"><xsl:text disable-output-escaping="yes"><![CDATA[ ]]></xsl:text></xsl:with-param>
+																														</xsl:call-template>
+																													</xsl:variable>
+
+																													<xsl:value-of select="$index_indentation" disable-output-escaping="yes" />
+																													<a class="indexLink">
+																														<xsl:attribute name="href">#<xsl:value-of select="merge_ID" /></xsl:attribute>
+																														<xsl:value-of select="$title" disable-output-escaping="yes" />
+																													</a><br />
+																												</xsl:for-each>
+																											</xsl:if>
 																										</td>
 																									</tr>
 																								</xsl:if>
@@ -454,6 +471,15 @@
 																										<td class="ctMobButBlock">
 
 																											<table cellpadding="0" cellspacing="0" class="ctMobInnerCont" style="display:none;width:0px;max-height:0px;overflow:hidden;mso-hide:all;height:0;font-size:0;max-height:0;line-height:0;margin:0 auto;">
+
+																												<!-- ##JWDB 31 march 2020: buttons can be aligned middle or right by adding 'button midden' or 'button rechts' in the style name -->
+																												<xsl:attribute name="align">
+																													<xsl:choose>
+																														<xsl:when test="contains(style, 'button midden')">center</xsl:when>
+																														<xsl:when test="contains(style, 'button rechts')">right</xsl:when>
+																														<xsl:otherwise>left</xsl:otherwise>
+																													</xsl:choose>
+																												</xsl:attribute>
 																												<tr>
 																													<!-- Button 1 -->
 																													<xsl:if test="url != '' and not(contains(image_alt, 'NOBUTTON'))">
@@ -466,6 +492,12 @@
 																																<xsl:with-param name="button_default_text" select="$button1_text" />
 																																<xsl:with-param name="class">ctBut</xsl:with-param>
 																																<xsl:with-param name="hide">1</xsl:with-param>
+																																<xsl:with-param name="button_icon">
+																																	<xsl:choose>
+																																		<xsl:when test="contains(style, 'banner') or contains(style, 'uitgelicht') or extra1 != ''"><xsl:value-of select="$button_icon_feature" /></xsl:when>
+																																		<xsl:otherwise><xsl:value-of select="$button_icon" /></xsl:otherwise>
+																																	</xsl:choose>
+																																</xsl:with-param>
 																															</xsl:call-template>
 
 																														</td>
@@ -481,6 +513,12 @@
 																																<xsl:with-param name="button_default_text" select="$button2_text" />
 																																<xsl:with-param name="class">ctBut2</xsl:with-param>
 																																<xsl:with-param name="hide">1</xsl:with-param>
+																																<xsl:with-param name="button_icon">
+																																	<xsl:choose>
+																																		<xsl:when test="contains(style, 'banner') or contains(style, 'uitgelicht') or extra1 != ''"><xsl:value-of select="$button2_icon_feature" /></xsl:when>
+																																		<xsl:otherwise><xsl:value-of select="$button2_icon" /></xsl:otherwise>
+																																	</xsl:choose>
+																																</xsl:with-param>
 																															</xsl:call-template>
 
 																														</td>
@@ -953,6 +991,15 @@
 						<xsl:when test="($row/url != '' and not(contains($row/image_alt, 'NOBUTTON'))) or ($row/url2 != '' and not(contains($row/icon2, 'NOBUTTON')))">
 							<td class="ctButInnerCont">
 								<table cellpadding="0" cellspacing="0" class="ctButInnerTable">
+
+									<!-- ##JWDB 31 march 2020: buttons can be aligned middle or right by adding 'button midden' or 'button rechts' in the style name -->
+									<xsl:attribute name="align">
+										<xsl:choose>
+											<xsl:when test="contains($row/style, 'button midden')">center</xsl:when>
+											<xsl:when test="contains($row/style, 'button rechts')">right</xsl:when>
+											<xsl:otherwise>left</xsl:otherwise>
+										</xsl:choose>
+									</xsl:attribute>
 									<tr>
 										<!-- Button 1 -->
 										<xsl:if test="$row/url != '' and not(contains($row/image_alt, 'NOBUTTON'))">
@@ -969,6 +1016,12 @@
 													<xsl:with-param name="button_text" select="$row/image_alt" />
 													<xsl:with-param name="button_default_text" select="$button1_text" />
 													<xsl:with-param name="class">ctBut</xsl:with-param>
+													<xsl:with-param name="button_icon">
+														<xsl:choose>
+															<xsl:when test="contains($row/style, 'banner') or contains($row/style, 'uitgelicht') or $row/extra1 != ''"><xsl:value-of select="$button_icon_feature" /></xsl:when>
+															<xsl:otherwise><xsl:value-of select="$button_icon" /></xsl:otherwise>
+														</xsl:choose>
+													</xsl:with-param>
 												</xsl:call-template>
 
 											</td>
@@ -995,6 +1048,12 @@
 													<xsl:with-param name="button_text" select="$row/icon2" />
 													<xsl:with-param name="button_default_text" select="$button2_text" />
 													<xsl:with-param name="class">ctBut2</xsl:with-param>
+													<xsl:with-param name="button_icon">
+														<xsl:choose>
+															<xsl:when test="contains($row/style, 'banner') or contains($row/style, 'uitgelicht') or $row/extra1 != ''"><xsl:value-of select="$button2_icon_feature" /></xsl:when>
+															<xsl:otherwise><xsl:value-of select="$button2_icon" /></xsl:otherwise>
+														</xsl:choose>
+													</xsl:with-param>
 												</xsl:call-template>
 
 											</td>
@@ -1036,6 +1095,7 @@
 		<xsl:param name="class" />
 		<xsl:param name="align">left</xsl:param>
 		<xsl:param name="hide">0</xsl:param>
+		<xsl:param name="button_icon" />
 
 		<a target="_blank">
 			<xsl:attribute name="href"><xsl:value-of select="$url" /></xsl:attribute>
@@ -1048,13 +1108,29 @@
 				<tr>
 					<td>
 						<xsl:attribute name="class"><xsl:value-of select="$class" /></xsl:attribute>
-						<a target="_blank">
-							<xsl:attribute name="href"><xsl:value-of select="$url" /></xsl:attribute>
-							<xsl:choose>
-								<xsl:when test="$button_text != ''"><xsl:value-of select="$button_text" /></xsl:when>
-								<xsl:otherwise><xsl:value-of select="$button_default_text" /></xsl:otherwise>
-							</xsl:choose>
-						</a>
+						<table cellpadding="0" cellspacing="0">
+							<tr>
+								<td class="butIconText">
+									<a target="_blank">
+										<xsl:attribute name="href"><xsl:value-of select="$url" /></xsl:attribute>
+										<xsl:choose>
+											<xsl:when test="$button_text != ''"><xsl:value-of select="$button_text" /></xsl:when>
+											<xsl:otherwise><xsl:value-of select="$button_default_text" /></xsl:otherwise>
+										</xsl:choose>
+									</a>
+								</td>
+								<xsl:if test="$button_icon != ''">
+									<td class="butIconMargin">
+										<xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text>
+									</td>
+									<td class="butIcon">
+										<img border="0" style="display: block;">
+											<xsl:attribute name="src"><xsl:value-of select="$button_icon" /></xsl:attribute>
+										</img>
+									</td>
+								</xsl:if>
+							</tr>
+						</table>
 					</td>
 				</tr>
 			</table>
@@ -1241,25 +1317,9 @@
 									<tr>
 										<td class="agCapt">
 											<xsl:variable name="title">
-												<xsl:choose>
-													<xsl:when test="contains(title, ' || ')">
-														<xsl:value-of select="normalize-space(substring-before(title, ' || '))" disable-output-escaping="yes" />
-														<xsl:text disable-output-escaping="yes"><![CDATA[<br />]]></xsl:text>
-														<xsl:choose>
-															<xsl:when test="contains(substring-after(title, ' || '), ' || ')">
-																<xsl:value-of select="normalize-space(substring-before(substring-after(title, ' || '), ' ||'))" disable-output-escaping="yes" />
-																<xsl:text disable-output-escaping="yes"><![CDATA[<br />]]></xsl:text>
-																<xsl:value-of select="normalize-space(substring-after(substring-after(title, ' || '), ' || '))" disable-output-escaping="yes" />
-															</xsl:when>
-															<xsl:otherwise>
-																<xsl:value-of select="normalize-space(substring-after(title, ' || '))" disable-output-escaping="yes" />
-															</xsl:otherwise>
-														</xsl:choose>
-													</xsl:when>
-													<xsl:otherwise>
-														<xsl:value-of select="title" disable-output-escaping="yes" />
-													</xsl:otherwise>
-												</xsl:choose>
+												<xsl:call-template name="double_pipes">
+													<xsl:with-param name="input" select="title" />
+												</xsl:call-template>
 											</xsl:variable>
 
 											<h2><xsl:value-of select="$title" disable-output-escaping="yes" /></h2>
@@ -1272,25 +1332,9 @@
 											<td class="agSubt">
 
 												<xsl:variable name="subtitle">
-													<xsl:choose>
-														<xsl:when test="contains(location, ' || ')">
-															<xsl:value-of select="normalize-space(substring-before(location, ' || '))" disable-output-escaping="yes" />
-															<xsl:text disable-output-escaping="yes"><![CDATA[<br />]]></xsl:text>
-															<xsl:choose>
-																<xsl:when test="contains(substring-after(location, ' || '), ' || ')">
-																	<xsl:value-of select="normalize-space(substring-before(substring-after(location, ' || '), ' ||'))" disable-output-escaping="yes" />
-																	<xsl:text disable-output-escaping="yes"><![CDATA[<br />]]></xsl:text>
-																	<xsl:value-of select="normalize-space(substring-after(substring-after(location, ' || '), ' || '))" disable-output-escaping="yes" />
-																</xsl:when>
-																<xsl:otherwise>
-																	<xsl:value-of select="normalize-space(substring-after(location, ' || '))" disable-output-escaping="yes" />
-																</xsl:otherwise>
-															</xsl:choose>
-														</xsl:when>
-														<xsl:otherwise>
-															<xsl:value-of select="location" disable-output-escaping="yes" />
-														</xsl:otherwise>
-													</xsl:choose>
+													<xsl:call-template name="double_pipes">
+														<xsl:with-param name="input" select="location" />
+													</xsl:call-template>
 												</xsl:variable>
 
 												<h4><xsl:value-of select="$subtitle" disable-output-escaping="yes" /></h4>
@@ -1334,6 +1378,7 @@
 										<xsl:with-param name="button_text" select="image_alt" />
 										<xsl:with-param name="class">ctBut</xsl:with-param>
 										<xsl:with-param name="url" select="details_url" />
+										<xsl:with-param name="button_icon"><xsl:value-of select="$button_icon" /></xsl:with-param>
 									</xsl:call-template>
 								</td>
 							</xsl:if>
@@ -1343,10 +1388,37 @@
 			</tr>
 
 		</table>
-		<!-- That's all folks !!
-		kind regards from the DeBoer Cousins
-		-->
 
 	</xsl:template>
+
+	<!-- ##JWDB 31 march 2020: central template for replacing input string to multiple lines by replacing double pipes to enters -->
+	<xsl:template name="double_pipes">
+		<xsl:param name="input" />
+		<xsl:param name="replace_with"><xsl:text disable-output-escaping="yes"><![CDATA[<br />]]></xsl:text></xsl:param>
+
+		<xsl:choose>
+			<xsl:when test="contains($input, ' || ')">
+				<xsl:value-of select="normalize-space(substring-before($input, ' || '))" disable-output-escaping="yes" />
+				<xsl:value-of select="$replace_with" disable-output-escaping="yes" />
+				<xsl:choose>
+					<xsl:when test="contains(substring-after($input, ' || '), ' || ')">
+						<xsl:value-of select="normalize-space(substring-before(substring-after($input, ' || '), ' ||'))" disable-output-escaping="yes" />
+						<xsl:value-of select="$replace_with" disable-output-escaping="yes" />
+						<xsl:value-of select="normalize-space(substring-after(substring-after($input, ' || '), ' || '))" disable-output-escaping="yes" />
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:value-of select="normalize-space(substring-after($input, ' || '))" disable-output-escaping="yes" />
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:value-of select="$input" disable-output-escaping="yes" />
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+
+	<!-- That's all folks !!
+	kind regards from the DeBoer Cousins
+	-->
 
 </xsl:stylesheet>
