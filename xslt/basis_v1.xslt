@@ -6,7 +6,7 @@
 	<!-- Basis  v1
 	XSLT for BLOCKS in MailingLijst-templates
 	(c) EM-Cultuur, 2020
-	Last change: JWDB 31 march 2020
+	Last change: JWDB 6 april 2020 (buttons)
 
 	BLOCKSTULE-names determine grouping
 	blockdeails (db.fiesds) dettermine content, design of the blocks
@@ -526,13 +526,74 @@
 																								<!-- MOBILE buttons trigger: AFB.
 																								Two buttons for some block styles as image left/right
                                                                                                 We need to put buttons next to images instead of below for blockstyle-names containing 'afb'  -->
-																								<xsl:if test="((url != '' and not(contains(image_alt, 'NOBUTTON'))) or (url2 != '' and not(contains(icon2, 'NOBUTTON')))) and contains(style, 'afb.')">
-																									<tr>
-																										<xsl:call-template name="button_container">
-																											<xsl:with-param name="row" select="." />
-																											<xsl:with-param name="ignore_width">1</xsl:with-param>
-																										</xsl:call-template>
-																									</tr>
+																								<xsl:if test="(url != '' and not(contains(image_alt, 'NOBUTTON'))) or (url2 != '' and not(contains(icon2, 'NOBUTTON')))">
+
+																									<!-- check if the following or previous 1/2, 1/3 or 2/3 items have buttons
+																									If not, then show this part to prevent unwanted white spaces between text and buttons -->
+																									<xsl:variable name="previous_buttons_2" select="((preceding-sibling::match[2]/url != '' and not(contains(preceding-sibling::match[2]/image_alt, 'NOBUTTON'))) or (preceding-sibling::match[2]/url2 != '' and not(contains(preceding-sibling::match[2]/icon2, 'NOBUTTON'))))" />
+																									<xsl:variable name="previous_buttons_1" select="((preceding-sibling::match[1]/url != '' and not(contains(preceding-sibling::match[1]/image_alt, 'NOBUTTON'))) or (preceding-sibling::match[1]/url2 != '' and not(contains(preceding-sibling::match[1]/icon2, 'NOBUTTON'))))" />
+																									<xsl:variable name="next_buttons_1" select="((following-sibling::match[1]/url != '' and not(contains(following-sibling::match[1]/image_alt, 'NOBUTTON'))) or (following-sibling::match[1]/url2 != '' and not(contains(following-sibling::match[1]/icon2, 'NOBUTTON'))))" />
+																									<xsl:variable name="next_buttons_2" select="((following-sibling::match[2]/url != '' and not(contains(following-sibling::match[2]/image_alt, 'NOBUTTON'))) or (following-sibling::match[2]/url2 != '' and not(contains(following-sibling::match[2]/icon2, 'NOBUTTON'))))" />
+
+																									<xsl:variable name="show_buttons">
+																										<xsl:choose>
+																											<!-- As first 1/2 item in the block -->
+																											<xsl:when test="contains(style, '1/2') and rule_end = 'false' and not($next_buttons_1) and
+																												contains(following-sibling::match[1]/style, '1/2')">1</xsl:when>
+
+																											<!-- As second 1/2 item in the block -->
+																											<xsl:when test="contains(style, '1/2') and rule_end = 'true' and not($previous_buttons_1) and
+																												contains(preceding-sibling::match[1]/style, '1/2')">1</xsl:when>
+
+																											<!-- As first 2/3 item in the block -->
+																											<xsl:when test="contains(style, '2/3') and rule_end = 'false' and not($next_buttons_1)">1</xsl:when>
+
+																											<!-- As second 2/3 item in the block -->
+																											<xsl:when test="contains(style, '2/3') and rule_end = 'true' and not($previous_buttons_1)">1</xsl:when>
+
+																											<!-- As first 1/3 item in the block in combination with a 2/3 item -->
+																											<xsl:when test="contains(style, '1/3') and rule_end = 'false' and not($next_buttons_1) and
+																												contains(following-sibling::match[1]/style, '2/3') and
+																												following-sibling::match[1]/rule_end = 'true'">1</xsl:when>
+
+																											<!-- As last 1/3 item in the block in combination with a 2/3 item -->
+																											<xsl:when test="contains(style, '1/3') and rule_end = 'true' and not($previous_buttons_1) and
+																												contains(preceding-sibling::match[1]/style, '2/3') and
+																												preceding-sibling::match[1]/rule_end = 'false'">1</xsl:when>
+
+																											<!-- As first 1/3 item in the block in combination with two other 1/3 items -->
+																											<xsl:when test="contains(style, '1/3') and rule_end = 'false' and not($next_buttons_1) and not($next_buttons_2) and
+																												contains(following-sibling::match[1]/style, '1/3') and
+																												following-sibling::match[1]/rule_end = 'false' and
+																												contains(following-sibling::match[2]/style, '1/3') and
+																												following-sibling::match[2]/rule_end = 'true'">1</xsl:when>
+
+																											<!-- As second 1/3 item in the block in combination with two other 1/3 items -->
+																											<xsl:when test="contains(style, '1/3') and rule_end = 'false' and not($previous_buttons_1) and not($next_buttons_1) and
+																												contains(following-sibling::match[1]/style, '1/3') and
+																												following-sibling::match[1]/rule_end = 'true' and
+																												contains(preceding-sibling::match[1]/style, '1/3') and
+																												preceding-sibling::match[1]/rule_end = 'false'">1</xsl:when>
+
+																											<!-- As third 1/3 item in the block in combination with two other 1/3 items -->
+																											<xsl:when test="contains(style, '1/3') and rule_end = 'true' and not($previous_buttons_1) and not($previous_buttons_2) and
+																												contains(preceding-sibling::match[1]/style, '1/3') and
+																												preceding-sibling::match[1]/rule_end = 'false' and
+																												contains(preceding-sibling::match[2]/style, '1/3') and
+																												preceding-sibling::match[2]/rule_end = 'false'">1</xsl:when>
+
+																											<xsl:otherwise>0</xsl:otherwise>
+																										</xsl:choose>
+																									</xsl:variable>
+
+																									<xsl:if test="contains(style, 'afb.') or $show_buttons = 1">
+																										<tr>
+																											<xsl:call-template name="button_container">
+																												<xsl:with-param name="row" select="." />
+																												<xsl:with-param name="ignore_width">1</xsl:with-param>
+																											</xsl:call-template>
+																										</tr>
+																									</xsl:if>
 																								</xsl:if>
 																							</table>
 																						</td>
@@ -570,36 +631,89 @@
 							<!-- Buttons, used for desktop version (the mobile version is defined after content above).
                             Except for some block styles containing images-->
 							<xsl:if test="not(contains(style, 'afb.')) and not(contains(style, 'afbeelding'))">
-								<tr>
-									<td class="ctDeskButCont">
-										<table cellpadding="0" cellspacing="0">
-											<tr>
-												<!-- BUTTON 1 -->
-												<xsl:if test="preceding-sibling::match[2]/rule_end != 'true' and preceding-sibling::match[1]/rule_end != 'true'">
+
+								<!-- Check if it's necessary to show this buttons row if one 1/2 have buttons -->
+								<xsl:variable name="previous_buttons_2" select="((preceding-sibling::match[2]/url != '' and not(contains(preceding-sibling::match[2]/image_alt, 'NOBUTTON'))) or (preceding-sibling::match[2]/url2 != '' and not(contains(preceding-sibling::match[2]/icon2, 'NOBUTTON'))))" />
+								<xsl:variable name="previous_buttons_1" select="((preceding-sibling::match[1]/url != '' and not(contains(preceding-sibling::match[1]/image_alt, 'NOBUTTON'))) or (preceding-sibling::match[1]/url2 != '' and not(contains(preceding-sibling::match[1]/icon2, 'NOBUTTON'))))" />
+								<xsl:variable name="current_buttons" select="((url != '' and not(contains(image_alt, 'NOBUTTON'))) or (url2 != '' and not(contains(icon2, 'NOBUTTON'))))"></xsl:variable>
+
+								<xsl:variable name="show_buttons">
+									<xsl:choose>
+										<!-- First 1/2 haves buttons and second one not -->
+										<xsl:when test="contains(style, '1/2') and not($current_buttons) and $previous_buttons_1 and
+											contains(preceding-sibling::match[1]/style, '1/2')">0</xsl:when>
+
+										<!-- Second 1/2 haves buttons and first one not -->
+										<xsl:when test="contains(style, '1/2') and $current_buttons and not($previous_buttons_1) and
+											contains(preceding-sibling::match[1]/style, '1/2')">0</xsl:when>
+
+										<!-- First 2/3 haves buttons and second 1/3 not -->
+										<xsl:when test="contains(style, '1/3') and not($current_buttons) and $previous_buttons_1 and
+											contains(preceding-sibling::match[1]/style, '2/3') and
+											preceding-sibling::match[1]/rule_end = 'false'">0</xsl:when>
+
+										<!-- Second 2/3 haves buttons and first 1/3 not -->
+										<xsl:when test="contains(style, '2/3') and $current_buttons and not($previous_buttons_1) and
+											contains(preceding-sibling::match[1]/style, '1/3') and
+											preceding-sibling::match[1]/rule_end = 'false'">0</xsl:when>
+
+										<!-- first 1/3 haves buttons and other 1/3 items not -->
+										<xsl:when test="contains(style, '1/3') and not($current_buttons) and not($previous_buttons_1) and $previous_buttons_2 and
+											contains(preceding-sibling::match[1]/style, '1/3') and
+											preceding-sibling::match[1]/rule_end = 'false' and
+											contains(preceding-sibling::match[2]/style, '1/3') and
+											preceding-sibling::match[2]/rule_end = 'false'">0</xsl:when>
+
+										<!-- second 1/3 haves buttons and other 1/3 items not -->
+										<xsl:when test="contains(style, '1/3') and not($current_buttons) and $previous_buttons_1 and not($previous_buttons_2) and
+											contains(preceding-sibling::match[1]/style, '1/3') and
+											preceding-sibling::match[1]/rule_end = 'false' and
+											contains(preceding-sibling::match[2]/style, '1/3') and
+											preceding-sibling::match[2]/rule_end = 'false'">0</xsl:when>
+
+										<!-- third 1/3 haves buttons and other 1/3 items not -->
+										<xsl:when test="contains(style, '1/3') and $current_buttons and not($previous_buttons_1) and not($previous_buttons_2) and
+											contains(preceding-sibling::match[1]/style, '1/3') and
+											preceding-sibling::match[1]/rule_end = 'false' and
+											contains(preceding-sibling::match[2]/style, '1/3') and
+											preceding-sibling::match[2]/rule_end = 'false'">0</xsl:when>
+
+										<xsl:otherwise>1</xsl:otherwise>
+									</xsl:choose>
+								</xsl:variable>
+
+								<xsl:if test="$show_buttons = 1">
+									<tr>
+										<td class="ctDeskButCont">
+											<table cellpadding="0" cellspacing="0">
+												<tr>
+													<!-- BUTTON 1 -->
+													<xsl:if test="preceding-sibling::match[2]/rule_end != 'true' and preceding-sibling::match[1]/rule_end != 'true'">
+														<xsl:call-template name="button_container">
+															<xsl:with-param name="row" select="preceding-sibling::match[2]" />
+														</xsl:call-template>
+
+														<td class="ctBlockMargin"><xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text></td>
+													</xsl:if>
+
+													<!-- BUTTON 2 -->
+													<xsl:if test="preceding-sibling::match[1]/rule_end != 'true'">
+														<xsl:call-template name="button_container">
+															<xsl:with-param name="row" select="preceding-sibling::match[1]" />
+														</xsl:call-template>
+
+														<td class="ctBlockMargin"><xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text></td>
+													</xsl:if>
+
+													<!-- BUTTON 3 -->
 													<xsl:call-template name="button_container">
-														<xsl:with-param name="row" select="preceding-sibling::match[2]" />
+														<xsl:with-param name="row" select="." />
 													</xsl:call-template>
-
-													<td class="ctBlockMargin"><xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text></td>
-												</xsl:if>
-
-												<!-- BUTTON 2 -->
-												<xsl:if test="preceding-sibling::match[1]/rule_end != 'true'">
-													<xsl:call-template name="button_container">
-														<xsl:with-param name="row" select="preceding-sibling::match[1]" />
-													</xsl:call-template>
-
-													<td class="ctBlockMargin"><xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text></td>
-												</xsl:if>
-
-												<!-- BUTTON 3 -->
-												<xsl:call-template name="button_container">
-													<xsl:with-param name="row" select="." />
-												</xsl:call-template>
-											</tr>
-										</table>
-									</td>
-								</tr>
+												</tr>
+											</table>
+										</td>
+									</tr>
+								</xsl:if>
 							</xsl:if>
 
 							<!-- Create a table-row to generate margin between two item blocks -->
