@@ -69,6 +69,8 @@
 	<xsl:variable name="index_title">In deze nieuwsbrief:</xsl:variable>
 	<xsl:variable name="index_indentation"><xsl:text disable-output-escaping="yes"><![CDATA[&bull;&nbsp;]]></xsl:text></xsl:variable>
 
+	<xsl:variable name="titles_index">TS</xsl:variable> <!-- TS = Title - Subtitle, ST = Subtitle - Title. For banner style only -->
+
 	<xsl:template match="/">
 
 		<!-- STYLE BLOCK
@@ -346,11 +348,37 @@
 																								<xsl:if test="(not(contains(style, 'GEENTITEL')) and not(contains(title, 'NOTITLE'))) or contains(style, 'banner')">
 
 																									<!--
+                                                                                                    Subtitle (db.location)
+                                                                                                    You can add 2x double pipes to break subtitle in max 3 lines (||)
+                                                                                                    Show this when the titles index are ST (subtitle - title), for banner style only
+                                                                                                    -->
+																									<xsl:if test="location != '' and $titles_index = 'ST' and contains(style, 'banner')">
+																										<tr>
+																											<td class="ctSubtAbove">
+
+																												<xsl:variable name="subtitle">
+																													<xsl:call-template name="double_pipes">
+																														<xsl:with-param name="input" select="location" />
+																													</xsl:call-template>
+																												</xsl:variable>
+
+																												<h4><xsl:value-of select="$subtitle" disable-output-escaping="yes" /></h4>
+																											</td>
+																										</tr>
+																									</xsl:if>
+
+																									<!--
                                                                                                     Title (db.title)
                                                                                                     You can add 2x double pipes to break title (max 2 double pipes)
                                                                                                     -->
 																									<tr>
-																										<td class="ctCapt">
+																										<td>
+																											<xsl:attribute name="class">
+																												<xsl:choose>
+																													<xsl:when test="$titles_index = 'ST' and location != '' and contains(style, 'banner')">ctCaptBelow</xsl:when>
+																													<xsl:otherwise>ctCapt</xsl:otherwise>
+																												</xsl:choose>
+																											</xsl:attribute>
 
 																											<xsl:variable name="title">
 																												<xsl:call-template name="double_pipes">
@@ -383,8 +411,9 @@
 																									<!--
                                                                                                     Subtitle (db.location)
                                                                                                     You can add 2x double pipes to break subtitle in max 3 lines (||)
+                                                                                                    Show this when the titles index are TS (title - subtitle), for banner style only
                                                                                                     -->
-																									<xsl:if test="location != ''">
+																									<xsl:if test="location != '' and ($titles_index = 'TS' or not(contains(style, 'banner')))">
 																										<tr>
 																											<td class="ctSubt">
 
