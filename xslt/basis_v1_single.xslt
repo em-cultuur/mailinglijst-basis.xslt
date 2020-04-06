@@ -6,7 +6,7 @@
 	<!-- Basis  v1
 	XSLT for BLOCKS in MailingLijst-templates
 	(c) EM-Cultuur, 2020
-	Last change: JWDB 31 march 2020
+	Last change: JWDB 6 april 2020 (buttons, agenda icon)
 
 	BLOCKSTULE-names determine grouping
 	blockdeails (db.fiesds) dettermine content, design of the blocks
@@ -36,7 +36,10 @@
 	<xsl:variable name="button2_icon"></xsl:variable>
 	<xsl:variable name="button_icon_feature"></xsl:variable>
 	<xsl:variable name="button2_icon_feature"></xsl:variable>
+
 	<xsl:variable name="agenda_header_text">Agenda</xsl:variable>
+	<xsl:variable name="agenda_icon"></xsl:variable>
+	<xsl:variable name="agenda_icon_width">36</xsl:variable>
 
 	<xsl:variable name="date_day_0">zo </xsl:variable>
 	<xsl:variable name="date_day_1">ma </xsl:variable>
@@ -1269,7 +1272,7 @@
 							<xsl:choose>
 								<xsl:when test="$with_data = 1">
 
-									<table width="100%" cellpadding="0" cellspacing="0" style="width: 100%" class="emItem emEditable emMoveable">
+									<table cellpadding="0" cellspacing="0" class="emItem emEditable emMoveable">
 										<xsl:attribute name="data-sort"><xsl:value-of select="sort_on" /></xsl:attribute>
 										<xsl:attribute name="data-ID"><xsl:value-of select="merge_ID"/></xsl:attribute>
 										<xsl:attribute name="data-last">
@@ -1285,6 +1288,18 @@
 											</xsl:choose>
 										</xsl:attribute>
 										<tr>
+											<!-- ##JWDB 6 april 2020: Agenda icon implemented -->
+											<xsl:if test="$agenda_icon != ''">
+												<td class="agHeaderIcon" style="padding-right: 10px;">
+													<img>
+														<xsl:attribute name="src"><xsl:value-of select="$agenda_icon" /></xsl:attribute>
+														<xsl:attribute name="title"><xsl:value-of select="$agenda_header_text" /></xsl:attribute>
+														<xsl:attribute name="alt"><xsl:value-of select="$agenda_header_text" /></xsl:attribute>
+														<xsl:attribute name="width"><xsl:value-of select="$agenda_icon_width" /></xsl:attribute>
+														<xsl:attribute name="style">width: <xsl:value-of select="$agenda_icon_width" />px; display: block;</xsl:attribute>
+													</img>
+												</td>
+											</xsl:if>
 											<td class="agHeaderInnerCont">
 												<xsl:value-of select="title" disable-output-escaping="yes" />
 											</td>
@@ -1294,8 +1309,20 @@
 								</xsl:when>
 								<xsl:otherwise>
 
-									<table width="100%" cellpadding="0" cellspacing="0" style="width: 100%">
+									<table cellpadding="0" cellspacing="0">
 										<tr>
+											<!-- ##JWDB 6 april 2020: Agenda icon implemented -->
+											<xsl:if test="$agenda_icon != ''">
+												<td class="agHeaderIcon" style="padding-right: 10px;">
+													<img>
+														<xsl:attribute name="src"><xsl:value-of select="$agenda_icon" /></xsl:attribute>
+														<xsl:attribute name="title"><xsl:value-of select="$agenda_header_text" /></xsl:attribute>
+														<xsl:attribute name="alt"><xsl:value-of select="$agenda_header_text" /></xsl:attribute>
+														<xsl:attribute name="width"><xsl:value-of select="$agenda_icon_width" /></xsl:attribute>
+														<xsl:attribute name="style">width: <xsl:value-of select="$agenda_icon_width" />px; display: block;</xsl:attribute>
+													</img>
+												</td>
+											</xsl:if>
 											<td class="agHeaderInnerCont">
 												<xsl:value-of select="$agenda_header_text" />
 											</td>
