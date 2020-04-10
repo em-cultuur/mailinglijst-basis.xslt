@@ -6,7 +6,7 @@
 	<!-- Basis  v1
 	XSLT for BLOCKS in MailingLijst-templates
 	(c) EM-Cultuur, 2020
-	Last change: JWDB 6 april 2020 (buttons, agenda icon)
+	Last change: JWDB 10 april 2020
 
 	BLOCKSTULE-names determine grouping
 	blockdeails (db.fiesds) dettermine content, design of the blocks
@@ -69,8 +69,6 @@
 	<xsl:variable name="index_title">In deze nieuwsbrief:</xsl:variable>
 	<xsl:variable name="index_indentation"><xsl:text disable-output-escaping="yes"><![CDATA[&bull;&nbsp;]]></xsl:text></xsl:variable>
 
-	<xsl:variable name="titles_index">TS</xsl:variable> <!-- TS = Title - Subtitle, ST = Subtitle - Title. For banner style only -->
-
 	<xsl:template match="/">
 
 		<!-- STYLE BLOCK
@@ -78,7 +76,7 @@
 		You can minify this on this website: https://cssminifier.com/
 		-->
 		<style typ="text/css">
-			@import url(https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i|Prata&amp;display=swap);html{width:100%;padding:0;margin:0}body{width:100%;margin:0;padding:0;background-color:#f5f5f5}.content a,a,td{font-family:Lato,sans-serif;color:#696969;font-size:14px;line-height:20px}h1,h2,h3,h4{font-family:Prata,serif;color:#cd5c5c;margin:0}.hdCont{background-color:#a9a9a9;padding:15px}.hdShow,.hdShow a{color:#fff}.hdShow{text-align:right}.hdShow a{text-decoration:underline}.headShow a:hover{text-decoration:none}.hdLogo{padding-bottom:15px}.hdEdition h1{color:#cd5c5c;font-size:24px;line-height:30px}.ftCont{padding:15px;text-align:center;background-color:#a9a9a9}.ftCont a{color:#696969;text-decoration:underline}.ftCont a:hover{text-decoration:none}.ftCont a img{border:0}.ctInnerCont,.ctMainBlock,.ctMainBlockItem{background-color:#fff;vertical-align:top}.ctInnerContFeat,.ctMainBlockFeat,.ctMainBlockItemFeat{background-color:#696969;vertical-align:top}.ctInnerContBan,.ctMainBlockBan{background-color:#cd5c5c}.ctBottomMargin{height:20px;font-size:1px;line-height:1px}.ctBlockMargin{width:20px;font-size:1px;line-height:1px}.ctCapt{padding:15px;padding-bottom:0}.ctCapt a,.ctCapt h2,.ctCapt h3{font-size:20px;line-height:28px;color:#cd5c5c;font-weight:700;text-decoration:none}.ctCapt h3{font-size:16px;line-height:24px}.ctInnerContFeat .ctCapt a,.ctInnerContFeat .ctCapt h2,.ctInnerContFeat .ctCapt h3{color:#fff}.ctInnerContBan .ctCapt{padding-top:0}.ctInnerContBan .ctCapt a,.ctInnerContBan .ctCapt h2,.ctInnerContBan .ctCapt h3{color:#fff;font-size:28px;line-height:36px}.ctSubt{padding:15px;padding-top:0;padding-bottom:0}.ctSubt h4{color:gray;font-size:16px;line-height:24px;font-weight:400}.ctInnerContBan .ctSubt h4,.ctInnerContFeat .ctSubt h4{color:#fff}.ctDate{padding:15px;padding-top:0;padding-bottom:0;color:silver;font-size:14px;line-height:20px;font-weight:400}.ctInnerContFeat .ctDate{color:#fff}.content,.content a{font-size:14px;line-height:20px}.content{padding:15px}.content a{text-decoration:underline}.content a:hover{text-decoration:none}.ctInnerContFeat .content,.ctInnerContFeat .content a{color:#fff}.ctOuterBlock{vertical-align:top}.ctInnerContBan .ctOuterBlock{vertical-align:middle}.ctInnerContBan .ctInnerBlock{padding-top:15px;padding-bottom:15px}.ctImgLeftOuterBlock,.ctImgRightOuterBlock{width:235px;vertical-align:top}.ctImgLeftOuterBlockBan,.ctImgRightOuterBlockBan{width:220px;vertical-align:top}.ctImgLeftInnerBlock,.ctImgRightInnerBlock{padding:15px}.ctImgRightInnerBlock{padding-left:0}.ctImgLeftInnerBlock{padding-right:0}.ctImgSubt{font-size:12px;line-height:16px;padding:15px;padding-bottom:0;padding-top:5px}.ctInnerContBan .ctImgSubt,.ctInnerContFeat .ctImgSubt{color:#fff}.ctImgLeftInnerBlock .ctImgSubt,.ctImgRightInnerBlock .ctImgSubt{padding-left:5px;text-align:left}.ctImgLeftInnerBlockBan .ctImgSubt,.ctImgRightInnerBlockBan .ctImgSubt{padding-left:5px;padding-bottom:5px;text-align:left}.ctButCont{background-color:#fff;vertical-align:top}.ctButContFeat{background-color:#696969;vertical-align:top}.ctButContBan{background-color:#cd5c5c;vertical-align:top}.ctButInnerCont{padding:15px;padding-top:0}.ctButContBan .ctButInnerCont{padding-top:15px;padding-bottom:0}.ctBut{background-color:#696969;color:#fff;font-size:14px;padding:20px;padding-top:10px;padding-bottom:10px}.ctBut:hover{background-color:#000}.ctBut2{background-color:#cd5c5c;color:#fff;font-size:14px;padding:20px;padding-top:10px;padding-bottom:10px}.ctBut2:hover{background-color:red}.ctButBlock a{color:#fff;text-decoration:none}.ctButContBan .ctBut,.ctButContBan .ctBut2,.ctButContBan .ctBut2:hover,.ctButContBan .ctBut:hover,.ctButContFeat .ctBut,.ctButContFeat .ctBut2,.ctButContFeat .ctBut2:hover,.ctButContFeat .ctBut:hover,.ctMobButContBan .ctBut,.ctMobButContBan .ctBut2,.ctMobButContBan .ctBut2:hover,.ctMobButContBan .ctBut:hover,.ctMobButContFeat .ctBut,.ctMobButContFeat .ctBut2,.ctMobButContFeat .ctBut2:hover,.ctMobButContFeat .ctBut:hover{background-color:#fff}.ctButContBan .ctButBlock a,.ctButContFeat .ctButBlock a,.ctMobButContBan .ctButBlock a,.ctMobButContFeat .ctButBlock a{color:#696969}.ctCallInnerCont{background-color:#696969;text-align:center;padding:15px;padding-top:10px;padding-bottom:10px}.ctCallInnerCont h2{color:#fff;font-size:20px;line-height:28px;font-family:Lato,sans-serif;font-weight:400}.ctCallInnerCont h2 a{font-size:20px;line-height:28px}.ctCallOuterCont a{text-decoration:none;color:#fff}.ctSubhInnerCont,.ctSubhInnerContFeat{border-bottom:2px solid #cd5c5c;padding-bottom:10px}.ctSubhInnerContFeat{border-bottom:2px solid #696969}.ctSubhInnerCont h2,.ctSubhInnerContFeat h2{color:#cd5c5c;font-size:20px;line-height:28px;font-family:Lato,sans-serif;font-weight:400}.ctSubhInnerContFeat h2{color:#696969}.agHeaderOuterCont{background-color:#fff;padding:15px;padding-bottom:0}.agHeaderInnerCont{font-size:20px;line-height:28px;color:#cd5c5c}.agItemsCont{background-color:#fff;padding:15px;padding-bottom:0}.agItemCont{padding-bottom:15px}.agDateBlockCont{width:65px;vertical-align:top}.agDateBlockDay,.agDateBlockMonth{background-color:#cd5c5c;padding:5px;text-align:center;width:40px;color:#fff;font-weight:700}.agDateBlockDay{padding-bottom:0;font-size:18px;line-height:22px}.agDateBlockMonth{padding-top:0}.agImgOuterCont{width:140px;vertical-align:top}.agCtCont{vertical-align:top}.agCapt h2{font-size:20px;line-height:28px;color:#696969;font-weight:700}.agSubt h4{color:gray;font-size:16px;line-height:24px;font-weight:400}.agDate,.agTime{color:silver;font-size:14px;line-height:20px;font-weight:400}.agButCont a{color:#fff;text-decoration:none}@media only screen and (max-width:480px){.ctMainTable{width:100%!important}.bodyMainTable{width:100%!important}.ctImg img{width:100%!important;height:auto!important;-ms-interpolation-mode:bicubic}.ctImgSmall{text-align:center}.ctImgSmall img{margin-left:auto;margin-right:auto}.ctImgSmall .ctImgSubt{text-align:left}.ctMainBlock,.ctMainBlockFeat,.ctMainBlockItem,.ctMainBlockItemFeat{display:block;width:100%!important}.ctBlockMargin{display:block;width:100%!important;padding-bottom:20px}.ctCapt h2,.ctCapt h3{font-size:20px!important;line-height:28px!important}.ctSubhInnerCont,.ctSubhInnerContFeat{padding-left:15px;padding-right:15px}.ctButCont,.ctButContBan,.ctButContFeat,.ctDeskButCont{display:none!important}.ctMobButCont,.ctMobButContBan,.ctMobButContFeat{display:table-row!important;max-height:none!important;height:auto!important;font-size:inherit!important;line-height:normal!important;margin:auto!important;width:100%!important;overflow:auto!important}.ctMobButBlock{padding:15px;padding-top:0}.ctMobButContBan .ctMobButBlock{padding-top:15px;padding-bottom:0}.ctMobInnerCont{display:table!important;max-height:none!important;height:auto!important;font-size:inherit!important;line-height:normal!important;margin:auto!important;width:auto!important;overflow:auto!important}.ctButTable{display:block!important;max-height:none!important;height:auto!important;font-size:inherit!important;line-height:normal!important;margin:auto!important;width:100%!important;overflow:auto!important}.ctImgLeftOuterBlock,.ctImgLeftOuterBlockBan,.ctImgRightOuterBlock,.ctImgRightOuterBlockBan{display:block!important;width:100%}.ctImgLeftInnerBlock,.ctImgLeftInnerBlockBan,.ctImgRightInnerBlock,.ctImgRightInnerBlockBan{padding:0!important;text-align:center}.ctImgLeftOuterBlock img,.ctImgLeftOuterBlockBan img,.ctImgRightOuterBlock img,.ctImgRightOuterBlockBan img{margin-left:auto;margin-right:auto}.ctOuterBlock{display:block!important;width:100%}.agImgOuterCont{width:100%!important;display:block;padding-bottom:10px}.agImgOuterCont img{margin-left:auto;margin-right:auto}.agCtCont{width:100%!important;display:block}.agButCont{width:100%!important;display:block;padding-top:10px}}
+			@import url('https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i|Prata&amp;display=swap');.agContent a,.content a,a,td{font-family:Lato,sans-serif;color:#696969;font-size:14px;line-height:20px}h1,h2,h3,h4{font-family:Prata,serif;color:#cd5c5c;margin:0}.hdCont{background-color:#a9a9a9;padding:15px}.hdShow,.hdShow a{color:#fff}.hdShow{text-align:right}.hdShow a{text-decoration:underline}.headShow a:hover{text-decoration:none}.hdLogo{padding-bottom:15px}.hdEdition h1{color:#cd5c5c;font-size:24px;line-height:30px}.ftCont{padding:15px;text-align:center;background-color:#a9a9a9}.ftCont a{color:#696969;text-decoration:underline}.ftCont a:hover{text-decoration:none}.ftCont a img{border:0}.ctInnerCont,.ctMainBlock,.ctMainBlockItem{background-color:#fff;vertical-align:top}.ctInnerContFeat,.ctMainBlockFeat,.ctMainBlockItemFeat{background-color:#696969;vertical-align:top}.ctInnerContBan,.ctMainBlockBan{background-color:#cd5c5c}.ctBottomMargin{height:20px;font-size:1px;line-height:1px}.ctBlockMargin{width:20px;font-size:1px;line-height:1px}.ctTitlesCont,.ctTitlesContNoContent{padding-bottom:15px}.ctTitlesContAfbLr,.ctTitlesContBelow{padding-bottom:0}.ctCapt,.ctCaptBelow{padding:15px;padding-bottom:0}.ctCaptBelow{padding-top:0}.ctCapt a,.ctCapt h2,.ctCapt h3,.ctCaptBelow a,.ctCaptBelow h2,.ctCaptBelow h3{font-size:20px;line-height:28px;color:#cd5c5c;font-weight:700;text-decoration:none}.ctCapt h3,.ctCaptBelow h3{font-size:16px;line-height:24px}.ctInnerContFeat .ctCapt a,.ctInnerContFeat .ctCapt h2,.ctInnerContFeat .ctCapt h3,.ctInnerContFeat .ctCaptBelow a,.ctInnerContFeat .ctCaptBelow h2,.ctInnerContFeat .ctCaptBelow h3{color:#fff}.ctInnerContBan .ctCapt,.ctInnerContBan .ctCaptBelow{padding-top:0}.ctInnerContBan .ctCapt a,.ctInnerContBan .ctCapt h2,.ctInnerContBan .ctCapt h3,.ctInnerContBan .ctCaptBelow a,.ctInnerContBan .ctCaptBelow h2,.ctInnerContBan .ctCaptBelow h3{color:#fff;font-size:28px;line-height:36px}.ctSubt,.ctSubtAbove{padding:15px;padding-top:0;padding-bottom:0}.ctSubtAbove{padding-top:15px}.ctInnerContBan .ctSubtAbove{padding-top:0}.ctSubt h4,.ctSubtAbove h4{color:gray;font-size:16px;line-height:24px;font-weight:400}.ctInnerContBan .ctSubt h4,.ctInnerContBan .ctSubtAbove h4,.ctInnerContFeat .ctSubt h4,.ctInnerContFeat .ctSubtAbove h4{color:#fff}.ctDate{padding:15px;padding-top:0;padding-bottom:0;color:silver;font-size:14px;line-height:20px;font-weight:400}.ctInnerContFeat .ctDate{color:#fff}.content,.content a{font-size:14px;line-height:20px}.content{padding:15px}.content a{text-decoration:underline}.content a:hover{text-decoration:none}.ctInnerContFeat .content,.ctInnerContFeat .content a{color:#fff}.ctOuterBlock{vertical-align:top}.ctInnerContBan .ctOuterBlock{vertical-align:middle}.ctInnerContBan .ctInnerBlock{padding-top:15px;padding-bottom:15px}.ctImgLeftOuterBlock,.ctImgRightOuterBlock{width:235px;vertical-align:top}.ctImgLeftOuterBlockBan,.ctImgRightOuterBlockBan{width:220px;vertical-align:top}.ctImgLeftInnerBlock,.ctImgRightInnerBlock{padding:15px}.ctImgRightInnerBlock{padding-left:0}.ctImgLeftInnerBlock{padding-right:0}.ctImgSubt{font-size:12px;line-height:16px;padding:15px;padding-bottom:0;padding-top:5px}.ctInnerContBan .ctImgSubt,.ctInnerContFeat .ctImgSubt{color:#fff}.ctImgLeftInnerBlock .ctImgSubt,.ctImgRightInnerBlock .ctImgSubt{padding-left:5px;text-align:left}.ctImgLeftInnerBlockBan .ctImgSubt,.ctImgRightInnerBlockBan .ctImgSubt{padding-left:5px;padding-bottom:5px;text-align:left}.ctButCont{background-color:#fff;vertical-align:top}.ctButContFeat{background-color:#696969;vertical-align:top}.ctButContBan{background-color:#cd5c5c;vertical-align:top}.ctButInnerCont{padding:15px;padding-top:0}.ctButContBan .ctButInnerCont{padding-top:15px;padding-bottom:0}.ctBut{background-color:#696969;color:#fff;font-size:14px;padding:20px;padding-top:10px;padding-bottom:10px}.ctBut:hover{background-color:#000}.ctBut2{background-color:#cd5c5c;color:#fff;font-size:14px;padding:20px;padding-top:10px;padding-bottom:10px}.ctBut2:hover{background-color:red}.ctButBlock a{color:#fff;text-decoration:none}.ctButContBan .ctBut,.ctButContBan .ctBut2,.ctButContBan .ctBut2:hover,.ctButContBan .ctBut:hover,.ctButContFeat .ctBut,.ctButContFeat .ctBut2,.ctButContFeat .ctBut2:hover,.ctButContFeat .ctBut:hover,.ctMobButContBan .ctBut,.ctMobButContBan .ctBut2,.ctMobButContBan .ctBut2:hover,.ctMobButContBan .ctBut:hover,.ctMobButContFeat .ctBut,.ctMobButContFeat .ctBut2,.ctMobButContFeat .ctBut2:hover,.ctMobButContFeat .ctBut:hover{background-color:#fff}.ctButContBan .ctButBlock a,.ctButContFeat .ctButBlock a,.ctMobButContBan .ctButBlock a,.ctMobButContFeat .ctButBlock a{color:#696969}.ctButIconMargin{font-size:1px;line-height:1px;width:5px}.ctCallInnerCont{background-color:#696969;text-align:center;padding:15px;padding-top:10px;padding-bottom:10px}.ctCallInnerCont h2{color:#fff;font-size:20px;line-height:28px;font-family:Lato,sans-serif;font-weight:400}.ctCallInnerCont h2 a{font-size:20px;line-height:28px}.ctCallOuterCont a{text-decoration:none;color:#fff}.ctSubhInnerCont,.ctSubhInnerContFeat{border-bottom:2px solid #cd5c5c;padding-bottom:10px}.ctSubhInnerContFeat{border-bottom:2px solid #696969}.ctSubhInnerCont h2,.ctSubhInnerContFeat h2{color:#cd5c5c;font-size:20px;line-height:28px;font-family:Lato,sans-serif;font-weight:400}.ctSubhInnerContFeat h2{color:#696969}.agHeaderOuterCont{background-color:#fff;padding:15px;padding-bottom:0}.agHeaderInnerCont{font-size:20px;line-height:28px;color:#cd5c5c}.agItemsCont{background-color:#fff;padding:15px;padding-bottom:0}.agItemCont{padding-bottom:15px}.agDateBlockCont{width:65px;vertical-align:top}.agDateBlockInnerCont{padding-top:10px}.agDateBlockDay,.agDateBlockMonth{background-color:#cd5c5c;padding:5px;text-align:center;width:40px;color:#fff;font-weight:700}.agDateBlockDay{padding-bottom:0;font-size:18px;line-height:22px}.agDateBlockMonth{padding-top:0}.agImgOuterCont{width:140px;vertical-align:top}.agCtCont{vertical-align:top}.agCapt h2{font-size:20px;line-height:28px;color:#696969;font-weight:700}.agSubt h4{color:gray;font-size:16px;line-height:24px;font-weight:400}.agDate,.agTime{color:silver;font-size:14px;line-height:20px;font-weight:400}.agContent{padding-top:10px}.agButCont a{color:#fff;text-decoration:none}@media only screen and (max-width:480px){.ctMainTable{width:100%!important}.bodyMainTable{width:100%!important}.ctImg img{width:100%!important;height:auto!important;-ms-interpolation-mode:bicubic}.ctImgSmall{text-align:center}.ctImgSmall img{margin-left:auto;margin-right:auto}.ctImgSmall .ctImgSubt{text-align:left}.ctMainBlock,.ctMainBlockFeat,.ctMainBlockItem,.ctMainBlockItemFeat{display:block;width:100%!important}.ctBlockMargin{display:block;width:100%!important;padding-bottom:20px}.ctCapt h2,.ctCapt h3,.ctCaptBelow h2,.ctCaptBelow h3{font-size:20px!important;line-height:28px!important}.ctSubhInnerCont,.ctSubhInnerContFeat{padding-left:15px;padding-right:15px}.ctButCont,.ctButContBan,.ctButContFeat,.ctDeskButCont{display:none!important}.ctMobButCont,.ctMobButContBan,.ctMobButContFeat{display:table-row!important;max-height:none!important;height:auto!important;font-size:inherit!important;line-height:normal!important;margin:auto!important;width:100%!important;overflow:auto!important}.ctMobButBlock{padding:15px;padding-top:0}.ctMobButContBan .ctMobButBlock{padding-top:15px;padding-bottom:0}.ctMobInnerCont{display:table!important;max-height:none!important;height:auto!important;font-size:inherit!important;line-height:normal!important;margin:auto!important;width:auto!important;overflow:auto!important}.ctButTable{display:block!important;max-height:none!important;height:auto!important;font-size:inherit!important;line-height:normal!important;margin:auto!important;width:100%!important;overflow:auto!important}.ctImgLeftOuterBlock,.ctImgLeftOuterBlockBan,.ctImgRightOuterBlock,.ctImgRightOuterBlockBan{display:block!important;width:100%}.ctImgLeftInnerBlock,.ctImgLeftInnerBlockBan,.ctImgRightInnerBlock,.ctImgRightInnerBlockBan{padding:0!important;text-align:center}.ctImgLeftOuterBlock img,.ctImgLeftOuterBlockBan img,.ctImgRightOuterBlock img,.ctImgRightOuterBlockBan img{margin-left:auto;margin-right:auto}.ctOuterBlock{display:block!important;width:100%}.agImgOuterCont{width:100%!important;display:block;padding-bottom:10px}.agImgOuterCont img{margin-left:auto;margin-right:auto}.agCtCont{width:100%!important;display:block}.agButCont{width:100%!important;display:block;padding-top:10px}}
 		</style>
 
 		<table cellpadding="0" cellspacing="0" width="100%" style="width: 100%" class="ctMainTable">
@@ -175,6 +173,18 @@
 													</xsl:if>
 
 													<table width="100%" cellpadding="0" cellspacing="0" style="width: 100%">
+														<!-- Titles above
+														When the style name contains a trigger word 'titels boven' then move the titles to above image
+														But ignore this if no image is set
+														-->
+														<xsl:if test="image != '' and contains(style, 'titels boven')">
+															<!-- Hide title when item.style.name contains "geen titel", or content of db.title contains 'NOTITLE' (case sensitive)
+																The titles in banner styles cannot be hidden -->
+															<xsl:if test="(not(contains(style, 'geen titel')) and not(contains(title, 'NOTITLE'))) or contains(style, 'banner')">
+																<xsl:call-template name="titles" />
+															</xsl:if>
+														</xsl:if>
+
 														<!-- Image above
                                                         When a placeholder is used, then this block item is created automatically after a new mailing were created
                                                         The default placeholder is a square. To prevent ugly look with 700px by 700px, replace it by a wide variant of the placeholder
@@ -343,106 +353,13 @@
 
 																							<table cellpadding="0" cellspacing="0" width="100%" style="width: 100%">
 
-																								<!-- Hide title when item.style.name contains "GEENTITEL", or content of db.title contains 'NOTITLE' (case sensitive)
-																								The titles in banner styles cannot be hidden -->
-																								<xsl:if test="(not(contains(style, 'GEENTITEL')) and not(contains(title, 'NOTITLE'))) or contains(style, 'banner')">
-
-																									<!--
-                                                                                                    Subtitle (db.location)
-                                                                                                    You can add 2x double pipes to break subtitle in max 3 lines (||)
-                                                                                                    Show this when the titles index are ST (subtitle - title), for banner style only
-                                                                                                    -->
-																									<xsl:if test="location != '' and $titles_index = 'ST' and contains(style, 'banner')">
-																										<tr>
-																											<td class="ctSubtAbove">
-
-																												<xsl:variable name="subtitle">
-																													<xsl:call-template name="double_pipes">
-																														<xsl:with-param name="input" select="location" />
-																													</xsl:call-template>
-																												</xsl:variable>
-
-																												<h4><xsl:value-of select="$subtitle" disable-output-escaping="yes" /></h4>
-																											</td>
-																										</tr>
+																								<!-- Hide title when item.style.name contains "geen titel", or content of db.title contains 'NOTITLE' (case sensitive)
+																								The titles in banner styles cannot be hidden
+																								Hide this part when the style name contains trigger words 'titels boven' -->
+																								<xsl:if test="not(contains(style, 'titels boven'))">
+																									<xsl:if test="(not(contains(style, 'geen titel')) and not(contains(title, 'NOTITLE'))) or contains(style, 'banner')">
+																										<xsl:call-template name="titles" />
 																									</xsl:if>
-
-																									<!--
-                                                                                                    Title (db.title)
-                                                                                                    You can add 2x double pipes to break title (max 2 double pipes)
-                                                                                                    -->
-																									<tr>
-																										<td>
-																											<xsl:attribute name="class">
-																												<xsl:choose>
-																													<xsl:when test="$titles_index = 'ST' and location != '' and contains(style, 'banner')">ctCaptBelow</xsl:when>
-																													<xsl:otherwise>ctCapt</xsl:otherwise>
-																												</xsl:choose>
-																											</xsl:attribute>
-
-																											<xsl:variable name="title">
-																												<xsl:call-template name="double_pipes">
-																													<xsl:with-param name="input" select="title" />
-																												</xsl:call-template>
-																											</xsl:variable>
-
-																											<xsl:variable name="heading">
-																												<xsl:choose>
-																													<xsl:when test="contains(style, '1/3') or contains(style, '2/3')">
-																														<xsl:text disable-output-escaping="yes"><![CDATA[<h3>]]></xsl:text>
-																														<xsl:value-of select="$title" disable-output-escaping="yes" />
-																														<xsl:text disable-output-escaping="yes"><![CDATA[</h3>]]></xsl:text>
-																													</xsl:when>
-																													<xsl:otherwise>
-																														<xsl:text disable-output-escaping="yes"><![CDATA[<h2>]]></xsl:text>
-																														<xsl:value-of select="$title" disable-output-escaping="yes" />
-																														<xsl:text disable-output-escaping="yes"><![CDATA[</h2>]]></xsl:text>
-																													</xsl:otherwise>
-																												</xsl:choose>
-																											</xsl:variable>
-
-																											<a>
-																												<xsl:attribute name="name"><xsl:value-of select="merge_ID" /></xsl:attribute>
-																												<xsl:value-of select="$heading" disable-output-escaping="yes" />
-																											</a>
-																										</td>
-																									</tr>
-
-																									<!--
-                                                                                                    Subtitle (db.location)
-                                                                                                    You can add 2x double pipes to break subtitle in max 3 lines (||)
-                                                                                                    Show this when the titles index are TS (title - subtitle), for banner style only
-                                                                                                    -->
-																									<xsl:if test="location != '' and ($titles_index = 'TS' or not(contains(style, 'banner')))">
-																										<tr>
-																											<td class="ctSubt">
-
-																												<xsl:variable name="subtitle">
-																													<xsl:call-template name="double_pipes">
-																														<xsl:with-param name="input" select="location" />
-																													</xsl:call-template>
-																												</xsl:variable>
-
-																												<h4><xsl:value-of select="$subtitle" disable-output-escaping="yes" /></h4>
-																											</td>
-																										</tr>
-																									</xsl:if>
-
-																									<!-- Date
-                                                                                                    When you empty the date fields in the content block details, then the dates will be saved as 1 january 2000.
-                                                                                                    Or you filled in the db.icon field.
-                                                                                                    Hide dates on banner blocks
-                                                                                                    -->
-																									<xsl:if test="(not(contains(display_playdate_start, '1 januari 2000')) or icon != '') and not(contains(style, 'banner'))">
-																										<tr>
-																											<td class="ctDate">
-																												<xsl:call-template name="date_subtitle">
-																													<xsl:with-param name="row" select="." />
-																												</xsl:call-template>
-																											</td>
-																										</tr>
-																									</xsl:if>
-
 																								</xsl:if>
 
 																								<!-- Content
@@ -450,7 +367,7 @@
 																								##JWDB 31 march 2020: when using index item style, show a list with all items in this newsletter with some exceptions (sub headers, this item, full image items, call2action and items with NOTITLE)
 																								The validation on ending <br> in content is to prevent we're adding too many enters
 																								-->
-																								<xsl:if test="not(contains(style, 'banner'))">
+																								<xsl:if test="not(contains(style, 'banner')) and content != ''">
 																									<tr>
 																										<td class="content">
 																											<xsl:value-of select="content" disable-output-escaping="yes" />
@@ -1233,6 +1150,7 @@
 	With hide param (1 or 0) you can determine if the button have to be hidden by default.
 	Default buttons will be visible when viewing e-mail on mobile devices.
 	##JWDB 31 march 2020: icon logic added, can be activated by filling in four variables above this XSLT
+	##JWDB 10 april 2020: fixed bug with double buttons in Outlooks.
 	##todo explain
 	-->
 	<xsl:template name="button">
@@ -1255,7 +1173,10 @@
 				<tr>
 					<td>
 						<xsl:attribute name="class"><xsl:value-of select="$class" /></xsl:attribute>
-						<table cellpadding="0" cellspacing="0">
+						<table cellpadding="0" cellspacing="0" class="ctButTable">
+							<xsl:if test="$hide = 1">
+								<xsl:attribute name="style">display:none;width:0px;max-height:0px;overflow:hidden;mso-hide:all;height:0;font-size:0;max-height:0;line-height:0;margin:0 auto;</xsl:attribute>
+							</xsl:if>
 							<tr>
 								<td class="ctButIconText">
 									<a target="_blank">
@@ -1411,37 +1332,44 @@
 							<xsl:if test="contains(style, 'datumblok') and not(contains(display_playdate_start, '1 januari 2000'))">
 								<td class="agDateBlockCont">
 
-									<xsl:variable name="start_month"><xsl:value-of select="substring(playdate_start, 6, 2)" /></xsl:variable>
-									<xsl:variable name="start_day"><xsl:value-of select="substring(playdate_start, 9, 2)" /></xsl:variable>
+									<table cellpadding="0" cellspacing="0" width="100%" style="width: 100%">
+										<tr>
+											<td class="agDateBlockInnerCont">
+												<xsl:variable name="start_month"><xsl:value-of select="substring(playdate_start, 6, 2)" /></xsl:variable>
+												<xsl:variable name="start_day"><xsl:value-of select="substring(playdate_start, 9, 2)" /></xsl:variable>
 
-									<table cellpadding="0" cellspacing="0">
-										<tr>
-											<td class="agDateBlockDay">
-												<xsl:choose>
-													<xsl:when test="substring($start_day, 1, 1) = '0'"><xsl:value-of select="substring($start_day, 2, 1)" /></xsl:when>
-													<xsl:otherwise><xsl:value-of select="$start_day" /></xsl:otherwise>
-												</xsl:choose>
-											</td>
-										</tr>
-										<tr>
-											<td class="agDateBlockMonth">
-												<xsl:choose>
-													<xsl:when test="$start_month = '01'"><xsl:value-of select="$date_month_1" /></xsl:when>
-													<xsl:when test="$start_month = '02'"><xsl:value-of select="$date_month_2" /></xsl:when>
-													<xsl:when test="$start_month = '03'"><xsl:value-of select="$date_month_3" /></xsl:when>
-													<xsl:when test="$start_month = '04'"><xsl:value-of select="$date_month_4" /></xsl:when>
-													<xsl:when test="$start_month = '05'"><xsl:value-of select="$date_month_5" /></xsl:when>
-													<xsl:when test="$start_month = '06'"><xsl:value-of select="$date_month_6" /></xsl:when>
-													<xsl:when test="$start_month = '07'"><xsl:value-of select="$date_month_7" /></xsl:when>
-													<xsl:when test="$start_month = '08'"><xsl:value-of select="$date_month_8" /></xsl:when>
-													<xsl:when test="$start_month = '09'"><xsl:value-of select="$date_month_9" /></xsl:when>
-													<xsl:when test="$start_month = '10'"><xsl:value-of select="$date_month_10" /></xsl:when>
-													<xsl:when test="$start_month = '11'"><xsl:value-of select="$date_month_11" /></xsl:when>
-													<xsl:when test="$start_month = '12'"><xsl:value-of select="$date_month_12" /></xsl:when>
-												</xsl:choose>
+												<table cellpadding="0" cellspacing="0">
+													<tr>
+														<td class="agDateBlockDay">
+															<xsl:choose>
+																<xsl:when test="substring($start_day, 1, 1) = '0'"><xsl:value-of select="substring($start_day, 2, 1)" /></xsl:when>
+																<xsl:otherwise><xsl:value-of select="$start_day" /></xsl:otherwise>
+															</xsl:choose>
+														</td>
+													</tr>
+													<tr>
+														<td class="agDateBlockMonth">
+															<xsl:choose>
+																<xsl:when test="$start_month = '01'"><xsl:value-of select="$date_month_1" /></xsl:when>
+																<xsl:when test="$start_month = '02'"><xsl:value-of select="$date_month_2" /></xsl:when>
+																<xsl:when test="$start_month = '03'"><xsl:value-of select="$date_month_3" /></xsl:when>
+																<xsl:when test="$start_month = '04'"><xsl:value-of select="$date_month_4" /></xsl:when>
+																<xsl:when test="$start_month = '05'"><xsl:value-of select="$date_month_5" /></xsl:when>
+																<xsl:when test="$start_month = '06'"><xsl:value-of select="$date_month_6" /></xsl:when>
+																<xsl:when test="$start_month = '07'"><xsl:value-of select="$date_month_7" /></xsl:when>
+																<xsl:when test="$start_month = '08'"><xsl:value-of select="$date_month_8" /></xsl:when>
+																<xsl:when test="$start_month = '09'"><xsl:value-of select="$date_month_9" /></xsl:when>
+																<xsl:when test="$start_month = '10'"><xsl:value-of select="$date_month_10" /></xsl:when>
+																<xsl:when test="$start_month = '11'"><xsl:value-of select="$date_month_11" /></xsl:when>
+																<xsl:when test="$start_month = '12'"><xsl:value-of select="$date_month_12" /></xsl:when>
+															</xsl:choose>
+														</td>
+													</tr>
+												</table>
 											</td>
 										</tr>
 									</table>
+
 								</td>
 							</xsl:if>
 
@@ -1537,6 +1465,15 @@
 											</td>
 										</tr>
 									</xsl:if>
+
+									<!-- ##JWDB 10 april 2020: content added -->
+									<xsl:if test="content != ''">
+										<tr>
+											<td class="agContent">
+												<xsl:value-of select="content" disable-output-escaping="yes" />
+											</td>
+										</tr>
+									</xsl:if>
 								</table>
 							</td>
 
@@ -1586,6 +1523,121 @@
 				<xsl:value-of select="$input" disable-output-escaping="yes" />
 			</xsl:otherwise>
 		</xsl:choose>
+	</xsl:template>
+
+	<!-- ##JWDB 10 april 2020: container for the titles -->
+	<xsl:template name="titles">
+
+		<tr>
+			<td>
+				<xsl:attribute name="class">
+					<xsl:choose>
+						<xsl:when test="contains(style, 'titels boven') and not(contains(style, 'afb.'))">ctTitlesCont</xsl:when>
+						<xsl:when test="contains(style, 'titels boven') and contains(style, 'afb.')">ctTitlesContAfbLr</xsl:when>
+						<xsl:when test="content = ''">ctTitlesContNoContent</xsl:when>
+						<xsl:otherwise>ctTitlesContBelow</xsl:otherwise>
+					</xsl:choose>
+				</xsl:attribute>
+				<table cellpadding="0" cellspacing="0" width="100%" style="width: 100%">
+					<!--
+					Subtitle (db.location)
+					You can add 2x double pipes to break subtitle in max 3 lines (||)
+					Show this when the style name contains a trigger word 'ondertitel boven'
+					-->
+					<xsl:if test="location != '' and contains(style, 'ondertitel boven')">
+						<tr>
+							<td class="ctSubtAbove">
+
+								<xsl:variable name="subtitle">
+									<xsl:call-template name="double_pipes">
+										<xsl:with-param name="input" select="location" />
+									</xsl:call-template>
+								</xsl:variable>
+
+								<h4><xsl:value-of select="$subtitle" disable-output-escaping="yes" /></h4>
+							</td>
+						</tr>
+					</xsl:if>
+
+					<!--
+                    Title (db.title)
+                    You can add 2x double pipes to break title (max 2 double pipes)
+                    -->
+					<tr>
+						<td>
+							<xsl:attribute name="class">
+								<xsl:choose>
+									<xsl:when test="location != '' and contains(style, 'ondertitel boven')">ctCaptBelow</xsl:when>
+									<xsl:otherwise>ctCapt</xsl:otherwise>
+								</xsl:choose>
+							</xsl:attribute>
+
+							<xsl:variable name="title">
+								<xsl:call-template name="double_pipes">
+									<xsl:with-param name="input" select="title" />
+								</xsl:call-template>
+							</xsl:variable>
+
+							<xsl:variable name="heading">
+								<xsl:choose>
+									<xsl:when test="contains(style, '1/3') or contains(style, '2/3')">
+										<xsl:text disable-output-escaping="yes"><![CDATA[<h3>]]></xsl:text>
+										<xsl:value-of select="$title" disable-output-escaping="yes" />
+										<xsl:text disable-output-escaping="yes"><![CDATA[</h3>]]></xsl:text>
+									</xsl:when>
+									<xsl:otherwise>
+										<xsl:text disable-output-escaping="yes"><![CDATA[<h2>]]></xsl:text>
+										<xsl:value-of select="$title" disable-output-escaping="yes" />
+										<xsl:text disable-output-escaping="yes"><![CDATA[</h2>]]></xsl:text>
+									</xsl:otherwise>
+								</xsl:choose>
+							</xsl:variable>
+
+							<a>
+								<xsl:attribute name="name"><xsl:value-of select="merge_ID" /></xsl:attribute>
+								<xsl:value-of select="$heading" disable-output-escaping="yes" />
+							</a>
+						</td>
+					</tr>
+
+					<!--
+                    Subtitle (db.location)
+                    You can add 2x double pipes to break subtitle in max 3 lines (||)
+                    Show this when the titles index are TS (title - subtitle), for banner style only
+                    -->
+					<xsl:if test="location != '' and not(contains(style, 'ondertitel boven'))">
+						<tr>
+							<td class="ctSubt">
+
+								<xsl:variable name="subtitle">
+									<xsl:call-template name="double_pipes">
+										<xsl:with-param name="input" select="location" />
+									</xsl:call-template>
+								</xsl:variable>
+
+								<h4><xsl:value-of select="$subtitle" disable-output-escaping="yes" /></h4>
+							</td>
+						</tr>
+					</xsl:if>
+
+					<!-- Date
+                    When you empty the date fields in the content block details, then the dates will be saved as 1 january 2000.
+                    Or you filled in the db.icon field.
+                    Hide dates on banner blocks
+                    -->
+					<xsl:if test="(not(contains(display_playdate_start, '1 januari 2000')) or icon != '') and not(contains(style, 'banner'))">
+						<tr>
+							<td class="ctDate">
+								<xsl:call-template name="date_subtitle">
+									<xsl:with-param name="row" select="." />
+								</xsl:call-template>
+							</td>
+						</tr>
+					</xsl:if>
+				</table>
+			</td>
+		</tr>
+
 	</xsl:template>
 
 	<!-- That's all folks !!

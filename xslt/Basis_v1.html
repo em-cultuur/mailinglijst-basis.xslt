@@ -5,7 +5,7 @@
         BASIC TEMPLATE
         EM-Cultuur / MailingLijst
         Date: v1, march 2020
-        Last change: JWDB 31 march 2020
+        Last change: JWDB 10 april 2020
         -->
         <meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE">
         <title>Nieuwsbrief  BASIS v1</title>
@@ -21,7 +21,6 @@
             /* Custom fonts from Google, or use downloaded fonts and font-face*/
             @import url('https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i|Prata&amp;display=swap');
 
-            /*GLOBAL*/
             html {
                 width: 100%;
                 padding: 0;
@@ -35,15 +34,17 @@
                 background-color: whitesmoke;
             }
 
-            td, a, .content a {
+            td {
+                /* The padding logic below is added to prevent Outlooks adds unwanted spaces above and below TD's */
+                padding-bottom: 0;
+                padding-top: 0;
+            }
+
+            td, a, .content a, .agContent a {
                 font-family: Lato, sans-serif;
                 color: dimgray;
                 font-size: 14px;
                 line-height: 20px;
-
-                /* The padding logic below is added to prevent Outlooks adds unwanted spaces above and below TD's */
-                padding-bottom: 0;
-                padding-top: 0;
             }
 
             h1, h2, h3, h4 {
@@ -125,8 +126,11 @@
             }
 
             /*Title*/
-            .ctTitlesCont {
+            .ctTitlesCont, .ctTitlesContNoContent {
                 padding-bottom: 15px;
+            }
+            .ctTitlesContAfbLr, .ctTitlesContBelow {
+                padding-bottom: 0;
             }
             .ctCapt, .ctCaptBelow {
                 padding: 15px;
@@ -136,7 +140,7 @@
                 padding-top: 0;
             }
             .ctCapt h2, .ctCapt h3, .ctCapt a,
-            .ctCaptBelow h2, .ctCaptBelow h3, .ctCaptBelow a{
+            .ctCaptBelow h2, .ctCaptBelow h3, .ctCaptBelow a {
                 font-size: 20px;
                 line-height: 28px;
                 color: indianred;
@@ -166,6 +170,12 @@
                 padding: 15px;
                 padding-top: 0;
                 padding-bottom: 0;
+            }
+            .ctSubtAbove {
+                padding-top: 15px;
+            }
+            .ctInnerContBan .ctSubtAbove {
+                padding-top: 0;
             }
             .ctSubt h4, .ctSubtAbove h4 {
                 color: gray;
@@ -397,6 +407,9 @@
             .agDateBlockCont {
                 width: 65px;
                 vertical-align: top;
+            }
+            .agDateBlockInnerCont {
+                padding-top: 10px;
             }
             .agDateBlockDay, .agDateBlockMonth {
                 background-color: indianred;

@@ -6,7 +6,7 @@
 	<!-- Basis  v1
 	XSLT for BLOCKS in MailingLijst-templates
 	(c) EM-Cultuur, 2020
-	Last change: JWDB 6 april 2020 (buttons, agenda icon)
+	Last change: JWDB 10 april 2020
 
 	BLOCKSTULE-names determine grouping
 	blockdeails (db.fiesds) dettermine content, design of the blocks
@@ -173,13 +173,7 @@
 															<!-- Hide title when item.style.name contains "geen titel", or content of db.title contains 'NOTITLE' (case sensitive)
 																The titles in banner styles cannot be hidden -->
 															<xsl:if test="(not(contains(style, 'geen titel')) and not(contains(title, 'NOTITLE'))) or contains(style, 'banner')">
-																<tr>
-																	<td class="ctTitlesCont">
-																		<table width="100%" cellpadding="0" cellspacing="0" style="width: 100%">
-																			<xsl:call-template name="titles" />
-																		</table>
-																	</td>
-																</tr>
+																<xsl:call-template name="titles" />
 															</xsl:if>
 														</xsl:if>
 
@@ -352,9 +346,12 @@
 																							<table cellpadding="0" cellspacing="0" width="100%" style="width: 100%">
 
 																								<!-- Hide title when item.style.name contains "geen titel", or content of db.title contains 'NOTITLE' (case sensitive)
-																								The titles in banner styles cannot be hidden -->
-																								<xsl:if test="(not(contains(style, 'geen titel')) and not(contains(title, 'NOTITLE'))) or contains(style, 'banner')">
-																									<xsl:call-template name="titles" />
+																								The titles in banner styles cannot be hidden
+																								Hide this part when the style name contains trigger words 'titels boven' -->
+																								<xsl:if test="not(contains(style, 'titels boven'))">
+																									<xsl:if test="(not(contains(style, 'geen titel')) and not(contains(title, 'NOTITLE'))) or contains(style, 'banner')">
+																										<xsl:call-template name="titles" />
+																									</xsl:if>
 																								</xsl:if>
 
 																								<!-- Content
@@ -1327,37 +1324,44 @@
 							<xsl:if test="contains(style, 'datumblok') and not(contains(display_playdate_start, '1 januari 2000'))">
 								<td class="agDateBlockCont">
 
-									<xsl:variable name="start_month"><xsl:value-of select="substring(playdate_start, 6, 2)" /></xsl:variable>
-									<xsl:variable name="start_day"><xsl:value-of select="substring(playdate_start, 9, 2)" /></xsl:variable>
+									<table cellpadding="0" cellspacing="0" width="100%" style="width: 100%">
+										<tr>
+											<td class="agDateBlockInnerCont">
+												<xsl:variable name="start_month"><xsl:value-of select="substring(playdate_start, 6, 2)" /></xsl:variable>
+												<xsl:variable name="start_day"><xsl:value-of select="substring(playdate_start, 9, 2)" /></xsl:variable>
 
-									<table cellpadding="0" cellspacing="0">
-										<tr>
-											<td class="agDateBlockDay">
-												<xsl:choose>
-													<xsl:when test="substring($start_day, 1, 1) = '0'"><xsl:value-of select="substring($start_day, 2, 1)" /></xsl:when>
-													<xsl:otherwise><xsl:value-of select="$start_day" /></xsl:otherwise>
-												</xsl:choose>
-											</td>
-										</tr>
-										<tr>
-											<td class="agDateBlockMonth">
-												<xsl:choose>
-													<xsl:when test="$start_month = '01'"><xsl:value-of select="$date_month_1" /></xsl:when>
-													<xsl:when test="$start_month = '02'"><xsl:value-of select="$date_month_2" /></xsl:when>
-													<xsl:when test="$start_month = '03'"><xsl:value-of select="$date_month_3" /></xsl:when>
-													<xsl:when test="$start_month = '04'"><xsl:value-of select="$date_month_4" /></xsl:when>
-													<xsl:when test="$start_month = '05'"><xsl:value-of select="$date_month_5" /></xsl:when>
-													<xsl:when test="$start_month = '06'"><xsl:value-of select="$date_month_6" /></xsl:when>
-													<xsl:when test="$start_month = '07'"><xsl:value-of select="$date_month_7" /></xsl:when>
-													<xsl:when test="$start_month = '08'"><xsl:value-of select="$date_month_8" /></xsl:when>
-													<xsl:when test="$start_month = '09'"><xsl:value-of select="$date_month_9" /></xsl:when>
-													<xsl:when test="$start_month = '10'"><xsl:value-of select="$date_month_10" /></xsl:when>
-													<xsl:when test="$start_month = '11'"><xsl:value-of select="$date_month_11" /></xsl:when>
-													<xsl:when test="$start_month = '12'"><xsl:value-of select="$date_month_12" /></xsl:when>
-												</xsl:choose>
+												<table cellpadding="0" cellspacing="0">
+													<tr>
+														<td class="agDateBlockDay">
+															<xsl:choose>
+																<xsl:when test="substring($start_day, 1, 1) = '0'"><xsl:value-of select="substring($start_day, 2, 1)" /></xsl:when>
+																<xsl:otherwise><xsl:value-of select="$start_day" /></xsl:otherwise>
+															</xsl:choose>
+														</td>
+													</tr>
+													<tr>
+														<td class="agDateBlockMonth">
+															<xsl:choose>
+																<xsl:when test="$start_month = '01'"><xsl:value-of select="$date_month_1" /></xsl:when>
+																<xsl:when test="$start_month = '02'"><xsl:value-of select="$date_month_2" /></xsl:when>
+																<xsl:when test="$start_month = '03'"><xsl:value-of select="$date_month_3" /></xsl:when>
+																<xsl:when test="$start_month = '04'"><xsl:value-of select="$date_month_4" /></xsl:when>
+																<xsl:when test="$start_month = '05'"><xsl:value-of select="$date_month_5" /></xsl:when>
+																<xsl:when test="$start_month = '06'"><xsl:value-of select="$date_month_6" /></xsl:when>
+																<xsl:when test="$start_month = '07'"><xsl:value-of select="$date_month_7" /></xsl:when>
+																<xsl:when test="$start_month = '08'"><xsl:value-of select="$date_month_8" /></xsl:when>
+																<xsl:when test="$start_month = '09'"><xsl:value-of select="$date_month_9" /></xsl:when>
+																<xsl:when test="$start_month = '10'"><xsl:value-of select="$date_month_10" /></xsl:when>
+																<xsl:when test="$start_month = '11'"><xsl:value-of select="$date_month_11" /></xsl:when>
+																<xsl:when test="$start_month = '12'"><xsl:value-of select="$date_month_12" /></xsl:when>
+															</xsl:choose>
+														</td>
+													</tr>
+												</table>
 											</td>
 										</tr>
 									</table>
+
 								</td>
 							</xsl:if>
 
@@ -1516,101 +1520,115 @@
 	<!-- ##JWDB 10 april 2020: container for the titles -->
 	<xsl:template name="titles">
 
-		<!--
-		Subtitle (db.location)
-		You can add 2x double pipes to break subtitle in max 3 lines (||)
-		Show this when the style name contains a trigger word 'ondertitel boven'
-		-->
-		<xsl:if test="location != '' and contains(style, 'ondertitel boven')">
-			<tr>
-				<td class="ctSubtAbove">
-
-					<xsl:variable name="subtitle">
-						<xsl:call-template name="double_pipes">
-							<xsl:with-param name="input" select="location" />
-						</xsl:call-template>
-					</xsl:variable>
-
-					<h4><xsl:value-of select="$subtitle" disable-output-escaping="yes" /></h4>
-				</td>
-			</tr>
-		</xsl:if>
-
-		<!--
-		Title (db.title)
-		You can add 2x double pipes to break title (max 2 double pipes)
-		-->
 		<tr>
 			<td>
 				<xsl:attribute name="class">
 					<xsl:choose>
-						<xsl:when test="location != '' and contains(style, 'ondertitel boven')">ctCaptBelow</xsl:when>
-						<xsl:otherwise>ctCapt</xsl:otherwise>
+						<xsl:when test="contains(style, 'titels boven') and not(contains(style, 'afb.'))">ctTitlesCont</xsl:when>
+						<xsl:when test="contains(style, 'titels boven') and contains(style, 'afb.')">ctTitlesContAfbLr</xsl:when>
+						<xsl:when test="content = ''">ctTitlesContNoContent</xsl:when>
+						<xsl:otherwise>ctTitlesContBelow</xsl:otherwise>
 					</xsl:choose>
 				</xsl:attribute>
+				<table cellpadding="0" cellspacing="0" width="100%" style="width: 100%">
+					<!--
+					Subtitle (db.location)
+					You can add 2x double pipes to break subtitle in max 3 lines (||)
+					Show this when the style name contains a trigger word 'ondertitel boven'
+					-->
+					<xsl:if test="location != '' and contains(style, 'ondertitel boven')">
+						<tr>
+							<td class="ctSubtAbove">
 
-				<xsl:variable name="title">
-					<xsl:call-template name="double_pipes">
-						<xsl:with-param name="input" select="title" />
-					</xsl:call-template>
-				</xsl:variable>
+								<xsl:variable name="subtitle">
+									<xsl:call-template name="double_pipes">
+										<xsl:with-param name="input" select="location" />
+									</xsl:call-template>
+								</xsl:variable>
 
-				<xsl:variable name="heading">
-					<xsl:choose>
-						<xsl:when test="contains(style, '1/3') or contains(style, '2/3')">
-							<xsl:text disable-output-escaping="yes"><![CDATA[<h3>]]></xsl:text>
-							<xsl:value-of select="$title" disable-output-escaping="yes" />
-							<xsl:text disable-output-escaping="yes"><![CDATA[</h3>]]></xsl:text>
-						</xsl:when>
-						<xsl:otherwise>
-							<xsl:text disable-output-escaping="yes"><![CDATA[<h2>]]></xsl:text>
-							<xsl:value-of select="$title" disable-output-escaping="yes" />
-							<xsl:text disable-output-escaping="yes"><![CDATA[</h2>]]></xsl:text>
-						</xsl:otherwise>
-					</xsl:choose>
-				</xsl:variable>
+								<h4><xsl:value-of select="$subtitle" disable-output-escaping="yes" /></h4>
+							</td>
+						</tr>
+					</xsl:if>
 
-				<a>
-					<xsl:attribute name="name"><xsl:value-of select="merge_ID" /></xsl:attribute>
-					<xsl:value-of select="$heading" disable-output-escaping="yes" />
-				</a>
+					<!--
+                    Title (db.title)
+                    You can add 2x double pipes to break title (max 2 double pipes)
+                    -->
+					<tr>
+						<td>
+							<xsl:attribute name="class">
+								<xsl:choose>
+									<xsl:when test="location != '' and contains(style, 'ondertitel boven')">ctCaptBelow</xsl:when>
+									<xsl:otherwise>ctCapt</xsl:otherwise>
+								</xsl:choose>
+							</xsl:attribute>
+
+							<xsl:variable name="title">
+								<xsl:call-template name="double_pipes">
+									<xsl:with-param name="input" select="title" />
+								</xsl:call-template>
+							</xsl:variable>
+
+							<xsl:variable name="heading">
+								<xsl:choose>
+									<xsl:when test="contains(style, '1/3') or contains(style, '2/3')">
+										<xsl:text disable-output-escaping="yes"><![CDATA[<h3>]]></xsl:text>
+										<xsl:value-of select="$title" disable-output-escaping="yes" />
+										<xsl:text disable-output-escaping="yes"><![CDATA[</h3>]]></xsl:text>
+									</xsl:when>
+									<xsl:otherwise>
+										<xsl:text disable-output-escaping="yes"><![CDATA[<h2>]]></xsl:text>
+										<xsl:value-of select="$title" disable-output-escaping="yes" />
+										<xsl:text disable-output-escaping="yes"><![CDATA[</h2>]]></xsl:text>
+									</xsl:otherwise>
+								</xsl:choose>
+							</xsl:variable>
+
+							<a>
+								<xsl:attribute name="name"><xsl:value-of select="merge_ID" /></xsl:attribute>
+								<xsl:value-of select="$heading" disable-output-escaping="yes" />
+							</a>
+						</td>
+					</tr>
+
+					<!--
+                    Subtitle (db.location)
+                    You can add 2x double pipes to break subtitle in max 3 lines (||)
+                    Show this when the titles index are TS (title - subtitle), for banner style only
+                    -->
+					<xsl:if test="location != '' and not(contains(style, 'ondertitel boven'))">
+						<tr>
+							<td class="ctSubt">
+
+								<xsl:variable name="subtitle">
+									<xsl:call-template name="double_pipes">
+										<xsl:with-param name="input" select="location" />
+									</xsl:call-template>
+								</xsl:variable>
+
+								<h4><xsl:value-of select="$subtitle" disable-output-escaping="yes" /></h4>
+							</td>
+						</tr>
+					</xsl:if>
+
+					<!-- Date
+                    When you empty the date fields in the content block details, then the dates will be saved as 1 january 2000.
+                    Or you filled in the db.icon field.
+                    Hide dates on banner blocks
+                    -->
+					<xsl:if test="(not(contains(display_playdate_start, '1 januari 2000')) or icon != '') and not(contains(style, 'banner'))">
+						<tr>
+							<td class="ctDate">
+								<xsl:call-template name="date_subtitle">
+									<xsl:with-param name="row" select="." />
+								</xsl:call-template>
+							</td>
+						</tr>
+					</xsl:if>
+				</table>
 			</td>
 		</tr>
-
-		<!--
-		Subtitle (db.location)
-		You can add 2x double pipes to break subtitle in max 3 lines (||)
-		Show this when the titles index are TS (title - subtitle), for banner style only
-		-->
-		<xsl:if test="location != '' and not(contains(style, 'ondertitel boven'))">
-			<tr>
-				<td class="ctSubt">
-
-					<xsl:variable name="subtitle">
-						<xsl:call-template name="double_pipes">
-							<xsl:with-param name="input" select="location" />
-						</xsl:call-template>
-					</xsl:variable>
-
-					<h4><xsl:value-of select="$subtitle" disable-output-escaping="yes" /></h4>
-				</td>
-			</tr>
-		</xsl:if>
-
-		<!-- Date
-		When you empty the date fields in the content block details, then the dates will be saved as 1 january 2000.
-		Or you filled in the db.icon field.
-		Hide dates on banner blocks
-		-->
-		<xsl:if test="(not(contains(display_playdate_start, '1 januari 2000')) or icon != '') and not(contains(style, 'banner'))">
-			<tr>
-				<td class="ctDate">
-					<xsl:call-template name="date_subtitle">
-						<xsl:with-param name="row" select="." />
-					</xsl:call-template>
-				</td>
-			</tr>
-		</xsl:if>
 
 	</xsl:template>
 
