@@ -69,8 +69,6 @@
 	<xsl:variable name="index_title">In deze nieuwsbrief:</xsl:variable>
 	<xsl:variable name="index_indentation"><xsl:text disable-output-escaping="yes"><![CDATA[&bull;&nbsp;]]></xsl:text></xsl:variable>
 
-	<xsl:variable name="titles_index">TS</xsl:variable> <!-- TS = Title - Subtitle, ST = Subtitle - Title. For banner style only -->
-
 	<xsl:template match="/">
 
 		<table cellpadding="0" cellspacing="0" width="100%" style="width: 100%" class="ctMainTable">
@@ -167,6 +165,24 @@
 													</xsl:if>
 
 													<table width="100%" cellpadding="0" cellspacing="0" style="width: 100%">
+														<!-- Titles above
+														When the style name contains a trigger word 'titels boven' then move the titles to above image
+														But ignore this if no image is set
+														-->
+														<xsl:if test="image != '' and contains(style, 'titels boven')">
+															<!-- Hide title when item.style.name contains "geen titel", or content of db.title contains 'NOTITLE' (case sensitive)
+																The titles in banner styles cannot be hidden -->
+															<xsl:if test="(not(contains(style, 'geen titel')) and not(contains(title, 'NOTITLE'))) or contains(style, 'banner')">
+																<tr>
+																	<td class="ctTitlesCont">
+																		<table width="100%" cellpadding="0" cellspacing="0" style="width: 100%">
+																			<xsl:call-template name="titles" />
+																		</table>
+																	</td>
+																</tr>
+															</xsl:if>
+														</xsl:if>
+
 														<!-- Image above
                                                         When a placeholder is used, then this block item is created automatically after a new mailing were created
                                                         The default placeholder is a square. To prevent ugly look with 700px by 700px, replace it by a wide variant of the placeholder
@@ -335,106 +351,10 @@
 
 																							<table cellpadding="0" cellspacing="0" width="100%" style="width: 100%">
 
-																								<!-- Hide title when item.style.name contains "GEENTITEL", or content of db.title contains 'NOTITLE' (case sensitive)
+																								<!-- Hide title when item.style.name contains "geen titel", or content of db.title contains 'NOTITLE' (case sensitive)
 																								The titles in banner styles cannot be hidden -->
-																								<xsl:if test="(not(contains(style, 'GEENTITEL')) and not(contains(title, 'NOTITLE'))) or contains(style, 'banner')">
-
-																									<!--
-                                                                                                    Subtitle (db.location)
-                                                                                                    You can add 2x double pipes to break subtitle in max 3 lines (||)
-                                                                                                    Show this when the titles index are ST (subtitle - title), for banner style only
-                                                                                                    -->
-																									<xsl:if test="location != '' and $titles_index = 'ST' and contains(style, 'banner')">
-																										<tr>
-																											<td class="ctSubtAbove">
-
-																												<xsl:variable name="subtitle">
-																													<xsl:call-template name="double_pipes">
-																														<xsl:with-param name="input" select="location" />
-																													</xsl:call-template>
-																												</xsl:variable>
-
-																												<h4><xsl:value-of select="$subtitle" disable-output-escaping="yes" /></h4>
-																											</td>
-																										</tr>
-																									</xsl:if>
-
-																									<!--
-                                                                                                    Title (db.title)
-                                                                                                    You can add 2x double pipes to break title (max 2 double pipes)
-                                                                                                    -->
-																									<tr>
-																										<td>
-																											<xsl:attribute name="class">
-																												<xsl:choose>
-																													<xsl:when test="$titles_index = 'ST' and location != '' and contains(style, 'banner')">ctCaptBelow</xsl:when>
-																													<xsl:otherwise>ctCapt</xsl:otherwise>
-																												</xsl:choose>
-																											</xsl:attribute>
-
-																											<xsl:variable name="title">
-																												<xsl:call-template name="double_pipes">
-																													<xsl:with-param name="input" select="title" />
-																												</xsl:call-template>
-																											</xsl:variable>
-
-																											<xsl:variable name="heading">
-																												<xsl:choose>
-																													<xsl:when test="contains(style, '1/3') or contains(style, '2/3')">
-																														<xsl:text disable-output-escaping="yes"><![CDATA[<h3>]]></xsl:text>
-																														<xsl:value-of select="$title" disable-output-escaping="yes" />
-																														<xsl:text disable-output-escaping="yes"><![CDATA[</h3>]]></xsl:text>
-																													</xsl:when>
-																													<xsl:otherwise>
-																														<xsl:text disable-output-escaping="yes"><![CDATA[<h2>]]></xsl:text>
-																														<xsl:value-of select="$title" disable-output-escaping="yes" />
-																														<xsl:text disable-output-escaping="yes"><![CDATA[</h2>]]></xsl:text>
-																													</xsl:otherwise>
-																												</xsl:choose>
-																											</xsl:variable>
-
-																											<a>
-																												<xsl:attribute name="name"><xsl:value-of select="merge_ID" /></xsl:attribute>
-																												<xsl:value-of select="$heading" disable-output-escaping="yes" />
-																											</a>
-																										</td>
-																									</tr>
-
-																									<!--
-                                                                                                    Subtitle (db.location)
-                                                                                                    You can add 2x double pipes to break subtitle in max 3 lines (||)
-                                                                                                    Show this when the titles index are TS (title - subtitle), for banner style only
-                                                                                                    -->
-																									<xsl:if test="location != '' and ($titles_index = 'TS' or not(contains(style, 'banner')))">
-																										<tr>
-																											<td class="ctSubt">
-
-																												<xsl:variable name="subtitle">
-																													<xsl:call-template name="double_pipes">
-																														<xsl:with-param name="input" select="location" />
-																													</xsl:call-template>
-																												</xsl:variable>
-
-																												<h4><xsl:value-of select="$subtitle" disable-output-escaping="yes" /></h4>
-																											</td>
-																										</tr>
-																									</xsl:if>
-
-																									<!-- Date
-                                                                                                    When you empty the date fields in the content block details, then the dates will be saved as 1 january 2000.
-                                                                                                    Or you filled in the db.icon field.
-                                                                                                    Hide dates on banner blocks
-                                                                                                    -->
-																									<xsl:if test="(not(contains(display_playdate_start, '1 januari 2000')) or icon != '') and not(contains(style, 'banner'))">
-																										<tr>
-																											<td class="ctDate">
-																												<xsl:call-template name="date_subtitle">
-																													<xsl:with-param name="row" select="." />
-																												</xsl:call-template>
-																											</td>
-																										</tr>
-																									</xsl:if>
-
+																								<xsl:if test="(not(contains(style, 'geen titel')) and not(contains(title, 'NOTITLE'))) or contains(style, 'banner')">
+																									<xsl:call-template name="titles" />
 																								</xsl:if>
 
 																								<!-- Content
@@ -442,7 +362,7 @@
 																								##JWDB 31 march 2020: when using index item style, show a list with all items in this newsletter with some exceptions (sub headers, this item, full image items, call2action and items with NOTITLE)
 																								The validation on ending <br> in content is to prevent we're adding too many enters
 																								-->
-																								<xsl:if test="not(contains(style, 'banner'))">
+																								<xsl:if test="not(contains(style, 'banner')) and content != ''">
 																									<tr>
 																										<td class="content">
 																											<xsl:value-of select="content" disable-output-escaping="yes" />
@@ -1581,6 +1501,107 @@
 				<xsl:value-of select="$input" disable-output-escaping="yes" />
 			</xsl:otherwise>
 		</xsl:choose>
+	</xsl:template>
+
+	<!-- ##JWDB 10 april 2020: container for the titles -->
+	<xsl:template name="titles">
+
+		<!--
+		Subtitle (db.location)
+		You can add 2x double pipes to break subtitle in max 3 lines (||)
+		Show this when the style name contains a trigger word 'ondertitel boven'
+		-->
+		<xsl:if test="location != '' and contains(style, 'ondertitel boven')">
+			<tr>
+				<td class="ctSubtAbove">
+
+					<xsl:variable name="subtitle">
+						<xsl:call-template name="double_pipes">
+							<xsl:with-param name="input" select="location" />
+						</xsl:call-template>
+					</xsl:variable>
+
+					<h4><xsl:value-of select="$subtitle" disable-output-escaping="yes" /></h4>
+				</td>
+			</tr>
+		</xsl:if>
+
+		<!--
+		Title (db.title)
+		You can add 2x double pipes to break title (max 2 double pipes)
+		-->
+		<tr>
+			<td>
+				<xsl:attribute name="class">
+					<xsl:choose>
+						<xsl:when test="location != '' and contains(style, 'ondertitel boven')">ctCaptBelow</xsl:when>
+						<xsl:otherwise>ctCapt</xsl:otherwise>
+					</xsl:choose>
+				</xsl:attribute>
+
+				<xsl:variable name="title">
+					<xsl:call-template name="double_pipes">
+						<xsl:with-param name="input" select="title" />
+					</xsl:call-template>
+				</xsl:variable>
+
+				<xsl:variable name="heading">
+					<xsl:choose>
+						<xsl:when test="contains(style, '1/3') or contains(style, '2/3')">
+							<xsl:text disable-output-escaping="yes"><![CDATA[<h3>]]></xsl:text>
+							<xsl:value-of select="$title" disable-output-escaping="yes" />
+							<xsl:text disable-output-escaping="yes"><![CDATA[</h3>]]></xsl:text>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:text disable-output-escaping="yes"><![CDATA[<h2>]]></xsl:text>
+							<xsl:value-of select="$title" disable-output-escaping="yes" />
+							<xsl:text disable-output-escaping="yes"><![CDATA[</h2>]]></xsl:text>
+						</xsl:otherwise>
+					</xsl:choose>
+				</xsl:variable>
+
+				<a>
+					<xsl:attribute name="name"><xsl:value-of select="merge_ID" /></xsl:attribute>
+					<xsl:value-of select="$heading" disable-output-escaping="yes" />
+				</a>
+			</td>
+		</tr>
+
+		<!--
+		Subtitle (db.location)
+		You can add 2x double pipes to break subtitle in max 3 lines (||)
+		Show this when the titles index are TS (title - subtitle), for banner style only
+		-->
+		<xsl:if test="location != '' and not(contains(style, 'ondertitel boven'))">
+			<tr>
+				<td class="ctSubt">
+
+					<xsl:variable name="subtitle">
+						<xsl:call-template name="double_pipes">
+							<xsl:with-param name="input" select="location" />
+						</xsl:call-template>
+					</xsl:variable>
+
+					<h4><xsl:value-of select="$subtitle" disable-output-escaping="yes" /></h4>
+				</td>
+			</tr>
+		</xsl:if>
+
+		<!-- Date
+		When you empty the date fields in the content block details, then the dates will be saved as 1 january 2000.
+		Or you filled in the db.icon field.
+		Hide dates on banner blocks
+		-->
+		<xsl:if test="(not(contains(display_playdate_start, '1 januari 2000')) or icon != '') and not(contains(style, 'banner'))">
+			<tr>
+				<td class="ctDate">
+					<xsl:call-template name="date_subtitle">
+						<xsl:with-param name="row" select="." />
+					</xsl:call-template>
+				</td>
+			</tr>
+		</xsl:if>
+
 	</xsl:template>
 
 	<!-- That's all folks !!
