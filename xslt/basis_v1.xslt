@@ -1145,6 +1145,7 @@
 	With hide param (1 or 0) you can determine if the button have to be hidden by default.
 	Default buttons will be visible when viewing e-mail on mobile devices.
 	##JWDB 31 march 2020: icon logic added, can be activated by filling in four variables above this XSLT
+	##JWDB 10 april 2020: fixed bug with double buttons in Outlooks.
 	##todo explain
 	-->
 	<xsl:template name="button">
@@ -1449,6 +1450,15 @@
 													<xsl:value-of select="$date_time_period_prefix" />
 													<xsl:value-of select="substring(playdate_end, 12, 5)" />
 												</xsl:if>
+											</td>
+										</tr>
+									</xsl:if>
+
+									<!-- ##JWDB 10 april 2020: content added -->
+									<xsl:if test="content != ''">
+										<tr>
+											<td class="agContent">
+												<xsl:value-of select="content" disable-output-escaping="yes" />
 											</td>
 										</tr>
 									</xsl:if>
