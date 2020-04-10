@@ -1247,7 +1247,10 @@
 				<tr>
 					<td>
 						<xsl:attribute name="class"><xsl:value-of select="$class" /></xsl:attribute>
-						<table cellpadding="0" cellspacing="0">
+						<table cellpadding="0" cellspacing="0" class="ctButTable">
+							<xsl:if test="$hide = 1">
+								<xsl:attribute name="style">display:none;width:0px;max-height:0px;overflow:hidden;mso-hide:all;height:0;font-size:0;max-height:0;line-height:0;margin:0 auto;</xsl:attribute>
+							</xsl:if>
 							<tr>
 								<td class="ctButIconText">
 									<a target="_blank">
