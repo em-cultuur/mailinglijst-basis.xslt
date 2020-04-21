@@ -1369,6 +1369,7 @@
 								</td>
 							</xsl:if>
 
+							<!-- trigger DATUM-PLAATJE-TEKST -->
 							<xsl:if test="contains(style, 'datum-plaatje-tekst') and not(contains(display_playdate_start, '1 januari 2000'))">
 								<td class="agDateTextCont">
 
@@ -1463,7 +1464,7 @@
 													</tr>
 												</xsl:if>
 
-												<!-- Show same date text as ITEMS blocks when no DATUMBLOK is triggered -->
+												<!-- Show same date text as ITEMS blocks when no DATUMBLOK and DATUM-PLAATJE-TEKST is triggered -->
 												<xsl:if test="not(contains(style, 'datumblok')) and not(contains(style, 'datum-plaatje-tekst'))">
 													<tr>
 														<td class="agDate">
@@ -1494,6 +1495,7 @@
 														<td class="agContent">
 															<xsl:value-of select="content" disable-output-escaping="yes" />
 
+															<!-- Show text based readmore button when using DATUM-PLAATJE-TEKST trigger -->
 															<xsl:if test="contains(style, 'datum-plaatje-tekst') and url != '' and not(contains(image_alt, 'NOBUTTON'))">
 																<xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text>
 																<a target="_blank">
@@ -1513,7 +1515,7 @@
 								</table>
 							</td>
 
-							<!-- Button -->
+							<!-- Button, hide when using DATUM-PLAATJE-TEKST trigger -->
 							<xsl:if test="url != '' and not(contains(image_alt, 'NOBUTTON')) and not(contains(style, 'datum-plaatje-tekst'))">
 								<td class="agColMargin">
 									<xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text>
