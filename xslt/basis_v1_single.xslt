@@ -76,7 +76,7 @@
 		You can minify this on this website: https://cssminifier.com/
 		-->
 		<style typ="text/css">
-			@import url('https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i|Prata&amp;display=swap');.agContent a,.content a,a,td{font-family:Lato,sans-serif;color:#696969;font-size:14px;line-height:20px}h1,h2,h3,h4{font-family:Prata,serif;color:#cd5c5c;margin:0}.hdCont{background-color:#a9a9a9;padding:15px}.hdShow,.hdShow a{color:#fff}.hdShow{text-align:right}.hdShow a{text-decoration:underline}.headShow a:hover{text-decoration:none}.hdLogo{padding-bottom:15px}.hdEdition h1{color:#cd5c5c;font-size:24px;line-height:30px}.ftCont{padding:15px;text-align:center;background-color:#a9a9a9}.ftCont a{color:#696969;text-decoration:underline}.ftCont a:hover{text-decoration:none}.ftCont a img{border:0}.ctInnerCont,.ctMainBlock,.ctMainBlockItem{background-color:#fff;vertical-align:top}.ctInnerContFeat,.ctMainBlockFeat,.ctMainBlockItemFeat{background-color:#696969;vertical-align:top}.ctInnerContBan,.ctMainBlockBan{background-color:#cd5c5c}.ctBottomMargin{height:20px;font-size:1px;line-height:1px}.ctBlockMargin{width:20px;font-size:1px;line-height:1px}.ctTitlesCont,.ctTitlesContNoContent{padding-bottom:15px}.ctTitlesContAfbLr,.ctTitlesContBelow{padding-bottom:0}.ctCapt,.ctCaptBelow{padding:15px;padding-bottom:0}.ctCaptBelow{padding-top:0}.ctCapt a,.ctCapt h2,.ctCapt h3,.ctCaptBelow a,.ctCaptBelow h2,.ctCaptBelow h3{font-size:20px;line-height:28px;color:#cd5c5c;font-weight:700;text-decoration:none}.ctCapt h3,.ctCaptBelow h3{font-size:16px;line-height:24px}.ctInnerContFeat .ctCapt a,.ctInnerContFeat .ctCapt h2,.ctInnerContFeat .ctCapt h3,.ctInnerContFeat .ctCaptBelow a,.ctInnerContFeat .ctCaptBelow h2,.ctInnerContFeat .ctCaptBelow h3{color:#fff}.ctInnerContBan .ctCapt,.ctInnerContBan .ctCaptBelow{padding-top:0}.ctInnerContBan .ctCapt a,.ctInnerContBan .ctCapt h2,.ctInnerContBan .ctCapt h3,.ctInnerContBan .ctCaptBelow a,.ctInnerContBan .ctCaptBelow h2,.ctInnerContBan .ctCaptBelow h3{color:#fff;font-size:28px;line-height:36px}.ctSubt,.ctSubtAbove{padding:15px;padding-top:0;padding-bottom:0}.ctSubtAbove{padding-top:15px}.ctInnerContBan .ctSubtAbove{padding-top:0}.ctSubt h4,.ctSubtAbove h4{color:gray;font-size:16px;line-height:24px;font-weight:400}.ctInnerContBan .ctSubt h4,.ctInnerContBan .ctSubtAbove h4,.ctInnerContFeat .ctSubt h4,.ctInnerContFeat .ctSubtAbove h4{color:#fff}.ctDate{padding:15px;padding-top:0;padding-bottom:0;color:silver;font-size:14px;line-height:20px;font-weight:400}.ctInnerContFeat .ctDate{color:#fff}.content,.content a{font-size:14px;line-height:20px}.content{padding:15px}.content a{text-decoration:underline}.content a:hover{text-decoration:none}.ctInnerContFeat .content,.ctInnerContFeat .content a{color:#fff}.ctOuterBlock{vertical-align:top}.ctInnerContBan .ctOuterBlock{vertical-align:middle}.ctInnerContBan .ctInnerBlock{padding-top:15px;padding-bottom:15px}.ctImgLeftOuterBlock,.ctImgRightOuterBlock{width:235px;vertical-align:top}.ctImgLeftOuterBlockBan,.ctImgRightOuterBlockBan{width:220px;vertical-align:top}.ctImgLeftInnerBlock,.ctImgRightInnerBlock{padding:15px}.ctImgRightInnerBlock{padding-left:0}.ctImgLeftInnerBlock{padding-right:0}.ctImgSubt{font-size:12px;line-height:16px;padding:15px;padding-bottom:0;padding-top:5px}.ctInnerContBan .ctImgSubt,.ctInnerContFeat .ctImgSubt{color:#fff}.ctImgLeftInnerBlock .ctImgSubt,.ctImgRightInnerBlock .ctImgSubt{padding-left:5px;text-align:left}.ctImgLeftInnerBlockBan .ctImgSubt,.ctImgRightInnerBlockBan .ctImgSubt{padding-left:5px;padding-bottom:5px;text-align:left}.ctButCont{background-color:#fff;vertical-align:top}.ctButContFeat{background-color:#696969;vertical-align:top}.ctButContBan{background-color:#cd5c5c;vertical-align:top}.ctButInnerCont{padding:15px;padding-top:0}.ctButContBan .ctButInnerCont{padding-top:15px;padding-bottom:0}.ctBut{background-color:#696969;color:#fff;font-size:14px;padding:20px;padding-top:10px;padding-bottom:10px}.ctBut:hover{background-color:#000}.ctBut2{background-color:#cd5c5c;color:#fff;font-size:14px;padding:20px;padding-top:10px;padding-bottom:10px}.ctBut2:hover{background-color:red}.ctButBlock a{color:#fff;text-decoration:none}.ctButContBan .ctBut,.ctButContBan .ctBut2,.ctButContBan .ctBut2:hover,.ctButContBan .ctBut:hover,.ctButContFeat .ctBut,.ctButContFeat .ctBut2,.ctButContFeat .ctBut2:hover,.ctButContFeat .ctBut:hover,.ctMobButContBan .ctBut,.ctMobButContBan .ctBut2,.ctMobButContBan .ctBut2:hover,.ctMobButContBan .ctBut:hover,.ctMobButContFeat .ctBut,.ctMobButContFeat .ctBut2,.ctMobButContFeat .ctBut2:hover,.ctMobButContFeat .ctBut:hover{background-color:#fff}.ctButContBan .ctButBlock a,.ctButContFeat .ctButBlock a,.ctMobButContBan .ctButBlock a,.ctMobButContFeat .ctButBlock a{color:#696969}.ctButIconMargin{font-size:1px;line-height:1px;width:5px}.ctCallInnerCont{background-color:#696969;text-align:center;padding:15px;padding-top:10px;padding-bottom:10px}.ctCallInnerCont h2{color:#fff;font-size:20px;line-height:28px;font-family:Lato,sans-serif;font-weight:400}.ctCallInnerCont h2 a{font-size:20px;line-height:28px}.ctCallOuterCont a{text-decoration:none;color:#fff}.ctSubhInnerCont,.ctSubhInnerContFeat{border-bottom:2px solid #cd5c5c;padding-bottom:10px}.ctSubhInnerContFeat{border-bottom:2px solid #696969}.ctSubhInnerCont h2,.ctSubhInnerContFeat h2{color:#cd5c5c;font-size:20px;line-height:28px;font-family:Lato,sans-serif;font-weight:400}.ctSubhInnerContFeat h2{color:#696969}.agHeaderOuterCont{background-color:#fff;padding:15px;padding-bottom:0}.agHeaderInnerCont{font-size:20px;line-height:28px;color:#cd5c5c}.agItemsCont{background-color:#fff;padding:15px;padding-bottom:0}.agItemCont{padding-bottom:15px}.agDateBlockCont{width:65px;vertical-align:top}.agDateBlockInnerCont{padding-top:10px}.agDateBlockDay,.agDateBlockMonth{background-color:#cd5c5c;padding:5px;text-align:center;width:40px;color:#fff;font-weight:700}.agDateBlockDay{padding-bottom:0;font-size:18px;line-height:22px}.agDateBlockMonth{padding-top:0}.agImgOuterCont{width:140px;vertical-align:top}.agCtCont{vertical-align:top}.agCapt h2{font-size:20px;line-height:28px;color:#696969;font-weight:700}.agSubt h4{color:gray;font-size:16px;line-height:24px;font-weight:400}.agDate,.agTime{color:silver;font-size:14px;line-height:20px;font-weight:400}.agContent{padding-top:10px}.agButCont a{color:#fff;text-decoration:none}@media only screen and (max-width:480px){.ctMainTable{width:100%!important}.bodyMainTable{width:100%!important}.ctImg img{width:100%!important;height:auto!important;-ms-interpolation-mode:bicubic}.ctImgSmall{text-align:center}.ctImgSmall img{margin-left:auto;margin-right:auto}.ctImgSmall .ctImgSubt{text-align:left}.ctMainBlock,.ctMainBlockFeat,.ctMainBlockItem,.ctMainBlockItemFeat{display:block;width:100%!important}.ctBlockMargin{display:block;width:100%!important;padding-bottom:20px}.ctCapt h2,.ctCapt h3,.ctCaptBelow h2,.ctCaptBelow h3{font-size:20px!important;line-height:28px!important}.ctSubhInnerCont,.ctSubhInnerContFeat{padding-left:15px;padding-right:15px}.ctButCont,.ctButContBan,.ctButContFeat,.ctDeskButCont{display:none!important}.ctMobButCont,.ctMobButContBan,.ctMobButContFeat{display:table-row!important;max-height:none!important;height:auto!important;font-size:inherit!important;line-height:normal!important;margin:auto!important;width:100%!important;overflow:auto!important}.ctMobButBlock{padding:15px;padding-top:0}.ctMobButContBan .ctMobButBlock{padding-top:15px;padding-bottom:0}.ctMobInnerCont{display:table!important;max-height:none!important;height:auto!important;font-size:inherit!important;line-height:normal!important;margin:auto!important;width:auto!important;overflow:auto!important}.ctButTable{display:block!important;max-height:none!important;height:auto!important;font-size:inherit!important;line-height:normal!important;margin:auto!important;width:100%!important;overflow:auto!important}.ctImgLeftOuterBlock,.ctImgLeftOuterBlockBan,.ctImgRightOuterBlock,.ctImgRightOuterBlockBan{display:block!important;width:100%}.ctImgLeftInnerBlock,.ctImgLeftInnerBlockBan,.ctImgRightInnerBlock,.ctImgRightInnerBlockBan{padding:0!important;text-align:center}.ctImgLeftOuterBlock img,.ctImgLeftOuterBlockBan img,.ctImgRightOuterBlock img,.ctImgRightOuterBlockBan img{margin-left:auto;margin-right:auto}.ctOuterBlock{display:block!important;width:100%}.agImgOuterCont{width:100%!important;display:block;padding-bottom:10px}.agImgOuterCont img{margin-left:auto;margin-right:auto}.agCtCont{width:100%!important;display:block}.agButCont{width:100%!important;display:block;padding-top:10px}}
+			@import url('https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i|Prata&amp;display=swap');td,a,.content a,.agContent a{font-family:Lato,sans-serif;color:dimgray;font-size:14px;line-height:20px}h1,h2,h3,h4,h5,h6{font-family:Prata,serif;color:indianred;margin:0;font-size:14px;line-height:20px}.content h5,.content h6{color:dimgray;font-family:Lato,sans-serif}h1{font-size:24px;line-height:30px}h2{font-size:20px;line-height:28px}h3{font-size:16px;line-height:24px}h4{font-size:16px;line-height:24px;color:gray;font-weight:400}h5{font-size:14px;line-height:20px}h6{font-size:12px;line-height:18px}.content h1,.content h2,.content h3,.content h4,.content h5,.content h6{margin-top:15px}.hdCont{background-color:darkgray;padding:15px}.hdShow,.hdShow a{color:white}.hdShow{text-align:right}.hdShow a{text-decoration:underline}.headShow a:hover{text-decoration:none}.hdLogo{padding-bottom:15px}.ftCont{padding:15px;text-align:center;background-color:darkgray}.ftCont a{color:dimgray;text-decoration:underline}.ftCont a:hover{text-decoration:none}.ftCont a img{border:0}.ctMainBlock,.ctMainBlockItem,.ctInnerCont{background-color:white;vertical-align:top}.ctMainBlockFeat,.ctMainBlockItemFeat,.ctInnerContFeat{background-color:dimgray;vertical-align:top}.ctMainBlockBan,.ctInnerContBan{background-color:indianred}.ctBottomMargin{height:20px;font-size:1px;line-height:1px}.ctBlockMargin{width:20px;font-size:1px;line-height:1px}.ctTitlesCont,.ctTitlesContNoContent{padding-bottom:15px}.ctTitlesContAfbLr,.ctTitlesContBelow{padding-bottom:0}.ctCapt,.ctCaptBelow{padding:15px;padding-bottom:0}.ctCaptBelow{padding-top:0}.ctCapt h2,.ctCapt h3,.ctCapt a,.ctCaptBelow h2,.ctCaptBelow h3,.ctCaptBelow a{color:indianred;font-weight:700;text-decoration:none}.ctCapt a,.ctCaptBelow a{font-size:20px;line-height:28px}.ctInnerContFeat .ctCapt h2,.ctInnerContFeat .ctCapt h3,.ctInnerContFeat .ctCapt a,.ctInnerContFeat .ctCaptBelow h2,.ctInnerContFeat .ctCaptBelow h3,.ctInnerContFeat .ctCaptBelow a{color:white}.ctInnerContBan .ctCapt,.ctInnerContBan .ctCaptBelow{padding-top:0}.ctInnerContBan .ctCapt h2,.ctInnerContBan .ctCapt h3,.ctInnerContBan .ctCapt a,.ctInnerContBan .ctCaptBelow h2,.ctInnerContBan .ctCaptBelow h3,.ctInnerContBan .ctCaptBelow a{color:white;font-size:28px;line-height:36px}.ctSubt,.ctSubtAbove{padding:15px;padding-top:0;padding-bottom:0}.ctSubtAbove{padding-top:15px}.ctInnerContBan .ctSubtAbove{padding-top:0}.ctInnerContFeat .ctSubt h4,.ctInnerContBan .ctSubt h4,.ctInnerContFeat .ctSubtAbove h4,.ctInnerContBan .ctSubtAbove h4{color:white}.ctDate{padding:15px;padding-top:0;padding-bottom:0;color:silver;font-size:14px;line-height:20px;font-weight:400}.ctInnerContFeat .ctDate{color:white}.content,.content a{font-size:14px;line-height:20px}.content{padding:15px}.content a{text-decoration:underline}.content a:hover{text-decoration:none}.ctInnerContFeat .content,.ctInnerContFeat .content a{color:white}.ctOuterBlock{vertical-align:top}.ctInnerContBan .ctOuterBlock{vertical-align:middle}.ctInnerContBan .ctInnerBlock{padding-top:15px;padding-bottom:15px}.ctImgRightOuterBlock,.ctImgLeftOuterBlock{width:235px;vertical-align:top}.ctImgRightOuterBlockBan,.ctImgLeftOuterBlockBan{width:220px;vertical-align:top}.ctImgRightInnerBlock,.ctImgLeftInnerBlock{padding:15px}.ctImgRightInnerBlock{padding-left:0}.ctImgLeftInnerBlock{padding-right:0}.ctImgSubt{font-size:12px;line-height:16px;padding:15px;padding-bottom:0;padding-top:5px}.ctInnerContFeat .ctImgSubt,.ctInnerContBan .ctImgSubt{color:white}.ctImgLeftInnerBlock .ctImgSubt,.ctImgRightInnerBlock .ctImgSubt{padding-left:5px;text-align:left}.ctImgLeftInnerBlockBan .ctImgSubt,.ctImgRightInnerBlockBan .ctImgSubt{padding-left:5px;padding-bottom:5px;text-align:left}.ctButCont{background-color:white;vertical-align:top}.ctButContFeat{background-color:dimgray;vertical-align:top}.ctButContBan{background-color:indianred;vertical-align:top}.ctButInnerCont{padding:15px;padding-top:0}.ctButContBan .ctButInnerCont{padding-top:15px;padding-bottom:0}.ctBut{background-color:dimgray;color:white;font-size:14px;padding:20px;padding-top:10px;padding-bottom:10px}.ctBut:hover{background-color:black}.ctBut2{background-color:indianred;color:white;font-size:14px;padding:20px;padding-top:10px;padding-bottom:10px}.ctBut2:hover{background-color:red}.ctButBlock a{color:white;text-decoration:none}.ctButContFeat .ctBut,.ctButContFeat .ctBut:hover,.ctButContFeat .ctBut2,.ctButContFeat .ctBut2:hover,.ctButContBan .ctBut,.ctButContBan .ctBut:hover,.ctButContBan .ctBut2,.ctButContBan .ctBut2:hover,.ctMobButContFeat .ctBut,.ctMobButContFeat .ctBut:hover,.ctMobButContFeat .ctBut2,.ctMobButContFeat .ctBut2:hover,.ctMobButContBan .ctBut,.ctMobButContBan .ctBut:hover,.ctMobButContBan .ctBut2,.ctMobButContBan .ctBut2:hover{background-color:white}.ctButContFeat .ctButBlock a,.ctButContBan .ctButBlock a,.ctMobButContFeat .ctButBlock a,.ctMobButContBan .ctButBlock a{color:dimgray}.ctButIconMargin{font-size:1px;line-height:1px;width:5px}.ctCallInnerCont{background-color:dimgray;text-align:center;padding:15px;padding-top:10px;padding-bottom:10px}.ctCallInnerCont h2{color:white;font-size:20px;line-height:28px;font-family:Lato,sans-serif;font-weight:400}.ctCallInnerCont h2 a{font-size:20px;line-height:28px}.ctCallOuterCont a{text-decoration:none;color:white}.ctSubhInnerCont,.ctSubhInnerContFeat{border-bottom:2px solid indianred;padding-bottom:10px}.ctSubhInnerContFeat{border-bottom:2px solid dimgray}.ctSubhInnerCont h2,.ctSubhInnerContFeat h2{color:indianred;font-size:20px;line-height:28px;font-family:Lato,sans-serif;font-weight:400}.ctSubhInnerContFeat h2{color:dimgray}.agHeaderOuterCont{background-color:white;padding:15px;padding-bottom:0}.agHeaderInnerCont{font-size:20px;line-height:28px;color:indianred}.agItemsCont{background-color:white;padding:15px;padding-bottom:0}.agItemCont{padding-bottom:15px}.agColMargin{font-size:1px;line-height:1px}.agDateBlockCont{width:65px;vertical-align:top}.agDateBlockInnerCont{padding-top:10px}.agDateBlockDay,.agDateBlockMonth{background-color:indianred;padding:5px;text-align:center;width:40px;color:white;font-weight:700}.agDateBlockDay{padding-bottom:0;font-size:18px;line-height:22px}.agDateBlockMonth{padding-top:0}.agDateTextCont{vertical-align:top;width:140px}.agDateTextInnerCont{padding-right:5px}.agImgOuterCont{width:140px;vertical-align:top}.agCtCont{vertical-align:top}.agCapt h2{font-size:20px;line-height:28px;color:dimgray;font-weight:700}.agSubt h4{color:gray;font-size:16px;line-height:24px;font-weight:400}.agDate,.agTime,.agDateTextInnerCont{color:silver;font-size:14px;line-height:20px;font-weight:400}.agContent{padding-top:10px}.agButCont a{color:white;text-decoration:none}@media only screen and (max-width:480px){.ctMainTable{width:100%!important}.bodyMainTable{width:100%!important}.ctImg img{width:100%!important;height:auto!important;-ms-interpolation-mode:bicubic}.ctImgSmall{text-align:center}.ctImgSmall img{margin-left:auto;margin-right:auto}.ctImgSmall .ctImgSubt{text-align:left}.ctMainBlock,.ctMainBlockItem,.ctMainBlockFeat,.ctMainBlockItemFeat{display:block;width:100%!important}.ctBlockMargin{display:block;width:100%!important;padding-bottom:20px}.ctCapt h2,.ctCapt h3,.ctCaptBelow h2,.ctCaptBelow h3{font-size:20px!important;line-height:28px!important}.ctSubhInnerCont,.ctSubhInnerContFeat{padding-left:15px;padding-right:15px}.ctButCont,.ctButContFeat,.ctButContBan,.ctDeskButCont{display:none!important}.ctMobButCont,.ctMobButContFeat,.ctMobButContBan{display:table-row!important;max-height:none!important;height:auto!important;font-size:inherit!important;line-height:normal!important;margin:auto!important;width:100%!important;overflow:auto!important}.ctMobButBlock{padding:15px;padding-top:0}.ctMobButContBan .ctMobButBlock{padding-top:15px;padding-bottom:0}.ctMobInnerCont{display:table!important;max-height:none!important;height:auto!important;font-size:inherit!important;line-height:normal!important;margin:auto!important;width:auto!important;overflow:auto!important}.ctButTable{display:block!important;max-height:none!important;height:auto!important;font-size:inherit!important;line-height:normal!important;margin:auto!important;width:100%!important;overflow:auto!important}.ctImgLeftOuterBlock,.ctImgRightOuterBlock,.ctImgRightOuterBlockBan,.ctImgLeftOuterBlockBan{display:block!important;width:100%}.ctImgLeftInnerBlock,.ctImgRightInnerBlock,.ctImgRightInnerBlockBan,.ctImgLeftInnerBlockBan{padding:0!important;text-align:center}.ctImgLeftOuterBlock img,.ctImgRightOuterBlock img,.ctImgRightOuterBlockBan img,.ctImgLeftOuterBlockBan img{margin-left:auto;margin-right:auto}.ctOuterBlock{display:block!important;width:100%}.agImgOuterCont{width:100%!important;display:block;padding-bottom:10px}.agImgOuterCont img{margin-left:auto;margin-right:auto}.agCtCont{width:100%!important;display:block}.agButCont{width:100%!important;display:block;padding-top:10px}.agColMargin{width:100%!important;display:block}.agDateTextCont{width:100%!important;display:block;padding-bottom:10px}}
 		</style>
 
 		<table cellpadding="0" cellspacing="0" width="100%" style="width: 100%" class="ctMainTable">
@@ -124,6 +124,7 @@
 									<xsl:when test="contains(style, 'uitgelicht') or extra1 != ''">ctMainBlockItemFeat</xsl:when>
 									<xsl:otherwise>ctMainBlockItem</xsl:otherwise>
 								</xsl:choose>
+								<xsl:if test="(url = '' or contains(image_alt, 'NOBUTTON')) and (url2 = '' or contains(icon2, 'NOBUTTON'))"> ctMainNoButton</xsl:if>
 							</xsl:attribute>
 
 							<!--
@@ -1371,6 +1372,28 @@
 									</table>
 
 								</td>
+								<td class="agColMargin">
+									<xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text>
+								</td>
+							</xsl:if>
+
+							<xsl:if test="contains(style, 'datum-plaatje-tekst') and not(contains(display_playdate_start, '1 januari 2000'))">
+								<td class="agDateTextCont">
+
+									<table cellpadding="0" cellspacing="0" width="100%" style="width: 100%">
+										<tr>
+											<td class="agDateTextInnerCont">
+												<xsl:call-template name="date_subtitle">
+													<xsl:with-param name="row" select="." />
+												</xsl:call-template>
+											</td>
+										</tr>
+									</table>
+
+								</td>
+								<td class="agColMargin">
+									<xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text>
+								</td>
 							</xsl:if>
 
 							<!-- This will be displayed when using normal agenda block style name and image is set -->
@@ -1406,88 +1429,120 @@
 										</tr>
 									</table>
 								</td>
+								<td class="agColMargin">
+									<xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text>
+								</td>
 							</xsl:if>
 
 							<!-- Content container -->
 							<td class="agCtCont">
+
 								<table cellpadding="0" cellspacing="0" width="100%" style="width: 100%">
-
-									<!-- Caption with same || option as in ITEMS -->
 									<tr>
-										<td class="agCapt">
-											<xsl:variable name="title">
-												<xsl:call-template name="double_pipes">
-													<xsl:with-param name="input" select="title" />
-												</xsl:call-template>
-											</xsl:variable>
+										<td class="agCtInnerCont">
+											<table cellpadding="0" cellspacing="0" width="100%" style="width: 100%">
 
-											<h2><xsl:value-of select="$title" disable-output-escaping="yes" /></h2>
+												<!-- Caption with same || option as in ITEMS -->
+												<tr>
+													<td class="agCapt">
+														<xsl:variable name="title">
+															<xsl:call-template name="double_pipes">
+																<xsl:with-param name="input" select="title" />
+															</xsl:call-template>
+														</xsl:variable>
+
+														<h2><xsl:value-of select="$title" disable-output-escaping="yes" /></h2>
+													</td>
+												</tr>
+
+												<!-- Subtitle with same || option as in ITEMS -->
+												<xsl:if test="location != ''">
+													<tr>
+														<td class="agSubt">
+
+															<xsl:variable name="subtitle">
+																<xsl:call-template name="double_pipes">
+																	<xsl:with-param name="input" select="location" />
+																</xsl:call-template>
+															</xsl:variable>
+
+															<h4><xsl:value-of select="$subtitle" disable-output-escaping="yes" /></h4>
+														</td>
+													</tr>
+												</xsl:if>
+
+												<!-- Show same date text as ITEMS blocks when no DATUMBLOK is triggered -->
+												<xsl:if test="not(contains(style, 'datumblok')) and not(contains(style, 'datum-plaatje-tekst'))">
+													<tr>
+														<td class="agDate">
+															<xsl:call-template name="date_subtitle">
+																<xsl:with-param name="row" select="." />
+															</xsl:call-template>
+														</td>
+													</tr>
+												</xsl:if>
+
+												<!-- Show times when filled and using DATUMBLOK trigger -->
+												<xsl:if test="contains(style, 'datumblok') and not(contains(display_playdate_start, '1 januari 2000')) and substring(playdate_start, 12, 5) != '00:00'">
+													<tr>
+														<td class="agTime">
+															<xsl:value-of select="substring(playdate_start, 12, 5)" />
+
+															<xsl:if test="substring(playdate_end, 12, 5) != substring(playdate_start, 12, 5)">
+																<xsl:value-of select="$date_time_period_prefix" />
+																<xsl:value-of select="substring(playdate_end, 12, 5)" />
+															</xsl:if>
+														</td>
+													</tr>
+												</xsl:if>
+
+												<!-- ##JWDB 10 april 2020: content added -->
+												<xsl:if test="content != ''">
+													<tr>
+														<td class="agContent">
+															<xsl:value-of select="content" disable-output-escaping="yes" />
+
+															<xsl:if test="contains(style, 'datum-plaatje-tekst') and url != '' and not(contains(image_alt, 'NOBUTTON'))">
+																<xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text>
+																<a target="_blank">
+																	<xsl:attribute name="href"><xsl:value-of select="details_url" /></xsl:attribute>
+																	<xsl:choose>
+																		<xsl:when test="image_alt != ''"><xsl:value-of select="image_alt" /></xsl:when>
+																		<xsl:otherwise><xsl:value-of select="$button1_text" /></xsl:otherwise>
+																	</xsl:choose>
+																</a>
+															</xsl:if>
+														</td>
+													</tr>
+												</xsl:if>
+											</table>
 										</td>
 									</tr>
-
-									<!-- Subtitle with same || option as in ITEMS -->
-									<xsl:if test="location != ''">
-										<tr>
-											<td class="agSubt">
-
-												<xsl:variable name="subtitle">
-													<xsl:call-template name="double_pipes">
-														<xsl:with-param name="input" select="location" />
-													</xsl:call-template>
-												</xsl:variable>
-
-												<h4><xsl:value-of select="$subtitle" disable-output-escaping="yes" /></h4>
-											</td>
-										</tr>
-									</xsl:if>
-
-									<!-- Show same date text as ITEMS blocks when no DATUMBLOK is triggered -->
-									<xsl:if test="not(contains(style, 'datumblok'))">
-										<tr>
-											<td class="agDate">
-												<xsl:call-template name="date_subtitle">
-													<xsl:with-param name="row" select="." />
-												</xsl:call-template>
-											</td>
-										</tr>
-									</xsl:if>
-
-									<!-- Show times when filled and using DATUMBLOK trigger -->
-									<xsl:if test="contains(style, 'datumblok') and not(contains(display_playdate_start, '1 januari 2000')) and substring(playdate_start, 12, 5) != '00:00'">
-										<tr>
-											<td class="agTime">
-												<xsl:value-of select="substring(playdate_start, 12, 5)" />
-
-												<xsl:if test="substring(playdate_end, 12, 5) != substring(playdate_start, 12, 5)">
-													<xsl:value-of select="$date_time_period_prefix" />
-													<xsl:value-of select="substring(playdate_end, 12, 5)" />
-												</xsl:if>
-											</td>
-										</tr>
-									</xsl:if>
-
-									<!-- ##JWDB 10 april 2020: content added -->
-									<xsl:if test="content != ''">
-										<tr>
-											<td class="agContent">
-												<xsl:value-of select="content" disable-output-escaping="yes" />
-											</td>
-										</tr>
-									</xsl:if>
 								</table>
 							</td>
 
 							<!-- Button -->
-							<xsl:if test="url != '' and not(contains(image_alt, 'NOBUTTON'))">
+							<xsl:if test="url != '' and not(contains(image_alt, 'NOBUTTON')) and not(contains(style, 'datum-plaatje-tekst'))">
+								<td class="agColMargin">
+									<xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text>
+								</td>
 								<td class="agButCont">
-									<xsl:call-template name="button">
-										<xsl:with-param name="align">right</xsl:with-param>
-										<xsl:with-param name="button_default_text" select="$button1_text" />
-										<xsl:with-param name="button_text" select="image_alt" />
-										<xsl:with-param name="class">ctBut</xsl:with-param>
-										<xsl:with-param name="url" select="details_url" />
-										<xsl:with-param name="button_icon"><xsl:value-of select="$button_icon" /></xsl:with-param>
-									</xsl:call-template>
+
+									<table width="100%" cellpadding="0" cellspacing="0" style="width: 100%">
+										<tr>
+											<td style="agButInnerCont">
+												<xsl:call-template name="button">
+													<xsl:with-param name="align">right</xsl:with-param>
+													<xsl:with-param name="button_default_text" select="$button1_text" />
+													<xsl:with-param name="button_text" select="image_alt" />
+													<xsl:with-param name="class">ctBut</xsl:with-param>
+													<xsl:with-param name="url" select="details_url" />
+													<xsl:with-param name="button_icon"><xsl:value-of select="$button_icon" /></xsl:with-param>
+												</xsl:call-template>
+											</td>
+										</tr>
+									</table>
+
 								</td>
 							</xsl:if>
 						</tr>

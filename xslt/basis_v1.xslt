@@ -6,7 +6,7 @@
 	<!-- Basis  v1
 	XSLT for BLOCKS in MailingLijst-templates
 	(c) EM-Cultuur, 2020
-	Last change: JWDB 10 april 2020
+	Last change: JWDB 21 april 2020
 
 	BLOCKSTULE-names determine grouping
 	blockdeails (db.fiesds) dettermine content, design of the blocks
@@ -116,6 +116,7 @@
 									<xsl:when test="contains(style, 'uitgelicht') or extra1 != ''">ctMainBlockItemFeat</xsl:when>
 									<xsl:otherwise>ctMainBlockItem</xsl:otherwise>
 								</xsl:choose>
+								<xsl:if test="(url = '' or contains(image_alt, 'NOBUTTON')) and (url2 = '' or contains(icon2, 'NOBUTTON'))"> ctMainNoButton</xsl:if>
 							</xsl:attribute>
 
 							<!--
@@ -1363,6 +1364,28 @@
 									</table>
 
 								</td>
+								<td class="agColMargin">
+									<xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text>
+								</td>
+							</xsl:if>
+
+							<xsl:if test="contains(style, 'datum-plaatje-tekst') and not(contains(display_playdate_start, '1 januari 2000'))">
+								<td class="agDateTextCont">
+
+									<table cellpadding="0" cellspacing="0" width="100%" style="width: 100%">
+										<tr>
+											<td class="agDateTextInnerCont">
+												<xsl:call-template name="date_subtitle">
+													<xsl:with-param name="row" select="." />
+												</xsl:call-template>
+											</td>
+										</tr>
+									</table>
+
+								</td>
+								<td class="agColMargin">
+									<xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text>
+								</td>
 							</xsl:if>
 
 							<!-- This will be displayed when using normal agenda block style name and image is set -->
@@ -1398,88 +1421,120 @@
 										</tr>
 									</table>
 								</td>
+								<td class="agColMargin">
+									<xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text>
+								</td>
 							</xsl:if>
 
 							<!-- Content container -->
 							<td class="agCtCont">
+
 								<table cellpadding="0" cellspacing="0" width="100%" style="width: 100%">
-
-									<!-- Caption with same || option as in ITEMS -->
 									<tr>
-										<td class="agCapt">
-											<xsl:variable name="title">
-												<xsl:call-template name="double_pipes">
-													<xsl:with-param name="input" select="title" />
-												</xsl:call-template>
-											</xsl:variable>
+										<td class="agCtInnerCont">
+											<table cellpadding="0" cellspacing="0" width="100%" style="width: 100%">
 
-											<h2><xsl:value-of select="$title" disable-output-escaping="yes" /></h2>
+												<!-- Caption with same || option as in ITEMS -->
+												<tr>
+													<td class="agCapt">
+														<xsl:variable name="title">
+															<xsl:call-template name="double_pipes">
+																<xsl:with-param name="input" select="title" />
+															</xsl:call-template>
+														</xsl:variable>
+
+														<h2><xsl:value-of select="$title" disable-output-escaping="yes" /></h2>
+													</td>
+												</tr>
+
+												<!-- Subtitle with same || option as in ITEMS -->
+												<xsl:if test="location != ''">
+													<tr>
+														<td class="agSubt">
+
+															<xsl:variable name="subtitle">
+																<xsl:call-template name="double_pipes">
+																	<xsl:with-param name="input" select="location" />
+																</xsl:call-template>
+															</xsl:variable>
+
+															<h4><xsl:value-of select="$subtitle" disable-output-escaping="yes" /></h4>
+														</td>
+													</tr>
+												</xsl:if>
+
+												<!-- Show same date text as ITEMS blocks when no DATUMBLOK is triggered -->
+												<xsl:if test="not(contains(style, 'datumblok')) and not(contains(style, 'datum-plaatje-tekst'))">
+													<tr>
+														<td class="agDate">
+															<xsl:call-template name="date_subtitle">
+																<xsl:with-param name="row" select="." />
+															</xsl:call-template>
+														</td>
+													</tr>
+												</xsl:if>
+
+												<!-- Show times when filled and using DATUMBLOK trigger -->
+												<xsl:if test="contains(style, 'datumblok') and not(contains(display_playdate_start, '1 januari 2000')) and substring(playdate_start, 12, 5) != '00:00'">
+													<tr>
+														<td class="agTime">
+															<xsl:value-of select="substring(playdate_start, 12, 5)" />
+
+															<xsl:if test="substring(playdate_end, 12, 5) != substring(playdate_start, 12, 5)">
+																<xsl:value-of select="$date_time_period_prefix" />
+																<xsl:value-of select="substring(playdate_end, 12, 5)" />
+															</xsl:if>
+														</td>
+													</tr>
+												</xsl:if>
+
+												<!-- ##JWDB 10 april 2020: content added -->
+												<xsl:if test="content != ''">
+													<tr>
+														<td class="agContent">
+															<xsl:value-of select="content" disable-output-escaping="yes" />
+
+															<xsl:if test="contains(style, 'datum-plaatje-tekst') and url != '' and not(contains(image_alt, 'NOBUTTON'))">
+																<xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text>
+																<a target="_blank">
+																	<xsl:attribute name="href"><xsl:value-of select="details_url" /></xsl:attribute>
+																	<xsl:choose>
+																		<xsl:when test="image_alt != ''"><xsl:value-of select="image_alt" /></xsl:when>
+																		<xsl:otherwise><xsl:value-of select="$button1_text" /></xsl:otherwise>
+																	</xsl:choose>
+																</a>
+															</xsl:if>
+														</td>
+													</tr>
+												</xsl:if>
+											</table>
 										</td>
 									</tr>
-
-									<!-- Subtitle with same || option as in ITEMS -->
-									<xsl:if test="location != ''">
-										<tr>
-											<td class="agSubt">
-
-												<xsl:variable name="subtitle">
-													<xsl:call-template name="double_pipes">
-														<xsl:with-param name="input" select="location" />
-													</xsl:call-template>
-												</xsl:variable>
-
-												<h4><xsl:value-of select="$subtitle" disable-output-escaping="yes" /></h4>
-											</td>
-										</tr>
-									</xsl:if>
-
-									<!-- Show same date text as ITEMS blocks when no DATUMBLOK is triggered -->
-									<xsl:if test="not(contains(style, 'datumblok'))">
-										<tr>
-											<td class="agDate">
-												<xsl:call-template name="date_subtitle">
-													<xsl:with-param name="row" select="." />
-												</xsl:call-template>
-											</td>
-										</tr>
-									</xsl:if>
-
-									<!-- Show times when filled and using DATUMBLOK trigger -->
-									<xsl:if test="contains(style, 'datumblok') and not(contains(display_playdate_start, '1 januari 2000')) and substring(playdate_start, 12, 5) != '00:00'">
-										<tr>
-											<td class="agTime">
-												<xsl:value-of select="substring(playdate_start, 12, 5)" />
-
-												<xsl:if test="substring(playdate_end, 12, 5) != substring(playdate_start, 12, 5)">
-													<xsl:value-of select="$date_time_period_prefix" />
-													<xsl:value-of select="substring(playdate_end, 12, 5)" />
-												</xsl:if>
-											</td>
-										</tr>
-									</xsl:if>
-
-									<!-- ##JWDB 10 april 2020: content added -->
-									<xsl:if test="content != ''">
-										<tr>
-											<td class="agContent">
-												<xsl:value-of select="content" disable-output-escaping="yes" />
-											</td>
-										</tr>
-									</xsl:if>
 								</table>
 							</td>
 
 							<!-- Button -->
-							<xsl:if test="url != '' and not(contains(image_alt, 'NOBUTTON'))">
+							<xsl:if test="url != '' and not(contains(image_alt, 'NOBUTTON')) and not(contains(style, 'datum-plaatje-tekst'))">
+								<td class="agColMargin">
+									<xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text>
+								</td>
 								<td class="agButCont">
-									<xsl:call-template name="button">
-										<xsl:with-param name="align">right</xsl:with-param>
-										<xsl:with-param name="button_default_text" select="$button1_text" />
-										<xsl:with-param name="button_text" select="image_alt" />
-										<xsl:with-param name="class">ctBut</xsl:with-param>
-										<xsl:with-param name="url" select="details_url" />
-										<xsl:with-param name="button_icon"><xsl:value-of select="$button_icon" /></xsl:with-param>
-									</xsl:call-template>
+
+									<table width="100%" cellpadding="0" cellspacing="0" style="width: 100%">
+										<tr>
+											<td style="agButInnerCont">
+												<xsl:call-template name="button">
+													<xsl:with-param name="align">right</xsl:with-param>
+													<xsl:with-param name="button_default_text" select="$button1_text" />
+													<xsl:with-param name="button_text" select="image_alt" />
+													<xsl:with-param name="class">ctBut</xsl:with-param>
+													<xsl:with-param name="url" select="details_url" />
+													<xsl:with-param name="button_icon"><xsl:value-of select="$button_icon" /></xsl:with-param>
+												</xsl:call-template>
+											</td>
+										</tr>
+									</table>
+
 								</td>
 							</xsl:if>
 						</tr>
