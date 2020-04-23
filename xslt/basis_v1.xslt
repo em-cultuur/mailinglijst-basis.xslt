@@ -29,6 +29,9 @@
 	<xsl:variable name="image_width_lr">220</xsl:variable>
 	<xsl:variable name="image_width_agenda">125</xsl:variable>
 
+	<!-- options for borders -->
+	<xsl:variable name="border_width">0</xsl:variable>
+
 	<!-- TEXT DEFAULTS (can be overridden -->
 	<xsl:variable name="button1_text">Lees meer</xsl:variable>
 	<xsl:variable name="button2_text">Koop kaarten</xsl:variable>
@@ -116,7 +119,6 @@
 									<xsl:when test="contains(style, 'uitgelicht') or extra1 != ''">ctMainBlockItemFeat</xsl:when>
 									<xsl:otherwise>ctMainBlockItem</xsl:otherwise>
 								</xsl:choose>
-								<xsl:if test="(url = '' or contains(image_alt, 'NOBUTTON')) and (url2 = '' or contains(icon2, 'NOBUTTON'))"> ctMainNoButton</xsl:if>
 							</xsl:attribute>
 
 							<!--
@@ -126,9 +128,17 @@
 								<xsl:attribute name="style">background-color: <xsl:value-of select="extra1" />;</xsl:attribute>
 							</xsl:if>
 
+							<xsl:variable name="bordered_width">
+								<xsl:choose>
+									<xsl:when test="contains(style, 'afb.')"><xsl:value-of select="$width" /></xsl:when>
+									<xsl:when test="$border_width > 0"><xsl:value-of select="$width - ($border_width * 2)" /></xsl:when>
+									<xsl:otherwise><xsl:value-of select="$width" /></xsl:otherwise>
+								</xsl:choose>
+							</xsl:variable>
+
 							<table cellpadding="0" cellspacing="0" class="ctMainTable">
-								<xsl:attribute name="width"><xsl:value-of select="$width" /></xsl:attribute>
-								<xsl:attribute name="style">width: <xsl:value-of select="$width" />px;</xsl:attribute>
+								<xsl:attribute name="width"><xsl:value-of select="$bordered_width" /></xsl:attribute>
+								<xsl:attribute name="style">width: <xsl:value-of select="$bordered_width" />px;</xsl:attribute>
 								<tr>
 									<td>
 										<!-- The data attributes are needed for the BLOKKEN-EDITOR in the MailingLijst User Interface -->
@@ -198,8 +208,8 @@
 																			<a target="_blank">
 																				<xsl:attribute name="href"><xsl:value-of select="details_url" /></xsl:attribute>
 																				<img border="0">
-																					<xsl:attribute name="width"><xsl:value-of select="$width" /></xsl:attribute>
-																					<xsl:attribute name="style">display: block; width: <xsl:value-of select="$width" />px;</xsl:attribute>
+																					<xsl:attribute name="width"><xsl:value-of select="$bordered_width" /></xsl:attribute>
+																					<xsl:attribute name="style">display: block; width: <xsl:value-of select="$bordered_width" />px;</xsl:attribute>
 																					<xsl:attribute name="alt"><xsl:value-of select="image_alt1" /></xsl:attribute>
 																					<xsl:attribute name="title"><xsl:value-of select="image_title" /></xsl:attribute>
 																					<xsl:attribute name="src">
@@ -213,8 +223,8 @@
 																		</xsl:when>
 																		<xsl:otherwise>
 																			<img>
-																				<xsl:attribute name="width"><xsl:value-of select="$width" /></xsl:attribute>
-																				<xsl:attribute name="style">display: block; width: <xsl:value-of select="$width" />px;</xsl:attribute>
+																				<xsl:attribute name="width"><xsl:value-of select="$bordered_width" /></xsl:attribute>
+																				<xsl:attribute name="style">display: block; width: <xsl:value-of select="$bordered_width" />px;</xsl:attribute>
 																				<xsl:attribute name="alt"><xsl:value-of select="image_alt1" /></xsl:attribute>
 																				<xsl:attribute name="title"><xsl:value-of select="image_title" /></xsl:attribute>
 																				<xsl:attribute name="src">
@@ -337,7 +347,13 @@
 																				</td>
 																			</xsl:if>
 																			<!-- Content and buttons container -->
-																			<td class="ctOuterBlock" dir="ltr">
+																			<td dir="ltr">
+																				<xsl:attribute name="class">
+																					<xsl:choose>
+																						<xsl:when test="contains(style, 'afb.')">ctOuterBlockAfbLr</xsl:when>
+																						<xsl:otherwise>ctOuterBlock</xsl:otherwise>
+																					</xsl:choose>
+																				</xsl:attribute>
 
 																				<table cellpadding="0" cellspacing="0" width="100%" style="width: 100%;">
 																					<tr>
@@ -666,12 +682,35 @@
 								</xsl:if>
 							</xsl:if>
 
-							<!-- Create a table-row to generate margin between two item blocks -->
+							<!-- ##JWDB april 2020: Ending row, used for very specified styles as bordered items -->
 							<tr>
-								<td class="ctBottomMargin">
-									<xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text>
+								<td class="ctEndingOuterCont">
+									<table cellpadding="0" cellspacing="0">
+										<tr>
+											<xsl:if test="preceding-sibling::match[2]/rule_end != 'true' and preceding-sibling::match[1]/rule_end != 'true'">
+												<xsl:call-template name="ending_container">
+													<xsl:with-param name="row" select="preceding-sibling::match[2]" />
+												</xsl:call-template>
+
+												<td class="ctEndingMargin"><xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text></td>
+											</xsl:if>
+
+											<xsl:if test="preceding-sibling::match[1]/rule_end != 'true'">
+												<xsl:call-template name="ending_container">
+													<xsl:with-param name="row" select="preceding-sibling::match[1]" />
+												</xsl:call-template>
+
+												<td class="ctEndingMargin"><xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text></td>
+											</xsl:if>
+
+											<xsl:call-template name="ending_container">
+												<xsl:with-param name="row" select="." />
+											</xsl:call-template>
+										</tr>
+									</table>
 								</td>
 							</tr>
+
 						</xsl:if>
 
 					</xsl:when>
@@ -1010,13 +1049,20 @@
 			</xsl:choose>
 		</xsl:variable>
 
+		<xsl:variable name="button_width_bordered">
+			<xsl:choose>
+				<xsl:when test="$border_width > 0"><xsl:value-of select="$button_width - ($border_width * 2)" /></xsl:when>
+				<xsl:otherwise><xsl:value-of select="$button_width" /></xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
+
 		<td>
 			<xsl:attribute name="style">
 				<xsl:choose>
 					<xsl:when test="$ignore_width = 1 and $row/extra1 != ''">width: 100%; background-color: <xsl:value-of select="$row/extra1" />;</xsl:when>
 					<xsl:when test="$ignore_width = 1">width: 100%;</xsl:when>
-					<xsl:when test="$row/extra1 != ''">width: <xsl:value-of select="$button_width" />px; background-color: <xsl:value-of select="$row/extra1" /></xsl:when>
-					<xsl:otherwise>width: <xsl:value-of select="$button_width" />px;</xsl:otherwise>
+					<xsl:when test="$row/extra1 != ''">width: <xsl:value-of select="$button_width_bordered" />px; background-color: <xsl:value-of select="$row/extra1" /></xsl:when>
+					<xsl:otherwise>width: <xsl:value-of select="$button_width_bordered" />px;</xsl:otherwise>
 				</xsl:choose>
 			</xsl:attribute>
 
@@ -1032,13 +1078,13 @@
 				<xsl:attribute name="style">
 					<xsl:choose>
 						<xsl:when test="$ignore_width = 1">width: 100%</xsl:when>
-						<xsl:otherwise>width: <xsl:value-of select="$button_width" />px;</xsl:otherwise>
+						<xsl:otherwise>width: <xsl:value-of select="$button_width_bordered" />px;</xsl:otherwise>
 					</xsl:choose>
 				</xsl:attribute>
 				<xsl:attribute name="width">
 					<xsl:choose>
 						<xsl:when test="$ignore_width = 1">100%</xsl:when>
-						<xsl:otherwise><xsl:value-of select="$button_width" /></xsl:otherwise>
+						<xsl:otherwise><xsl:value-of select="$button_width_bordered" /></xsl:otherwise>
 					</xsl:choose>
 				</xsl:attribute>
 				<tr>
@@ -1134,6 +1180,38 @@
 				</tr>
 			</table>
 
+		</td>
+
+	</xsl:template>
+
+	<!--
+	##JWDB april 2020 Central template for ending row
+	Used for bottom margin of normal items and used for specific styles for bordered items
+	-->
+	<xsl:template name="ending_container">
+		<xsl:param name="row" />
+
+		<xsl:variable name="width">
+			<xsl:choose>
+				<xsl:when test="contains($row/style, '1/2')"><xsl:value-of select="$width_12" /></xsl:when>
+				<xsl:when test="contains($row/style, '1/3')"><xsl:value-of select="$width_13" /></xsl:when>
+				<xsl:when test="contains($row/style, '2/3')"><xsl:value-of select="$width_23" /></xsl:when>
+				<xsl:otherwise>700</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
+
+		<td>
+			<xsl:attribute name="style">width: <xsl:value-of select="$width" />px;</xsl:attribute>
+
+			<xsl:attribute name="class">
+				<xsl:choose>
+					<xsl:when test="contains($row/style, 'banner')">ctEndingContBan</xsl:when>
+					<xsl:when test="contains($row/style, 'uitgelicht') or $row/extra1 !=''">ctEndingContFeat</xsl:when>
+					<xsl:otherwise>ctEndingCont</xsl:otherwise>
+				</xsl:choose>
+			</xsl:attribute>
+
+			<xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text>
 		</td>
 
 	</xsl:template>

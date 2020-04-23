@@ -139,12 +139,12 @@
             .ctMainBlockBan, .ctInnerContBan {
                 background-color: indianred;
             }
-            .ctBottomMargin {
+            .ctBottomMargin, .ctEndingCont {
                 height: 20px;
                 font-size: 1px;
                 line-height: 1px;
             }
-            .ctBlockMargin {
+            .ctBlockMargin, .ctEndingMargin {
                 width: 20px;
                 font-size: 1px;
                 line-height: 1px;
@@ -242,10 +242,11 @@
             .ctInnerContFeat .content, .ctInnerContFeat .content a {
                 color: white;
             }
-            .ctOuterBlock {
+            .ctOuterBlock, .ctOuterBlockAfbLr {
                 vertical-align: top;
             }
-            .ctInnerContBan .ctOuterBlock {
+            .ctInnerContBan .ctOuterBlock,
+            .ctInnerContBan .ctOuterBlockAfbLr {
                 vertical-align: middle;
             }
             .ctInnerContBan .ctInnerBlock {
@@ -593,7 +594,7 @@
                     margin-left: auto;
                     margin-right: auto;
                 }
-                .ctOuterBlock {
+                .ctOuterBlock, .ctOuterBlockAfbLr {
                     display: block !important;
                     width: 100%;
                 }
