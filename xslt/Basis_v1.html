@@ -5,7 +5,7 @@
         BASIC TEMPLATE
         EM-Cultuur / MailingLijst
         Date: v1, march 2020
-        Last change: JWDB 21 april 2020
+        Last change: JWDB 11 may 2020
         -->
         <meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE">
         <title>Nieuwsbrief  BASIS v1</title>
@@ -111,12 +111,12 @@
                 background-color: darkgray;
             }
 
-            .ftCont a {
+            .ftCont a, .ftUnsubscribe a {
                 color: dimgray;
                 text-decoration: underline;
             }
 
-            .ftCont a:hover {
+            .ftCont a:hover, .ftUnsubscribe a:hover {
                 text-decoration: none;
             }
 
@@ -128,18 +128,18 @@
             CONTENT STYLES
             */
             /*Containers*/
-            .ctMainBlock, .ctMainBlockItem, .ctInnerCont {
+            .ctMainBlock, .ctMainBlockNoBorder, .ctMainBlockItem, .ctInnerCont {
                 background-color: white;
                 vertical-align: top;
             }
-            .ctMainBlockFeat, .ctMainBlockItemFeat, .ctInnerContFeat {
+            .ctMainBlockFeat, .ctMainBlockFeatNoBorder, .ctMainBlockItemFeat, .ctInnerContFeat {
                 background-color: dimgray;
                 vertical-align: top;
             }
             .ctMainBlockBan, .ctInnerContBan {
                 background-color: indianred;
             }
-            .ctBottomMargin, .ctEndingCont {
+            .ctBottomMargin, .ctEndingCont, .ctEndingContNoBorder {
                 height: 20px;
                 font-size: 1px;
                 line-height: 1px;
@@ -296,15 +296,15 @@
             }
 
             /*Buttons*/
-            .ctButCont {
+            .ctButCont, .ctButContNoBorder {
                 background-color: white;
                 vertical-align: top;
             }
-            .ctButContFeat {
+            .ctButContFeat, .ctButContFeatNoBorder {
                 background-color: dimgray;
                 vertical-align: top;
             }
-            .ctButContBan {
+            .ctButContBan, .ctButContBanNoBorder {
                 background-color: indianred;
                 vertical-align: top;
             }
@@ -312,7 +312,8 @@
                 padding: 15px;
                 padding-top: 0;
             }
-            .ctButContBan .ctButInnerCont {
+            .ctButContBan .ctButInnerCont,
+            .ctButContBanNoBorder .ctButInnerCont {
                 padding-top: 15px;
                 padding-bottom: 0;
             }
@@ -339,6 +340,7 @@
                 background-color: red;
             }
             .ctButBlock a {
+                color: white !important; /*this is for compatibility with outlook.app*/
                 color: white;
                 text-decoration: none;
             }
@@ -346,6 +348,10 @@
             .ctButContFeat .ctBut2, .ctButContFeat .ctBut2:hover,
             .ctButContBan .ctBut, .ctButContBan .ctBut:hover,
             .ctButContBan .ctBut2, .ctButContBan .ctBut2:hover,
+            .ctButContFeatNoBorder .ctBut, .ctButContFeatNoBorder .ctBut:hover,
+            .ctButContFeatNoBorder .ctBut2, .ctButContFeatNoBorder .ctBut2:hover,
+            .ctButContBanNoBorder .ctBut, .ctButContBanNoBorder .ctBut:hover,
+            .ctButContBanNoBorder .ctBut2, .ctButContBanNoBorder .ctBut2:hover,
             .ctMobButContFeat .ctBut, .ctMobButContFeat .ctBut:hover,
             .ctMobButContFeat .ctBut2, .ctMobButContFeat .ctBut2:hover,
             .ctMobButContBan .ctBut, .ctMobButContBan .ctBut:hover,
@@ -354,8 +360,11 @@
             }
             .ctButContFeat .ctButBlock a,
             .ctButContBan .ctButBlock a,
+            .ctButContFeatNoBorder .ctButBlock a,
+            .ctButContBanNoBorder .ctButBlock a,
             .ctMobButContFeat .ctButBlock a,
             .ctMobButContBan .ctButBlock a {
+                color: dimgray !important; /*this is for compatibility with outlook.app*/
                 color: dimgray;
             }
             .ctButIconMargin {
@@ -496,6 +505,7 @@
                 text-decoration: none;
             }
             .agButCont a {
+                color: white !important; /*this is for compatibility with outlook.app*/
                 color: white;
                 text-decoration: none;
             }
@@ -523,7 +533,7 @@
                 .ctImgSmall .ctImgSubt {
                     text-align: left;
                 }
-                .ctMainBlock, .ctMainBlockItem, .ctMainBlockFeat, .ctMainBlockItemFeat {
+                .ctMainBlock, .ctMainBlockNoBorder, .ctMainBlockItem, .ctMainBlockFeat, .ctMainBlockFeatNoBorder, .ctMainBlockItemFeat {
                     display: block;
                     width: 100% !important;
                 }
@@ -541,7 +551,8 @@
                     padding-left: 15px;
                     padding-right: 15px;
                 }
-                .ctButCont, .ctButContFeat, .ctButContBan, .ctDeskButCont {
+                .ctButCont, .ctButContFeat, .ctButContBan, .ctDeskButCont,
+                .ctButContNoBorder, .ctButContFeatNoBorder, .ctButContBanNoBorder {
                     display: none !important;
                 }
                 .ctMobButCont, .ctMobButContFeat, .ctMobButContBan {
@@ -625,6 +636,21 @@
                     display: block;
                     padding-bottom: 10px;
                 }
+                .ctEndingCont, .ctEndingContNoBorder, .ctEndingContBan, .ctEndingContBanNoBorder,
+                .ctEndingContFeat, .ctEndingContFeatNoBorder {
+                    width: 100% !important;
+                }
+                .ctCont {
+                    padding: 10px;
+                }
+                .hdImage img {
+                    width: 100% !important;
+                    height: auto !important;
+                }
+                .ftBanner img {
+                    width: 100% !important;
+                    height: auto !important;
+                }
             }
         </style>
 
@@ -649,60 +675,66 @@
         <![endif]-->
     </head>
 
-  <!-- NEWLSLETTER start -->
+    <!-- NEWLSLETTER start -->
     <body style="background-color: whitesmoke;">
-        <table align="center" cellpadding="0" cellspacing="0" style="width: 700px;" class="bodyMainTable">
+
+        <!-- HEADER -->
+        <table align="center" cellpadding="0" cellspacing="0" style="width: 700px;" width="700" class="bodyMainTable">
+            <tr>
+                <td class="hdCont">
+                    <table width="100%" cellpadding="0" cellspacing="0" style="width: 100%;">
+                        <tr> <!-- show -->
+                            <td class="hdShow">
+                                %%SHOW%%
+                            </td>
+                        </tr>
+                        <tr> <!-- logo -->
+                            <td class="hdLogo">
+                                <a href="https://www.mailinglijst.nl" target="_blank">
+                                    <img src="https://via.placeholder.com/250x50?text=250x50 LOGO" style="width: 250px; height: 53px;" alt="MailingLijst" title="Bezoek de website" height="50" width="250">
+                                </a>
+                            </td>
+                        </tr>
+                        <tr> <!-- newsletter edition -->
+                            <td class="hdEdition">
+                                <h1>%%SUBJECT%%</h1>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+
+        <!-- CONTENT BLOCKS -->
+        <table align="center" cellpadding="0" cellspacing="0" style="width: 700px;" width="700" class="bodyMainTable">
             <tbody>
-                <!-- HEADER -->
-                <tr>
-                    <td class="hdCont">
-                        <table width="100%" cellpadding="0" cellspacing="0" style="width: 100%;">
-                            <tr> <!-- show -->
-                                <td class="hdShow">
-                                    %%SHOW%%
-                                </td>
-                            </tr>
-                            <tr> <!-- logo -->
-                                <td class="hdLogo">
-                                    <a href="https://www.mailinglijst.nl" target="_blank">
-                                        <img src="https://via.placeholder.com/250x50?text=250x50 LOGO" style="width: 250px; height: 53px;" alt="MailingLijst" title="Bezoek de website" height="50" width="250">
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr> <!-- newsletter edition -->
-                                <td class="hdEdition">
-                                    <h1>%%SUBJECT%%</h1>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-                <!-- CONTENT BLOCKS -->
                 <tr>
                     <td class="ctCont">
                         %%CONTENT%%
                     </td>
                 </tr>
-
-                <!-- FOOTER -->
-                <tr>
-                    <td class="ftCont">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque iaculis dignissim luctus.
-                        <br /><br />
-                        <a href="https://www.facebook.com" target="_blank"><img src="https://www.mailinglijst.nl/klanten/default/socialmedia/facebook_dark.png" style="width: 30px; height: 30px;" height="30" width="30" alt="Facebook" title="Facebook"></a>
-                        &nbsp;&nbsp;
-                        <a href="https://www.twitter.com" target="_blank"><img src="https://www.mailinglijst.nl/klanten/default/socialmedia/twitter_dark.png" style="width: 30px; height: 30px;" height="30" width="30" alt="Twitter" title="Twitter"></a>
-                        &nbsp;&nbsp;
-                        <a href="https://www.linkedin.com" target="_blank"><img src="https://www.mailinglijst.nl/klanten/default/socialmedia/linkedin_dark.png" style="width: 30px; height: 30px;" height="30" width="30" alt="LinkedIn" title="LinkedIn"></a>
-                        &nbsp;&nbsp;
-                        <a href="https://www.youtube.com" target="_blank"><img src="https://www.mailinglijst.nl/klanten/default/socialmedia/youtube_dark.png" style="width: 30px; height: 30px;" height="30" width="30" alt="YouTube" title="YouTube"></a>
-                        &nbsp;&nbsp;
-                        <a href="https://www.instagram.com" target="_blank"><img src="https://www.mailinglijst.nl/klanten/default/socialmedia/instagram_dark.png" style="width: 30px; height: 30px;" height="30" width="30" alt="Instagram" title="Instagram"></a>
-                        <br /><br />
-                        Gegevens wijzigen of afmelden? %%URL2=103799%%.
-                    </td>
-                </tr>
             </tbody>
+        </table>
+
+        <!-- FOOTER -->
+        <table align="center" cellpadding="0" cellspacing="0" style="width: 700px;" width="700" class="bodyMainTable">
+            <tr>
+                <td class="ftCont">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque iaculis dignissim luctus.
+                    <br /><br />
+                    <a href="https://www.facebook.com" target="_blank"><img src="https://www.mailinglijst.nl/klanten/default/socialmedia/facebook_dark.png" style="width: 30px; height: 30px;" height="30" width="30" alt="Facebook" title="Facebook"></a>
+                    &nbsp;&nbsp;
+                    <a href="https://www.twitter.com" target="_blank"><img src="https://www.mailinglijst.nl/klanten/default/socialmedia/twitter_dark.png" style="width: 30px; height: 30px;" height="30" width="30" alt="Twitter" title="Twitter"></a>
+                    &nbsp;&nbsp;
+                    <a href="https://www.linkedin.com" target="_blank"><img src="https://www.mailinglijst.nl/klanten/default/socialmedia/linkedin_dark.png" style="width: 30px; height: 30px;" height="30" width="30" alt="LinkedIn" title="LinkedIn"></a>
+                    &nbsp;&nbsp;
+                    <a href="https://www.youtube.com" target="_blank"><img src="https://www.mailinglijst.nl/klanten/default/socialmedia/youtube_dark.png" style="width: 30px; height: 30px;" height="30" width="30" alt="YouTube" title="YouTube"></a>
+                    &nbsp;&nbsp;
+                    <a href="https://www.instagram.com" target="_blank"><img src="https://www.mailinglijst.nl/klanten/default/socialmedia/instagram_dark.png" style="width: 30px; height: 30px;" height="30" width="30" alt="Instagram" title="Instagram"></a>
+                    <br /><br />
+                    <span class="ftUnsubscribe">Gegevens wijzigen of afmelden? %%URL2=103799%%.</span>
+                </td>
+            </tr>
         </table>
     </body>
 </html>
