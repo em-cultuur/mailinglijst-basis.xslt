@@ -6,7 +6,7 @@
 	<!-- Basis  v1
 	XSLT for BLOCKS in MailingLijst-templates
 	(c) EM-Cultuur, 2020
-	Last change: JWDB 14 may 2020 (v1.2)
+	Last change: JWDB 8 June 2020 (v1.3)
 
 	BLOCKSTULE-names determine grouping
 	blockdeails (db.fiesds) dettermine content, design of the blocks
@@ -20,12 +20,19 @@
 	<!--
 	Image widths must be defined in CSS and XSLT
 	And are used for style and width-parameters
-
+	JWDB June 2020: double image logic implemented
 	-->
 	<xsl:variable name="width_13">220</xsl:variable>
 	<xsl:variable name="width_12">340</xsl:variable>
 	<xsl:variable name="width_23">460</xsl:variable>
 	<xsl:variable name="width_full">700</xsl:variable>
+
+	<xsl:variable name="image_width_double_wide">60</xsl:variable>
+	<xsl:variable name="image_width_double_small">40</xsl:variable>
+	<xsl:variable name="image_height_double_full">300</xsl:variable>
+	<xsl:variable name="image_height_double_12">200</xsl:variable>
+	<xsl:variable name="image_height_double_13_23">200</xsl:variable>
+
 	<xsl:variable name="image_width_lr">220</xsl:variable>
 	<xsl:variable name="image_width_agenda">125</xsl:variable>
 
@@ -150,6 +157,11 @@
 								<xsl:attribute name="style">background-color: <xsl:value-of select="extra1" />;</xsl:attribute>
 							</xsl:if>
 
+							<!-- JWDB June 2020: border color can be configured per item -->
+							<xsl:if test="$border_width > 0 and extra3 != '' and not(contains(extra3, 'NOBORDER'))">
+								<xsl:attribute name="style">border-color: <xsl:value-of select="extra3" />;<xsl:if test="extra1 != ''">background-color: <xsl:value-of select="extra1" />;</xsl:if></xsl:attribute>
+							</xsl:if>
+
 							<!-- ##JWDB 8 may 2020: borders can be hidden by putting NOBORDER in extra3 field -->
 							<xsl:variable name="bordered_width">
 								<xsl:choose>
@@ -200,6 +212,11 @@
 														<xsl:attribute name="style">background-color: <xsl:value-of select="extra1" />;</xsl:attribute>
 													</xsl:if>
 
+													<!-- JWDB June 2020: border color can be configured per item -->
+													<xsl:if test="$border_width > 0 and extra3 != '' and not(contains(extra3, 'NOBORDER'))">
+														<xsl:attribute name="style">border-color: <xsl:value-of select="extra3" />;<xsl:if test="extra1 != ''">background-color: <xsl:value-of select="extra1" />;</xsl:if></xsl:attribute>
+													</xsl:if>
+
 													<table width="100%" cellpadding="0" cellspacing="0" style="width: 100%">
 														<!-- Titles above
 														When the style name contains a trigger word 'titels boven' then move the titles to above image
@@ -216,7 +233,8 @@
 														<!-- Image above
                                                         When a placeholder is used, then this block item is created automatically after a new mailing were created
                                                         The default placeholder is a square. To prevent ugly look with 700px by 700px, replace it by a wide variant of the placeholder
-                                                        Hide this part when using image left/right styles -->
+                                                        Hide this part when using image left/right styles
+                                                        JWDB June 2020: double left and right logic implemented -->
 														<xsl:if test="image != '' and not(contains(style, 'afb.'))">
 															<tr>
 																<td>
@@ -228,37 +246,135 @@
 																		</xsl:choose>
 																	</xsl:attribute>
 
+																	<!-- JWDB June 2020: double images logic implemented -->
+																	<xsl:variable name="imagewidth_wide"><xsl:value-of select="format-number(($bordered_width div 100) * $image_width_double_wide, '####')" /></xsl:variable>
+																	<xsl:variable name="imagewidth_small"><xsl:value-of select="format-number(($bordered_width div 100) * $image_width_double_small, '####')" /></xsl:variable>
+
+																	<xsl:variable name="imageleft_width">
+																		<xsl:choose>
+																			<xsl:when test="not(contains(style, 'dubbel'))"><xsl:value-of select="$bordered_width" /></xsl:when>
+																			<xsl:when test="contains(style, 'dubbel links') and icon != ''"><xsl:value-of select="$imagewidth_wide" /></xsl:when>
+																			<xsl:otherwise><xsl:value-of select="$imagewidth_small" /></xsl:otherwise>
+																		</xsl:choose>
+																	</xsl:variable>
+
+																	<xsl:variable name="imageright_width">
+																		<xsl:choose>
+																			<xsl:when test="not(contains(style, 'dubbel'))"><xsl:value-of select="$bordered_width" /></xsl:when>
+																			<xsl:when test="contains(style, 'dubbel links') and icon != ''"><xsl:value-of select="$imagewidth_small" /></xsl:when>
+																			<xsl:otherwise><xsl:value-of select="$imagewidth_wide" /></xsl:otherwise>
+																		</xsl:choose>
+																	</xsl:variable>
+
+																	<xsl:variable name="image_height">
+																		<xsl:choose>
+																			<xsl:when test="contains(style, 'dubbel')">
+																				<xsl:choose>
+																					<xsl:when test="contains(style, '1/2')"><xsl:value-of select="$image_height_double_12" /></xsl:when>
+																					<xsl:when test="contains(style, '2/3') or contains(style, '1/3')"><xsl:value-of select="$image_height_double_13_23" /></xsl:when>
+																					<xsl:otherwise><xsl:value-of select="$image_height_double_full" /></xsl:otherwise>
+																				</xsl:choose>
+																			</xsl:when>
+																			<xsl:otherwise>0</xsl:otherwise>
+																		</xsl:choose>
+																	</xsl:variable>
+
 																	<xsl:choose>
 																		<xsl:when test="url != ''">
-																			<a target="_blank">
-																				<xsl:attribute name="href"><xsl:value-of select="details_url" /></xsl:attribute>
-																				<img border="0">
-																					<xsl:attribute name="width"><xsl:value-of select="$bordered_width" /></xsl:attribute>
-																					<xsl:attribute name="style">display: block; width: <xsl:value-of select="$bordered_width" />px;</xsl:attribute>
-																					<xsl:attribute name="alt"><xsl:value-of select="image_alt1" /></xsl:attribute>
-																					<xsl:attribute name="title"><xsl:value-of select="image_title" /></xsl:attribute>
-																					<xsl:attribute name="src">
-																						<xsl:choose>
-																							<xsl:when test="contains(image, 'placeholder.png')">https://via.placeholder.com/<xsl:value-of select="$width" />x300</xsl:when>
-																							<xsl:otherwise><xsl:value-of select="image" /></xsl:otherwise>
-																						</xsl:choose>
-																					</xsl:attribute>
-																				</img>
-																			</a>
+
+																			<table cellpadding="0" cellspacing="0" width="100%" class="ctImgInnerCont">
+																				<tr>
+																					<td style="vertical-align: top;" class="ctImgInnerLeft">
+																						<a target="_blank">
+																							<xsl:attribute name="href"><xsl:value-of select="details_url" /></xsl:attribute>
+
+																							<img border="0">
+																								<xsl:attribute name="width"><xsl:value-of select="$imageleft_width" /></xsl:attribute>
+																								<xsl:attribute name="style">display: block; width: <xsl:value-of select="$imageleft_width" />px;<xsl:if test="$image_height &gt; 0"> height: <xsl:value-of select="$image_height" />px;</xsl:if></xsl:attribute>
+																								<xsl:attribute name="alt"><xsl:value-of select="image_alt1" /></xsl:attribute>
+																								<xsl:attribute name="title"><xsl:value-of select="image_title" /></xsl:attribute>
+																								<xsl:attribute name="src">
+																									<xsl:choose>
+																										<xsl:when test="contains(image, 'placeholder.png')">https://via.placeholder.com/<xsl:value-of select="$width" />x300</xsl:when>
+																										<xsl:otherwise><xsl:value-of select="image" /></xsl:otherwise>
+																									</xsl:choose>
+																								</xsl:attribute>
+																								<xsl:if test="$image_height &gt; 0">
+																									<xsl:attribute name="height"><xsl:value-of select="$image_height" /></xsl:attribute>
+																								</xsl:if>
+																							</img>
+																						</a>
+																					</td>
+																					<xsl:if test="icon != '' and contains(style, 'dubbel')">
+																						<td style="vertical-align: top;" class="ctImgInnerRight">
+																							<a target="_blank">
+																								<xsl:attribute name="href"><xsl:value-of select="details_url" /></xsl:attribute>
+
+																								<img border="0">
+																									<xsl:attribute name="width"><xsl:value-of select="$imageright_width" /></xsl:attribute>
+																									<xsl:attribute name="style">display: block; width: <xsl:value-of select="$imageright_width" />px;<xsl:if test="$image_height &gt; 0"> height: <xsl:value-of select="$image_height" />px;</xsl:if></xsl:attribute>
+																									<xsl:attribute name="alt"><xsl:value-of select="icon_alt" /></xsl:attribute>
+																									<xsl:attribute name="title"><xsl:value-of select="icon_title" /></xsl:attribute>
+																									<xsl:attribute name="src">
+																										<xsl:choose>
+																											<xsl:when test="contains(icon, 'placeholder.png')">https://via.placeholder.com/<xsl:value-of select="$width" />x300</xsl:when>
+																											<xsl:otherwise><xsl:value-of select="icon" /></xsl:otherwise>
+																										</xsl:choose>
+																									</xsl:attribute>
+																									<xsl:if test="$image_height &gt; 0">
+																										<xsl:attribute name="height"><xsl:value-of select="$image_height" /></xsl:attribute>
+																									</xsl:if>
+																								</img>
+																							</a>
+																						</td>
+																					</xsl:if>
+																				</tr>
+																			</table>
+
 																		</xsl:when>
 																		<xsl:otherwise>
-																			<img>
-																				<xsl:attribute name="width"><xsl:value-of select="$bordered_width" /></xsl:attribute>
-																				<xsl:attribute name="style">display: block; width: <xsl:value-of select="$bordered_width" />px;</xsl:attribute>
-																				<xsl:attribute name="alt"><xsl:value-of select="image_alt1" /></xsl:attribute>
-																				<xsl:attribute name="title"><xsl:value-of select="image_title" /></xsl:attribute>
-																				<xsl:attribute name="src">
-																					<xsl:choose>
-																						<xsl:when test="contains(image, 'placeholder.png')">https://via.placeholder.com/<xsl:value-of select="$width" />x300</xsl:when>
-																						<xsl:otherwise><xsl:value-of select="image" /></xsl:otherwise>
-																					</xsl:choose>
-																				</xsl:attribute>
-																			</img>
+
+																			<table cellpadding="0" cellspacing="0" width="100%" class="ctImgInnerCont">
+																				<tr>
+																					<td style="vertical-align: top;" class="ctImgInnerLeft">
+																						<img border="0">
+																							<xsl:attribute name="width"><xsl:value-of select="$imageleft_width" /></xsl:attribute>
+																							<xsl:attribute name="style">display: block; width: <xsl:value-of select="$imageleft_width" />px;<xsl:if test="$image_height &gt; 0"> height: <xsl:value-of select="$image_height" />px;</xsl:if></xsl:attribute>
+																							<xsl:attribute name="alt"><xsl:value-of select="image_alt1" /></xsl:attribute>
+																							<xsl:attribute name="title"><xsl:value-of select="image_title" /></xsl:attribute>
+																							<xsl:attribute name="src">
+																								<xsl:choose>
+																									<xsl:when test="contains(image, 'placeholder.png')">https://via.placeholder.com/<xsl:value-of select="$width" />x300</xsl:when>
+																									<xsl:otherwise><xsl:value-of select="image" /></xsl:otherwise>
+																								</xsl:choose>
+																							</xsl:attribute>
+																							<xsl:if test="$image_height &gt; 0">
+																								<xsl:attribute name="height"><xsl:value-of select="$image_height" /></xsl:attribute>
+																							</xsl:if>
+																						</img>
+																					</td>
+																					<xsl:if test="icon != '' and contains(style, 'dubbel')">
+																						<td style="vertical-align: top;" class="ctImgInnerRight">
+																							<img border="0">
+																								<xsl:attribute name="width"><xsl:value-of select="$imageright_width" /></xsl:attribute>
+																								<xsl:attribute name="style">display: block; width: <xsl:value-of select="$imageright_width" />px;<xsl:if test="$image_height &gt; 0"> height: <xsl:value-of select="$image_height" />px;</xsl:if></xsl:attribute>
+																								<xsl:attribute name="alt"><xsl:value-of select="icon_alt" /></xsl:attribute>
+																								<xsl:attribute name="title"><xsl:value-of select="icon_title" /></xsl:attribute>
+																								<xsl:attribute name="src">
+																									<xsl:choose>
+																										<xsl:when test="contains(icon, 'placeholder.png')">https://via.placeholder.com/<xsl:value-of select="$width" />x300</xsl:when>
+																										<xsl:otherwise><xsl:value-of select="icon" /></xsl:otherwise>
+																									</xsl:choose>
+																								</xsl:attribute>
+																								<xsl:if test="$image_height &gt; 0">
+																									<xsl:attribute name="height"><xsl:value-of select="$image_height" /></xsl:attribute>
+																								</xsl:if>
+																							</img>
+																						</td>
+																					</xsl:if>
+																				</tr>
+																			</table>
+
 																		</xsl:otherwise>
 																	</xsl:choose>
 
@@ -267,6 +383,10 @@
 																		<table width="100%" cellpadding="0" cellspacing="0" style="width: 100%">
 																			<tr>
 																				<td class="ctImgSubt">
+																					<!-- JWDB June 2020: set all texts to center when style contains trigger word gecentreerd -->
+																					<xsl:if test="contains(style, 'gecentreerd')">
+																						<xsl:attribute name="style">text-align: center;</xsl:attribute>
+																					</xsl:if>
 																					<xsl:value-of select="extra2" />
 																				</td>
 																			</tr>
@@ -340,6 +460,12 @@
 																										<xsl:otherwise>ctImgLeftInnerBlock</xsl:otherwise>
 																									</xsl:choose>
 																								</xsl:attribute>
+
+																								<!-- JWDB June 2020: border color can be configured per item -->
+																								<xsl:if test="$border_width > 0 and extra3 != '' and not(contains(extra3, 'NOBORDER'))">
+																									<xsl:attribute name="style">border-color: <xsl:value-of select="extra3" />;</xsl:attribute>
+																								</xsl:if>
+
 																								<!-- must image be made clickable by adding (button)url-->
 																								<xsl:choose>
 																									<xsl:when test="url != ''">
@@ -389,6 +515,11 @@
 																					</xsl:choose>
 																				</xsl:attribute>
 
+																				<!-- JWDB June 2020: border color can be configured per item -->
+																				<xsl:if test="$border_width > 0 and extra3 != '' and not(contains(extra3, 'NOBORDER'))">
+																					<xsl:attribute name="style">border-color: <xsl:value-of select="extra3" />;</xsl:attribute>
+																				</xsl:if>
+
 																				<table cellpadding="0" cellspacing="0" width="100%" style="width: 100%;">
 																					<tr>
 																						<!-- BLOCK CONTENT (title, subtitle, date) with text and buttons -->
@@ -413,6 +544,11 @@
 																								<xsl:if test="not(contains(style, 'banner')) and content != ''">
 																									<tr>
 																										<td class="content">
+																											<!-- JWDB June 2020: set all texts to center when style contains trigger word gecentreerd -->
+																											<xsl:if test="contains(style, 'gecentreerd')">
+																												<xsl:attribute name="style">text-align: center;</xsl:attribute>
+																											</xsl:if>
+
 																											<xsl:value-of select="content" disable-output-escaping="yes" />
 
 																											<xsl:if test="contains(style, 'index')">
@@ -467,7 +603,7 @@
 																												<!-- ##JWDB 31 march 2020: buttons can be aligned middle or right by adding 'button midden' or 'button rechts' in the style name -->
 																												<xsl:attribute name="align">
 																													<xsl:choose>
-																														<xsl:when test="contains(style, 'button midden')">center</xsl:when>
+																														<xsl:when test="contains(style, 'button midden') or contains(style, 'gecentreerd')">center</xsl:when>
 																														<xsl:when test="contains(style, 'button rechts')">right</xsl:when>
 																														<xsl:otherwise>left</xsl:otherwise>
 																													</xsl:choose>
@@ -762,7 +898,19 @@
 
 						<tr>
 							<!-- Basic block -->
-							<td class="ctCallMainBlock">
+							<td>
+								<!-- JWDB June 2020: With or without border based on db.extra3 field -->
+								<xsl:attribute name="class">
+									<xsl:choose>
+										<xsl:when test="$border_width &gt; 0 and contains(extra3, 'NOBORDER')">ctCallMainBlockNoBorder</xsl:when>
+										<xsl:otherwise>ctCallMainBlock</xsl:otherwise>
+									</xsl:choose>
+								</xsl:attribute>
+
+								<!-- JWDB June 2020: Custom border color -->
+								<xsl:if test="extra3 != '' and not(contains(style, 'NOBORDER'))">
+									<xsl:attribute name="style">border-color: <xsl:value-of select="extra3" />;</xsl:attribute>
+								</xsl:if>
 
 								<!-- The data attributes are used for in contentblocks editor -->
 								<table width="100%" cellpadding="0" cellspacing="0" style="width: 100%" class="emItem emEditable emMoveable">
@@ -952,14 +1100,14 @@
 	<!--
 	Central template for date text.
 	When you empty the date fields in the content block details, then the dates will be saved as 1 january 2000.
-	Or use the db.icon field (alernative date)
+	Or use the db.extra4 field (alernative date)
 	-->
 	<xsl:template name="date_subtitle">
 		<xsl:param name="row" />
 
 		<xsl:choose>
-			<xsl:when test="$row/icon != ''">
-				<xsl:value-of select="$row/icon" disable-output-escaping="yes" />
+			<xsl:when test="$row/extra4 != ''">
+				<xsl:value-of select="$row/extra4" disable-output-escaping="yes" />
 			</xsl:when>
 			<xsl:when test="not(contains($row/display_playdate_start, '1 januari 2000'))">
 
@@ -1103,9 +1251,12 @@
 				<xsl:choose>
 					<xsl:when test="$ignore_width = 1 and $row/extra1 != ''">width: 100%; background-color: <xsl:value-of select="$row/extra1" />;</xsl:when>
 					<xsl:when test="$ignore_width = 1">width: 100%;</xsl:when>
-					<xsl:when test="$row/extra1 != ''">width: <xsl:value-of select="$button_width_bordered" />px; background-color: <xsl:value-of select="$row/extra1" /></xsl:when>
+					<xsl:when test="$row/extra1 != ''">width: <xsl:value-of select="$button_width_bordered" />px; background-color: <xsl:value-of select="$row/extra1" />;</xsl:when>
 					<xsl:otherwise>width: <xsl:value-of select="$button_width_bordered" />px;</xsl:otherwise>
 				</xsl:choose>
+
+				<!-- JWDB June 2020: border color can be configured per item -->
+				<xsl:if test="$border_width > 0 and $row/extra3 != '' and not(contains($row/extra3, 'NOBORDER'))">border-color: <xsl:value-of select="$row/extra3" />;</xsl:if>
 			</xsl:attribute>
 
 			<xsl:attribute name="class">
@@ -1150,7 +1301,7 @@
 									<!-- ##JWDB 31 march 2020: buttons can be aligned middle or right by adding 'button midden' or 'button rechts' in the style name -->
 									<xsl:attribute name="align">
 										<xsl:choose>
-											<xsl:when test="contains($row/style, 'button midden')">center</xsl:when>
+											<xsl:when test="contains($row/style, 'button midden') or contains($row/style, 'gecentreerd')">center</xsl:when>
 											<xsl:when test="contains($row/style, 'button rechts')">right</xsl:when>
 											<xsl:otherwise>left</xsl:otherwise>
 										</xsl:choose>
@@ -1254,7 +1405,10 @@
 		</xsl:variable>
 
 		<td>
-			<xsl:attribute name="style">width: <xsl:value-of select="$width" />px;</xsl:attribute>
+			<xsl:attribute name="style">width: <xsl:value-of select="$width" />px;
+				<!-- JWDB June 2020: border color can be configured per item -->
+				<xsl:if test="$border_width > 0 and $row/extra3 != '' and not(contains($row/extra3, 'NOBORDER'))">border-color: <xsl:value-of select="$row/extra3" />;</xsl:if>
+			</xsl:attribute>
 
 			<xsl:attribute name="class">
 				<xsl:choose>
@@ -1738,6 +1892,10 @@
 					<xsl:if test="location != '' and contains(style, 'ondertitel boven')">
 						<tr>
 							<td class="ctSubtAbove">
+								<!-- JWDB June 2020: set all texts to center when style contains trigger word gecentreerd -->
+								<xsl:if test="contains(style, 'gecentreerd')">
+									<xsl:attribute name="style">text-align: center;</xsl:attribute>
+								</xsl:if>
 
 								<xsl:variable name="subtitle">
 									<xsl:call-template name="double_pipes">
@@ -1769,9 +1927,15 @@
 								</xsl:call-template>
 							</xsl:variable>
 
+							<!-- JWDB June 2020: set all texts to center when style contains trigger word gecentreerd -->
+							<xsl:if test="contains(style, 'gecentreerd')">
+								<xsl:attribute name="style">text-align: center;</xsl:attribute>
+							</xsl:if>
+
 							<xsl:variable name="heading">
 								<xsl:choose>
-									<xsl:when test="contains(style, '1/3') or contains(style, '2/3')">
+									<!-- JWDB June 2020: all 1/, 2/ and afb. styles will get H3 as heading -->
+									<xsl:when test="contains(style, '1/3') or contains(style, '2/3') or contains(style, '1/2') or contains(style, 'afb.')">
 										<xsl:text disable-output-escaping="yes"><![CDATA[<h3>]]></xsl:text>
 										<xsl:value-of select="$title" disable-output-escaping="yes" />
 										<xsl:text disable-output-escaping="yes"><![CDATA[</h3>]]></xsl:text>
@@ -1799,6 +1963,10 @@
 					<xsl:if test="location != '' and not(contains(style, 'ondertitel boven'))">
 						<tr>
 							<td class="ctSubt">
+								<!-- JWDB June 2020: set all texts to center when style contains trigger word gecentreerd -->
+								<xsl:if test="contains(style, 'gecentreerd')">
+									<xsl:attribute name="style">text-align: center;</xsl:attribute>
+								</xsl:if>
 
 								<xsl:variable name="subtitle">
 									<xsl:call-template name="double_pipes">
@@ -1813,12 +1981,17 @@
 
 					<!-- Date
                     When you empty the date fields in the content block details, then the dates will be saved as 1 january 2000.
-                    Or you filled in the db.icon field.
+                    Or you filled in the db.extra4 field.
                     Hide dates on banner blocks
                     -->
-					<xsl:if test="(not(contains(display_playdate_start, '1 januari 2000')) or icon != '') and not(contains(style, 'banner'))">
+					<xsl:if test="(not(contains(display_playdate_start, '1 januari 2000')) or extra4 != '') and not(contains(style, 'banner'))">
 						<tr>
 							<td class="ctDate">
+								<!-- JWDB June 2020: set all texts to center when style contains trigger word gecentreerd -->
+								<xsl:if test="contains(style, 'gecentreerd')">
+									<xsl:attribute name="style">text-align: center;</xsl:attribute>
+								</xsl:if>
+
 								<xsl:call-template name="date_subtitle">
 									<xsl:with-param name="row" select="." />
 								</xsl:call-template>
