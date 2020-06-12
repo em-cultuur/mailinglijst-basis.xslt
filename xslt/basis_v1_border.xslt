@@ -6,7 +6,7 @@
 	<!-- Basis  v1
 	XSLT for BLOCKS in MailingLijst-templates
 	(c) EM-Cultuur, 2020
-	Last change: JWDB 8 June 2020 (v1.3)
+	Last change: JWDB 12 June 2020 (v1.4)
 
 	BLOCKSTULE-names determine grouping
 	blockdeails (db.fiesds) dettermine content, design of the blocks
@@ -239,9 +239,10 @@
 															<tr>
 																<td>
 																	<!-- ##JWDB 26 march 2020: when the image width is smaller than 480, then don't stretch out on mobile. So add other class to them -->
+																	<!-- ##JWDB June 2020: changed 460px to 400 to be sure 2/3 items will be expanded to 100% width due responsive issue in iPhones -->
 																	<xsl:attribute name="class">
 																		<xsl:choose>
-																			<xsl:when test="$width &lt; 480">ctImgSmall</xsl:when>
+																			<xsl:when test="$width &lt; 400">ctImgSmall</xsl:when>
 																			<xsl:otherwise>ctImg</xsl:otherwise>
 																		</xsl:choose>
 																	</xsl:attribute>
