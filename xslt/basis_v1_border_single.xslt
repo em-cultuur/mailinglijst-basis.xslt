@@ -6,7 +6,7 @@
 	<!-- Basis  v1
 	XSLT for BLOCKS in MailingLijst-templates
 	(c) EM-Cultuur, 2020
-	Last change: JWDB 8 June 2020 (v1.3)
+	Last change: JWDB 19 June 2020 (v1.5)
 
 	BLOCKSTULE-names determine grouping
 	blockdeails (db.fiesds) dettermine content, design of the blocks
@@ -27,8 +27,8 @@
 	<xsl:variable name="width_23">460</xsl:variable>
 	<xsl:variable name="width_full">700</xsl:variable>
 
-	<xsl:variable name="image_width_double_wide">70</xsl:variable>
-	<xsl:variable name="image_width_double_small">30</xsl:variable>
+	<xsl:variable name="image_width_double_wide">60</xsl:variable>
+	<xsl:variable name="image_width_double_small">40</xsl:variable>
 	<xsl:variable name="image_height_double_full">300</xsl:variable>
 	<xsl:variable name="image_height_double_12">200</xsl:variable>
 	<xsl:variable name="image_height_double_13_23">200</xsl:variable>
@@ -133,7 +133,7 @@
 						</xsl:if>
 
 						<!-- BLOCKSTYLE: ITEM-->
-						<td>
+						<th>
 							<!--
                             When using HIGHLIGHTED (uitgelicht) styles, we need to swap the classes to Featured which haves alternative background color by default.
                             When db.extra2 is filled, then the alternative background color is set, sets the classes to Featured as well.
@@ -247,9 +247,10 @@
 															<tr>
 																<td>
 																	<!-- ##JWDB 26 march 2020: when the image width is smaller than 480, then don't stretch out on mobile. So add other class to them -->
+																	<!-- ##JWDB June 2020: changed 460px to 400 to be sure 2/3 items will be expanded to 100% width due responsive issue in iPhones -->
 																	<xsl:attribute name="class">
 																		<xsl:choose>
-																			<xsl:when test="$width &lt; 480">ctImgSmall</xsl:when>
+																			<xsl:when test="$width &lt; 400">ctImgSmall</xsl:when>
 																			<xsl:otherwise>ctImg</xsl:otherwise>
 																		</xsl:choose>
 																	</xsl:attribute>
@@ -447,7 +448,7 @@
                                                                             ##JWDB 8 may 2010: Fixed bug with empty image field (image != '' validation added)
                                                                             -->
 																			<xsl:if test="image != '' and contains(style, 'afb.')">
-																				<td>
+																				<th>
 																					<xsl:attribute name="class">
 																						<xsl:choose>
 																							<xsl:when test="contains(style, 'afb. rechts') and contains(style, 'banner')">ctImgRightOuterBlockBan</xsl:when>
@@ -512,10 +513,10 @@
 																							</td>
 																						</tr>
 																					</table>
-																				</td>
+																				</th>
 																			</xsl:if>
 																			<!-- Content and buttons container -->
-																			<td dir="ltr">
+																			<th dir="ltr">
 																				<xsl:attribute name="class">
 																					<xsl:choose>
 																						<xsl:when test="contains(style, 'afb.')">ctOuterBlockAfbLr</xsl:when>
@@ -743,7 +744,7 @@
 																						</td>
 																					</tr>
 																				</table>
-																			</td>
+																			</th>
 																		</tr>
 																	</table>
 																</td>
@@ -756,12 +757,12 @@
 									</td>
 								</tr>
 							</table>
-						</td>
+						</th>
 
 						<!-- End of block -->
 						<xsl:choose>
 							<xsl:when test="contains(style, '1/2') or contains(style, '1/3') or contains(style, '2/3')">
-								<xsl:if test="rule_end != 'true'"><xsl:text disable-output-escaping="yes"><![CDATA[<td class="ctBlockMargin">&nbsp;</td>]]></xsl:text></xsl:if>
+								<xsl:if test="rule_end != 'true'"><xsl:text disable-output-escaping="yes"><![CDATA[<th class="ctBlockMargin">&nbsp;</th>]]></xsl:text></xsl:if>
 
 								<xsl:if test="position() = last() or rule_end = 'true'">
 									<xsl:text disable-output-escaping="yes"><![CDATA[</tr></table></td></tr></table></td>]]></xsl:text>
@@ -837,7 +838,7 @@
 															<xsl:with-param name="row" select="preceding-sibling::*[contains(style, 'Item')][2]" />
 														</xsl:call-template>
 
-														<td class="ctBlockMargin"><xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text></td>
+														<th class="ctBlockMargin"><xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text></th>
 													</xsl:if>
 
 													<!-- BUTTON 2 -->
@@ -846,7 +847,7 @@
 															<xsl:with-param name="row" select="preceding-sibling::*[contains(style, 'Item')][1]" />
 														</xsl:call-template>
 
-														<td class="ctBlockMargin"><xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text></td>
+														<th class="ctBlockMargin"><xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text></th>
 													</xsl:if>
 
 													<!-- BUTTON 3 -->
@@ -870,7 +871,27 @@
 									</xsl:choose>
 								</xsl:attribute>
 
-								<td class="ctEndingOuterCont">
+								<td>
+									<!-- JWDB June 2020: better classes for ctEndingOuterCont -->
+									<xsl:attribute name="class">
+										<xsl:choose>
+											<xsl:when test="position() = last()">
+												<xsl:choose>
+													<xsl:when test="not(contains(style, '1/')) and not(contains(style, '2/')) and (contains(style, 'uitgelicht') or extra1 != '')">ctEndingOuterContFeatLast</xsl:when>
+													<xsl:when test="contains(style, 'banner')">ctEndingOuterContBanLast</xsl:when>
+													<xsl:otherwise>ctEndingOuterContLast</xsl:otherwise>
+												</xsl:choose>
+											</xsl:when>
+											<xsl:otherwise>
+												<xsl:choose>
+													<xsl:when test="not(contains(style, '1/')) and not(contains(style, '2/')) and (contains(style, 'uitgelicht') or extra1 != '')">ctEndingOuterContFeat</xsl:when>
+													<xsl:when test="contains(style, 'banner')">ctEndingOuterContBan</xsl:when>
+													<xsl:otherwise>ctEndingOuterCont</xsl:otherwise>
+												</xsl:choose>
+											</xsl:otherwise>
+										</xsl:choose>
+									</xsl:attribute>
+
 									<table cellpadding="0" cellspacing="0">
 										<tr>
 											<xsl:if test="preceding-sibling::*[contains(style, 'Item')][2]/rule_end != 'true' and preceding-sibling::*[contains(style, 'Item')][1]/rule_end != 'true'">
@@ -878,7 +899,7 @@
 													<xsl:with-param name="row" select="preceding-sibling::*[contains(style, 'Item')][2]" />
 												</xsl:call-template>
 
-												<td class="ctEndingMargin"><xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text></td>
+												<th class="ctEndingMargin"><xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text></th>
 											</xsl:if>
 
 											<xsl:if test="preceding-sibling::*[contains(style, 'Item')][1]/rule_end != 'true'">
@@ -886,7 +907,7 @@
 													<xsl:with-param name="row" select="preceding-sibling::*[contains(style, 'Item')][1]" />
 												</xsl:call-template>
 
-												<td class="ctEndingMargin"><xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text></td>
+												<th class="ctEndingMargin"><xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text></th>
 											</xsl:if>
 
 											<xsl:call-template name="ending_container">
@@ -906,7 +927,19 @@
 
 						<tr>
 							<!-- Basic block -->
-							<td class="ctCallMainBlock">
+							<td>
+								<!-- JWDB June 2020: With or without border based on db.extra3 field -->
+								<xsl:attribute name="class">
+									<xsl:choose>
+										<xsl:when test="$border_width &gt; 0 and contains(extra3, 'NOBORDER')">ctCallMainBlockNoBorder</xsl:when>
+										<xsl:otherwise>ctCallMainBlock</xsl:otherwise>
+									</xsl:choose>
+								</xsl:attribute>
+
+								<!-- JWDB June 2020: Custom border color -->
+								<xsl:if test="extra3 != '' and not(contains(style, 'NOBORDER'))">
+									<xsl:attribute name="style">border-color: <xsl:value-of select="extra3" />;</xsl:attribute>
+								</xsl:if>
 
 								<!-- The data attributes are used for in contentblocks editor -->
 								<table width="100%" cellpadding="0" cellspacing="0" style="width: 100%" class="emItem emEditable emMoveable">
@@ -1066,15 +1099,13 @@
 					## TODO COMMENT
 					This will override the Agenda block below
 					Allows possibility to move Agenda block between normal Items
-					You have still to create Agenda items-->
+					You have still to create Agenda items
+					JWDB June 2020: deleted ctMainBlockItem container
+					-->
 					<xsl:when test="contains(style, 'agenda')">
-						<tr>
-							<td class="ctMainBlockItem">
-								<xsl:call-template name="agenda_container">
-									<xsl:with-param name="with_data">1</xsl:with-param>
-								</xsl:call-template>
-							</td>
-						</tr>
+						<xsl:call-template name="agenda_container">
+							<xsl:with-param name="with_data">1</xsl:with-param>
+						</xsl:call-template>
 					</xsl:when>
 				</xsl:choose>
 
@@ -1400,7 +1431,7 @@
 			</xsl:choose>
 		</xsl:variable>
 
-		<td>
+		<th>
 			<xsl:attribute name="style">width: <xsl:value-of select="$width" />px;
 				<!-- JWDB June 2020: border color can be configured per item -->
 				<xsl:if test="$border_width > 0 and $row/extra3 != '' and not(contains($row/extra3, 'NOBORDER'))">border-color: <xsl:value-of select="$row/extra3" />;</xsl:if>
@@ -1426,7 +1457,7 @@
 			</xsl:attribute>
 
 			<xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text>
-		</td>
+		</th>
 
 	</xsl:template>
 
@@ -1615,7 +1646,7 @@
 							<!-- trigger DATUMBLOK
 							The date will be saved as 1 january 2000 when the date fields in the content block details are empty -->
 							<xsl:if test="contains(style, 'datumblok') and not(contains(display_playdate_start, '1 januari 2000'))">
-								<td class="agDateBlockCont">
+								<th class="agDateBlockCont">
 
 									<table cellpadding="0" cellspacing="0" width="100%" style="width: 100%">
 										<tr>
@@ -1655,15 +1686,15 @@
 										</tr>
 									</table>
 
-								</td>
-								<td class="agColMargin">
+								</th>
+								<th class="agColMargin">
 									<xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text>
-								</td>
+								</th>
 							</xsl:if>
 
 							<!-- trigger DATUM-PLAATJE-TEKST -->
 							<xsl:if test="contains(style, 'datum-plaatje-tekst') and not(contains(display_playdate_start, '1 januari 2000'))">
-								<td class="agDateTextCont">
+								<th class="agDateTextCont">
 
 									<table cellpadding="0" cellspacing="0" width="100%" style="width: 100%">
 										<tr>
@@ -1675,15 +1706,15 @@
 										</tr>
 									</table>
 
-								</td>
-								<td class="agColMargin">
+								</th>
+								<th class="agColMargin">
 									<xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text>
-								</td>
+								</th>
 							</xsl:if>
 
 							<!-- This will be displayed when using normal agenda block style name and image is set -->
 							<xsl:if test="not(contains(style, 'datumblok')) and image != ''">
-								<td class="agImgOuterCont">
+								<th class="agImgOuterCont">
 									<table cellpadding="0" cellspacing="0" width="100%" style="width: 100%">
 										<tr>
 											<td class="agImgInnerCont">
@@ -1713,14 +1744,14 @@
 											</td>
 										</tr>
 									</table>
-								</td>
-								<td class="agColMargin">
+								</th>
+								<th class="agColMargin">
 									<xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text>
-								</td>
+								</th>
 							</xsl:if>
 
 							<!-- Content container -->
-							<td class="agCtCont">
+							<th class="agCtCont">
 
 								<table cellpadding="0" cellspacing="0" width="100%" style="width: 100%">
 									<tr>
@@ -1805,14 +1836,14 @@
 										</td>
 									</tr>
 								</table>
-							</td>
+							</th>
 
 							<!-- Button, hide when using DATUM-PLAATJE-TEKST trigger -->
 							<xsl:if test="url != '' and not(contains(image_alt, 'NOBUTTON')) and not(contains(style, 'datum-plaatje-tekst'))">
-								<td class="agColMargin">
+								<th class="agColMargin">
 									<xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text>
-								</td>
-								<td class="agButCont">
+								</th>
+								<th class="agButCont">
 
 									<table width="100%" cellpadding="0" cellspacing="0" style="width: 100%">
 										<tr>
@@ -1829,7 +1860,7 @@
 										</tr>
 									</table>
 
-								</td>
+								</th>
 							</xsl:if>
 						</tr>
 					</table>

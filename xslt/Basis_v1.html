@@ -5,7 +5,7 @@
         BASIC TEMPLATE
         EM-Cultuur / MailingLijst
         Date: v1, march 2020
-        Last change: JWDB 12 June 2020 (v1.4)
+        Last change: JWDB 19 June 2020 (v1.5)
         -->
         <meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE">
         <title>Nieuwsbrief  BASIS v1</title>
@@ -37,13 +37,19 @@
                 padding-bottom: 0;
                 padding-top: 0;
             }
-            td, a, .content a, .agContent a {
+            td, th, a, .content a, .agContent a {
                 font-family: Lato, sans-serif;
                 color: dimgray;
                 font-size: 14px;
                 line-height: 20px;
             }
-
+            a, .content a, .agContent a {
+                color: dimgray !important; /* Outlook compatibility */
+            }
+            th {
+                text-align: left;
+                font-weight: normal;
+            }
             /*Headings*/
             h1, h2, h3, h4, h5, h6 {
                 font-family: Prata, serif;
@@ -117,6 +123,7 @@
             }
 
             .ftCont a, .ftUnsubscribe a {
+                color: dimgray !important; /* Outlook compatibility */
                 color: dimgray;
                 text-decoration: underline;
             }
@@ -245,6 +252,7 @@
                 text-decoration: none;
             }
             .ctInnerContFeat .content, .ctInnerContFeat .content a {
+                color: white !important; /* Outlook compatibility */
                 color: white;
             }
             .ctOuterBlock, .ctOuterBlockAfbLr {
@@ -349,18 +357,20 @@
                 color: white;
                 text-decoration: none;
             }
-            .ctButContFeat .ctBut, .ctButContFeat .ctBut:hover,
-            .ctButContFeat .ctBut2, .ctButContFeat .ctBut2:hover,
-            .ctButContBan .ctBut, .ctButContBan .ctBut:hover,
-            .ctButContBan .ctBut2, .ctButContBan .ctBut2:hover,
-            .ctButContFeatNoBorder .ctBut, .ctButContFeatNoBorder .ctBut:hover,
-            .ctButContFeatNoBorder .ctBut2, .ctButContFeatNoBorder .ctBut2:hover,
-            .ctButContBanNoBorder .ctBut, .ctButContBanNoBorder .ctBut:hover,
-            .ctButContBanNoBorder .ctBut2, .ctButContBanNoBorder .ctBut2:hover,
-            .ctMobButContFeat .ctBut, .ctMobButContFeat .ctBut:hover,
-            .ctMobButContFeat .ctBut2, .ctMobButContFeat .ctBut2:hover,
-            .ctMobButContBan .ctBut, .ctMobButContBan .ctBut:hover,
-            .ctMobButContBan .ctBut2, .ctMobButContBan .ctBut2:hover {
+            .ctButContFeat .ctBut, .ctButContFeat .ctBut2,
+            .ctButContBan .ctBut, .ctButContBan .ctBut2,
+            .ctButContFeatNoBorder .ctBut, .ctButContFeatNoBorder .ctBut2,
+            .ctButContBanNoBorder .ctBut, .ctButContBanNoBorder .ctBut2,
+            .ctMobButContFeat .ctBut, .ctMobButContFeat .ctBut2,
+            .ctMobButContBan .ctBut, .ctMobButContBan .ctBut2 {
+                background-color: white;
+            }
+            .ctButContFeat .ctBut:hover, .ctButContFeat .ctBut2:hover,
+            .ctButContBan .ctBut:hover, .ctButContBan .ctBut2:hover,
+            .ctButContFeatNoBorder .ctBut:hover, .ctButContFeatNoBorder .ctBut2:hover,
+            .ctButContBanNoBorder .ctBut:hover, .ctButContBanNoBorder .ctBut2:hover,
+            .ctMobButContFeat .ctBut:hover, .ctMobButContFeat .ctBut2:hover,
+            .ctMobButContBan .ctBut:hover, .ctMobButContBan .ctBut2:hover {
                 background-color: white;
             }
             .ctButContFeat .ctButBlock a,
@@ -369,7 +379,7 @@
             .ctButContBanNoBorder .ctButBlock a,
             .ctMobButContFeat .ctButBlock a,
             .ctMobButContBan .ctButBlock a {
-                color: dimgray !important; /*this is for compatibility with outlook.app*/
+                color: dimgray !important; /* Outlook compatibility */
                 color: dimgray;
             }
             .ctButIconMargin {
@@ -399,6 +409,7 @@
             }
             .ctCallOuterCont a {
                 text-decoration: none;
+                color: white !important; /* Outlook compatibility*/
                 color: white;
             }
 
@@ -557,8 +568,11 @@
                     padding-right: 15px;
                 }
                 .ctButCont, .ctButContFeat, .ctButContBan, .ctDeskButCont,
-                .ctButContNoBorder, .ctButContFeatNoBorder, .ctButContBanNoBorder {
+                .ctButContNoBorder, .ctButContFeatNoBorder, .ctButContBanNoBorder,
+                .ctButCont table, .ctButContFeat table, .ctButContBan table, .ctDeskButCont table,
+                .ctButContNoBorder table, .ctButContFeatNoBorder table, .ctButContBanNoBorder table {
                     display: none !important;
+                    mso-hide: all !important;
                 }
                 .ctMobButCont, .ctMobButContFeat, .ctMobButContBan {
                     display: table-row !important;
@@ -672,7 +686,7 @@
         <!--[if mso]>
         <style type="text/css">
             /* force to a sans-serif font globally */
-            body, table, td, a, span, h1, h2, h3, h4, h5, h6 {
+            body, table, td, th, a, span, h1, h2, h3, h4, h5, h6 {
                 font-family: sans-serif !important;
             }
 
@@ -687,7 +701,7 @@
         <![endif]-->
     </head>
 
-    <!-- NEWLSLETTER start -->
+    <!-- NEWSLETTER start -->
     <body style="background-color: whitesmoke;">
 
         <!-- HEADER -->
@@ -734,10 +748,10 @@
                 <td class="ftCont">
                     <table cellpadding="0" cellspacing="0" width="100%" style="width: 100%">
                         <tr>
-                            <td class="ftInnerCont">
+                            <th class="ftInnerCont">
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque iaculis dignissim luctus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque iaculis dignissim luctus.
-                            </td>
-                            <td class="ftInnerCont">
+                            </th>
+                            <th class="ftInnerCont">
                                 <a href="https://www.facebook.com" target="_blank"><img src="https://www.mailinglijst.nl/klanten/default/socialmedia/facebook_black.png" style="width: 35px;" width="35" alt="Facebook" title="Facebook"></a>
                                 &nbsp;&nbsp;
                                 <a href="https://www.twitter.com" target="_blank"><img src="https://www.mailinglijst.nl/klanten/default/socialmedia/twitter_black.png" style="width: 35px;" width="35" alt="Twitter" title="Twitter"></a>
@@ -749,7 +763,7 @@
                                 <a href="https://www.instagram.com" target="_blank"><img src="https://www.mailinglijst.nl/klanten/default/socialmedia/instagram_black.png" style="width: 35px;" width="30" alt="Instagram" title="Instagram"></a>
                                 <br /><br />
                                 <span class="ftUnsubscribe">Gegevens wijzigen of afmelden? %%URL2=103799%%.</span>
-                            </td>
+                            </th>
                         </tr>
                     </table>
                 </td>
