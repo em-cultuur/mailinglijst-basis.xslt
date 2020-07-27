@@ -6,7 +6,7 @@
 	<!-- Basis  v1
 	XSLT for BLOCKS in MailingLijst-templates
 	(c) EM-Cultuur, 2020
-	Last change: JWDB 19 June 2020 (v1.5)
+	Last change: JWDB 29 July 2020 (v1.6)
 
 	BLOCKSTULE-names determine grouping
 	blockdeails (db.fiesds) dettermine content, design of the blocks
@@ -81,12 +81,663 @@
 
 	<xsl:template match="/">
 
-		<!-- STYLE BLOCK
-		This have to be copied with the final CSS from HTML.
-		You can minify this on this website: https://cssminifier.com/
-		-->
-		<style typ="text/css">
-			@import url('https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i|Prata&amp;display=swap');td,a,.content a,.agContent a{font-family:Lato,sans-serif;color:dimgray;font-size:14px;line-height:20px}h1,h2,h3,h4,h5,h6{font-family:Prata,serif;color:indianred;margin:0;font-size:14px;line-height:20px}.content h5,.content h6{color:dimgray;font-family:Lato,sans-serif}h1{font-size:24px;line-height:30px}h2{font-size:20px;line-height:28px}h3{font-size:16px;line-height:24px}h4{font-size:16px;line-height:24px;color:gray;font-weight:400}h5{font-size:14px;line-height:20px}h6{font-size:12px;line-height:18px}.content h1,.content h2,.content h3,.content h4,.content h5,.content h6{margin-top:15px}.hdCont{background-color:darkgray;padding:15px}.hdShow,.hdShow a{color:white}.hdShow{text-align:right}.hdShow a{text-decoration:underline}.headShow a:hover{text-decoration:none}.hdLogo{padding-bottom:15px}.ftCont{padding:15px;text-align:center;background-color:darkgray}.ftCont a{color:dimgray;text-decoration:underline}.ftCont a:hover{text-decoration:none}.ftCont a img{border:0}.ctMainBlock,.ctMainBlockItem,.ctInnerCont{background-color:white;vertical-align:top}.ctMainBlockFeat,.ctMainBlockItemFeat,.ctInnerContFeat{background-color:dimgray;vertical-align:top}.ctMainBlockBan,.ctInnerContBan{background-color:indianred}.ctBottomMargin{height:20px;font-size:1px;line-height:1px}.ctBlockMargin{width:20px;font-size:1px;line-height:1px}.ctTitlesCont,.ctTitlesContNoContent{padding-bottom:15px}.ctTitlesContAfbLr,.ctTitlesContBelow{padding-bottom:0}.ctCapt,.ctCaptBelow{padding:15px;padding-bottom:0}.ctCaptBelow{padding-top:0}.ctCapt h2,.ctCapt h3,.ctCapt a,.ctCaptBelow h2,.ctCaptBelow h3,.ctCaptBelow a{color:indianred;font-weight:700;text-decoration:none}.ctCapt a,.ctCaptBelow a{font-size:20px;line-height:28px}.ctInnerContFeat .ctCapt h2,.ctInnerContFeat .ctCapt h3,.ctInnerContFeat .ctCapt a,.ctInnerContFeat .ctCaptBelow h2,.ctInnerContFeat .ctCaptBelow h3,.ctInnerContFeat .ctCaptBelow a{color:white}.ctInnerContBan .ctCapt,.ctInnerContBan .ctCaptBelow{padding-top:0}.ctInnerContBan .ctCapt h2,.ctInnerContBan .ctCapt h3,.ctInnerContBan .ctCapt a,.ctInnerContBan .ctCaptBelow h2,.ctInnerContBan .ctCaptBelow h3,.ctInnerContBan .ctCaptBelow a{color:white;font-size:28px;line-height:36px}.ctSubt,.ctSubtAbove{padding:15px;padding-top:0;padding-bottom:0}.ctSubtAbove{padding-top:15px}.ctInnerContBan .ctSubtAbove{padding-top:0}.ctInnerContFeat .ctSubt h4,.ctInnerContBan .ctSubt h4,.ctInnerContFeat .ctSubtAbove h4,.ctInnerContBan .ctSubtAbove h4{color:white}.ctDate{padding:15px;padding-top:0;padding-bottom:0;color:silver;font-size:14px;line-height:20px;font-weight:400}.ctInnerContFeat .ctDate{color:white}.content,.content a{font-size:14px;line-height:20px}.content{padding:15px}.content a{text-decoration:underline}.content a:hover{text-decoration:none}.ctInnerContFeat .content,.ctInnerContFeat .content a{color:white}.ctOuterBlock{vertical-align:top}.ctInnerContBan .ctOuterBlock{vertical-align:middle}.ctInnerContBan .ctInnerBlock{padding-top:15px;padding-bottom:15px}.ctImgRightOuterBlock,.ctImgLeftOuterBlock{width:235px;vertical-align:top}.ctImgRightOuterBlockBan,.ctImgLeftOuterBlockBan{width:220px;vertical-align:top}.ctImgRightInnerBlock,.ctImgLeftInnerBlock{padding:15px}.ctImgRightInnerBlock{padding-left:0}.ctImgLeftInnerBlock{padding-right:0}.ctImgSubt{font-size:12px;line-height:16px;padding:15px;padding-bottom:0;padding-top:5px}.ctInnerContFeat .ctImgSubt,.ctInnerContBan .ctImgSubt{color:white}.ctImgLeftInnerBlock .ctImgSubt,.ctImgRightInnerBlock .ctImgSubt{padding-left:5px;text-align:left}.ctImgLeftInnerBlockBan .ctImgSubt,.ctImgRightInnerBlockBan .ctImgSubt{padding-left:5px;padding-bottom:5px;text-align:left}.ctButCont{background-color:white;vertical-align:top}.ctButContFeat{background-color:dimgray;vertical-align:top}.ctButContBan{background-color:indianred;vertical-align:top}.ctButInnerCont{padding:15px;padding-top:0}.ctButContBan .ctButInnerCont{padding-top:15px;padding-bottom:0}.ctBut{background-color:dimgray;color:white;font-size:14px;padding:20px;padding-top:10px;padding-bottom:10px}.ctBut:hover{background-color:black}.ctBut2{background-color:indianred;color:white;font-size:14px;padding:20px;padding-top:10px;padding-bottom:10px}.ctBut2:hover{background-color:red}.ctButBlock a{color:white;text-decoration:none}.ctButContFeat .ctBut,.ctButContFeat .ctBut:hover,.ctButContFeat .ctBut2,.ctButContFeat .ctBut2:hover,.ctButContBan .ctBut,.ctButContBan .ctBut:hover,.ctButContBan .ctBut2,.ctButContBan .ctBut2:hover,.ctMobButContFeat .ctBut,.ctMobButContFeat .ctBut:hover,.ctMobButContFeat .ctBut2,.ctMobButContFeat .ctBut2:hover,.ctMobButContBan .ctBut,.ctMobButContBan .ctBut:hover,.ctMobButContBan .ctBut2,.ctMobButContBan .ctBut2:hover{background-color:white}.ctButContFeat .ctButBlock a,.ctButContBan .ctButBlock a,.ctMobButContFeat .ctButBlock a,.ctMobButContBan .ctButBlock a{color:dimgray}.ctButIconMargin{font-size:1px;line-height:1px;width:5px}.ctCallInnerCont{background-color:dimgray;text-align:center;padding:15px;padding-top:10px;padding-bottom:10px}.ctCallInnerCont h2{color:white;font-size:20px;line-height:28px;font-family:Lato,sans-serif;font-weight:400}.ctCallInnerCont h2 a{font-size:20px;line-height:28px}.ctCallOuterCont a{text-decoration:none;color:white}.ctSubhInnerCont,.ctSubhInnerContFeat{border-bottom:2px solid indianred;padding-bottom:10px}.ctSubhInnerContFeat{border-bottom:2px solid dimgray}.ctSubhInnerCont h2,.ctSubhInnerContFeat h2{color:indianred;font-size:20px;line-height:28px;font-family:Lato,sans-serif;font-weight:400}.ctSubhInnerContFeat h2{color:dimgray}.agHeaderOuterCont{background-color:white;padding:15px;padding-bottom:0}.agHeaderInnerCont{font-size:20px;line-height:28px;color:indianred}.agItemsCont{background-color:white;padding:15px;padding-bottom:0}.agItemCont{padding-bottom:15px}.agColMargin{font-size:1px;line-height:1px}.agDateBlockCont{width:65px;vertical-align:top}.agDateBlockInnerCont{padding-top:10px}.agDateBlockDay,.agDateBlockMonth{background-color:indianred;padding:5px;text-align:center;width:40px;color:white;font-weight:700}.agDateBlockDay{padding-bottom:0;font-size:18px;line-height:22px}.agDateBlockMonth{padding-top:0}.agDateTextCont{vertical-align:top;width:140px}.agDateTextInnerCont{padding-right:5px}.agImgOuterCont{width:140px;vertical-align:top}.agCtCont{vertical-align:top}.agCapt h2{font-size:20px;line-height:28px;color:dimgray;font-weight:700}.agSubt h4{color:gray;font-size:16px;line-height:24px;font-weight:400}.agDate,.agTime,.agDateTextInnerCont{color:silver;font-size:14px;line-height:20px;font-weight:400}.agContent{padding-top:10px}.agButCont a{color:white;text-decoration:none}@media only screen and (max-width:480px){.ctMainTable{width:100%!important}.bodyMainTable{width:100%!important}.ctImg img{width:100%!important;height:auto!important;-ms-interpolation-mode:bicubic}.ctImgSmall{text-align:center}.ctImgSmall img{margin-left:auto;margin-right:auto}.ctImgSmall .ctImgSubt{text-align:left}.ctMainBlock,.ctMainBlockItem,.ctMainBlockFeat,.ctMainBlockItemFeat{display:block;width:100%!important}.ctBlockMargin{display:block;width:100%!important;padding-bottom:20px}.ctCapt h2,.ctCapt h3,.ctCaptBelow h2,.ctCaptBelow h3{font-size:20px!important;line-height:28px!important}.ctSubhInnerCont,.ctSubhInnerContFeat{padding-left:15px;padding-right:15px}.ctButCont,.ctButContFeat,.ctButContBan,.ctDeskButCont{display:none!important}.ctMobButCont,.ctMobButContFeat,.ctMobButContBan{display:table-row!important;max-height:none!important;height:auto!important;font-size:inherit!important;line-height:normal!important;margin:auto!important;width:100%!important;overflow:auto!important}.ctMobButBlock{padding:15px;padding-top:0}.ctMobButContBan .ctMobButBlock{padding-top:15px;padding-bottom:0}.ctMobInnerCont{display:table!important;max-height:none!important;height:auto!important;font-size:inherit!important;line-height:normal!important;margin:auto!important;width:auto!important;overflow:auto!important}.ctButTable{display:block!important;max-height:none!important;height:auto!important;font-size:inherit!important;line-height:normal!important;margin:auto!important;width:100%!important;overflow:auto!important}.ctImgLeftOuterBlock,.ctImgRightOuterBlock,.ctImgRightOuterBlockBan,.ctImgLeftOuterBlockBan{display:block!important;width:100%}.ctImgLeftInnerBlock,.ctImgRightInnerBlock,.ctImgRightInnerBlockBan,.ctImgLeftInnerBlockBan{padding:0!important;text-align:center}.ctImgLeftOuterBlock img,.ctImgRightOuterBlock img,.ctImgRightOuterBlockBan img,.ctImgLeftOuterBlockBan img{margin-left:auto;margin-right:auto}.ctOuterBlock{display:block!important;width:100%}.agImgOuterCont{width:100%!important;display:block;padding-bottom:10px}.agImgOuterCont img{margin-left:auto;margin-right:auto}.agCtCont{width:100%!important;display:block}.agButCont{width:100%!important;display:block;padding-top:10px}.agColMargin{width:100%!important;display:block}.agDateTextCont{width:100%!important;display:block;padding-bottom:10px}}
+		<style type="text/css">
+			/* Custom fonts from Google, or use downloaded fonts and font-face*/
+			@import url('https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i|Prata&amp;display=swap');
+
+			.content a, .agContent a {
+			font-family: Lato, sans-serif;
+			color: dimgray;
+			font-size: 14px;
+			line-height: 20px;
+			}
+			a, .content a, .agContent a {
+			color: dimgray !important; /* Outlook compatibility */
+			}
+			th {
+			text-align: left;
+			font-weight: normal;
+			}
+			/*Headings*/
+			h1, h2, h3, h4, h5, h6 {
+			font-family: Prata, serif;
+			color: indianred;
+			margin: 0;
+			font-size: 14px;
+			line-height: 20px;
+			}
+			.content h5, .content h6 {
+			color: dimgray;
+			font-family: Lato, sans-serif;
+			}
+			h1 {
+			font-size: 24px;
+			line-height: 30px;
+			}
+			h2 {
+			font-size: 20px;
+			line-height: 28px;
+			}
+			h3 {
+			font-size: 16px;
+			line-height: 24px;
+			}
+			h4 {
+			font-size: 16px;
+			line-height: 24px;
+			color: gray;
+			font-weight: normal;
+			}
+			h6 {
+			font-size: 12px;
+			line-height: 18px;
+			}
+			.content h1, .content h2, .content h3, .content h4, .content h5, .content h6 {
+			margin-top: 15px;
+			}
+
+			/*HEADER*/
+			.hdCont {
+			background-color: darkgray;
+			padding: 15px;
+			}
+			.hdShow, .hdShow a {
+			color: white !important; /*outlook compatibility*/
+			color: white;
+			}
+			.hdShow {
+			text-align: right;
+			}
+			.hdShow a {
+			text-decoration: underline;
+			}
+			.hdShow a:hover {
+			text-decoration: none;
+			}
+			.hdLogo {
+			padding-bottom: 15px;
+			}
+			.hdEdition h1 {}
+
+			/*FOOTER STYLES*/
+			.ftCont {
+			padding: 10px;
+			background-color: darkgray;
+			}
+
+			.ftInnerCont {
+			vertical-align: top;
+			width: 50%;
+			padding: 5px;
+			}
+
+			.ftCont a, .ftUnsubscribe a {
+			color: dimgray !important; /* Outlook compatibility */
+			color: dimgray;
+			text-decoration: underline;
+			}
+
+			.ftCont a:hover, .ftUnsubscribe a:hover {
+			text-decoration: none;
+			}
+
+			.ftCont a img {
+			border: 0;
+			}
+
+			/*
+			CONTENT STYLES
+			*/
+			/*Containers*/
+			.ctMainBlock, .ctMainBlockNoBorder, .ctMainBlockItem, .ctInnerCont {
+			background-color: white;
+			vertical-align: top;
+			}
+			.ctMainBlockFeat, .ctMainBlockFeatNoBorder, .ctMainBlockItemFeat, .ctInnerContFeat {
+			background-color: dimgray;
+			vertical-align: top;
+			}
+			.ctMainBlockBan, .ctInnerContBan {
+			background-color: indianred;
+			}
+			.ctBottomMargin, .ctEndingCont, .ctEndingContNoBorder {
+			height: 20px;
+			font-size: 1px;
+			line-height: 1px;
+			}
+			.ctBlockMargin, .ctEndingMargin {
+			width: 20px;
+			font-size: 1px;
+			line-height: 1px;
+			}
+
+			/*Title*/
+			.ctTitlesCont, .ctTitlesContNoContent {
+			padding-bottom: 15px;
+			}
+			.ctTitlesContAfbLr, .ctTitlesContBelow {
+			padding-bottom: 0;
+			}
+			.ctCapt, .ctCaptBelow {
+			padding: 15px;
+			padding-bottom: 0;
+			}
+			.ctCaptBelow {
+			padding-top: 0;
+			}
+			.ctCapt h2, .ctCapt h3, .ctCapt a,
+			.ctCaptBelow h2, .ctCaptBelow h3, .ctCaptBelow a {
+			color: indianred;
+			font-weight: bold;
+			text-decoration: none;
+			}
+			.ctCapt a, .ctCaptBelow a {
+			font-size: 20px;
+			line-height: 28px;
+			}
+			.ctCapt h3, .ctCaptBelow h3 {
+			}
+			.ctInnerContFeat .ctCapt h2, .ctInnerContFeat .ctCapt h3, .ctInnerContFeat .ctCapt a,
+			.ctInnerContFeat .ctCaptBelow h2, .ctInnerContFeat .ctCaptBelow h3, .ctInnerContFeat .ctCaptBelow a{
+			color: white;
+			}
+			.ctInnerContBan .ctCapt, .ctInnerContBan .ctCaptBelow {
+			padding-top: 0;
+			}
+			.ctInnerContBan .ctCapt h2, .ctInnerContBan .ctCapt h3, .ctInnerContBan .ctCapt a,
+			.ctInnerContBan .ctCaptBelow h2, .ctInnerContBan .ctCaptBelow h3, .ctInnerContBan .ctCaptBelow a{
+			color: white;
+			font-size: 28px;
+			line-height: 36px;
+			}
+
+			/*Subtitle*/
+			.ctSubt, .ctSubtAbove {
+			padding: 15px;
+			padding-top: 0;
+			padding-bottom: 0;
+			}
+			.ctSubtAbove {
+			padding-top: 15px;
+			}
+			.ctInnerContBan .ctSubtAbove {
+			padding-top: 0;
+			}
+			.ctSubt h4, .ctSubtAbove h4 {
+			}
+			.ctInnerContFeat .ctSubt h4,
+			.ctInnerContBan .ctSubt h4,
+			.ctInnerContFeat .ctSubtAbove h4,
+			.ctInnerContBan .ctSubtAbove h4{
+			color: white;
+			}
+
+			/*Date*/
+			.ctDate {
+			padding: 15px;
+			padding-top: 0;
+			padding-bottom: 0;
+			color: silver;
+			font-size: 14px;
+			line-height: 20px;
+			font-weight: normal;
+			}
+			.ctDate a {
+			color: silver !important; /* outlook compatibilty*/
+			color: silver;
+			text-decoration: none;
+			}
+			.ctInnerContFeat .ctDate {
+			color: white;
+			}
+
+			/*Content*/
+			.content, .content a {
+			font-size: 14px;
+			line-height: 20px;
+			}
+			.content {
+			padding: 15px;
+			}
+			.content a {
+			text-decoration: underline;
+			}
+			.content a:hover {
+			text-decoration: none;
+			}
+			.ctInnerContFeat .content, .ctInnerContFeat .content a {
+			color: white !important; /* Outlook compatibility */
+			color: white;
+			}
+			.ctOuterBlock, .ctOuterBlockAfbLr {
+			vertical-align: top;
+			}
+			.ctInnerContBan .ctOuterBlock,
+			.ctInnerContBan .ctOuterBlockAfbLr {
+			vertical-align: middle;
+			}
+			.ctInnerContBan .ctInnerBlock {
+			padding-top: 15px;
+			padding-bottom: 15px;
+			}
+
+			/*Images*/
+			.ctImgRightOuterBlock, .ctImgLeftOuterBlock {
+			width: 235px;
+			vertical-align: top;
+			}
+			.ctImgRightOuterBlockBan, .ctImgLeftOuterBlockBan {
+			width: 220px;
+			vertical-align: top;
+			}
+			.ctImgRightInnerBlock, .ctImgLeftInnerBlock {
+			padding: 15px;
+			}
+			.ctImgRightInnerBlock {
+			padding-left: 0;
+			}
+			.ctImgLeftInnerBlock {
+			padding-right: 0;
+			}
+			.ctImgSubt {
+			font-size: 12px;
+			line-height: 16px;
+			padding: 15px;
+			padding-bottom: 0;
+			padding-top: 5px;
+			}
+			.ctInnerContFeat .ctImgSubt,
+			.ctInnerContBan .ctImgSubt {
+			color: white;
+			}
+			.ctImgLeftInnerBlock .ctImgSubt,
+			.ctImgRightInnerBlock .ctImgSubt {
+			padding-left: 5px;
+			text-align: left;
+			}
+			.ctImgLeftInnerBlockBan .ctImgSubt,
+			.ctImgRightInnerBlockBan .ctImgSubt {
+			padding-left: 5px;
+			padding-bottom: 5px;
+			text-align: left;
+			}
+
+			/*Buttons*/
+			.ctButCont, .ctButContNoBorder {
+			background-color: white;
+			vertical-align: top;
+			}
+			.ctButContFeat, .ctButContFeatNoBorder {
+			background-color: dimgray;
+			vertical-align: top;
+			}
+			.ctButContBan, .ctButContBanNoBorder {
+			background-color: indianred;
+			vertical-align: top;
+			}
+			.ctButInnerCont {
+			padding: 15px;
+			padding-top: 0;
+			}
+			.ctButContBan .ctButInnerCont,
+			.ctButContBanNoBorder .ctButInnerCont {
+			padding-top: 15px;
+			padding-bottom: 0;
+			}
+			.ctBut {
+			background-color: dimgray;
+			color: white;
+			font-size: 14px;
+			padding: 20px;
+			padding-top: 10px;
+			padding-bottom: 10px;
+			}
+			.ctBut:hover {
+			background-color: black;
+			}
+			.ctBut2 {
+			background-color: indianred;
+			color: white;
+			font-size: 14px;
+			padding: 20px;
+			padding-top: 10px;
+			padding-bottom: 10px;
+			}
+			.ctBut2:hover {
+			background-color: red;
+			}
+			.ctButBlock a {
+			color: white !important; /*this is for compatibility with outlook.app*/
+			color: white;
+			text-decoration: none;
+			}
+			.ctButContFeat .ctBut, .ctButContFeat .ctBut2,
+			.ctButContBan .ctBut, .ctButContBan .ctBut2,
+			.ctButContFeatNoBorder .ctBut, .ctButContFeatNoBorder .ctBut2,
+			.ctButContBanNoBorder .ctBut, .ctButContBanNoBorder .ctBut2,
+			.ctMobButContFeat .ctBut, .ctMobButContFeat .ctBut2,
+			.ctMobButContBan .ctBut, .ctMobButContBan .ctBut2 {
+			background-color: white;
+			}
+			.ctButContFeat .ctBut:hover, .ctButContFeat .ctBut2:hover,
+			.ctButContBan .ctBut:hover, .ctButContBan .ctBut2:hover,
+			.ctButContFeatNoBorder .ctBut:hover, .ctButContFeatNoBorder .ctBut2:hover,
+			.ctButContBanNoBorder .ctBut:hover, .ctButContBanNoBorder .ctBut2:hover,
+			.ctMobButContFeat .ctBut:hover, .ctMobButContFeat .ctBut2:hover,
+			.ctMobButContBan .ctBut:hover, .ctMobButContBan .ctBut2:hover {
+			background-color: white;
+			}
+			.ctButContFeat .ctButBlock a,
+			.ctButContBan .ctButBlock a,
+			.ctButContFeatNoBorder .ctButBlock a,
+			.ctButContBanNoBorder .ctButBlock a,
+			.ctMobButContFeat .ctButBlock a,
+			.ctMobButContBan .ctButBlock a {
+			color: dimgray !important; /* Outlook compatibility */
+			color: dimgray;
+			}
+			.ctButIconMargin {
+			font-size: 1px;
+			line-height: 1px;
+			width: 5px;
+			}
+
+			/*Call2action*/
+			.ctCallInnerCont {
+			background-color: dimgray;
+			text-align: center;
+			padding: 15px;
+			padding-top: 10px;
+			padding-bottom: 10px;
+			}
+			.ctCallInnerCont h2 {
+			color: white;
+			font-size: 20px;
+			line-height: 28px;
+			font-family: Lato, sans-serif;
+			font-weight: normal;
+			}
+			.ctCallInnerCont h2 a {
+			font-size: 20px;
+			line-height: 28px;
+			}
+			.ctCallOuterCont a {
+			text-decoration: none;
+			color: white !important; /* Outlook compatibility*/
+			color: white;
+			}
+
+			/*Tussenkop*/
+			.ctSubhInnerCont, .ctSubhInnerContFeat {
+			border-bottom: 2px solid indianred;
+			padding-bottom: 10px;
+			}
+			.ctSubhInnerContFeat {
+			border-bottom: 2px solid dimgray;
+			}
+			.ctSubhInnerCont h2, .ctSubhInnerContFeat h2 {
+			color: indianred;
+			font-size: 20px;
+			line-height: 28px;
+			font-family: Lato, sans-serif;
+			font-weight: normal;
+			}
+			.ctSubhInnerContFeat h2 {
+			color: dimgray;
+			}
+
+			/*Agenda*/
+			.agHeaderOuterCont {
+			background-color: white;
+			padding: 15px;
+			padding-bottom: 0;
+			}
+			.agHeaderInnerCont {
+			font-size: 20px;
+			line-height: 28px;
+			color: indianred;
+			}
+			.agItemsCont {
+			background-color: white;
+			padding: 15px;
+			padding-bottom: 0;
+			}
+			.agItemCont {
+			padding-bottom: 15px;
+			}
+			.agColMargin {
+			font-size: 1px;
+			line-height: 1px;
+			}
+			.agDateBlockCont {
+			width: 65px;
+			vertical-align: top;
+			}
+			.agDateBlockInnerCont {}
+			.agDateBlockDay, .agDateBlockMonth {
+			background-color: indianred;
+			padding: 5px;
+			text-align: center;
+			width: 40px;
+			color: white;
+			font-weight: bold;
+			}
+			.agDateBlockDay {
+			padding-bottom: 0;
+			font-size: 18px;
+			line-height: 22px;
+			}
+			.agDateBlockMonth {
+			padding-top: 0;
+			}
+			.agDateTextCont {
+			vertical-align: top;
+			width: 140px;
+			}
+			.agDateTextInnerCont {
+			padding-right: 5px;
+			}
+			.agImgOuterCont {
+			width: 140px;
+			vertical-align: top;
+			}
+			.agCtCont {
+			vertical-align: top;
+			}
+			.agCapt h2 {
+			font-size: 20px;
+			line-height: 28px;
+			color: dimgray;
+			font-weight: bold;
+			}
+			.agSubt h4 {
+			color: gray;
+			font-size: 16px;
+			line-height: 24px;
+			font-weight: normal;
+			}
+			.agDate, .agTime, .agDateTextInnerCont {
+			color: silver;
+			font-size: 14px;
+			line-height: 20px;
+			font-weight: normal;
+			}
+			.agDate a, .agTime a, .agDateTextInnerCont a {
+			color: silver !important; /*outlook compatibility*/
+			color: silver;
+			text-decoration: none;
+			}
+			.agContent {
+			padding-top: 10px;
+			}
+			.agContent a {
+			color: dimgray;
+			text-decoration: underline;
+			}
+			.agContent a:hover {
+			text-decoration: none;
+			}
+			.agButCont a {
+			color: white !important; /*this is for compatibility with outlook.app*/
+			color: white;
+			text-decoration: none;
+			}
+
+			/* RESPONSIVE CODE */
+			@media only screen and (max-width: 480px) {
+			.ctMainTable {
+			width: 100% !important;
+			}
+			.bodyMainTable {
+			width: 100% !important;
+			}
+			.ctImg img {
+			width: 100% !important;
+			height: auto !important;
+			-ms-interpolation-mode: bicubic;
+			}
+			.ctImgSmall {
+			text-align: center;
+			}
+			.ctImgSmall img {
+			margin-left: auto;
+			margin-right: auto;
+			}
+			.ctImgSmall .ctImgSubt {
+			text-align: left;
+			}
+			.ctMainBlock, .ctMainBlockNoBorder, .ctMainBlockItem, .ctMainBlockFeat, .ctMainBlockFeatNoBorder, .ctMainBlockItemFeat {
+			display: block;
+			width: 100% !important;
+			}
+			.ctBlockMargin {
+			display: block;
+			width: 100% !important;
+			padding-bottom: 20px;
+			}
+			.ctCapt h2, .ctCapt h3,
+			.ctCaptBelow h2, .ctCaptBelow h3{
+			font-size: 20px !important;
+			line-height: 28px !important;
+			}
+			.ctSubhInnerCont, .ctSubhInnerContFeat {
+			padding-left: 15px;
+			padding-right: 15px;
+			}
+			.ctButCont, .ctButContFeat, .ctButContBan, .ctDeskButCont,
+			.ctButContNoBorder, .ctButContFeatNoBorder, .ctButContBanNoBorder,
+			.ctButCont table, .ctButContFeat table, .ctButContBan table, .ctDeskButCont table,
+			.ctButContNoBorder table, .ctButContFeatNoBorder table, .ctButContBanNoBorder table {
+			display: none !important;
+			mso-hide: all !important;
+			}
+			.ctMobButCont, .ctMobButContFeat, .ctMobButContBan {
+			display: table-row !important;
+			max-height: none !important;
+			height: auto !important;
+			font-size: inherit !important;
+			line-height: normal !important;
+			margin: auto !important;
+			width: 100% !important;
+			overflow: auto !important;
+			}
+			.ctMobButBlock {
+			padding: 15px;
+			padding-top: 0;
+			}
+			.ctMobButContBan .ctMobButBlock {
+			padding-top: 15px;
+			padding-bottom: 0;
+			}
+			.ctMobInnerCont {
+			display: table !important;
+			max-height: none !important;
+			height: auto !important;
+			font-size: inherit !important;
+			line-height: normal !important;
+			margin: auto !important;
+			width: auto !important;
+			overflow: auto !important;
+			}
+			.ctButTable {
+			display: block !important;
+			max-height: none !important;
+			height: auto !important;
+			font-size: inherit !important;
+			line-height: normal !important;
+			margin: auto !important;
+			width: 100% !important;
+			overflow: auto !important;
+			}
+			.ctImgLeftOuterBlock, .ctImgRightOuterBlock, .ctImgRightOuterBlockBan, .ctImgLeftOuterBlockBan {
+			display: block !important;
+			width: 100%;
+			}
+			.ctImgLeftInnerBlock, .ctImgRightInnerBlock, .ctImgRightInnerBlockBan, .ctImgLeftInnerBlockBan {
+			padding: 0 !important;
+			text-align: center;
+			}
+			.ctImgLeftOuterBlock img, .ctImgRightOuterBlock img, .ctImgRightOuterBlockBan img, .ctImgLeftOuterBlockBan img {
+			margin-left: auto;
+			margin-right: auto;
+			}
+			.ctImgLeftInnerBlock .ctImgSubt, .ctImgRightInnerBlock .ctImgSubt {
+			padding-left: 15px;
+			}
+			.ctOuterBlock, .ctOuterBlockAfbLr {
+			display: block !important;
+			width: 100%;
+			}
+			.agImgOuterCont {
+			width: 100% !important;
+			display: block;
+			padding-bottom: 10px;
+			}
+			.agImgOuterCont img {
+			margin-left: auto;
+			margin-right: auto;
+			}
+			.agCtCont {
+			width: 100% !important;
+			display: block;
+			}
+			.agButCont {
+			width: 100% !important;
+			display: block;
+			padding-top: 10px;
+			}
+			.agColMargin {
+			width: 100% !important;
+			display: block;
+			}
+			.agDateTextCont {
+			width: 100% !important;
+			display: block;
+			padding-bottom: 10px;
+			}
+			.ctEndingCont, .ctEndingContNoBorder, .ctEndingContBan, .ctEndingContBanNoBorder,
+			.ctEndingContFeat, .ctEndingContFeatNoBorder {
+			width: 100% !important;
+			}
+			.ctCont {
+			padding: 10px;
+			}
+			.hdImage img {
+			width: 100% !important;
+			height: auto !important;
+			}
+			.ftBanner img {
+			width: 100% !important;
+			height: auto !important;
+			}
+			.ftInnerCont {
+			width: 100% !important;
+			display: block;
+			padding: 0 !important;
+			padding-bottom: 5px !important;
+			padding-top: 5px !important;
+			}
+			}
 		</style>
 
 		<table cellpadding="0" cellspacing="0" width="100%" style="width: 100%" class="ctMainTable">
@@ -94,6 +745,14 @@
 			<!-- Blocks are grouped on blockstyle-name-first-word (Item, Agenda)
 			Loop through block-styles starting with 'Item' -->
 			<xsl:for-each select="matches/match[contains(style, 'Item')]">
+
+				<!-- ##JWDB 24 July 2020: pick colors from db.extra1 field -->
+				<xsl:variable name="background-color">
+					<xsl:call-template name="color">
+						<xsl:with-param name="colors" select="extra1" />
+						<xsl:with-param name="part">achtergrond</xsl:with-param>
+					</xsl:call-template>
+				</xsl:variable>
 
 				<!-- ##JWDB 8 may 2020: Extra validation to check if the entire content (titles, content and url) is needed to be shown -->
 				<xsl:variable name="hide_content">
@@ -136,24 +795,24 @@
 						<th>
 							<!--
                             When using HIGHLIGHTED (uitgelicht) styles, we need to swap the classes to Featured which haves alternative background color by default.
-                            When db.extra2 is filled, then the alternative background color is set, sets the classes to Featured as well.
+                            When db.extra1 is filled, then the alternative background color is set, sets the classes to Featured as well.
                             -->
 							<xsl:attribute name="class">
 								<xsl:choose>
-									<xsl:when test="(contains(style, '1/2') or contains(style, '1/3') or contains(style, '2/3')) and not(contains(style, 'uitgelicht')) and extra1 = ''">
+									<xsl:when test="(contains(style, '1/2') or contains(style, '1/3') or contains(style, '2/3')) and not(contains(style, 'uitgelicht')) and $background-color = ''">
 										<xsl:choose>
 											<xsl:when test="contains(extra3, 'NOBORDER')">ctMainBlockNoBorder</xsl:when>
 											<xsl:otherwise>ctMainBlock</xsl:otherwise>
 										</xsl:choose>
 									</xsl:when>
-									<xsl:when test="(contains(style, '1/2') or contains(style, '1/3') or contains(style, '2/3')) and (contains(style, 'uitgelicht') or extra1 != '')">
+									<xsl:when test="(contains(style, '1/2') or contains(style, '1/3') or contains(style, '2/3')) and (contains(style, 'uitgelicht') or $background-color != '')">
 										<xsl:choose>
 											<xsl:when test="contains(extra3, 'NOBORDER')">ctMainBlockFeatNoBorder</xsl:when>
 											<xsl:otherwise>ctMainBlockFeat</xsl:otherwise>
 										</xsl:choose>
 									</xsl:when>
 									<xsl:when test="contains(style, 'banner')">ctMainBlockBan</xsl:when>
-									<xsl:when test="contains(style, 'uitgelicht') or extra1 != ''">ctMainBlockItemFeat</xsl:when>
+									<xsl:when test="contains(style, 'uitgelicht') or $background-color != ''">ctMainBlockItemFeat</xsl:when>
 									<xsl:otherwise>ctMainBlockItem</xsl:otherwise>
 								</xsl:choose>
 							</xsl:attribute>
@@ -161,13 +820,13 @@
 							<!--
                             When db.extra1 is filled, then a custom background color is set.
                             -->
-							<xsl:if test="extra1 != ''">
-								<xsl:attribute name="style">background-color: <xsl:value-of select="extra1" />;</xsl:attribute>
+							<xsl:if test="$background-color != ''">
+								<xsl:attribute name="style">background-color: <xsl:value-of select="$background-color" />;</xsl:attribute>
 							</xsl:if>
 
 							<!-- JWDB June 2020: border color can be configured per item -->
 							<xsl:if test="$border_width > 0 and extra3 != '' and not(contains(extra3, 'NOBORDER'))">
-								<xsl:attribute name="style">border-color: <xsl:value-of select="extra3" />;<xsl:if test="extra1 != ''">background-color: <xsl:value-of select="extra1" />;</xsl:if></xsl:attribute>
+								<xsl:attribute name="style">border-color: <xsl:value-of select="extra3" />;<xsl:if test="$background-color != ''">background-color: <xsl:value-of select="$background-color" />;</xsl:if></xsl:attribute>
 							</xsl:if>
 
 							<!-- ##JWDB 8 may 2020: borders can be hidden by putting NOBORDER in extra3 field -->
@@ -207,7 +866,7 @@
 													<xsl:attribute name="class">
 														<xsl:choose>
 															<xsl:when test="contains(style, 'banner')">ctInnerContBan</xsl:when>
-															<xsl:when test="contains(style, 'uitgelicht') or extra1 != ''">ctInnerContFeat</xsl:when>
+															<xsl:when test="contains(style, 'uitgelicht') or $background-color != ''">ctInnerContFeat</xsl:when>
 															<xsl:otherwise>ctInnerCont</xsl:otherwise>
 														</xsl:choose>
 													</xsl:attribute>
@@ -216,13 +875,13 @@
                                                     When db.extra1 is filled, then a custom background color is set.
                                                     This logic is double with the TD above, but it is needed for the BLOKKEN_EDITOR
                                                     -->
-													<xsl:if test="extra1 != ''">
-														<xsl:attribute name="style">background-color: <xsl:value-of select="extra1" />;</xsl:attribute>
+													<xsl:if test="$background-color != ''">
+														<xsl:attribute name="style">background-color: <xsl:value-of select="$background-color" />;</xsl:attribute>
 													</xsl:if>
 
 													<!-- JWDB June 2020: border color can be configured per item -->
 													<xsl:if test="$border_width > 0 and extra3 != '' and not(contains(extra3, 'NOBORDER'))">
-														<xsl:attribute name="style">border-color: <xsl:value-of select="extra3" />;<xsl:if test="extra1 != ''">background-color: <xsl:value-of select="extra1" />;</xsl:if></xsl:attribute>
+														<xsl:attribute name="style">border-color: <xsl:value-of select="extra3" />;<xsl:if test="$background-color != ''">background-color: <xsl:value-of select="$background-color" />;</xsl:if></xsl:attribute>
 													</xsl:if>
 
 													<table width="100%" cellpadding="0" cellspacing="0" style="width: 100%">
@@ -389,13 +1048,25 @@
 
 																	<!-- when db.extra2 field is filled, show it as image subtitle / photo credits -->
 																	<xsl:if test="extra2 != ''">
+
+																		<xsl:variable name="photocredits-color">
+																			<xsl:call-template name="color">
+																				<xsl:with-param name="colors" select="extra1" />
+																				<xsl:with-param name="part">fotocredits</xsl:with-param>
+																			</xsl:call-template>
+																		</xsl:variable>
+
 																		<table width="100%" cellpadding="0" cellspacing="0" style="width: 100%">
 																			<tr>
 																				<td class="ctImgSubt">
 																					<!-- JWDB June 2020: set all texts to center when style contains trigger word gecentreerd -->
-																					<xsl:if test="contains(style, 'gecentreerd')">
-																						<xsl:attribute name="style">text-align: center;</xsl:attribute>
+																					<xsl:if test="contains(style, 'gecentreerd') or $photocredits-color != ''">
+																						<xsl:attribute name="style">
+																							<xsl:if test="contains(style, 'gecentreerd')">text-align: center;</xsl:if>
+																							<xsl:if test="$photocredits-color">color: <xsl:value-of select="$photocredits-color" /></xsl:if>
+																						</xsl:attribute>
 																					</xsl:if>
+
 																					<xsl:value-of select="extra2" />
 																				</td>
 																			</tr>
@@ -505,6 +1176,18 @@
 																									<table width="100%" cellpadding="0" cellspacing="0" style="width: 100%">
 																										<tr>
 																											<td class="ctImgSubt">
+
+																												<xsl:variable name="photocredits-color">
+																													<xsl:call-template name="color">
+																														<xsl:with-param name="colors" select="extra1" />
+																														<xsl:with-param name="part">fotocredits</xsl:with-param>
+																													</xsl:call-template>
+																												</xsl:variable>
+
+																												<xsl:if test="$photocredits-color != ''">
+																													<xsl:attribute name="style">color: <xsl:value-of select="$photocredits-color" /></xsl:attribute>
+																												</xsl:if>
+
 																												<xsl:value-of select="extra2" />
 																											</td>
 																										</tr>
@@ -553,9 +1236,20 @@
 																								<xsl:if test="not(contains(style, 'banner')) and content != ''">
 																									<tr>
 																										<td class="content">
+
+																											<xsl:variable name="content-color">
+																												<xsl:call-template name="color">
+																													<xsl:with-param name="colors" select="extra1" />
+																													<xsl:with-param name="part">content</xsl:with-param>
+																												</xsl:call-template>
+																											</xsl:variable>
+
 																											<!-- JWDB June 2020: set all texts to center when style contains trigger word gecentreerd -->
-																											<xsl:if test="contains(style, 'gecentreerd')">
-																												<xsl:attribute name="style">text-align: center;</xsl:attribute>
+																											<xsl:if test="contains(style, 'gecentreerd') or $content-color != ''">
+																												<xsl:attribute name="style">
+																													<xsl:if test="contains(style, 'gecentreerd')">text-align: center;</xsl:if>
+																													<xsl:if test="$content-color != ''">color: <xsl:value-of select="$content-color" /> !important; color: <xsl:value-of select="$content-color" />;</xsl:if>
+																												</xsl:attribute>
 																											</xsl:if>
 
 																											<xsl:value-of select="content" disable-output-escaping="yes" />
@@ -601,7 +1295,7 @@
 																										<xsl:attribute name="class">
 																											<xsl:choose>
 																												<xsl:when test="contains(style, 'banner')">ctMobButContBan</xsl:when>
-																												<xsl:when test="contains(style, 'uitgelicht') or extra1 !=''">ctMobButContFeat</xsl:when>
+																												<xsl:when test="contains(style, 'uitgelicht') or $background-color !=''">ctMobButContFeat</xsl:when>
 																												<xsl:otherwise>ctMobButCont</xsl:otherwise>
 																											</xsl:choose>
 																										</xsl:attribute>
@@ -631,10 +1325,11 @@
 																																<xsl:with-param name="hide">1</xsl:with-param>
 																																<xsl:with-param name="button_icon">
 																																	<xsl:choose>
-																																		<xsl:when test="contains(style, 'banner') or contains(style, 'uitgelicht') or extra1 != ''"><xsl:value-of select="$button_icon_feature" /></xsl:when>
+																																		<xsl:when test="contains(style, 'banner') or contains(style, 'uitgelicht') or $background-color != ''"><xsl:value-of select="$button_icon_feature" /></xsl:when>
 																																		<xsl:otherwise><xsl:value-of select="$button_icon" /></xsl:otherwise>
 																																	</xsl:choose>
 																																</xsl:with-param>
+																																<xsl:with-param name="row" select="." />
 																															</xsl:call-template>
 
 																														</td>
@@ -652,10 +1347,11 @@
 																																<xsl:with-param name="hide">1</xsl:with-param>
 																																<xsl:with-param name="button_icon">
 																																	<xsl:choose>
-																																		<xsl:when test="contains(style, 'banner') or contains(style, 'uitgelicht') or extra1 != ''"><xsl:value-of select="$button2_icon_feature" /></xsl:when>
+																																		<xsl:when test="contains(style, 'banner') or contains(style, 'uitgelicht') or $background-color != ''"><xsl:value-of select="$button2_icon_feature" /></xsl:when>
 																																		<xsl:otherwise><xsl:value-of select="$button2_icon" /></xsl:otherwise>
 																																	</xsl:choose>
 																																</xsl:with-param>
+																																<xsl:with-param name="row" select="." />
 																															</xsl:call-template>
 
 																														</td>
@@ -877,14 +1573,14 @@
 										<xsl:choose>
 											<xsl:when test="position() = last()">
 												<xsl:choose>
-													<xsl:when test="not(contains(style, '1/')) and not(contains(style, '2/')) and (contains(style, 'uitgelicht') or extra1 != '')">ctEndingOuterContFeatLast</xsl:when>
+													<xsl:when test="not(contains(style, '1/')) and not(contains(style, '2/')) and (contains(style, 'uitgelicht') or $background-color != '')">ctEndingOuterContFeatLast</xsl:when>
 													<xsl:when test="contains(style, 'banner')">ctEndingOuterContBanLast</xsl:when>
 													<xsl:otherwise>ctEndingOuterContLast</xsl:otherwise>
 												</xsl:choose>
 											</xsl:when>
 											<xsl:otherwise>
 												<xsl:choose>
-													<xsl:when test="not(contains(style, '1/')) and not(contains(style, '2/')) and (contains(style, 'uitgelicht') or extra1 != '')">ctEndingOuterContFeat</xsl:when>
+													<xsl:when test="not(contains(style, '1/')) and not(contains(style, '2/')) and (contains(style, 'uitgelicht') or $background-color != '')">ctEndingOuterContFeat</xsl:when>
 													<xsl:when test="contains(style, 'banner')">ctEndingOuterContBan</xsl:when>
 													<xsl:otherwise>ctEndingOuterCont</xsl:otherwise>
 												</xsl:choose>
@@ -972,8 +1668,8 @@
 																	When extra1 is filled, then a custom background color is set. Set this when is filled only.
 																	You can find the default background color in CSS by class ctCallInnerCont.
 																	-->
-																	<xsl:if test="extra1 != ''">
-																		<xsl:attribute name="style">background-color: <xsl:value-of select="extra1" />;</xsl:attribute>
+																	<xsl:if test="$background-color != ''">
+																		<xsl:attribute name="style">background-color: <xsl:value-of select="$background-color" />;</xsl:attribute>
 																	</xsl:if>
 
 																	<h2>
@@ -997,8 +1693,8 @@
 																When extra1 is filled, then a custom background color is set. Set this when is filled only.
 																You can find the default background color in CSS by class ctCallInnerCont.
 																-->
-																<xsl:if test="extra1 != ''">
-																	<xsl:attribute name="style">background-color: <xsl:value-of select="extra1" />;</xsl:attribute>
+																<xsl:if test="$background-color != ''">
+																	<xsl:attribute name="style">background-color: <xsl:value-of select="$background-color" />;</xsl:attribute>
 																</xsl:if>
 
 																<h2><xsl:value-of select="title" /></h2>
@@ -1273,12 +1969,19 @@
 			</xsl:choose>
 		</xsl:variable>
 
+		<xsl:variable name="background-color">
+			<xsl:call-template name="color">
+				<xsl:with-param name="colors" select="$row/extra1" />
+				<xsl:with-param name="part">achtergrond</xsl:with-param>
+			</xsl:call-template>
+		</xsl:variable>
+
 		<td>
 			<xsl:attribute name="style">
 				<xsl:choose>
-					<xsl:when test="$ignore_width = 1 and $row/extra1 != ''">width: 100%; background-color: <xsl:value-of select="$row/extra1" />;</xsl:when>
+					<xsl:when test="$ignore_width = 1 and $background-color != ''">width: 100%; background-color: <xsl:value-of select="$background-color" />;</xsl:when>
 					<xsl:when test="$ignore_width = 1">width: 100%;</xsl:when>
-					<xsl:when test="$row/extra1 != ''">width: <xsl:value-of select="$button_width_bordered" />px; background-color: <xsl:value-of select="$row/extra1" />;</xsl:when>
+					<xsl:when test="$background-color != ''">width: <xsl:value-of select="$button_width_bordered" />px; background-color: <xsl:value-of select="$background-color" />;</xsl:when>
 					<xsl:otherwise>width: <xsl:value-of select="$button_width_bordered" />px;</xsl:otherwise>
 				</xsl:choose>
 
@@ -1291,14 +1994,14 @@
 					<xsl:when test="contains($row/extra3, 'NOBORDER')">
 						<xsl:choose>
 							<xsl:when test="contains($row/style, 'banner')">ctButContBanNoBorder</xsl:when>
-							<xsl:when test="contains($row/style, 'uitgelicht') or $row/extra1 !=''">ctButContFeatNoBorder</xsl:when>
+							<xsl:when test="contains($row/style, 'uitgelicht') or $background-color !=''">ctButContFeatNoBorder</xsl:when>
 							<xsl:otherwise>ctButContNoBorder</xsl:otherwise>
 						</xsl:choose>
 					</xsl:when>
 					<xsl:otherwise>
 						<xsl:choose>
 							<xsl:when test="contains($row/style, 'banner')">ctButContBan</xsl:when>
-							<xsl:when test="contains($row/style, 'uitgelicht') or $row/extra1 !=''">ctButContFeat</xsl:when>
+							<xsl:when test="contains($row/style, 'uitgelicht') or $background-color !=''">ctButContFeat</xsl:when>
 							<xsl:otherwise>ctButCont</xsl:otherwise>
 						</xsl:choose>
 					</xsl:otherwise>
@@ -1351,10 +2054,11 @@
 													<xsl:with-param name="class">ctBut</xsl:with-param>
 													<xsl:with-param name="button_icon">
 														<xsl:choose>
-															<xsl:when test="contains($row/style, 'banner') or contains($row/style, 'uitgelicht') or $row/extra1 != ''"><xsl:value-of select="$button_icon_feature" /></xsl:when>
+															<xsl:when test="contains($row/style, 'banner') or contains($row/style, 'uitgelicht') or $background-color != ''"><xsl:value-of select="$button_icon_feature" /></xsl:when>
 															<xsl:otherwise><xsl:value-of select="$button_icon" /></xsl:otherwise>
 														</xsl:choose>
 													</xsl:with-param>
+													<xsl:with-param name="row" select="$row" />
 												</xsl:call-template>
 
 											</td>
@@ -1383,10 +2087,11 @@
 													<xsl:with-param name="class">ctBut2</xsl:with-param>
 													<xsl:with-param name="button_icon">
 														<xsl:choose>
-															<xsl:when test="contains($row/style, 'banner') or contains($row/style, 'uitgelicht') or $row/extra1 != ''"><xsl:value-of select="$button2_icon_feature" /></xsl:when>
+															<xsl:when test="contains($row/style, 'banner') or contains($row/style, 'uitgelicht') or $background-color != ''"><xsl:value-of select="$button2_icon_feature" /></xsl:when>
 															<xsl:otherwise><xsl:value-of select="$button2_icon" /></xsl:otherwise>
 														</xsl:choose>
 													</xsl:with-param>
+													<xsl:with-param name="row" select="$row" />
 												</xsl:call-template>
 
 											</td>
@@ -1477,6 +2182,21 @@
 		<xsl:param name="align">left</xsl:param>
 		<xsl:param name="hide">0</xsl:param>
 		<xsl:param name="button_icon" />
+		<xsl:param name="row" />
+
+		<xsl:variable name="button-color">
+			<xsl:call-template name="color">
+				<xsl:with-param name="colors" select="$row/extra1" />
+				<xsl:with-param name="part"><xsl:choose><xsl:when test="$class = 'ctBut'">button</xsl:when><xsl:otherwise>button2</xsl:otherwise></xsl:choose></xsl:with-param>
+			</xsl:call-template>
+		</xsl:variable>
+
+		<xsl:variable name="buttontext-color">
+			<xsl:call-template name="color">
+				<xsl:with-param name="colors" select="$row/extra1" />
+				<xsl:with-param name="part"><xsl:choose><xsl:when test="$class = 'ctBut'">buttontekst</xsl:when><xsl:otherwise>buttontekst2</xsl:otherwise></xsl:choose></xsl:with-param>
+			</xsl:call-template>
+		</xsl:variable>
 
 		<a target="_blank">
 			<xsl:attribute name="href"><xsl:value-of select="$url" /></xsl:attribute>
@@ -1489,6 +2209,9 @@
 				<tr>
 					<td>
 						<xsl:attribute name="class"><xsl:value-of select="$class" /></xsl:attribute>
+						<xsl:if test="$button-color != ''">
+							<xsl:attribute name="style">background-color: <xsl:value-of select="$button-color" /></xsl:attribute>
+						</xsl:if>
 						<table cellpadding="0" cellspacing="0" class="ctButTable">
 							<xsl:if test="$hide = 1">
 								<xsl:attribute name="style">display:none;width:0px;max-height:0px;overflow:hidden;mso-hide:all;height:0;font-size:0;max-height:0;line-height:0;margin:0 auto;</xsl:attribute>
@@ -1497,6 +2220,9 @@
 								<td class="ctButIconText">
 									<a target="_blank">
 										<xsl:attribute name="href"><xsl:value-of select="$url" /></xsl:attribute>
+										<xsl:if test="$buttontext-color != ''">
+											<xsl:attribute name="style">color: <xsl:value-of select="$buttontext-color" /> !important; color: <xsl:value-of select="$buttontext-color" /></xsl:attribute>
+										</xsl:if>
 										<xsl:choose>
 											<xsl:when test="$button_text != ''"><xsl:value-of select="$button_text" /></xsl:when>
 											<xsl:otherwise><xsl:value-of select="$button_default_text" /></xsl:otherwise>
@@ -1641,6 +2367,42 @@
 			</xsl:attribute>
 			<tr>
 				<td class="agItemCont">
+
+					<xsl:variable name="title-color">
+						<xsl:call-template name="color">
+							<xsl:with-param name="colors" select="extra1" />
+							<xsl:with-param name="part">titel</xsl:with-param>
+						</xsl:call-template>
+					</xsl:variable>
+
+					<xsl:variable name="subtitle-color">
+						<xsl:call-template name="color">
+							<xsl:with-param name="colors" select="extra1" />
+							<xsl:with-param name="part">subtitel</xsl:with-param>
+						</xsl:call-template>
+					</xsl:variable>
+
+					<xsl:variable name="content-color">
+						<xsl:call-template name="color">
+							<xsl:with-param name="colors" select="extra1" />
+							<xsl:with-param name="part">content</xsl:with-param>
+						</xsl:call-template>
+					</xsl:variable>
+
+					<xsl:variable name="date-color">
+						<xsl:call-template name="color">
+							<xsl:with-param name="colors" select="extra1" />
+							<xsl:with-param name="part">datum</xsl:with-param>
+						</xsl:call-template>
+					</xsl:variable>
+
+					<xsl:variable name="buttontext-color">
+						<xsl:call-template name="color">
+							<xsl:with-param name="colors" select="extra1" />
+							<xsl:with-param name="part">buttontekst</xsl:with-param>
+						</xsl:call-template>
+					</xsl:variable>
+
 					<table cellpadding="0" cellspacing="0" width="100%" style="width: 100%">
 						<tr>
 							<!-- trigger DATUMBLOK
@@ -1699,6 +2461,11 @@
 									<table cellpadding="0" cellspacing="0" width="100%" style="width: 100%">
 										<tr>
 											<td class="agDateTextInnerCont">
+
+												<xsl:if test="$date-color != ''">
+													<xsl:attribute name="style">color: <xsl:value-of select="$date-color" /></xsl:attribute>
+												</xsl:if>
+
 												<xsl:call-template name="date_subtitle">
 													<xsl:with-param name="row" select="." />
 												</xsl:call-template>
@@ -1767,7 +2534,12 @@
 															</xsl:call-template>
 														</xsl:variable>
 
-														<h2><xsl:value-of select="$title" disable-output-escaping="yes" /></h2>
+														<h2>
+															<xsl:if test="$title-color != ''">
+																<xsl:attribute name="style">color: <xsl:value-of select="$title-color" /></xsl:attribute>
+															</xsl:if>
+															<xsl:value-of select="$title" disable-output-escaping="yes" />
+														</h2>
 													</td>
 												</tr>
 
@@ -1782,7 +2554,12 @@
 																</xsl:call-template>
 															</xsl:variable>
 
-															<h4><xsl:value-of select="$subtitle" disable-output-escaping="yes" /></h4>
+															<h4>
+																<xsl:if test="$subtitle-color != ''">
+																	<xsl:attribute name="style">color: <xsl:value-of select="$subtitle-color" /></xsl:attribute>
+																</xsl:if>
+																<xsl:value-of select="$subtitle" disable-output-escaping="yes" />
+															</h4>
 														</td>
 													</tr>
 												</xsl:if>
@@ -1791,6 +2568,10 @@
 												<xsl:if test="not(contains(style, 'datumblok')) and not(contains(style, 'datum-plaatje-tekst'))">
 													<tr>
 														<td class="agDate">
+															<xsl:if test="$date-color != ''">
+																<xsl:attribute name="style">color: <xsl:value-of select="$date-color" /></xsl:attribute>
+															</xsl:if>
+
 															<xsl:call-template name="date_subtitle">
 																<xsl:with-param name="row" select="." />
 															</xsl:call-template>
@@ -1802,6 +2583,10 @@
 												<xsl:if test="contains(style, 'datumblok') and not(contains(display_playdate_start, '1 januari 2000')) and substring(playdate_start, 12, 5) != '00:00'">
 													<tr>
 														<td class="agTime">
+															<xsl:if test="$date-color != ''">
+																<xsl:attribute name="style">color: <xsl:value-of select="$date-color" /></xsl:attribute>
+															</xsl:if>
+
 															<xsl:value-of select="substring(playdate_start, 12, 5)" />
 
 															<xsl:if test="substring(playdate_end, 12, 5) != substring(playdate_start, 12, 5)">
@@ -1816,12 +2601,20 @@
 												<xsl:if test="content != ''">
 													<tr>
 														<td class="agContent">
+															<xsl:if test="$content-color != ''">
+																<xsl:attribute name="style">color: <xsl:value-of select="$content-color" /></xsl:attribute>
+															</xsl:if>
+
 															<xsl:value-of select="content" disable-output-escaping="yes" />
 
 															<!-- Show text based readmore button when using DATUM-PLAATJE-TEKST trigger -->
-															<xsl:if test="contains(style, 'datum-plaatje-tekst') and url != '' and not(contains(image_alt, 'NOBUTTON'))">
+															<!-- ##JWDB Juli 2020: link button will always be used instead of a button -->
+															<xsl:if test="url != '' and not(contains(image_alt, 'NOBUTTON'))">
 																<xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text>
 																<a target="_blank">
+																	<xsl:if test="$buttontext-color != ''">
+																		<xsl:attribute name="style">color: <xsl:value-of select="$buttontext-color" /> !important; color: <xsl:value-of select="$buttontext-color" /></xsl:attribute>
+																	</xsl:if>
 																	<xsl:attribute name="href"><xsl:value-of select="details_url" /></xsl:attribute>
 																	<xsl:choose>
 																		<xsl:when test="image_alt != ''"><xsl:value-of select="image_alt" /></xsl:when>
@@ -1832,6 +2625,24 @@
 														</td>
 													</tr>
 												</xsl:if>
+
+												<!-- ##JWDB Juli 2020: show text based readmore button when content is empty -->
+												<xsl:if test="url != '' and not(contains(image_alt, 'NOBUTTON')) and content = ''">
+													<tr>
+														<td class="agContent">
+															<a target="_blank">
+																<xsl:if test="$buttontext-color != ''">
+																	<xsl:attribute name="style">color: <xsl:value-of select="$buttontext-color" /> !important; color: <xsl:value-of select="$buttontext-color" /></xsl:attribute>
+																</xsl:if>
+																<xsl:attribute name="href"><xsl:value-of select="details_url" /></xsl:attribute>
+																<xsl:choose>
+																	<xsl:when test="image_alt != ''"><xsl:value-of select="image_alt" /></xsl:when>
+																	<xsl:otherwise><xsl:value-of select="$button1_text" /></xsl:otherwise>
+																</xsl:choose>
+															</a>
+														</td>
+													</tr>
+												</xsl:if>
 											</table>
 										</td>
 									</tr>
@@ -1839,7 +2650,8 @@
 							</th>
 
 							<!-- Button, hide when using DATUM-PLAATJE-TEKST trigger -->
-							<xsl:if test="url != '' and not(contains(image_alt, 'NOBUTTON')) and not(contains(style, 'datum-plaatje-tekst'))">
+							<!-- ##JWDB July 2020: button logic deleted, link button in content will be used -->
+							<xsl:if test="1=0 and url != '' and not(contains(image_alt, 'NOBUTTON')) and not(contains(style, 'datum-plaatje-tekst'))">
 								<th class="agColMargin">
 									<xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text>
 								</th>
@@ -1855,6 +2667,7 @@
 													<xsl:with-param name="class">ctBut</xsl:with-param>
 													<xsl:with-param name="url" select="details_url" />
 													<xsl:with-param name="button_icon"><xsl:value-of select="$button_icon" /></xsl:with-param>
+													<xsl:with-param name="row" select="." />
 												</xsl:call-template>
 											</td>
 										</tr>
@@ -1898,7 +2711,29 @@
 	</xsl:template>
 
 	<!-- ##JWDB 10 april 2020: container for the titles -->
+	<!-- ##JWDB 24 July 2020: custom colors implemented -->
 	<xsl:template name="titles">
+
+		<xsl:variable name="title-color">
+			<xsl:call-template name="color">
+				<xsl:with-param name="colors" select="extra1" />
+				<xsl:with-param name="part">titel</xsl:with-param>
+			</xsl:call-template>
+		</xsl:variable>
+
+		<xsl:variable name="subtitle-color">
+			<xsl:call-template name="color">
+				<xsl:with-param name="colors" select="extra1" />
+				<xsl:with-param name="part">subtitel</xsl:with-param>
+			</xsl:call-template>
+		</xsl:variable>
+
+		<xsl:variable name="date-color">
+			<xsl:call-template name="color">
+				<xsl:with-param name="colors" select="extra1" />
+				<xsl:with-param name="part">datum</xsl:with-param>
+			</xsl:call-template>
+		</xsl:variable>
 
 		<tr>
 			<td>
@@ -1930,7 +2765,12 @@
 									</xsl:call-template>
 								</xsl:variable>
 
-								<h4><xsl:value-of select="$subtitle" disable-output-escaping="yes" /></h4>
+								<h4>
+									<xsl:if test="$subtitle-color != ''">
+										<xsl:attribute name="style">color: <xsl:value-of select="$subtitle-color" /></xsl:attribute>
+									</xsl:if>
+									<xsl:value-of select="$subtitle" disable-output-escaping="yes" />
+								</h4>
 							</td>
 						</tr>
 					</xsl:if>
@@ -1963,12 +2803,21 @@
 								<xsl:choose>
 									<!-- JWDB June 2020: all 1/, 2/ and afb. styles will get H3 as heading -->
 									<xsl:when test="contains(style, '1/3') or contains(style, '2/3') or contains(style, '1/2') or contains(style, 'afb.')">
-										<xsl:text disable-output-escaping="yes"><![CDATA[<h3>]]></xsl:text>
+										<xsl:text disable-output-escaping="yes"><![CDATA[<h3]]></xsl:text>
+										<xsl:if test="$subtitle-color != ''">
+											<xsl:text disable-output-escaping="yes"><![CDATA[ style="color: ]]></xsl:text><xsl:value-of select="$title-color" /><xsl:text disable-output-escaping="yes"><![CDATA["]]></xsl:text>
+										</xsl:if>
+										<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
+
 										<xsl:value-of select="$title" disable-output-escaping="yes" />
 										<xsl:text disable-output-escaping="yes"><![CDATA[</h3>]]></xsl:text>
 									</xsl:when>
 									<xsl:otherwise>
-										<xsl:text disable-output-escaping="yes"><![CDATA[<h2>]]></xsl:text>
+										<xsl:text disable-output-escaping="yes"><![CDATA[<h2]]></xsl:text>
+										<xsl:if test="$subtitle-color != ''">
+											<xsl:text disable-output-escaping="yes"><![CDATA[ style="color: ]]></xsl:text><xsl:value-of select="$title-color" /><xsl:text disable-output-escaping="yes"><![CDATA["]]></xsl:text>
+										</xsl:if>
+										<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
 										<xsl:value-of select="$title" disable-output-escaping="yes" />
 										<xsl:text disable-output-escaping="yes"><![CDATA[</h2>]]></xsl:text>
 									</xsl:otherwise>
@@ -2001,7 +2850,12 @@
 									</xsl:call-template>
 								</xsl:variable>
 
-								<h4><xsl:value-of select="$subtitle" disable-output-escaping="yes" /></h4>
+								<h4>
+									<xsl:if test="$subtitle-color != ''">
+										<xsl:attribute name="style">color: <xsl:value-of select="$subtitle-color" /></xsl:attribute>
+									</xsl:if>
+									<xsl:value-of select="$subtitle" disable-output-escaping="yes" />
+								</h4>
 							</td>
 						</tr>
 					</xsl:if>
@@ -2015,9 +2869,17 @@
 						<tr>
 							<td class="ctDate">
 								<!-- JWDB June 2020: set all texts to center when style contains trigger word gecentreerd -->
-								<xsl:if test="contains(style, 'gecentreerd')">
-									<xsl:attribute name="style">text-align: center;</xsl:attribute>
-								</xsl:if>
+								<xsl:choose>
+									<xsl:when test="contains(style, 'gecentreerd') and $date-color != ''">
+										<xsl:attribute name="style">text-align: center; color: <xsl:value-of select="$date-color" /></xsl:attribute>
+									</xsl:when>
+									<xsl:when test="contains(style, 'gecentreerd')">
+										<xsl:attribute name="style">text-align: center;</xsl:attribute>
+									</xsl:when>
+									<xsl:when test="$date-color != ''">
+										<xsl:attribute name="style">color: <xsl:value-of select="$date-color" /></xsl:attribute>
+									</xsl:when>
+								</xsl:choose>
 
 								<xsl:call-template name="date_subtitle">
 									<xsl:with-param name="row" select="." />
@@ -2028,6 +2890,36 @@
 				</table>
 			</td>
 		</tr>
+
+	</xsl:template>
+
+	<!-- ##JWDB 24 July 2020: get color from extra2 field -->
+	<xsl:template name="color">
+		<xsl:param name="colors" />
+		<xsl:param name="part" />
+
+		<xsl:variable name="search"><xsl:value-of select="$part" />:</xsl:variable>
+
+		<xsl:choose>
+			<xsl:when test="contains($colors, $search)">
+				<xsl:variable name="color_part" select="normalize-space(substring-after($colors, $search))" />
+				<xsl:choose>
+					<xsl:when test="contains($color_part, ' ')">
+						<xsl:value-of select="substring-before($color_part, ' ')" />
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:value-of select="$color_part" />
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:when>
+			<xsl:when test="$colors != '' and not(contains($colors, ' '))">
+				<xsl:value-of select="$colors" />
+			</xsl:when>
+			<xsl:when test="$part = 'achtergrond' and $colors != '' and contains($colors, ' ')">
+				<xsl:value-of select="substring-before($colors, ' ')" />
+			</xsl:when>
+		</xsl:choose>
+
 
 	</xsl:template>
 
