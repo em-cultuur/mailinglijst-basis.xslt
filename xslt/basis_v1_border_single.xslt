@@ -2378,7 +2378,7 @@
 					<xsl:variable name="subtitle-color">
 						<xsl:call-template name="color">
 							<xsl:with-param name="colors" select="extra1" />
-							<xsl:with-param name="part">subtitel</xsl:with-param>
+							<xsl:with-param name="part">sub</xsl:with-param>
 						</xsl:call-template>
 					</xsl:variable>
 
@@ -2724,7 +2724,7 @@
 		<xsl:variable name="subtitle-color">
 			<xsl:call-template name="color">
 				<xsl:with-param name="colors" select="extra1" />
-				<xsl:with-param name="part">subtitel</xsl:with-param>
+				<xsl:with-param name="part">sub</xsl:with-param>
 			</xsl:call-template>
 		</xsl:variable>
 
@@ -2804,7 +2804,7 @@
 									<!-- JWDB June 2020: all 1/, 2/ and afb. styles will get H3 as heading -->
 									<xsl:when test="contains(style, '1/3') or contains(style, '2/3') or contains(style, '1/2') or contains(style, 'afb.')">
 										<xsl:text disable-output-escaping="yes"><![CDATA[<h3]]></xsl:text>
-										<xsl:if test="$subtitle-color != ''">
+										<xsl:if test="$title-color != ''">
 											<xsl:text disable-output-escaping="yes"><![CDATA[ style="color: ]]></xsl:text><xsl:value-of select="$title-color" /><xsl:text disable-output-escaping="yes"><![CDATA["]]></xsl:text>
 										</xsl:if>
 										<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
@@ -2814,7 +2814,7 @@
 									</xsl:when>
 									<xsl:otherwise>
 										<xsl:text disable-output-escaping="yes"><![CDATA[<h2]]></xsl:text>
-										<xsl:if test="$subtitle-color != ''">
+										<xsl:if test="$title-color != ''">
 											<xsl:text disable-output-escaping="yes"><![CDATA[ style="color: ]]></xsl:text><xsl:value-of select="$title-color" /><xsl:text disable-output-escaping="yes"><![CDATA["]]></xsl:text>
 										</xsl:if>
 										<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
@@ -2898,7 +2898,7 @@
 		<xsl:param name="colors" />
 		<xsl:param name="part" />
 
-		<xsl:variable name="search"><xsl:value-of select="$part" />:</xsl:variable>
+		<xsl:variable name="search"><![CDATA[ ]]><xsl:value-of select="$part" />:</xsl:variable>
 
 		<xsl:choose>
 			<xsl:when test="contains($colors, $search)">
@@ -2912,11 +2912,14 @@
 					</xsl:otherwise>
 				</xsl:choose>
 			</xsl:when>
-			<xsl:when test="$colors != '' and not(contains($colors, ' '))">
+			<xsl:when test="$part = 'achtergrond' and $colors != '' and not(contains($colors, ' ')) and not(contains($colors, ':'))">
 				<xsl:value-of select="$colors" />
 			</xsl:when>
 			<xsl:when test="$part = 'achtergrond' and $colors != '' and contains($colors, ' ')">
-				<xsl:value-of select="substring-before($colors, ' ')" />
+				<xsl:variable name="subpart" select="substring-before($colors, ' ')" />
+				<xsl:if test="not(contains($subpart, ':'))">
+					<xsl:value-of select="$subpart" />
+				</xsl:if>
 			</xsl:when>
 		</xsl:choose>
 
