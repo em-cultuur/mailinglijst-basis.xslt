@@ -6,7 +6,7 @@
 	<!-- Basis  v1
 	XSLT for BLOCKS in MailingLijst-templates
 	(c) EM-Cultuur, 2020
-	Last change: JWDB 19 June 2020 (v1.5)
+	Last change: JWDB 29 July 2020 (v1.6)
 
 	BLOCKSTULE-names determine grouping
 	blockdeails (db.fiesds) dettermine content, design of the blocks
@@ -87,6 +87,14 @@
 			Loop through block-styles starting with 'Item' -->
 			<xsl:for-each select="matches/match[contains(style, 'Item')]">
 
+				<!-- ##JWDB 24 July 2020: pick colors from db.extra1 field -->
+				<xsl:variable name="background-color">
+					<xsl:call-template name="color">
+						<xsl:with-param name="colors" select="extra1" />
+						<xsl:with-param name="part">achtergrond</xsl:with-param>
+					</xsl:call-template>
+				</xsl:variable>
+
 				<!-- ##JWDB 8 may 2020: Extra validation to check if the entire content (titles, content and url) is needed to be shown -->
 				<xsl:variable name="hide_content">
 					<xsl:choose>
@@ -128,24 +136,24 @@
 						<th>
 							<!--
                             When using HIGHLIGHTED (uitgelicht) styles, we need to swap the classes to Featured which haves alternative background color by default.
-                            When db.extra2 is filled, then the alternative background color is set, sets the classes to Featured as well.
+                            When db.extra1 is filled, then the alternative background color is set, sets the classes to Featured as well.
                             -->
 							<xsl:attribute name="class">
 								<xsl:choose>
-									<xsl:when test="(contains(style, '1/2') or contains(style, '1/3') or contains(style, '2/3')) and not(contains(style, 'uitgelicht')) and extra1 = ''">
+									<xsl:when test="(contains(style, '1/2') or contains(style, '1/3') or contains(style, '2/3')) and not(contains(style, 'uitgelicht')) and $background-color = ''">
 										<xsl:choose>
 											<xsl:when test="contains(extra3, 'NOBORDER')">ctMainBlockNoBorder</xsl:when>
 											<xsl:otherwise>ctMainBlock</xsl:otherwise>
 										</xsl:choose>
 									</xsl:when>
-									<xsl:when test="(contains(style, '1/2') or contains(style, '1/3') or contains(style, '2/3')) and (contains(style, 'uitgelicht') or extra1 != '')">
+									<xsl:when test="(contains(style, '1/2') or contains(style, '1/3') or contains(style, '2/3')) and (contains(style, 'uitgelicht') or $background-color != '')">
 										<xsl:choose>
 											<xsl:when test="contains(extra3, 'NOBORDER')">ctMainBlockFeatNoBorder</xsl:when>
 											<xsl:otherwise>ctMainBlockFeat</xsl:otherwise>
 										</xsl:choose>
 									</xsl:when>
 									<xsl:when test="contains(style, 'banner')">ctMainBlockBan</xsl:when>
-									<xsl:when test="contains(style, 'uitgelicht') or extra1 != ''">ctMainBlockItemFeat</xsl:when>
+									<xsl:when test="contains(style, 'uitgelicht') or $background-color != ''">ctMainBlockItemFeat</xsl:when>
 									<xsl:otherwise>ctMainBlockItem</xsl:otherwise>
 								</xsl:choose>
 							</xsl:attribute>
@@ -153,13 +161,13 @@
 							<!--
                             When db.extra1 is filled, then a custom background color is set.
                             -->
-							<xsl:if test="extra1 != ''">
-								<xsl:attribute name="style">background-color: <xsl:value-of select="extra1" />;</xsl:attribute>
+							<xsl:if test="$background-color != ''">
+								<xsl:attribute name="style">background-color: <xsl:value-of select="$background-color" />;</xsl:attribute>
 							</xsl:if>
 
 							<!-- JWDB June 2020: border color can be configured per item -->
 							<xsl:if test="$border_width > 0 and extra3 != '' and not(contains(extra3, 'NOBORDER'))">
-								<xsl:attribute name="style">border-color: <xsl:value-of select="extra3" />;<xsl:if test="extra1 != ''">background-color: <xsl:value-of select="extra1" />;</xsl:if></xsl:attribute>
+								<xsl:attribute name="style">border-color: <xsl:value-of select="extra3" />;<xsl:if test="$background-color != ''">background-color: <xsl:value-of select="$background-color" />;</xsl:if></xsl:attribute>
 							</xsl:if>
 
 							<!-- ##JWDB 8 may 2020: borders can be hidden by putting NOBORDER in extra3 field -->
@@ -199,7 +207,7 @@
 													<xsl:attribute name="class">
 														<xsl:choose>
 															<xsl:when test="contains(style, 'banner')">ctInnerContBan</xsl:when>
-															<xsl:when test="contains(style, 'uitgelicht') or extra1 != ''">ctInnerContFeat</xsl:when>
+															<xsl:when test="contains(style, 'uitgelicht') or $background-color != ''">ctInnerContFeat</xsl:when>
 															<xsl:otherwise>ctInnerCont</xsl:otherwise>
 														</xsl:choose>
 													</xsl:attribute>
@@ -208,13 +216,13 @@
                                                     When db.extra1 is filled, then a custom background color is set.
                                                     This logic is double with the TD above, but it is needed for the BLOKKEN_EDITOR
                                                     -->
-													<xsl:if test="extra1 != ''">
-														<xsl:attribute name="style">background-color: <xsl:value-of select="extra1" />;</xsl:attribute>
+													<xsl:if test="$background-color != ''">
+														<xsl:attribute name="style">background-color: <xsl:value-of select="$background-color" />;</xsl:attribute>
 													</xsl:if>
 
 													<!-- JWDB June 2020: border color can be configured per item -->
 													<xsl:if test="$border_width > 0 and extra3 != '' and not(contains(extra3, 'NOBORDER'))">
-														<xsl:attribute name="style">border-color: <xsl:value-of select="extra3" />;<xsl:if test="extra1 != ''">background-color: <xsl:value-of select="extra1" />;</xsl:if></xsl:attribute>
+														<xsl:attribute name="style">border-color: <xsl:value-of select="extra3" />;<xsl:if test="$background-color != ''">background-color: <xsl:value-of select="$background-color" />;</xsl:if></xsl:attribute>
 													</xsl:if>
 
 													<table width="100%" cellpadding="0" cellspacing="0" style="width: 100%">
@@ -381,13 +389,25 @@
 
 																	<!-- when db.extra2 field is filled, show it as image subtitle / photo credits -->
 																	<xsl:if test="extra2 != ''">
+
+																		<xsl:variable name="photocredits-color">
+																			<xsl:call-template name="color">
+																				<xsl:with-param name="colors" select="extra1" />
+																				<xsl:with-param name="part">fotocredits</xsl:with-param>
+																			</xsl:call-template>
+																		</xsl:variable>
+
 																		<table width="100%" cellpadding="0" cellspacing="0" style="width: 100%">
 																			<tr>
 																				<td class="ctImgSubt">
 																					<!-- JWDB June 2020: set all texts to center when style contains trigger word gecentreerd -->
-																					<xsl:if test="contains(style, 'gecentreerd')">
-																						<xsl:attribute name="style">text-align: center;</xsl:attribute>
+																					<xsl:if test="contains(style, 'gecentreerd') or $photocredits-color != ''">
+																						<xsl:attribute name="style">
+																							<xsl:if test="contains(style, 'gecentreerd')">text-align: center;</xsl:if>
+																							<xsl:if test="$photocredits-color">color: <xsl:value-of select="$photocredits-color" /></xsl:if>
+																						</xsl:attribute>
 																					</xsl:if>
+
 																					<xsl:value-of select="extra2" />
 																				</td>
 																			</tr>
@@ -497,6 +517,18 @@
 																									<table width="100%" cellpadding="0" cellspacing="0" style="width: 100%">
 																										<tr>
 																											<td class="ctImgSubt">
+
+																												<xsl:variable name="photocredits-color">
+																													<xsl:call-template name="color">
+																														<xsl:with-param name="colors" select="extra1" />
+																														<xsl:with-param name="part">fotocredits</xsl:with-param>
+																													</xsl:call-template>
+																												</xsl:variable>
+
+																												<xsl:if test="$photocredits-color != ''">
+																													<xsl:attribute name="style">color: <xsl:value-of select="$photocredits-color" /></xsl:attribute>
+																												</xsl:if>
+
 																												<xsl:value-of select="extra2" />
 																											</td>
 																										</tr>
@@ -545,9 +577,20 @@
 																								<xsl:if test="not(contains(style, 'banner')) and content != ''">
 																									<tr>
 																										<td class="content">
+
+																											<xsl:variable name="content-color">
+																												<xsl:call-template name="color">
+																													<xsl:with-param name="colors" select="extra1" />
+																													<xsl:with-param name="part">content</xsl:with-param>
+																												</xsl:call-template>
+																											</xsl:variable>
+
 																											<!-- JWDB June 2020: set all texts to center when style contains trigger word gecentreerd -->
-																											<xsl:if test="contains(style, 'gecentreerd')">
-																												<xsl:attribute name="style">text-align: center;</xsl:attribute>
+																											<xsl:if test="contains(style, 'gecentreerd') or $content-color != ''">
+																												<xsl:attribute name="style">
+																													<xsl:if test="contains(style, 'gecentreerd')">text-align: center;</xsl:if>
+																													<xsl:if test="$content-color != ''">color: <xsl:value-of select="$content-color" /> !important; color: <xsl:value-of select="$content-color" />;</xsl:if>
+																												</xsl:attribute>
 																											</xsl:if>
 
 																											<xsl:value-of select="content" disable-output-escaping="yes" />
@@ -593,7 +636,7 @@
 																										<xsl:attribute name="class">
 																											<xsl:choose>
 																												<xsl:when test="contains(style, 'banner')">ctMobButContBan</xsl:when>
-																												<xsl:when test="contains(style, 'uitgelicht') or extra1 !=''">ctMobButContFeat</xsl:when>
+																												<xsl:when test="contains(style, 'uitgelicht') or $background-color !=''">ctMobButContFeat</xsl:when>
 																												<xsl:otherwise>ctMobButCont</xsl:otherwise>
 																											</xsl:choose>
 																										</xsl:attribute>
@@ -623,10 +666,11 @@
 																																<xsl:with-param name="hide">1</xsl:with-param>
 																																<xsl:with-param name="button_icon">
 																																	<xsl:choose>
-																																		<xsl:when test="contains(style, 'banner') or contains(style, 'uitgelicht') or extra1 != ''"><xsl:value-of select="$button_icon_feature" /></xsl:when>
+																																		<xsl:when test="contains(style, 'banner') or contains(style, 'uitgelicht') or $background-color != ''"><xsl:value-of select="$button_icon_feature" /></xsl:when>
 																																		<xsl:otherwise><xsl:value-of select="$button_icon" /></xsl:otherwise>
 																																	</xsl:choose>
 																																</xsl:with-param>
+																																<xsl:with-param name="row" select="." />
 																															</xsl:call-template>
 
 																														</td>
@@ -644,10 +688,11 @@
 																																<xsl:with-param name="hide">1</xsl:with-param>
 																																<xsl:with-param name="button_icon">
 																																	<xsl:choose>
-																																		<xsl:when test="contains(style, 'banner') or contains(style, 'uitgelicht') or extra1 != ''"><xsl:value-of select="$button2_icon_feature" /></xsl:when>
+																																		<xsl:when test="contains(style, 'banner') or contains(style, 'uitgelicht') or $background-color != ''"><xsl:value-of select="$button2_icon_feature" /></xsl:when>
 																																		<xsl:otherwise><xsl:value-of select="$button2_icon" /></xsl:otherwise>
 																																	</xsl:choose>
 																																</xsl:with-param>
+																																<xsl:with-param name="row" select="." />
 																															</xsl:call-template>
 
 																														</td>
@@ -869,14 +914,14 @@
 										<xsl:choose>
 											<xsl:when test="position() = last()">
 												<xsl:choose>
-													<xsl:when test="not(contains(style, '1/')) and not(contains(style, '2/')) and (contains(style, 'uitgelicht') or extra1 != '')">ctEndingOuterContFeatLast</xsl:when>
+													<xsl:when test="not(contains(style, '1/')) and not(contains(style, '2/')) and (contains(style, 'uitgelicht') or $background-color != '')">ctEndingOuterContFeatLast</xsl:when>
 													<xsl:when test="contains(style, 'banner')">ctEndingOuterContBanLast</xsl:when>
 													<xsl:otherwise>ctEndingOuterContLast</xsl:otherwise>
 												</xsl:choose>
 											</xsl:when>
 											<xsl:otherwise>
 												<xsl:choose>
-													<xsl:when test="not(contains(style, '1/')) and not(contains(style, '2/')) and (contains(style, 'uitgelicht') or extra1 != '')">ctEndingOuterContFeat</xsl:when>
+													<xsl:when test="not(contains(style, '1/')) and not(contains(style, '2/')) and (contains(style, 'uitgelicht') or $background-color != '')">ctEndingOuterContFeat</xsl:when>
 													<xsl:when test="contains(style, 'banner')">ctEndingOuterContBan</xsl:when>
 													<xsl:otherwise>ctEndingOuterCont</xsl:otherwise>
 												</xsl:choose>
@@ -964,8 +1009,8 @@
 																	When extra1 is filled, then a custom background color is set. Set this when is filled only.
 																	You can find the default background color in CSS by class ctCallInnerCont.
 																	-->
-																	<xsl:if test="extra1 != ''">
-																		<xsl:attribute name="style">background-color: <xsl:value-of select="extra1" />;</xsl:attribute>
+																	<xsl:if test="$background-color != ''">
+																		<xsl:attribute name="style">background-color: <xsl:value-of select="$background-color" />;</xsl:attribute>
 																	</xsl:if>
 
 																	<h2>
@@ -989,8 +1034,8 @@
 																When extra1 is filled, then a custom background color is set. Set this when is filled only.
 																You can find the default background color in CSS by class ctCallInnerCont.
 																-->
-																<xsl:if test="extra1 != ''">
-																	<xsl:attribute name="style">background-color: <xsl:value-of select="extra1" />;</xsl:attribute>
+																<xsl:if test="$background-color != ''">
+																	<xsl:attribute name="style">background-color: <xsl:value-of select="$background-color" />;</xsl:attribute>
 																</xsl:if>
 
 																<h2><xsl:value-of select="title" /></h2>
@@ -1265,12 +1310,19 @@
 			</xsl:choose>
 		</xsl:variable>
 
+		<xsl:variable name="background-color">
+			<xsl:call-template name="color">
+				<xsl:with-param name="colors" select="$row/extra1" />
+				<xsl:with-param name="part">achtergrond</xsl:with-param>
+			</xsl:call-template>
+		</xsl:variable>
+
 		<td>
 			<xsl:attribute name="style">
 				<xsl:choose>
-					<xsl:when test="$ignore_width = 1 and $row/extra1 != ''">width: 100%; background-color: <xsl:value-of select="$row/extra1" />;</xsl:when>
+					<xsl:when test="$ignore_width = 1 and $background-color != ''">width: 100%; background-color: <xsl:value-of select="$background-color" />;</xsl:when>
 					<xsl:when test="$ignore_width = 1">width: 100%;</xsl:when>
-					<xsl:when test="$row/extra1 != ''">width: <xsl:value-of select="$button_width_bordered" />px; background-color: <xsl:value-of select="$row/extra1" />;</xsl:when>
+					<xsl:when test="$background-color != ''">width: <xsl:value-of select="$button_width_bordered" />px; background-color: <xsl:value-of select="$background-color" />;</xsl:when>
 					<xsl:otherwise>width: <xsl:value-of select="$button_width_bordered" />px;</xsl:otherwise>
 				</xsl:choose>
 
@@ -1283,14 +1335,14 @@
 					<xsl:when test="contains($row/extra3, 'NOBORDER')">
 						<xsl:choose>
 							<xsl:when test="contains($row/style, 'banner')">ctButContBanNoBorder</xsl:when>
-							<xsl:when test="contains($row/style, 'uitgelicht') or $row/extra1 !=''">ctButContFeatNoBorder</xsl:when>
+							<xsl:when test="contains($row/style, 'uitgelicht') or $background-color !=''">ctButContFeatNoBorder</xsl:when>
 							<xsl:otherwise>ctButContNoBorder</xsl:otherwise>
 						</xsl:choose>
 					</xsl:when>
 					<xsl:otherwise>
 						<xsl:choose>
 							<xsl:when test="contains($row/style, 'banner')">ctButContBan</xsl:when>
-							<xsl:when test="contains($row/style, 'uitgelicht') or $row/extra1 !=''">ctButContFeat</xsl:when>
+							<xsl:when test="contains($row/style, 'uitgelicht') or $background-color !=''">ctButContFeat</xsl:when>
 							<xsl:otherwise>ctButCont</xsl:otherwise>
 						</xsl:choose>
 					</xsl:otherwise>
@@ -1343,10 +1395,11 @@
 													<xsl:with-param name="class">ctBut</xsl:with-param>
 													<xsl:with-param name="button_icon">
 														<xsl:choose>
-															<xsl:when test="contains($row/style, 'banner') or contains($row/style, 'uitgelicht') or $row/extra1 != ''"><xsl:value-of select="$button_icon_feature" /></xsl:when>
+															<xsl:when test="contains($row/style, 'banner') or contains($row/style, 'uitgelicht') or $background-color != ''"><xsl:value-of select="$button_icon_feature" /></xsl:when>
 															<xsl:otherwise><xsl:value-of select="$button_icon" /></xsl:otherwise>
 														</xsl:choose>
 													</xsl:with-param>
+													<xsl:with-param name="row" select="$row" />
 												</xsl:call-template>
 
 											</td>
@@ -1375,10 +1428,11 @@
 													<xsl:with-param name="class">ctBut2</xsl:with-param>
 													<xsl:with-param name="button_icon">
 														<xsl:choose>
-															<xsl:when test="contains($row/style, 'banner') or contains($row/style, 'uitgelicht') or $row/extra1 != ''"><xsl:value-of select="$button2_icon_feature" /></xsl:when>
+															<xsl:when test="contains($row/style, 'banner') or contains($row/style, 'uitgelicht') or $background-color != ''"><xsl:value-of select="$button2_icon_feature" /></xsl:when>
 															<xsl:otherwise><xsl:value-of select="$button2_icon" /></xsl:otherwise>
 														</xsl:choose>
 													</xsl:with-param>
+													<xsl:with-param name="row" select="$row" />
 												</xsl:call-template>
 
 											</td>
@@ -1469,6 +1523,21 @@
 		<xsl:param name="align">left</xsl:param>
 		<xsl:param name="hide">0</xsl:param>
 		<xsl:param name="button_icon" />
+		<xsl:param name="row" />
+
+		<xsl:variable name="button-color">
+			<xsl:call-template name="color">
+				<xsl:with-param name="colors" select="$row/extra1" />
+				<xsl:with-param name="part"><xsl:choose><xsl:when test="$class = 'ctBut'">button</xsl:when><xsl:otherwise>button2</xsl:otherwise></xsl:choose></xsl:with-param>
+			</xsl:call-template>
+		</xsl:variable>
+
+		<xsl:variable name="buttontext-color">
+			<xsl:call-template name="color">
+				<xsl:with-param name="colors" select="$row/extra1" />
+				<xsl:with-param name="part"><xsl:choose><xsl:when test="$class = 'ctBut'">buttontekst</xsl:when><xsl:otherwise>buttontekst2</xsl:otherwise></xsl:choose></xsl:with-param>
+			</xsl:call-template>
+		</xsl:variable>
 
 		<a target="_blank">
 			<xsl:attribute name="href"><xsl:value-of select="$url" /></xsl:attribute>
@@ -1481,6 +1550,9 @@
 				<tr>
 					<td>
 						<xsl:attribute name="class"><xsl:value-of select="$class" /></xsl:attribute>
+						<xsl:if test="$button-color != ''">
+							<xsl:attribute name="style">background-color: <xsl:value-of select="$button-color" /></xsl:attribute>
+						</xsl:if>
 						<table cellpadding="0" cellspacing="0" class="ctButTable">
 							<xsl:if test="$hide = 1">
 								<xsl:attribute name="style">display:none;width:0px;max-height:0px;overflow:hidden;mso-hide:all;height:0;font-size:0;max-height:0;line-height:0;margin:0 auto;</xsl:attribute>
@@ -1489,6 +1561,9 @@
 								<td class="ctButIconText">
 									<a target="_blank">
 										<xsl:attribute name="href"><xsl:value-of select="$url" /></xsl:attribute>
+										<xsl:if test="$buttontext-color != ''">
+											<xsl:attribute name="style">color: <xsl:value-of select="$buttontext-color" /> !important; color: <xsl:value-of select="$buttontext-color" /></xsl:attribute>
+										</xsl:if>
 										<xsl:choose>
 											<xsl:when test="$button_text != ''"><xsl:value-of select="$button_text" /></xsl:when>
 											<xsl:otherwise><xsl:value-of select="$button_default_text" /></xsl:otherwise>
@@ -1633,6 +1708,42 @@
 			</xsl:attribute>
 			<tr>
 				<td class="agItemCont">
+
+					<xsl:variable name="title-color">
+						<xsl:call-template name="color">
+							<xsl:with-param name="colors" select="extra1" />
+							<xsl:with-param name="part">titel</xsl:with-param>
+						</xsl:call-template>
+					</xsl:variable>
+
+					<xsl:variable name="subtitle-color">
+						<xsl:call-template name="color">
+							<xsl:with-param name="colors" select="extra1" />
+							<xsl:with-param name="part">sub</xsl:with-param>
+						</xsl:call-template>
+					</xsl:variable>
+
+					<xsl:variable name="content-color">
+						<xsl:call-template name="color">
+							<xsl:with-param name="colors" select="extra1" />
+							<xsl:with-param name="part">content</xsl:with-param>
+						</xsl:call-template>
+					</xsl:variable>
+
+					<xsl:variable name="date-color">
+						<xsl:call-template name="color">
+							<xsl:with-param name="colors" select="extra1" />
+							<xsl:with-param name="part">datum</xsl:with-param>
+						</xsl:call-template>
+					</xsl:variable>
+
+					<xsl:variable name="buttontext-color">
+						<xsl:call-template name="color">
+							<xsl:with-param name="colors" select="extra1" />
+							<xsl:with-param name="part">buttontekst</xsl:with-param>
+						</xsl:call-template>
+					</xsl:variable>
+
 					<table cellpadding="0" cellspacing="0" width="100%" style="width: 100%">
 						<tr>
 							<!-- trigger DATUMBLOK
@@ -1691,6 +1802,11 @@
 									<table cellpadding="0" cellspacing="0" width="100%" style="width: 100%">
 										<tr>
 											<td class="agDateTextInnerCont">
+
+												<xsl:if test="$date-color != ''">
+													<xsl:attribute name="style">color: <xsl:value-of select="$date-color" /></xsl:attribute>
+												</xsl:if>
+
 												<xsl:call-template name="date_subtitle">
 													<xsl:with-param name="row" select="." />
 												</xsl:call-template>
@@ -1759,7 +1875,12 @@
 															</xsl:call-template>
 														</xsl:variable>
 
-														<h2><xsl:value-of select="$title" disable-output-escaping="yes" /></h2>
+														<h2>
+															<xsl:if test="$title-color != ''">
+																<xsl:attribute name="style">color: <xsl:value-of select="$title-color" /></xsl:attribute>
+															</xsl:if>
+															<xsl:value-of select="$title" disable-output-escaping="yes" />
+														</h2>
 													</td>
 												</tr>
 
@@ -1774,7 +1895,12 @@
 																</xsl:call-template>
 															</xsl:variable>
 
-															<h4><xsl:value-of select="$subtitle" disable-output-escaping="yes" /></h4>
+															<h4>
+																<xsl:if test="$subtitle-color != ''">
+																	<xsl:attribute name="style">color: <xsl:value-of select="$subtitle-color" /></xsl:attribute>
+																</xsl:if>
+																<xsl:value-of select="$subtitle" disable-output-escaping="yes" />
+															</h4>
 														</td>
 													</tr>
 												</xsl:if>
@@ -1783,6 +1909,10 @@
 												<xsl:if test="not(contains(style, 'datumblok')) and not(contains(style, 'datum-plaatje-tekst'))">
 													<tr>
 														<td class="agDate">
+															<xsl:if test="$date-color != ''">
+																<xsl:attribute name="style">color: <xsl:value-of select="$date-color" /></xsl:attribute>
+															</xsl:if>
+
 															<xsl:call-template name="date_subtitle">
 																<xsl:with-param name="row" select="." />
 															</xsl:call-template>
@@ -1794,6 +1924,10 @@
 												<xsl:if test="contains(style, 'datumblok') and not(contains(display_playdate_start, '1 januari 2000')) and substring(playdate_start, 12, 5) != '00:00'">
 													<tr>
 														<td class="agTime">
+															<xsl:if test="$date-color != ''">
+																<xsl:attribute name="style">color: <xsl:value-of select="$date-color" /></xsl:attribute>
+															</xsl:if>
+
 															<xsl:value-of select="substring(playdate_start, 12, 5)" />
 
 															<xsl:if test="substring(playdate_end, 12, 5) != substring(playdate_start, 12, 5)">
@@ -1808,12 +1942,20 @@
 												<xsl:if test="content != ''">
 													<tr>
 														<td class="agContent">
+															<xsl:if test="$content-color != ''">
+																<xsl:attribute name="style">color: <xsl:value-of select="$content-color" /></xsl:attribute>
+															</xsl:if>
+
 															<xsl:value-of select="content" disable-output-escaping="yes" />
 
 															<!-- Show text based readmore button when using DATUM-PLAATJE-TEKST trigger -->
-															<xsl:if test="contains(style, 'datum-plaatje-tekst') and url != '' and not(contains(image_alt, 'NOBUTTON'))">
+															<!-- ##JWDB Juli 2020: link button will always be used instead of a button -->
+															<xsl:if test="url != '' and not(contains(image_alt, 'NOBUTTON'))">
 																<xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text>
 																<a target="_blank">
+																	<xsl:if test="$buttontext-color != ''">
+																		<xsl:attribute name="style">color: <xsl:value-of select="$buttontext-color" /> !important; color: <xsl:value-of select="$buttontext-color" /></xsl:attribute>
+																	</xsl:if>
 																	<xsl:attribute name="href"><xsl:value-of select="details_url" /></xsl:attribute>
 																	<xsl:choose>
 																		<xsl:when test="image_alt != ''"><xsl:value-of select="image_alt" /></xsl:when>
@@ -1824,6 +1966,24 @@
 														</td>
 													</tr>
 												</xsl:if>
+
+												<!-- ##JWDB Juli 2020: show text based readmore button when content is empty -->
+												<xsl:if test="url != '' and not(contains(image_alt, 'NOBUTTON')) and content = ''">
+													<tr>
+														<td class="agContent">
+															<a target="_blank">
+																<xsl:if test="$buttontext-color != ''">
+																	<xsl:attribute name="style">color: <xsl:value-of select="$buttontext-color" /> !important; color: <xsl:value-of select="$buttontext-color" /></xsl:attribute>
+																</xsl:if>
+																<xsl:attribute name="href"><xsl:value-of select="details_url" /></xsl:attribute>
+																<xsl:choose>
+																	<xsl:when test="image_alt != ''"><xsl:value-of select="image_alt" /></xsl:when>
+																	<xsl:otherwise><xsl:value-of select="$button1_text" /></xsl:otherwise>
+																</xsl:choose>
+															</a>
+														</td>
+													</tr>
+												</xsl:if>
 											</table>
 										</td>
 									</tr>
@@ -1831,7 +1991,8 @@
 							</th>
 
 							<!-- Button, hide when using DATUM-PLAATJE-TEKST trigger -->
-							<xsl:if test="url != '' and not(contains(image_alt, 'NOBUTTON')) and not(contains(style, 'datum-plaatje-tekst'))">
+							<!-- ##JWDB July 2020: button logic deleted, link button in content will be used -->
+							<xsl:if test="1=0 and url != '' and not(contains(image_alt, 'NOBUTTON')) and not(contains(style, 'datum-plaatje-tekst'))">
 								<th class="agColMargin">
 									<xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text>
 								</th>
@@ -1847,6 +2008,7 @@
 													<xsl:with-param name="class">ctBut</xsl:with-param>
 													<xsl:with-param name="url" select="details_url" />
 													<xsl:with-param name="button_icon"><xsl:value-of select="$button_icon" /></xsl:with-param>
+													<xsl:with-param name="row" select="." />
 												</xsl:call-template>
 											</td>
 										</tr>
@@ -1890,7 +2052,29 @@
 	</xsl:template>
 
 	<!-- ##JWDB 10 april 2020: container for the titles -->
+	<!-- ##JWDB 24 July 2020: custom colors implemented -->
 	<xsl:template name="titles">
+
+		<xsl:variable name="title-color">
+			<xsl:call-template name="color">
+				<xsl:with-param name="colors" select="extra1" />
+				<xsl:with-param name="part">titel</xsl:with-param>
+			</xsl:call-template>
+		</xsl:variable>
+
+		<xsl:variable name="subtitle-color">
+			<xsl:call-template name="color">
+				<xsl:with-param name="colors" select="extra1" />
+				<xsl:with-param name="part">sub</xsl:with-param>
+			</xsl:call-template>
+		</xsl:variable>
+
+		<xsl:variable name="date-color">
+			<xsl:call-template name="color">
+				<xsl:with-param name="colors" select="extra1" />
+				<xsl:with-param name="part">datum</xsl:with-param>
+			</xsl:call-template>
+		</xsl:variable>
 
 		<tr>
 			<td>
@@ -1922,7 +2106,12 @@
 									</xsl:call-template>
 								</xsl:variable>
 
-								<h4><xsl:value-of select="$subtitle" disable-output-escaping="yes" /></h4>
+								<h4>
+									<xsl:if test="$subtitle-color != ''">
+										<xsl:attribute name="style">color: <xsl:value-of select="$subtitle-color" /></xsl:attribute>
+									</xsl:if>
+									<xsl:value-of select="$subtitle" disable-output-escaping="yes" />
+								</h4>
 							</td>
 						</tr>
 					</xsl:if>
@@ -1955,12 +2144,21 @@
 								<xsl:choose>
 									<!-- JWDB June 2020: all 1/, 2/ and afb. styles will get H3 as heading -->
 									<xsl:when test="contains(style, '1/3') or contains(style, '2/3') or contains(style, '1/2') or contains(style, 'afb.')">
-										<xsl:text disable-output-escaping="yes"><![CDATA[<h3>]]></xsl:text>
+										<xsl:text disable-output-escaping="yes"><![CDATA[<h3]]></xsl:text>
+										<xsl:if test="$title-color != ''">
+											<xsl:text disable-output-escaping="yes"><![CDATA[ style="color: ]]></xsl:text><xsl:value-of select="$title-color" /><xsl:text disable-output-escaping="yes"><![CDATA["]]></xsl:text>
+										</xsl:if>
+										<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
+
 										<xsl:value-of select="$title" disable-output-escaping="yes" />
 										<xsl:text disable-output-escaping="yes"><![CDATA[</h3>]]></xsl:text>
 									</xsl:when>
 									<xsl:otherwise>
-										<xsl:text disable-output-escaping="yes"><![CDATA[<h2>]]></xsl:text>
+										<xsl:text disable-output-escaping="yes"><![CDATA[<h2]]></xsl:text>
+										<xsl:if test="$title-color != ''">
+											<xsl:text disable-output-escaping="yes"><![CDATA[ style="color: ]]></xsl:text><xsl:value-of select="$title-color" /><xsl:text disable-output-escaping="yes"><![CDATA["]]></xsl:text>
+										</xsl:if>
+										<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
 										<xsl:value-of select="$title" disable-output-escaping="yes" />
 										<xsl:text disable-output-escaping="yes"><![CDATA[</h2>]]></xsl:text>
 									</xsl:otherwise>
@@ -1993,7 +2191,12 @@
 									</xsl:call-template>
 								</xsl:variable>
 
-								<h4><xsl:value-of select="$subtitle" disable-output-escaping="yes" /></h4>
+								<h4>
+									<xsl:if test="$subtitle-color != ''">
+										<xsl:attribute name="style">color: <xsl:value-of select="$subtitle-color" /></xsl:attribute>
+									</xsl:if>
+									<xsl:value-of select="$subtitle" disable-output-escaping="yes" />
+								</h4>
 							</td>
 						</tr>
 					</xsl:if>
@@ -2007,9 +2210,17 @@
 						<tr>
 							<td class="ctDate">
 								<!-- JWDB June 2020: set all texts to center when style contains trigger word gecentreerd -->
-								<xsl:if test="contains(style, 'gecentreerd')">
-									<xsl:attribute name="style">text-align: center;</xsl:attribute>
-								</xsl:if>
+								<xsl:choose>
+									<xsl:when test="contains(style, 'gecentreerd') and $date-color != ''">
+										<xsl:attribute name="style">text-align: center; color: <xsl:value-of select="$date-color" /></xsl:attribute>
+									</xsl:when>
+									<xsl:when test="contains(style, 'gecentreerd')">
+										<xsl:attribute name="style">text-align: center;</xsl:attribute>
+									</xsl:when>
+									<xsl:when test="$date-color != ''">
+										<xsl:attribute name="style">color: <xsl:value-of select="$date-color" /></xsl:attribute>
+									</xsl:when>
+								</xsl:choose>
 
 								<xsl:call-template name="date_subtitle">
 									<xsl:with-param name="row" select="." />
@@ -2020,6 +2231,39 @@
 				</table>
 			</td>
 		</tr>
+
+	</xsl:template>
+
+	<!-- ##JWDB 24 July 2020: get color from extra2 field -->
+	<xsl:template name="color">
+		<xsl:param name="colors" />
+		<xsl:param name="part" />
+
+		<xsl:variable name="search"><![CDATA[ ]]><xsl:value-of select="$part" />:</xsl:variable>
+
+		<xsl:choose>
+			<xsl:when test="contains($colors, $search)">
+				<xsl:variable name="color_part" select="normalize-space(substring-after($colors, $search))" />
+				<xsl:choose>
+					<xsl:when test="contains($color_part, ' ')">
+						<xsl:value-of select="substring-before($color_part, ' ')" />
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:value-of select="$color_part" />
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:when>
+			<xsl:when test="$part = 'achtergrond' and $colors != '' and not(contains($colors, ' ')) and not(contains($colors, ':'))">
+				<xsl:value-of select="$colors" />
+			</xsl:when>
+			<xsl:when test="$part = 'achtergrond' and $colors != '' and contains($colors, ' ')">
+				<xsl:variable name="subpart" select="substring-before($colors, ' ')" />
+				<xsl:if test="not(contains($subpart, ':'))">
+					<xsl:value-of select="$subpart" />
+				</xsl:if>
+			</xsl:when>
+		</xsl:choose>
+
 
 	</xsl:template>
 
