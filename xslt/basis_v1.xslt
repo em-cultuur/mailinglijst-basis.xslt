@@ -6,10 +6,10 @@
 	<!-- Basis  v1
 	XSLT for BLOCKS in MailingLijst-templates
 	(c) EM-Cultuur, 2020
-	Last change: JWDB 11 August 2020 (v1.7)
+	Last change: JWDB 20 August 2020 (v1.8)
 
 	BLOCKSTYLE-names determine grouping
-	blockdeails (db.fiesds) dettermine content, design of the blocks
+	blockdeails (db.fiesds) determine content, design of the blocks
 	design is set in the CSS of the template (few exceptions)
 
 	for xslt-fieldnames (db.fieldnames, block-names) reference :
@@ -123,7 +123,10 @@
 
 		<table cellpadding="0" cellspacing="0" width="100%" style="width: 100%" class="ctMainTable">
 
-			<!-- HEADER ITEMS SECTION -->
+			<!-- HEADER ITEMS SECTION
+			This section contains items with style beginning with Headeritem.
+			This items will be displayed above normal items + sidebar.
+			-->
 			<xsl:if test="count(/matches/match[contains(style, 'Headeritem')]) != 0">
 				<tr>
 
@@ -131,8 +134,8 @@
 
 						<table cellpadding="0" cellspacing="0" width="100%" style="width: 100%;" class="ctMainTable">
 
-							<!-- Blocks are grouped on blockstyle-name-first-word (Item, Agenda)
-							Loop through block-styles starting with 'Item' -->
+							<!-- Blocks are grouped on blockstyle-name-first-word
+							Loop through block-styles starting with 'Headeritem' -->
 							<xsl:for-each select="matches/match[contains(style, 'Headeritem')]">
 
 								<!-- ##JWDB 24 July 2020: pick colors from db.extra1 field -->
@@ -3074,12 +3077,28 @@
 															</xsl:call-template>
 														</xsl:variable>
 
-														<h2>
-															<xsl:if test="$title-color != ''">
-																<xsl:attribute name="style">color: <xsl:value-of select="$title-color" /></xsl:attribute>
-															</xsl:if>
-															<xsl:value-of select="$title" disable-output-escaping="yes" />
-														</h2>
+														<!-- ##JWDB 20 august 2020: title clickable when the url is filled -->
+														<xsl:choose>
+															<xsl:when test="url != ''">
+																<a target="_blank" class="agTitleLink">
+																	<xsl:attribute name="href"><xsl:value-of select="details_url" /></xsl:attribute>
+																	<h2>
+																		<xsl:if test="$title-color != ''">
+																			<xsl:attribute name="style">color: <xsl:value-of select="$title-color" /></xsl:attribute>
+																		</xsl:if>
+																		<xsl:value-of select="$title" disable-output-escaping="yes" />
+																	</h2>
+																</a>
+															</xsl:when>
+															<xsl:otherwise>
+																<h2>
+																	<xsl:if test="$title-color != ''">
+																		<xsl:attribute name="style">color: <xsl:value-of select="$title-color" /></xsl:attribute>
+																	</xsl:if>
+																	<xsl:value-of select="$title" disable-output-escaping="yes" />
+																</h2>
+															</xsl:otherwise>
+														</xsl:choose>
 													</td>
 												</tr>
 
